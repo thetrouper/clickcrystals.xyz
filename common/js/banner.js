@@ -35,7 +35,7 @@ code = `<div class="banner-wrapper" style="z-index: 9999;">
 
     .banner > .top > .icon {
         display: inline-block;
-        transform: translateY(15px);
+        transform: translateY(8px);
     }
 
     .banner > .top > .title {
@@ -55,8 +55,8 @@ code = `<div class="banner-wrapper" style="z-index: 9999;">
             <a href="../../gallery.html"">Gallery</a>
             <a href="../../download.html"">Download</a>
             <a href="../../faq.html"">FAQ</a>
+            <a href="../../scripting.html">Scripting</a>
             <a href="https://discord.gg/tMaShNzNtP" target="_blank">Discord</a>
-            <a href="https://github.com/ItziSpyder/ClickCrystals/wiki/Using-ClickCrystalsScript" target="_blank">Scripting</a>
             <a href="https://github.com/ItziSpyder/ClickCrystals/wiki" target="_blank">Wiki</a>
             <a href="https://github.com/ItziSpyder/ClickCrystals/issues" target="_blank">Issues</a>
             <a href="https://www.curseforge.com/minecraft/mc-mods/clickcrystals" target="_blank">CurseForge</a>
