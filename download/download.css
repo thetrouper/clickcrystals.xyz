@@ -6,6 +6,7 @@ body {
     --color-bg: rgb(67, 67, 67);
     --color-bg-overlay: rgb(24, 24, 24);
     --color-generic: rgb(27, 146, 206);
+    --color-generic-darker: rgb(7, 91, 133);
     --color-hover: rgba(255, 255, 255, 0.21);
 
     background-color: var(--color-bg);
@@ -14,6 +15,19 @@ body {
 
 a {
     color: rgb(0, 142, 152);
+}
+
+.version a {
+    text-decoration: none;
+    color: rgb(230, 230, 230);
+}
+
+.version .link {
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: var(--color-hover);
 }
 
 iframe {
