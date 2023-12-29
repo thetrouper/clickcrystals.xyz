@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickCrystals | Scripting</title>
+    <link rel="shortcut icon" href="./common/assets/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./scripting/scripting.css">
+</head>
+<body>
+    <script src="./common/js/banner.js"></script>
+
+    <div class="dashboard">
+        <div class="ttile" style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+            <h1>ClickCrystals Script</h1>
+            <h2>The ultimate in-game module maker</h2>
+            <div class="code" style="margin: auto;"><p>
+                Recommded Editor: Visual Studio Code <br>
+                Required ClickCrystals Version: 1.1.9 <br>
+                Required Minecraft Version: 1.19.4-1.20.2
+            </p></div>
+        </div>
+
+        <p class="title">What is it?</p>
+        <p>ClickCrystals Script is an in-game module maker that allows you to create custom features. Have an idea but it never got accepted? Script it!</p>
+        <p><span class="high">Easy syntax with NO variables to worry about! Just script!</span></p>
+        <p><span class="high">Think of this as minecraft commands.</span></p>
+
+        <p class="title">Let's get to the point</p>
+        <p>My other tutorials and wikis all took too long to get to the point and yall just never read it. This one will be different, trust me.</p>
+
+        <div class="tutorial">
+            <div class="section">
+                <br>
+                <p class="title">Creating a module</p>
+                <div class="example">
+                    Tutorial:
+                    <div class="code"><p>
+                        module create (module-name) <br>
+                        description (Text)
+                    </p></div>
+                </div>
+                <div class="example">
+                    Example:
+                    <div class="code"><p>
+                        module create new-module <br>
+                        description This is describing the new-module
+                    </p></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <p class="title">Before we continue</p>
+                <p>Here's the <span class="high">key legend</span> to assist you while you read the documentations below:</p>
+                <div class="code">
+                    <ul>
+                        <li><span class="high">()</span> surrounds argument types</li>
+                        <li>leading <span class="high">..</span> means argument only sometimes appear before</li>
+                        <li>trailing <span class="high">..</span> means argument only sometimes appear after</li>
+                        <li><span class="high">(CCS.. args)</span> means more script command lines can follow after; execute whatever you want</li>
+                        <li><span class="high">(N)</span> means any number</li>
+                        <li><span class="high">(+N)</span> doesn't mean positive numbers, it means expressioned number. For example <span class="high">>=0.9</span></li>
+                        <li><span class="high">("")</span> means a string in quotes. when writing strings in script, always surround then in quotation marks!</li>
+                        <li><span class="high">(ID)</span> represents a minecraft ID value. <span class="high">#</span> prefix means ID name contains the prefixed phrase, and <span class="high">:</span> means ID name EQUALS to the prefixed phrase.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <br>
+            <details class="section"><summary>Registering events</summary>
+                <span class="arg">on</span>
+                <details class="arg"><summary>(event..)</summary>
+                    <br><span class="high">left_click</span>
+                    <br><span class="high">right_click</span>
+                    <br><span class="high">middle_click</span>
+                    <br><span class="high">left_release</span>
+                    <br><span class="high">right_releae</span>
+                    <br><span class="high">middle_release</span>
+                    <br><span class="high">key_press..</span>
+                    <br><span class="high">key_release..</span>
+                    <br><span class="high">break_block</span>
+                    <br><span class="high">place_block</span>
+                    <br><span class="high">interact_block</span>
+                    <br><span class="high">punch_block</span>
+                    <br><span class="high">tick</span>
+                    <br><span class="high">item_use</span>
+                    <br><span class="high">item_consume</span>
+                    <br><span class="high">totem_pop</span> 
+                    <br><span class="high">module_enable</span>
+                    <br><span class="high">module_disable</span>
+                    <br><span class="high">move_pos</span>
+                    <br><span class="high">move_look</span>
+                    <br><span class="high">damage</span>
+                    <br><span class="high">death</span>
+                    <br><span class="high">game_join</span>
+                    <br><span class="high">game_leave</span>
+                    <br><span class="high">chat_send..</span>
+                    <br><span class="high">chat_receive..</span>
+                </details>
+                <details class="arg"><summary>(..value)</summary>
+                    <br>key_press <span class="high">..(key name)</span>
+                    <br>key_release <span class="high">..(key name)</span>
+                    <br>chat_send <span class="high">..("")</span>
+                    <br>chat_receive <span class="high">..("")</span>
+                </details>
+                <span class="arg">(CCS.. args)</span>
+                <br><br>
+                <div class="example">
+                    Example 1:
+                    <div class="code"><p>
+                        module create new-module <br>
+                        description This is describing the new-module <br><br>
+                        on key_press space { <br>
+                        &nbsp&nbsp send "you pressed space bar" <br>
+                        }
+                    </p></div>
+                </div>
+                <div class="example">
+                    Example 2:
+                    <div class="code"><p>
+                        module create new-module <br>
+                        description This is describing the new-module <br><br>
+                        on totem_pop { <br>
+                        &nbsp&nbsp send "you popped!" <br>
+                        }
+                    </p></div>
+                </div>
+            </details>
+
+            <details class="section"><summary>If conditions</summary>
+                <span class="arg">if</span>
+                <details class="arg"><summary>(condition..)</summary>
+                    <br><span class="high">inventory_has..</span>
+                    <br><span class="high">hotbar_has..</span>
+                    <br><span class="high">target_block..</span>
+                    <br><span class="high">target_entity..</span>
+                    <br><span class="high">targeting_entity</span>
+                    <br><span class="high">targeting_block</span>
+                    <br><span class="high">holding..</span>
+                    <br><span class="high">off_holding..</span>
+                    <br><span class="high">block_in_range..</span>
+                    <br><span class="high">entity_in_range..</span>
+                    <br><span class="high">input_active..</span>
+                    <br><span class="high">attack_progress..</span> 
+                    <br><span class="high">armor..</span> 
+                    <br><span class="high">health..</span> 
+                    <br><span class="high">pos_x..</span> 
+                    <br><span class="high">pos_y..</span> 
+                    <br><span class="high">pos_z..</span> 
+                    <br><span class="high">module_enabled..</span> 
+                    <br><span class="high">block..</span> 
+                    <br><span class="high">dimension..</span> 
+                    <br><span class="high">in_game</span>
+                    <br><span class="high">playing</span>
+                    <br><span class="high">effect_duration..</span> 
+                    <br><span class="high">effect_amplifier..</span>
+                </details>
+                <details class="arg"><summary>(..expression..)</summary>
+                    <br>inventory_has <span class="high">..(ID)</span>
+                    <br>hotbar_has <span class="high">..(ID)</span>
+                    <br>target_block <span class="high">..(ID)</span>
+                    <br>target_entity <span class="high">..(ID)</span>
+                    <br>holding <span class="high">..(ID)</span>
+                    <br>off_holding <span class="high">..(ID)</span>
+                    <br>block_in_range <span class="high">..(ID)..</span>
+                    <br>entity_in_range <span class="high">..(ID)..</span>
+                    <br>input_active <span class="high">..(input name)</span>
+                    <br>attack_progress <span class="high">..(+N)</span> 
+                    <br>armor <span class="high">..(+N)</span>  
+                    <br>health <span class="high">..(+N)</span>  
+                    <br>pos_x <span class="high">..(+N)</span>  
+                    <br>pos_y <span class="high">..(+N)</span>  
+                    <br>pos_z <span class="high">..(+N)</span>  
+                    <br>module_enabled <span class="high">..(module id)</span> 
+                    <br>block <span class="high">..(x y z)..</span>
+                    <br>dimension <span class="high">..(dimension name)</span>
+                    <br>effect_duration <span class="high">..(ID)..</span> 
+                    <br>effect_amplifier <span class="high">..(ID)..</span>
+                </details>
+                <details class="arg"><summary>(..value)</summary>
+                    <br>block_in_range (ID) <span class="high">..(N)</span> 
+                    <br>entity_in_range (ID) <span class="high">..(N)</span> 
+                    <br>block (x y z) <span class="high">..(ID)</span> 
+                    <br>effect_duration (ID) <span class="high">..(+N)</span>
+                    <br>effect_amplifier (ID) <span class="high">..(+N)</span>
+                </details>
+                <span class="arg">(CCS.. args)</span>
+                <br><br>
+                <div class="example">
+                    Example 1:
+                    <div class="code"><p>
+                        module create new-module <br>
+                        description This is describing the new-module <br><br>
+                        on key_press space { <br>
+                            &nbsp&nbsp if block_in_range #diamond_ore 16 { <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp send "Diamond within 16 blocks!" <br>       
+                                &nbsp&nbsp&nbsp&nbsp&nbsp turn_to nearest_block #diamond_ore <br>       
+                            &nbsp&nbsp } <br>
+                            &nbsp&nbsp send "you pressed space bar" <br>
+                        }
+                    </p></div>
+                </div>
+                <div class="example">
+                    Example 2:
+                    <div class="code"><p>
+                        module create new-module <br>
+                        description This is describing the new-module <br><br>
+                        on totem_pop { <br>
+                            &nbsp&nbsp if hotbar_has #totem { <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp switch #totem <br><br>       
+                                &nbsp&nbsp&nbsp&nbsp&nbsp wait 0.05 { <br>   
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp swap <br>       
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp switch back <br>       
+                                &nbsp&nbsp&nbsp&nbsp&nbsp } <br>   
+                            &nbsp&nbsp } <br>
+                            &nbsp&nbsp send "you popped!" <br>
+                        }
+                    </p></div>
+                </div>
+            </details>
+
+            <details class="section"><summary>Reloading scripts</summary>
+                <div class="code">Do <span class="high">,reload</span> in in-game chat.</div>
+            </details>
+
+            <div class="section">
+                <p class="title">That's it! All you need to know about scripting. (Basics to get started)</p>
+                <p>I'll list all registered ClickCrystals script commands here, enjoy scripting! Join the <a href="https://discord.gg/tMaShNzNtP">Discord</a> for help!</p>
+                <p class="title">Commands:</p>
+                <p>Syntax:</p>
+                <div class="code">
+                    <ul>
+                        <li><span class="high">on</span> (event..) (..value) (CCS.. args)</li>
+                        <li><span class="high">if</span> (condition..) (..expression..) (..value) (CCS.. args)</li>
+                        <li><span class="high">if_not</span> (condition..) (..expression..) (..value) (CCS.. args)</li>
+                        <li><span class="high">while</span> (condition..) (..expression..) (..value) (CCS.. args)</li>
+                        <li><span class="high">while_not</span> (condition..) (..expression..) (..value) (CCS.. args)</li>
+                        <li><span class="high">execute</span> (CCS.. args)</li>
+                        <li><span class="high">execute_random</span> (CCS.. args)</li>
+                        <li><span class="high">loop</span> (N) (CCS.. args)</li>
+                        <li><span class="high">loop_period</span> (N) (N) (CCS.. args)</li>
+                        <li><span class="high">print</span> ("")</li>
+                        <li><span class="high">throw</span> ("")</li>
+                        <li><span class="high">exit</span> (N)</li>
+                    </ul>
+                </div>
+                <p>Client:</p>
+                <div class="code">
+                    <ul>
+                        <li><span class="high">module</span> (action) (value)</li>
+                        <li><span class="high">description</span> ("")</li>
+                        <li><span class="high">config</span> (action)</li>
+                        <li><span class="high">say</span> ("")</li>
+                        <li><span class="high">send</span> ("")</li>
+                        <li><span class="high">notify</span> ("")</li>
+                    </ul>
+                </div>
+                <p>Macros</p>
+                <div class="code">
+                    <ul>
+                        <li><span class="high">drop</span> (N)</li>
+                        <li><span class="high">teleport</span> (x y z)</li>
+                        <li><span class="high">turn_to</span> (value..) (..ID) then (CCS.. args)</li>
+                        <li><span class="high">snap_to</span> (event..) (..value) then (CCS.. args)</li>
+                        <li><span class="high">switch</span> (ID)</li>
+                        <li><span class="high">swap</span> </li>
+                        <li><span class="high">input</span> (input)</li>
+                        <li><span class="high">drop</span> (N)</li>
+                        <li><span class="high">gui_drop</span> (ID) (N)</li>
+                        <li><span class="high">gui_switch</span> (ID)</li>
+                        <li><span class="high">gui_quickmove</span> (ID)</li>
+                        <li><span class="high">gui_swap</span> (ID)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./common/js/footer.js"></script>
+</body>
+</html>
