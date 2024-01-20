@@ -46,8 +46,8 @@ code = `<div class="banner-wrapper" style="z-index: 9999;">
 
 <div class="banner">
     <div class="top">
-        <div class="icon"><img src="../../common/assets/icon.png" style="width: 45px;"></div>
-        <div class="title">ClickCrystals / CPvP Enhanced</div>
+        <div class="icon"><img src="../../../common/assets/icon.png" style="width: 45px;"></div>
+        <div class="title">ClickCrystals / Scripting</div>
     </div>
     <div class="end">
         <div class="links">

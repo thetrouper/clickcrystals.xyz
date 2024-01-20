@@ -50,7 +50,7 @@ code = `<div class="footer-wrapper" style="background-color: rgb(32, 32, 32); z-
 <div class="footer">
     <div class="column">
         <p class="title" style="font-size: 20px;">
-            <img src="../../common/assets/icon.png">
+            <img src="../../../common/assets/icon.png">
             <strong>ClickCrystals</strong>
         </p>
         <div class="line"></div>
