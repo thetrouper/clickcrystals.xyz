@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="content">
         <div class="intro">
             <iframe src="https://www.youtube.com/embed/vKB4q0Qt1Lc" frameborder="0" allowfullscreen></iframe>
@@ -32,6 +32,38 @@
                 <p>While ClickCrystals mainly supports hotkeying, the concept has sparked debates amongst the crystal pvp community. Currently, the mod is banned on most servers, but is not flaggable by anticheat.</p>
             </div>
         </div>
+        <hr>
+        <div style="text-align:center;padding:15px;background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);border-radius: 10px;">
+            
+            <h1 id="dw_counter">Loading Count</h1>
+            <button id="dw_but" class="download-button"><a href="common/assets/versions/ClickCrystals-1.20.4-1.2.1.jar" style="text-decoration:none;" download>Download</button></a>
+            <script>
+    
+                document.getElementById('dw_but').addEventListener('click', function() {
+    
+                    fetch('increase_dw_count.php')
+                        .then(response => response.json())
+                        .then(data => {
+    
+                            document.getElementById('dw_counter').innerText = data.count+" Downloads";
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            
+    
+                setInterval(function() {
+    
+                    fetch('getdownloads.php')
+                        .then(response => response.json())
+                        .then(data => {
+    
+                            document.getElementById('counter').innerText =  data.count+' Downloads';
+                        })
+                        .catch(error => console.error('Error:', error));
+                }, 1);
+            </script>
+        </div>
+        <hr>
         <div class="aboutus">
             <div class="title">About Us</div>
             <p>The ever-evolving world of Minecraft modding introduces ClickCrystals, a mod designed to reimagine the way players approach hot-keying within the game. While discussions about its implications spark debate, it’s important to dive deeper into the mod’s true essence and impact.</p>
