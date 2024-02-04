@@ -10,19 +10,98 @@
 <body>
     <script src="./common/js/banner.js"></script>
 
-    <div class="backdrop">
-        <div class="overlay">
-            <div class="text">
-                <div class="title">ClickCrystals</div>
-                <div class="motto">Your Ultimate CPvP Assistance</div>
-                <div class="links">
-                    <a href="https://discord.gg/tMaShNzNtP" target="_blank" class="discord">Discord</a>
-                    <a href="./download.html" target="_blank" class="download">Download</a>
+
+    <div class="slideshow-container">
+
+        <div class="">
+            <div class="Slide fade">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="./common/assets/ingame/cc_home.png" style="width:100%">
+                    <div class="slide-content">
+                        <div class="title">ClickCrystals</div>
+                        <div class="motto">Your Ultimate CPvP Assistance</div><br>
+                        <a href="https://discord.gg/tMaShNzNtP" target="_blank" class="discord">Discord</a>
+                        <a href="./download.html" target="_blank" class="download-button">Download</a>
+                    </div>
+
+            </div>
+            
+            <div class="Slide fade">
+                <div class="numbertext">2 / 4</div>
+                <img src="./common/assets/ingame/cc_ide.png" style="width:100%">
+                <div class="slide-content">
+                    <h1>Download ClickCrystals</h1>
+                    <br><a href="./download.html" target="_blank" class="discord">Download</a>
+
                 </div>
             </div>
+
+            <div class="Slide fade">
+                <div class="numbertext">3 / 4</div>
+                <img src="./common/assets/ingame/cc_modules.png" style="width:100%">
+                <div class="slide-content">
+                    <h1>Want to add your own ideas in to ClickCrystals?</h1>
+                    <p>Join the Discord where you can suggest, chat with the developers<br> & get early sneak peaks</p>
+                    <br><a href="https://discord.gg/tMaShNzNtP" target="_blank" class="discord">Join the Discord</a>
+
+                </div>
+            </div>
+            <div class="Slide fade">
+                <div class="numbertext">4 / 4</div>
+                <img src="./common/assets/ingame/cc_ide.png" style="width:100%">
+                <div class="slide-content">
+                    <h1>Did I hear make custom modules?</h1>
+                    <p>With the CCS Editor, you can make custom modules in-game! </p>
+                    <br><a href="../scripting.html" target="_blank" class="discord">Learn to Script!</a>
+
+                </div>
+            </div>
+            
+            
         </div>
+        
+      
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
-    
+    <br>
+      
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("Slide");
+
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex-1].style.display = "block";
+        }
+        function autoSlide() {
+            setInterval(function () {
+                plusSlides(1);
+            }, 15000); 
+        }
+        autoSlide()
+    </script>
+
     <div class="content">
         <div class="intro">
             <iframe src="https://www.youtube.com/embed/vKB4q0Qt1Lc" frameborder="0" allowfullscreen></iframe>
@@ -33,37 +112,7 @@
             </div>
         </div>
         <hr>
-        <div style="text-align:center;padding:15px;background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);border-radius: 10px;">
-            
-            <h1 id="dw_counter">Loading Count</h1>
-            <button id="dw_but" class="download-button"><a href="common/assets/versions/ClickCrystals-1.20.4-1.2.1.jar" style="text-decoration:none;" download>Download</button></a>
-            <script>
     
-                document.getElementById('dw_but').addEventListener('click', function() {
-    
-                    fetch('increase_dw_count.php')
-                        .then(response => response.json())
-                        .then(data => {
-    
-                            document.getElementById('dw_counter').innerText = data.count+" Downloads";
-                        })
-                        .catch(error => console.error('Error:', error));
-                });
-            
-    
-                setInterval(function() {
-    
-                    fetch('getdownloads.php')
-                        .then(response => response.json())
-                        .then(data => {
-    
-                            document.getElementById('counter').innerText =  data.count+' Downloads';
-                        })
-                        .catch(error => console.error('Error:', error));
-                }, 1);
-            </script>
-        </div>
-        <hr>
         <div class="aboutus">
             <div class="title">About Us</div>
             <p>The ever-evolving world of Minecraft modding introduces ClickCrystals, a mod designed to reimagine the way players approach hot-keying within the game. While discussions about its implications spark debate, it’s important to dive deeper into the mod’s true essence and impact.</p>
