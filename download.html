@@ -7,49 +7,12 @@
     <link rel="shortcut icon" href="./common/assets/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="./download/download.css">
     <link rel="stylesheet" href="./index/index.css">
-    <style>
-        
-        body{
-            background: rgb(2,0,36);
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(0, 138, 165) 100%);
-        }
-    </style>
 </head>
 <body>
     <script src="./common/js/banner.js"></script><br>
-    <div style="text-align:center;padding:15px;">
-            
-        <h1 id="dw_counter">Loading Count</h1>
-        <button style="background-color: rgb(12, 179, 179);color:black; border-radius: 5px;padding:15px;border: 0px;"><a href="common/assets/versions/ClickCrystals-1.20.4-1.2.1.jar" style="text-decoration:none;" download>Download Latest Version</button></a>
-        <script>
-
-            document.getElementById('dw_but').addEventListener('click', function() {
-
-                fetch('increase_dw_count.php')
-                    .then(response => response.json())
-                    .then(data => {
-
-                        document.getElementById('dw_counter').innerText = data.count+" Downloads";
-                    })
-                    .catch(error => console.error('Error:', error));
-            });
-        
-
-            setInterval(function() {
-
-                fetch('getdownloads.php')
-                    .then(response => response.json())
-                    .then(data => {
-
-                        document.getElementById('counter').innerText =  data.count+' Downloads made so far...';
-                    })
-                    .catch(error => console.error('Error:', error));
-            }, 1);
-        </script>
-
-    </div>
+    
     <div class="content">
-        <div class="title">Other Downloads for ClickCrystals</div>
+        <div class="title">Downloads for ClickCrystals</div>
         <p>Our <a href="https://www.curseforge.com/minecraft/mc-mods/clickcrystals" target="_blank">CurseForge</a> account is new! Please follow us!</p>
         <div class="versions">
             <div class="version">
