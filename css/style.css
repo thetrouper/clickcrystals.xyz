@@ -264,7 +264,7 @@ div.curseforge h1, a.curseforge {color: var(--color-curseforge) !important;}
     div.discord * {max-width: 600px;}
 
     @media screen and (max-width: 1400px) {
-        h1, h2, span.text {max-width: 600px;}
+        h1, h2, span.text {}
         div.discord * {max-width: 500px;}
 
         @media screen and (max-width: 1200px) {
