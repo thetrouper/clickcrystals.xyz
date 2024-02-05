@@ -1,0 +1,325 @@
+:root {
+    --color-dark-1: #242424;
+    --color-dark-1-transparent: #242424c0;
+    --color-dark-2: #363636;
+    --color-light-1: #e6e6e6;
+    --color-light-2: #5c5c5c;
+    --color-purple-dark: #590b78;
+    --color-purple-light: #cd16e2;
+    --color-youtube: #FF3333;
+    --color-discord: #5865F2;
+    --color-github: #4078c0;
+    --color-modrinth: #1bd96a;
+    --color-curseforge: #F16436;
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-color: var(--color-light-1);
+    margin: 0;
+    font-family: 'Dongle', sans-serif;
+    color: white;
+}
+
+h1 {
+    margin: 1vh;
+    text-align: center;
+    max-width: 1000px;
+    line-height: 50px;
+    font-size: 35px;
+    font-family: 'Koulen';
+}
+h2 {
+    margin: 1vh;
+    text-align: center;
+    max-width: 1000px;
+    line-height: 40px;
+    font-size: 55px;
+}
+span.text {
+    text-align: center;
+    max-width: 1000px;
+    font-size: 45px;
+}
+
+nav#navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background-color: var(--color-dark-1);
+    z-index: 100;
+}
+
+nav ul {
+    margin: 1vh 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 1vw;
+}
+
+nav li {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 1vw;
+    background-color: var(--color-dark-2);
+    padding: 10px 10px 8px 10px;
+    text-align: center;
+    border-radius: 10px;
+    align-self: center;
+    font-family: 'Koulen', cursive;
+    color: var(--color-light-1);
+    font-size: 25px;
+    line-height: 25px;
+}
+
+nav li.active {background-color: var(--color-light-2);}
+
+nav li.hover:hover {background-color: darkslategray;}
+
+li.text {
+    line-height: 30px;
+    list-style: disc;
+    list-style-position: outside;
+}
+
+ul {padding-left: 45px;}
+
+div.background ul {margin: 0 0 5px 0;}
+
+a:link {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    color: white;
+}
+a:hover {color: white;}
+a:visited {color: white;}
+
+div.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border: 1vw solid;
+    border-top: 0;
+    border-bottom: 0;
+    padding: 1vh 2vw;
+    font-size: 50px;
+    line-height: 40px;
+}
+
+div.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-dark-1-transparent);
+    border-radius: 10px;
+    padding: 15px;
+    padding-bottom: 10px;
+    margin: 5px;
+}
+
+.left {
+    position: absolute;
+    left: 2vw;
+}
+.right {
+    position: absolute;
+    right: 2vw;
+}
+
+img.icon {margin-right: 10px;}
+
+img.box {background-color: var(--color-purple-light); border-radius: 15%; width: auto;}
+
+img.profilepicture {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+img.logo {height: calc(5vh + 4vw + 5px);}
+
+div.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 5px solid var(--color-light-2);
+    border-radius: 15px;
+    padding: 4px;
+    margin: 4px;
+}
+
+div.button.active {border-color: yellow;}
+
+div.button:hover {border-color: cadetblue;background-color: darkslategray;}
+
+div.button img.profilepicture {
+    margin-bottom: 0;
+    height: 50px;
+    width: 50px;
+    margin-left: 6px;
+}
+
+div.tags {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+div.tag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    border: 4px solid white;
+    border-radius: 10px;
+    padding: 3px;
+    padding-bottom: 0;
+    margin: 0 3px 6px 3px;
+}
+
+div.tag img {
+    height: 23px;
+    margin-right: 5px;
+}
+
+div.tag span {
+    line-height: 33px;
+    margin-top: 6px;
+}
+
+span.administrator {color: #e74c3c;}
+span.chief-developer {color: #e67e22;}
+span.artist {color: #2ecc71;}
+
+div.youtube {border-color: var(--color-youtube);}
+div.youtube h1 {color: var(--color-youtube);}
+div.discord {border-color: var(--color-discord);}
+div.discord h1 {color: var(--color-discord);}
+div.discord * {max-width: 700px;}
+div.crimson {border-color: crimson;}
+div.crimson h1, h1.crimson {color: crimson !important;}
+img.box.crimson, div.crimson img.box {background-color: crimson;}
+div.aquamarine {border-color: aquamarine;}
+div.aquamarine h1, h1.aquamarine {color: aquamarine !important;}
+img.box.aquamarine, div.aquamarine img.box {background-color: aquamarine;padding:3px;}
+div.red {border-color: rgb(204, 55, 55);}
+div.red h1, h1.red {color: red !important;}
+img.box.red, div.red img.box {background-color: rgb(255, 255, 255);}
+div.fuxia {border-color: #e91e63;}
+div.fuxia h1, h1.fuxia {color: #e91e63 !important;}
+div.blue {border-color: #1eb0e9 !important;}
+div.blue h1, h1.blue {color: #1eb0e9 !important;}
+img.box.blue, div.blue img.box {background-color: #1eb0e9;}
+img.box.fuxia, div.fuxia img.box {background-color: #e91e63;}
+div.yellow {border-color: yellow;}
+.yellow {color: yellow;}
+div.yellow h1, h1.yellow {color: yellow !important;}
+img.box.yellow, div.yellow img.box {background-color: yellow;}
+div.github {border-color: var(--color-github);}
+div.github h1, a.github {color: var(--color-github) !important;}
+div.modrinth {border-color: var(--color-modrinth);}
+div.modrinth h1, a.modrinth {color: var(--color-modrinth) !important;}
+div.curseforge {border-color: var(--color-curseforge);}
+div.curseforge h1, a.curseforge {color: var(--color-curseforge) !important;}
+
+::-webkit-scrollbar {width: 15px;}
+::-webkit-scrollbar-track {background-color: var(--color-dark-1);}
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-light-1);
+    border-radius: 7.5px;
+}
+
+@media screen and (max-width: 1600px) {
+    h1, h2, span.text {max-width: 700px;}
+    div.discord * {max-width: 600px;}
+
+    @media screen and (max-width: 1400px) {
+        h1, h2, span.text {max-width: 600px;}
+        div.discord * {max-width: 500px;}
+
+        @media screen and (max-width: 1200px) {
+            nav li {
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+            .left {
+                position: static;
+                margin-bottom: 10px;
+            }
+            .right {
+                position: static;
+                margin-top: 10px;
+            }
+            ::-webkit-scrollbar {width: 10px;}
+            ::-webkit-scrollbar-thumb {border-radius: 5px;}
+
+            @media screen and (max-width: 700px) {
+                nav ul {justify-content: space-around;}
+                nav li {margin-right: 5px;}
+                h1, h2, span.text {max-width: 80vw;}
+                span.text, li.text {
+                    font-size: 40px;
+                    line-height: 35px;
+                }
+                img.profilepicture.icon {height: 50px; width: 50px;}
+                div.discord * {max-width: 300px;}
+                div.button h1 {
+                    line-height: 32px;
+                    font-size: 45px;
+                }
+                div.button img.profilepicture {
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+        }
+    }
+}
+div.column_group{
+    display: inline-block;
+    width:50%;  
+}
+div.box.other p{
+    margin:2px;
+    font-size:30px;
+    line-height: 20px;
+}
+div.box.other.faq p b{
+    color:rgb(204, 202, 55)
+}
+h1.blue a.blue{
+    color: #005a7e !important;
+}
+a{
+    text-decoration: none !important;
+}

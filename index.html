@@ -1,56 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickCrystals | Home</title>
-    <link rel="stylesheet" href="./index/index.css">
-    <link rel="shortcut icon" href="./common/assets/icon.png" type="image/x-icon">
-</head>
-<body>
-    <script src="./common/js/banner.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle&family=Koulen&display=swap"
+      rel="stylesheet"
+    />
+    <title>ClickCrystals - Home</title>
+  </head>
+  <body onresize="onResize()">
+    <nav id="navbar">
+      <ul>
+        <li>
+          <div class="container">
+            <img
+              class="icon"
+              src="./img/logo.png"
+              alt="ClickCrystals Logo"
+              height="25"
+              style="border-radius: 20%"
+            />
+            ClickCrystals
+          </div>
+        </li>
+        <li id="home" class="active hover">
+          <a href="/">
+            <div class="container">
+              <img
+                class="icon"
+                src="./img/home.svg"
+                alt="Home Icon"
+                height="25"
+              />
+              Home
+            </div>
+          </a>
+        </li>
+        <li id="download" class="hover">
+          <a href="/pages/downloads">
+            <div class="container">
+              <img
+                class="icon"
+                src="/img/download.svg"
+                alt="Download Icon"
+                height="25"
+              />
+              Download
+            </div>
+          </a>
+        </li>
+        <li id="installation" class="hover">
+          <a href="/pages/installation">
+            <div class="container">
+              <img
+                class="icon"
+                src="/img/installation.svg"
+                alt="Installation Icon"
+                height="25"
+              />
+              Installation
+            </div>
+          </a>
+        </li>
+        <li id="discord" class="hover">
+          <a href="/discord.html">
+            <div class="container">
+              <img
+                class="icon"
+                src="/img/discord-icon.svg"
+                alt="Discord Icon"
+                height="25"
+              />
+              Discord
+            </div>
+          </a>
+        </li>
+        <li id="about" class="hover">
+          <a href="/pages/about">
+            <div class="container">
+              <img
+                class="icon"
+                src="/img/about.svg"
+                alt="About Icon"
+                height="25"
+              />
+              About
+            </div>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-    <div class="backdrop">
-        <div class="overlay">
-            <div class="text">
-                <div class="title">ClickCrystals</div>
-                <div class="motto">Your Ultimate CPvP Assistance</div>
-                <div class="links">
-                    <a href="https://discord.gg/tMaShNzNtP" target="_blank" class="discord">Discord</a>
-                    <a href="./download.html" target="_blank" class="download">Download</a>
+    <div class="box">
+      <div class="container" style="align-items: flex-start">
+        <div class="container">
+          <div class="background">
+            <img src="/img/logo.png" alt="ClickCrystals Logo" class="logo" />
+            <h1 class="blue">ClickCrystals</h1>
+            <span class="text">
+              Your ultimate crystal PvP assistance, ClickCrystals at your
+              service.
+            </span>
+            <div class="container">
+              <a
+                href="https://github.com/ItziSpyder/ClickCrystals"
+                target="_blank"
+                class="github"
+              >
+                <div class="button github">
+                  <img
+                    src="/img/github.svg"
+                    alt="GitHub Icon"
+                    class="profilepicture"
+                  />
+                  <h1>GitHub</h1>
                 </div>
+              </a>
+              <a
+                href="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
+                target="_blank"
+                class="curseforge"
+              >
+                <div class="button curseforge">
+                  <img
+                    src="/img/curseforge.svg"
+                    alt="CurseForge Icon"
+                    class="profilepicture"
+                  />
+                  <h1>CurseForge</h1>
+                </div>
+              </a>
             </div>
+            <img
+              src="/img/about.svg"
+              alt="About Icon"
+              class="box aquamarine"
+              height="50"
+              style="margin-top: 25px; margin-bottom: 10px"
+            />
+            <h1 class="aquamarine">About us</h1>
+            <span class="text">
+              The ClickCrystals Project is a free and open-source Minecraft
+              client modification that allows all-in-one features without you
+              having to download a lot of mods. It aims to enchance the user
+              experience without introducing unfair advantages.<br />
+              You can find out more in the
+              <a href="/pages/about/index.html">About</a> page of this website.
+            </span>
+            <img
+              src="/img/youtube.svg"
+              alt="YouTube Icon"
+              class="box red"
+              height="50"
+              style="margin-top: 25px; margin-bottom: 10px"
+            />
+            <h1 class="red">Content</h1>
+            <span class="text">
+              <div class="column_group">
+                <iframe
+                  src="https://www.youtube.com/embed/4zZtut41gyA"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+                <iframe
+                  src="https://www.youtube.com/embed/q36sEmZ6zis"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+                <iframe
+                  src="https://www.youtube.com/embed/GbwnV_HMeWA"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="column_group">
+                <iframe
+                  src="https://www.youtube.com/embed/I3Fn7mq61-U"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+                <iframe
+                  src="https://www.youtube.com/embed/-YCPZvNMmFo"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+                <iframe
+                  src="https://www.youtube.com/embed/vKB4q0Qt1Lc"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <br />
+              Check out the <a href="/pages/events/index.html">media</a> page
+              of this website to see all our videos.
+            </span>
+            <img
+              src="/img/download.svg"
+              alt="Download Icon"
+              class="box blue"
+              height="50"
+              style="margin-top: 25px; margin-bottom: 10px"
+            />
+            <h1 class="blue">Get ClickCrystals</h1>
+            <span class="text">
+              See <a href="/pages/events/index.html">downloads</a> page to
+              download the mod. To install the mod, see
+              <a href="/pages">installation</a> tutorial.
+            </span>
+          </div>
         </div>
+      </div>
     </div>
-
-    <div class="content">
-        <div class="intro">
-            <iframe src="https://www.youtube.com/embed/vKB4q0Qt1Lc" frameborder="0" allowfullscreen></iframe>
-            <div class="text">
-                <div class="title">Enhance Your Crystal PvP Experience Starting Today!</div>
-                <p>The ClickCrystals Project is a free and open-source Minecraft client modification that allows all-in-one features without you having to download a lot of mods.</p>
-                <p>While ClickCrystals mainly supports hotkeying, the concept has sparked debates amongst the crystal pvp community. Currently, the mod is banned on most servers, but is not flaggable by anticheat.</p>
-            </div>
-        </div>
-        <div class="aboutus">
-            <div class="title">About Us</div>
-            <p>The ever-evolving world of Minecraft modding introduces ClickCrystals, a mod designed to reimagine the way players approach hot-keying within the game. While discussions about its implications spark debate, it’s important to dive deeper into the mod’s true essence and impact.</p>
-            <p>ClickCrystals seeks to address a common concern: the complexity of hot-keying in Minecraft. This mod aims to enhance the user experience by streamlining hotkey actions, offering ease and convenience without introducing unfair advantages. We are constantly emphasizing that the mod does not include built-in macros, placing a spotlight on its purpose as a tool to simplify gameplay mechanics.</p>
-            <p>The mod encourages users to explore its capabilities firsthand before making assumptions. It’s worth noting that several features initially accused of providing “unfair advantages” have been removed, demonstrating our commitment to refining the mod’s functionality and maintaining fair gameplay.</p>
-            <p>Our community plays a pivotal role in shaping the mod’s trajectory. All hotkey modules are set to remain, with any potential changes or removals subject to community voting. This approach ensures that the mod’s evolution remains aligned with the community’s needs and desires.</p>
-        </div>
-        <div class="videos">
-            <div class="title">Videos</div>
-            <p>Create YouTube videos on ClickCrystals, if we come across it, your video just might end up on here! <br>Subscribe to the current creators here!</p>
-            <iframe src="https://www.youtube.com/embed/4zZtut41gyA" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/q36sEmZ6zis" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/GbwnV_HMeWA" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/I3Fn7mq61-U" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/-YCPZvNMmFo" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/vKB4q0Qt1Lc" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <script src="./common/js/footer.js"></script>
-</body>
+  </body>
 </html>
