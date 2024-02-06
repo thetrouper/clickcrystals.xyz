@@ -53,7 +53,7 @@ code = `<div class="footer-wrapper" style="background-color: rgb(24, 106, 154); 
             <strong>ClickCrystals</strong>
         </p>
         <div class="line"></div>
-        <p style="color: lightgray;">Copyright (c) ClickCrystals 2023 <br>Licensed under <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">MIT</a></p>
+        <p style="color: lightgray;">Copyright (c) ClickCrystals 2024 <br>Licensed under <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">MIT</a></p>
         <p style="color: lightgray;"><span style="font-style: italic;">"We make crystal pvp better"</span><br><a href="https://discord.gg/tMaShNzNtP" target="_blank">Contact us!</a></p>
     </div>
     <div class="sections">
@@ -68,10 +68,11 @@ code = `<div class="footer-wrapper" style="background-color: rgb(24, 106, 154); 
             <a href="https://github.com/i-no-one" target="_blank">I-No-One</a>
             <a href="https://github.com/yirf" target="_blank">Yirf</a>
             <a href="https://github.com/i-got-you-dead" target="_blank">I-Got-You-Dead</a>
+            <!-- tutla, anton not here lmao -->
         </div>
         <div class="links">
             <p class="title">Resources</p>
-            <a href="https://itzispyder.github.io/clickcrystals/bulletin-generator" target="_blank">Bulletin Json Generator</a>
+            <a href="https://clickcrystals.xyz/bulletin-gen.html" target="_blank">Bulletin Json Generator</a>
             <a href="https://itzispyder.github.io/clickcrystals/bulletin" target="_blank">Bulletin Json</a>
             <a href="https://itzispyder.github.io/clickcrystals/info" target="_blank">Info Json</a>
             <a href="https://github.com/itzispyder/clickcrystals/wiki" target="_blank">Wiki</a>
