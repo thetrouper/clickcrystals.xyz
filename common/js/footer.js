@@ -89,10 +89,6 @@ code = `<div class="footer-wrapper" style="background-color: rgb(24, 106, 154); 
 </div>
 </div>`;
 
-var div = document.createElement('div');
+var div = document.createElement("div");
 div.innerHTML = code;
 document.body.appendChild(div);
-
-
-
-

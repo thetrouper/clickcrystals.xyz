@@ -25,6 +25,6 @@ code = `
 </div>
 `;
 
-var div = document.createElement('div');
+var div = document.createElement("div");
 div.innerHTML = code;
 document.body.appendChild(div);

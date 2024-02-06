@@ -68,7 +68,6 @@ code = `<div class="banner-wrapper" style="z-index: 9999;">
 </div>
 </div>`;
 
-var div = document.createElement('div');
+var div = document.createElement("div");
 div.innerHTML = code;
 document.body.appendChild(div);
-

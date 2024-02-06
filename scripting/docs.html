@@ -1,238 +1,333 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scripting | Docs</title>
-    <link rel="stylesheet" href="./docs/css/docs.css">
-    <link rel="shortcut icon" href="../common/assets/icon.png" type="image/x-icon">
-</head>
-<body>
+    <link rel="stylesheet" href="./docs/css/docs.css" />
+    <link
+      rel="shortcut icon"
+      href="../common/assets/icon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
     <script src="./docs/commands/js/docs_header.js"></script>
 
     <div class="content">
-        <h2>Examples</h2>
-        <table>
-            <tr>
-                <td>
-                    <p>CCS script line:</p>
-                    <textarea name="demo" id="" cols="30" rows="10" style="background-color: rgb(45, 45, 45); color: white; border: none; resize: none;">command args...</textarea>
-                </td>
-                <td>
-                    <p>CCS script block:</p>
-                    <textarea name="demo" id="" cols="30" rows="10" style="background-color: rgb(45, 45, 45); color: white; border: none; resize: none;">{&#13;&#10;&nbsp;&nbsp;command1 args...&#13;&#10;&nbsp;&nbsp;command2 args...&#13;&#10;&nbsp;&nbsp;command3 args...&#13;&#10;}</textarea>
-                </td>
-                <td>
-                    <p>Simple Module Declaration (Template):</p>
-                    <textarea name="demo" id="" cols="50" rows="10" style="background-color: rgb(45, 45, 45); color: white; border: none; resize: none;">module create custom-module&#13;&#10;description "This Is A Custom Scripted Module"&#13;&#10;&#13;&#10;on module_enable {&#13;&#10;&#13;&#10;}&#13;&#10;&#13;&#10;on module_disable {&#13;&#10;&#13;&#10;}</textarea>
-                </td>
-            </tr>
-        </table>
-        <h2>Syntax</h2>
-        <table>
-            <thead>
-                <tr>
-                    <td><strong>Script Command</strong></td>
-                    <td><strong>Description</strong></td>
-                    <td><strong>Documentation</strong></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>on</td>
-                    <td>Registers an event listener.</td>
-                    <td><a href="./docs/commands/on.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>if</td>
-                    <td>Evaluates an if statement.</td>
-                    <td><a href="./docs/commands/if.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>if_not</td>
-                    <td>Evaluates an if statement and tests if value is false.</td>
-                    <td><a href="./docs/commands/if.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>while</td>
-                    <td>Loops a CCS block or line until the condition is false.</td>
-                    <td><a href="./docs/commands/while.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>while_not</td>
-                    <td>Loops a CCS block or line until the condition is true.</td>
-                    <td><a href="./docs/commands/while.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>execute</td>
-                    <td>Executes any CCS script block or line.</td>
-                    <td><a href="./docs/commands/execute.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>execute_random</td>
-                    <td>Executes ONE RANDOM CCS script line from the next script block.</td>
-                    <td><a href="./docs/commands/execute_random.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>loop</td>
-                    <td>Repeats a CCS block or line for the specified amount of times.</td>
-                    <td><a href="./docs/commands/loop.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>loop_period</td>
-                    <td>Repeats a CCS block or line for the specified amount of times, while also waiting a period before the next iteration.</td>
-                    <td><a href="./docs/commands/loop_period.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>print</td>
-                    <td>Prints the next quoted message in the console.</td>
-                    <td><a href="./docs/commands/print.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>throw</td>
-                    <td>Throws an exception (error) with the message from the next quoted message.</td>
-                    <td><a href="./docs/commands/throw.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>exit</td>
-                    <td>Exits the Java JVM with the specified exit code.</td>
-                    <td><a href="./docs/commands/exit.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>function</td>
-                    <td>Calls a script function with the specified name.</td>
-                    <td><a href="./docs/commands/function.html">link</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <h2>Client</h2>
-        <table>
-            <thead>
-                <tr>
-                    <td><strong>Script Command</strong></td>
-                    <td><strong>Description</strong></td>
-                    <td><strong>Documentation</strong></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>module</td>
-                    <td>Manages modules with the specified module index.</td>
-                    <td><a href="./docs/commands/module.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>description</td>
-                    <td>Sets the description of the current script module to the next quoted message.</td>
-                    <td><a href="./docs/commands/description.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>config</td>
-                    <td>Manages the config for ClickCrystals.</td>
-                    <td><a href="./docs/commands/config.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>say</td>
-                    <td>Makes the client type or execute the message of the next quote in chat.</td>
-                    <td><a href="./docs/commands/say.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>send</td>
-                    <td>Direct messages the session user with the message of the next quote.</td>
-                    <td><a href="./docs/commands/send.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>notify</td>
-                    <td>Sends a notification to the session user with the specified stay time and the message of the next quoted message.</td>
-                    <td><a href="./docs/commands/notify.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>playsound</td>
-                    <td>Plays a sound to the client session user with the specified volume and pitch.</td>
-                    <td><a href="./docs/commands/playsound.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>define</td>
-                    <td>Defines a specific object for the client. Mostly used for scripting.</td>
-                    <td><a href="./docs/commands/define.html">link</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <h2>Macros</h2>
-        <table>
-            <thead>
-                <tr>
-                    <td><strong>Script Command</strong></td>
-                    <td><strong>Description</strong></td>
-                    <td><strong>Documentation</strong></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>drop</td>
-                    <td>Drops the item you have in your mainhand with the specified amount.</td>
-                    <td><a href="./docs/commands/drop.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>teleport</td>
-                    <td>Sends a teleport packet to the server to change your position instantly.</td>
-                    <td><a href="./docs/commands/teleprot.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>turn_to</td>
-                    <td>Slowly turns your head camera to a specified object in the world to simulate player input.</td>
-                    <td><a href="./docs/commands/turn_to.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>snap_to</td>
-                    <td>Snaps your head camera instantly to a specified object in the world. Does not simulate player input.</td>
-                    <td><a href="./docs/commands/snap_to.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>damage</td>
-                    <td>Sends a attack packet to the nearest of the specified entity.</td>
-                    <td><a href="./docs/commands/damage.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>switch</td>
-                    <td>Hotkeys to the specified item in your hotbar.</td>
-                    <td><a href="./docs/commands/switch.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>swap</td>
-                    <td>Swaps the item in your main hand with the one in your offhand.</td>
-                    <td><a href="./docs/commands/swap.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>input</td>
-                    <td>Simulates a player input: attack, use, walk, etc...</td>
-                    <td><a href="./docs/commands/input.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>gui_drop</td>
-                    <td>If inventory is opened, drop the specificed item with the specified amount.</td>
-                    <td><a href="./docs/commands/gui_drop.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>gui_swap</td>
-                    <td>If inventory is opened, swap the specified item with your offhand item.</td>
-                    <td><a href="./docs/commands/gui_swap.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>gui_switch</td>
-                    <td>If inventory is opened, hover cursor over the specified item.</td>
-                    <td><a href="./docs/commands/gui_switch.html">link</a></td>
-                </tr>
-                <tr>
-                    <td>gui_quickmove</td>
-                    <td>If inventory is opened, quickmove the specified item.</td>
-                    <td><a href="./docs/commands/gui_quickmove.html">link</a></td>
-                </tr>
-            </tbody>
-        </table>
+      <h2>Examples</h2>
+      <table>
+        <tr>
+          <td>
+            <p>CCS script line:</p>
+            <textarea
+              name="demo"
+              id=""
+              cols="30"
+              rows="10"
+              style="
+                background-color: rgb(45, 45, 45);
+                color: white;
+                border: none;
+                resize: none;
+              "
+            >
+command args...</textarea
+            >
+          </td>
+          <td>
+            <p>CCS script block:</p>
+            <textarea
+              name="demo"
+              id=""
+              cols="30"
+              rows="10"
+              style="
+                background-color: rgb(45, 45, 45);
+                color: white;
+                border: none;
+                resize: none;
+              "
+            >
+{&#13;&#10;&nbsp;&nbsp;command1 args...&#13;&#10;&nbsp;&nbsp;command2 args...&#13;&#10;&nbsp;&nbsp;command3 args...&#13;&#10;}</textarea
+            >
+          </td>
+          <td>
+            <p>Simple Module Declaration (Template):</p>
+            <textarea
+              name="demo"
+              id=""
+              cols="50"
+              rows="10"
+              style="
+                background-color: rgb(45, 45, 45);
+                color: white;
+                border: none;
+                resize: none;
+              "
+            >
+module create custom-module&#13;&#10;description "This Is A Custom Scripted Module"&#13;&#10;&#13;&#10;on module_enable {&#13;&#10;&#13;&#10;}&#13;&#10;&#13;&#10;on module_disable {&#13;&#10;&#13;&#10;}</textarea
+            >
+          </td>
+        </tr>
+      </table>
+      <h2>Syntax</h2>
+      <table>
+        <thead>
+          <tr>
+            <td><strong>Script Command</strong></td>
+            <td><strong>Description</strong></td>
+            <td><strong>Documentation</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>on</td>
+            <td>Registers an event listener.</td>
+            <td><a href="./docs/commands/on.html">link</a></td>
+          </tr>
+          <tr>
+            <td>if</td>
+            <td>Evaluates an if statement.</td>
+            <td><a href="./docs/commands/if.html">link</a></td>
+          </tr>
+          <tr>
+            <td>if_not</td>
+            <td>Evaluates an if statement and tests if value is false.</td>
+            <td><a href="./docs/commands/if.html">link</a></td>
+          </tr>
+          <tr>
+            <td>while</td>
+            <td>Loops a CCS block or line until the condition is false.</td>
+            <td><a href="./docs/commands/while.html">link</a></td>
+          </tr>
+          <tr>
+            <td>while_not</td>
+            <td>Loops a CCS block or line until the condition is true.</td>
+            <td><a href="./docs/commands/while.html">link</a></td>
+          </tr>
+          <tr>
+            <td>execute</td>
+            <td>Executes any CCS script block or line.</td>
+            <td><a href="./docs/commands/execute.html">link</a></td>
+          </tr>
+          <tr>
+            <td>execute_random</td>
+            <td>
+              Executes ONE RANDOM CCS script line from the next script block.
+            </td>
+            <td><a href="./docs/commands/execute_random.html">link</a></td>
+          </tr>
+          <tr>
+            <td>loop</td>
+            <td>
+              Repeats a CCS block or line for the specified amount of times.
+            </td>
+            <td><a href="./docs/commands/loop.html">link</a></td>
+          </tr>
+          <tr>
+            <td>loop_period</td>
+            <td>
+              Repeats a CCS block or line for the specified amount of times,
+              while also waiting a period before the next iteration.
+            </td>
+            <td><a href="./docs/commands/loop_period.html">link</a></td>
+          </tr>
+          <tr>
+            <td>print</td>
+            <td>Prints the next quoted message in the console.</td>
+            <td><a href="./docs/commands/print.html">link</a></td>
+          </tr>
+          <tr>
+            <td>throw</td>
+            <td>
+              Throws an exception (error) with the message from the next quoted
+              message.
+            </td>
+            <td><a href="./docs/commands/throw.html">link</a></td>
+          </tr>
+          <tr>
+            <td>exit</td>
+            <td>Exits the Java JVM with the specified exit code.</td>
+            <td><a href="./docs/commands/exit.html">link</a></td>
+          </tr>
+          <tr>
+            <td>function</td>
+            <td>Calls a script function with the specified name.</td>
+            <td><a href="./docs/commands/function.html">link</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <h2>Client</h2>
+      <table>
+        <thead>
+          <tr>
+            <td><strong>Script Command</strong></td>
+            <td><strong>Description</strong></td>
+            <td><strong>Documentation</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>module</td>
+            <td>Manages modules with the specified module index.</td>
+            <td><a href="./docs/commands/module.html">link</a></td>
+          </tr>
+          <tr>
+            <td>description</td>
+            <td>
+              Sets the description of the current script module to the next
+              quoted message.
+            </td>
+            <td><a href="./docs/commands/description.html">link</a></td>
+          </tr>
+          <tr>
+            <td>config</td>
+            <td>Manages the config for ClickCrystals.</td>
+            <td><a href="./docs/commands/config.html">link</a></td>
+          </tr>
+          <tr>
+            <td>say</td>
+            <td>
+              Makes the client type or execute the message of the next quote in
+              chat.
+            </td>
+            <td><a href="./docs/commands/say.html">link</a></td>
+          </tr>
+          <tr>
+            <td>send</td>
+            <td>
+              Direct messages the session user with the message of the next
+              quote.
+            </td>
+            <td><a href="./docs/commands/send.html">link</a></td>
+          </tr>
+          <tr>
+            <td>notify</td>
+            <td>
+              Sends a notification to the session user with the specified stay
+              time and the message of the next quoted message.
+            </td>
+            <td><a href="./docs/commands/notify.html">link</a></td>
+          </tr>
+          <tr>
+            <td>playsound</td>
+            <td>
+              Plays a sound to the client session user with the specified volume
+              and pitch.
+            </td>
+            <td><a href="./docs/commands/playsound.html">link</a></td>
+          </tr>
+          <tr>
+            <td>define</td>
+            <td>
+              Defines a specific object for the client. Mostly used for
+              scripting.
+            </td>
+            <td><a href="./docs/commands/define.html">link</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <h2>Macros</h2>
+      <table>
+        <thead>
+          <tr>
+            <td><strong>Script Command</strong></td>
+            <td><strong>Description</strong></td>
+            <td><strong>Documentation</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>drop</td>
+            <td>
+              Drops the item you have in your mainhand with the specified
+              amount.
+            </td>
+            <td><a href="./docs/commands/drop.html">link</a></td>
+          </tr>
+          <tr>
+            <td>teleport</td>
+            <td>
+              Sends a teleport packet to the server to change your position
+              instantly.
+            </td>
+            <td><a href="./docs/commands/teleprot.html">link</a></td>
+          </tr>
+          <tr>
+            <td>turn_to</td>
+            <td>
+              Slowly turns your head camera to a specified object in the world
+              to simulate player input.
+            </td>
+            <td><a href="./docs/commands/turn_to.html">link</a></td>
+          </tr>
+          <tr>
+            <td>snap_to</td>
+            <td>
+              Snaps your head camera instantly to a specified object in the
+              world. Does not simulate player input.
+            </td>
+            <td><a href="./docs/commands/snap_to.html">link</a></td>
+          </tr>
+          <tr>
+            <td>damage</td>
+            <td>
+              Sends a attack packet to the nearest of the specified entity.
+            </td>
+            <td><a href="./docs/commands/damage.html">link</a></td>
+          </tr>
+          <tr>
+            <td>switch</td>
+            <td>Hotkeys to the specified item in your hotbar.</td>
+            <td><a href="./docs/commands/switch.html">link</a></td>
+          </tr>
+          <tr>
+            <td>swap</td>
+            <td>
+              Swaps the item in your main hand with the one in your offhand.
+            </td>
+            <td><a href="./docs/commands/swap.html">link</a></td>
+          </tr>
+          <tr>
+            <td>input</td>
+            <td>Simulates a player input: attack, use, walk, etc...</td>
+            <td><a href="./docs/commands/input.html">link</a></td>
+          </tr>
+          <tr>
+            <td>gui_drop</td>
+            <td>
+              If inventory is opened, drop the specificed item with the
+              specified amount.
+            </td>
+            <td><a href="./docs/commands/gui_drop.html">link</a></td>
+          </tr>
+          <tr>
+            <td>gui_swap</td>
+            <td>
+              If inventory is opened, swap the specified item with your offhand
+              item.
+            </td>
+            <td><a href="./docs/commands/gui_swap.html">link</a></td>
+          </tr>
+          <tr>
+            <td>gui_switch</td>
+            <td>
+              If inventory is opened, hover cursor over the specified item.
+            </td>
+            <td><a href="./docs/commands/gui_switch.html">link</a></td>
+          </tr>
+          <tr>
+            <td>gui_quickmove</td>
+            <td>If inventory is opened, quickmove the specified item.</td>
+            <td><a href="./docs/commands/gui_quickmove.html">link</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="./docs/commands/js/docs_footer.js"></script>
-</body>
+  </body>
 </html>
