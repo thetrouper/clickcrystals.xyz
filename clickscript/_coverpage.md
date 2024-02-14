@@ -1,4 +1,4 @@
-<img src="img/title.png" alt="ClickCrystals Logo">
+<img src="/clickscript/img/title.png" alt="ClickCrystals Logo">
 
 > Documentation for the CCS Scripting Language
 
