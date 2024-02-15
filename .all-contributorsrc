@@ -16,6 +16,18 @@
         "doc",
         "ideas"
       ]
+    },
+    {
+      "login": "ItziSpyder",
+      "name": "ImproperIssues",
+      "avatar_url": "https://avatars.githubusercontent.com/u/114215797?v=4",
+      "profile": "https://itzispyder.github.io/",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
