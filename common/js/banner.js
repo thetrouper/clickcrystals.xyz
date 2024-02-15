@@ -78,13 +78,13 @@ code = `
                 justify-content: center;
                 align-items: center; margin-bottom:10px;">
                     <div class="links">
-                        <a href="/index.html">Home</a>
-                        <a href="/gallery.html">Gallery</a>
-                        <a href="/download.html">Download</a>
-                        <a href="/faq.html">FAQ</a>
-                        <a href="/scripting.html">Scripting</a>
+                        <a href="/>Home</a>
+                        <a href="/gallery">Gallery</a>
+                        <a href="/download">Download</a>
+                        <a href="/faq">FAQ</a>
+                        <a href="/scripting">Scripting</a>
                         <a href="https://discord.gg/tMaShNzNtP" target="_blank">Discord</a>
-                        <a href="/team.html">Team</a>
+                        <a href="/team">Team</a>
                     </div>
                     
                 </div>
