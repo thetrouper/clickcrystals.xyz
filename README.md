@@ -141,8 +141,6 @@ After launching the game, go to a single-player world or multi-player. Then, use
 
 Your contributions are really welcome. Contribution not just includes PRs, but your suggestions are also counted as contributions.
 
-## Contributors ✨
-
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
