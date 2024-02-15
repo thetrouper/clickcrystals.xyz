@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "e-coders",
+      "name": "Ark",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83082760?v=4",
+      "profile": "http://e-coders.me",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "ClickCrystalsXYZ",
+  "projectOwner": "e-coders"
+}
