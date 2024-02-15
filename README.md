@@ -10,11 +10,13 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/itzispyder/clickcrystals">GitHub</a> •
+  <a href="#-key-features">Features</a> •
+  <a href="#-introducing-clickcrystal-scripts">ClickScript</a> •
+  <a href="#-newest-changes">Changelog</a> •
   <a href="#%EF%B8%8F-installation">Installation</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#help">Help</a>
-  <a href="#contributing">Contributing</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-help">Help</a>
+  <a href="#-contributing">Contributing</a> •
 </p>
 
 <p align="center">
