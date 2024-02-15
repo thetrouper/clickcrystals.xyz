@@ -10,10 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="#-key-features">Key Features</a> •
+  <a href="https://github.com/itzispyder/clickcrystals">GitHub</a> •
   <a href="#%EF%B8%8F-installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="#license">Help</a>
+  <a href="#help">Help</a>
   <a href="#contributing">Contributing</a> •
 </p>
 
@@ -40,6 +40,51 @@
 - **HUD & GUI**: Huds, nice GUI
 - **ClickScript**: Your own Crystalling Modules!
 - **Supported**: 1.19.4-1.20.4
+
+## ✨ Introducing ClickCrystal Scripts!
+
+Not enough modules? Your wonderful ideas aren't getting accepted? Want private features but don't know how to code? No worries, make your own modules with ClickCrystalsScripts (CCS)!
+
+Introducing CCS, a fast and easy way to create modules from simple swapping, to selective interactions in game! CCS consists of a lot of CCS commands, and can be either executed separately or together in a .ccs file, like a Minecraft datapack!
+
+Interested? Download our latest version and start creating (CCS documentation available on <a href="https://clickcrystals.xyz/clickscript" target="_blank">wiki</a>)
+
+## 📃 Newest Changes
+
+```yaml
+Updating to: 1.20.4
+
+Script:
+  - on respawn # im not stable
+  - if chance_of (N) # im not stable
+  - if input_active sprint # im not stable
+  - input sprint # im not stable
+  - damage nearest_entity (ID) # im not stable
+  - damage any_entity # im not stable
+  - def function (name) (CCS.. args)
+  - def module (name)
+  - def desc ("")
+  - function (name)
+
+Tweaks:
+  - added option to disable bedrock interaction when using crystal and obsidian switch modules
+  - script (ID) arguments are now supported with commas, essentially making an or operator
+
+Patches:
+  - make event bus use concurrentlinkedqueue
+  - Target hud totem pop text
+  - escape key toggling modules on pojav
+  - Fixed pojav crashes for target hud
+
+Modules:
+  - no block/container interactions # i no one
+  - no gui background # i no one
+  - camera clip # i no one
+  - block outline # i no one
+
+Commands:
+  - ,version
+```
 
 ## ⚙️ Installation
 
