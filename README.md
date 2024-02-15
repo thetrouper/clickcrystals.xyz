@@ -15,7 +15,7 @@
   <a href="#-newest-changes">Changelog</a> •
   <a href="#%EF%B8%8F-installation">Installation</a> •
   <a href="#-usage">Usage</a> •
-  <a href="#-help">Help</a>
+  <a href="#-help">Help</a> •
   <a href="#-contributing">Contributing</a> •
 </p>
 
