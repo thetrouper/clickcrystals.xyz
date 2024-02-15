@@ -151,7 +151,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ayaanibrahimtutla"><img src="https://avatars.githubusercontent.com/u/91965613?v=4?s=100" width="100px;" alt="Tutla"/><br /><sub><b>Tutla</b></sub></a><br /><a href="#ideas-ayaanibrahimtutla" title="Ideas, Planning, & Feedback">🤔</a></td>   <td align="center" valign="top" width="14.28%"><a href="https://i-no-one.github.io/Website/"><img src="https://avatars.githubusercontent.com/u/145749961?v=4?s=100" width="100px;" alt="I-No-oNe"/><br /><sub><b>I-No-oNe</b></sub></a><br /><a href="https://github.com/e-coders/ClickCrystalsXYZ/commits?author=I-no-one" title="Code">💻</a> <a href="https://github.com/e-coders/ClickCrystalsXYZ/issues?q=author%3AI-no-one" title="Bug reports">🐛</a> <a href="#ideas-I-no-one" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://e-coders.me"><img src="https://avatars.githubusercontent.com/u/83082760?v=4?s=100" width="100px;" alt="Ark"/><br /><sub><b>Ark</b></sub></a><br /><a href="https://github.com/e-coders/ClickCrystalsXYZ/commits?author=e-coders" title="Documentation">📖</a> <a href="#ideas-e-coders" title="Ideas, Planning, & Feedback">🤔</a></td>
    
-    </tr>
+    
   </tbody>
 </table>
 
