@@ -68,14 +68,13 @@ code = `<div class="footer-wrapper" style="background-color: rgb(24, 106, 154); 
             <a href="https://github.com/i-no-one" target="_blank">I-No-One</a>
             <a href="https://github.com/yirf" target="_blank">Yirf</a>
             <a href="https://github.com/i-got-you-dead" target="_blank">I-Got-You-Dead</a>
-            <!-- tutla, anton not here lmao -->
         </div>
         <div class="links">
             <p class="title">Resources</p>
             <a href="https://clickcrystals.xyz/bulletin-gen.html" target="_blank">Bulletin Json Generator</a>
             <a href="https://itzispyder.github.io/clickcrystals/bulletin" target="_blank">Bulletin Json</a>
             <a href="https://itzispyder.github.io/clickcrystals/info" target="_blank">Info Json</a>
-            <a href="https://github.com/itzispyder/clickcrystals/wiki" target="_blank">Wiki</a>
+            <a href="https://clickcrystals.xyz/clickscript  " target="_blank">Wiki</a>
             <a href="https://itzispyder.github.io/developer" target="_blank">Toolbar Panel</a>
         </div>
         <div class="links">
@@ -90,10 +89,6 @@ code = `<div class="footer-wrapper" style="background-color: rgb(24, 106, 154); 
 </div>
 </div>`;
 
-var div = document.createElement('div');
+var div = document.createElement("div");
 div.innerHTML = code;
 document.body.appendChild(div);
-
-
-
-

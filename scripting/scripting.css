@@ -1,75 +1,71 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    --color-bg: rgb(67, 67, 67);
-    --color-bg-overlay: rgb(24, 24, 24);
-    --color-generic: rgb(27, 146, 206);
-    --color-generic-darker: rgb(7, 91, 133);
-    --color-hover: rgba(255, 255, 255, 0.21);
+  --color-bg: rgb(67, 67, 67);
+  --color-bg-overlay: rgb(24, 24, 24);
+  --color-generic: rgb(27, 146, 206);
+  --color-hover: rgba(255, 255, 255, 0.21);
 
-    background-color: var(--color-bg);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 a {
-    color: var(--color-generic);
+  color: var(--color-generic);
 }
 
-
 .dashboard {
-    margin: auto;
-    width: clamp(100px, 1000px, 90vw);
-    color: white;
+  margin: auto;
+  width: clamp(100px, 1000px, 90vw);
+  color: white;
 }
 
 .dashboard .title {
-    margin-top: 50px;
-    font-size: 20px;
-}
-
-.underline {
-    text-decoration: underline;
+  margin-top: 50px;
+  font-size: 20px;
+  color: var(--color-generic);
 }
 
 .code {
-    width: fit-content;
-    background-color: rgb(47, 47, 47);
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
+  width: fit-content;
+  background-color: rgb(47, 47, 47);
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .example {
-    vertical-align: top;
-    margin: 5px;
-    display: inline-block;
+  vertical-align: top;
+  margin: 5px;
+  display: inline-block;
 }
 
 .arg {
-    vertical-align: top;
-    display: inline-block;
-    width: fit-content;
-    background-color: rgb(47, 47, 47);
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
+  vertical-align: top;
+  display: inline-block;
+  width: fit-content;
+  background-color: rgb(47, 47, 47);
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .high {
-    vertical-align: top;
-    display: inline-block;
-    width: fit-content;
-    background-color: var(--color-hover);
-    padding: 3px;
-    border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
+  vertical-align: top;
+  display: inline-block;
+  width: fit-content;
+  background-color: var(--color-hover);
+  padding: 3px;
+  border-radius: 10px;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .section > summary {
-    font-size: 18px;
+  font-size: 18px;
 }
