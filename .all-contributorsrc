@@ -37,13 +37,24 @@
         "ideas"
       ]
     },
- {
+    {
       "login": "e-coders",
       "name": "Ark",
       "avatar_url": "https://avatars.githubusercontent.com/u/83082760?v=4",
       "profile": "http://e-coders.me",
       "contributions": [
         "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "I-no-one",
+      "name": "I-No-oNe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/145749961?v=4",
+      "profile": "https://i-no-one.github.io/Website/",
+      "contributions": [
+        "code",
+        "bug",
         "ideas"
       ]
     }
