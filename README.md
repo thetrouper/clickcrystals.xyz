@@ -1,6 +1,6 @@
 # 💎 ClickCrystals
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <div align="center">
@@ -151,6 +151,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://e-coders.me"><img src="https://avatars.githubusercontent.com/u/83082760?v=4?s=100" width="100px;" alt="Ark"/><br /><sub><b>Ark</b></sub></a><br /><a href="https://github.com/e-coders/ClickCrystalsXYZ/commits?author=e-coders" title="Documentation">📖</a> <a href="#ideas-e-coders" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://itzispyder.github.io/"><img src="https://avatars.githubusercontent.com/u/114215797?v=4?s=100" width="100px;" alt="ImproperIssues"/><br /><sub><b>ImproperIssues</b></sub></a><br /><a href="https://github.com/e-coders/ClickCrystalsXYZ/commits?author=ItziSpyder" title="Code">💻</a> <a href="https://github.com/e-coders/ClickCrystalsXYZ/commits?author=ItziSpyder" title="Documentation">📖</a> <a href="#ideas-ItziSpyder" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/e-coders/ClickCrystalsXYZ/issues?q=author%3AItziSpyder" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://discord.gg/ogre"><img src="https://avatars.githubusercontent.com/u/93684527?v=4?s=100" width="100px;" alt="TheTrouper"/><br /><sub><b>TheTrouper</b></sub></a><br /><a href="https://github.com/e-coders/ClickCrystalsXYZ/commits?author=TheTrouper" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
