@@ -1,36 +1,44 @@
-
 body {
-    margin: 0;
-    padding: 0;
-
-    --color-bg: rgb(67, 67, 67);
-    --color-bg-overlay: rgb(24, 24, 24);
-    --color-generic: rgb(27, 146, 206);
-    --color-hover: rgba(255, 255, 255, 0.21);
-
-    background-color: var(--color-bg);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(67, 67, 67);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .content {
-    margin: auto;
-    margin-top: 30px;
-    width: clamp(80%, 80%, 90vw);
-    color: rgb(165, 165, 165);
+  margin: auto;
+  margin-top: 30px;
+  width: clamp(80%, 80%, 90vw);
+  color: rgb(165, 165, 165);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .content .title {
-    color: var(--color-generic);
-    font-size: 25px;
+  color: rgb(27, 146, 206);
+  font-size: 25px;
 }
 
 .card {
-    width: clamp(200px, 400px, 100%);
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 5px;
+  flex: 0 0 calc(33.33% - 10px);
+  margin-bottom: 20px;
 }
 
 .card img {
-    width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 991px) {
+  .card {
+    flex-basis: calc(50% - 10px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    flex-basis: calc(100% - 10px);
+  }
 }
