@@ -8,16 +8,6 @@
   "commitConvention": "angular",
   "contributors": [
     {
-      "login": "e-coders",
-      "name": "Ark",
-      "avatar_url": "https://avatars.githubusercontent.com/u/83082760?v=4",
-      "profile": "http://e-coders.me",
-      "contributions": [
-        "doc",
-        "ideas"
-      ]
-    },
-    {
       "login": "ItziSpyder",
       "name": "ImproperIssues",
       "avatar_url": "https://avatars.githubusercontent.com/u/114215797?v=4",
@@ -44,6 +34,16 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/91965613?v=4",
       "profile": "https://github.com/ayaanibrahimtutla",
       "contributions": [
+        "ideas"
+      ]
+    },
+ {
+      "login": "e-coders",
+      "name": "Ark",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83082760?v=4",
+      "profile": "http://e-coders.me",
+      "contributions": [
+        "doc",
         "ideas"
       ]
     }
