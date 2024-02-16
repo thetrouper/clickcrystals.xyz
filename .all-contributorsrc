@@ -29,11 +29,12 @@
       ]
     },
     {
-      "login": "ayaanibrahimtutla",
-      "name": "Tutla",
-      "avatar_url": "https://avatars.githubusercontent.com/u/91965613?v=4",
-      "profile": "https://github.com/ayaanibrahimtutla",
+      "login": "e-coders",
+      "name": "Ark",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83082760?v=4",
+      "profile": "http://e-coders.me",
       "contributions": [
+        "doc",
         "ideas"
       ]
     },
@@ -48,13 +49,13 @@
         "ideas"
       ]
     },
+
     {
-      "login": "e-coders",
-      "name": "Ark",
-      "avatar_url": "https://avatars.githubusercontent.com/u/83082760?v=4",
-      "profile": "http://e-coders.me",
+      "login": "ayaanibrahimtutla",
+      "name": "Tutla",
+      "avatar_url": "https://avatars.githubusercontent.com/u/91965613?v=4",
+      "profile": "https://github.com/ayaanibrahimtutla",
       "contributions": [
-        "doc",
         "ideas"
       ]
     }
