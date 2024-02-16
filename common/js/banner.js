@@ -78,7 +78,7 @@ code = `
                 justify-content: center;
                 align-items: center; margin-bottom:10px;">
                     <div class="links">
-                        <a href="/>Home</a>
+                        <a href="/">Home</a>
                         <a href="/gallery">Gallery</a>
                         <a href="/download">Download</a>
                         <a href="/faq">FAQ</a>
