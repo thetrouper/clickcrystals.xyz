@@ -1,3 +1,1 @@
-RewriteEngine On
-RewriteRule ^(.*)$ title_injector.php [L,QSA]
 ErrorDocument 404 /404
