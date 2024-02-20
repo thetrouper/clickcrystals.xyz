@@ -16,10 +16,10 @@ Defines an object
    <td>function
 
    </td>
-   <td>define function **name
+   <td>define function **name ..
 
    </td>
-   <td>define function _anyFunctionName_
+   <td>define function _anyFunctionName_ { send "Hello World!"; send "Lol"; }
 
    </td>
   </tr>
