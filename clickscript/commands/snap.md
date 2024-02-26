@@ -9,13 +9,13 @@ Slowly turn to or snap instantly to a target, then when done, execute a callback
    </td>
   </tr>
   <tr>
-   <td>turn_to **<a href="#heading=h.drq4vmsvc224">filtered_target_type</a> **ID then ..
+   <td>turn_to **filtered_target_type **ID then ..
    </td>
    <td>turn_to nearest_entity :player then input attack
    </td>
   </tr>
   <tr>
-   <td>turn_to **<a href="#heading=h.drq4vmsvc224">singular_target_type</a> then ..
+   <td>turn_to **singular_target_type then ..
    </td>
    <td>turn_to any_block then input use
    </td>
