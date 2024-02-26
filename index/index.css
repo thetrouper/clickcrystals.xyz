@@ -11,7 +11,12 @@ body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-
+a{
+  color:gainsboro;
+}
+a:hover{
+  text-decoration: none;
+}
 .backdrop {
   background-size: cover;
   background-image: url("./assets/backdrop.png");
@@ -153,6 +158,7 @@ iframe {
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
+  -webkit-user-select: none;
   user-select: none;
 }
 .next {
@@ -200,7 +206,7 @@ filter: brightness(0.5);
   from {opacity: .2}
   to {opacity: 1}
 }
-div.Slide.fade div.slide-content a{
+div.Slide.fade div.slide-content .a{
     color: white;
     text-decoration: none;
     background-color:rgb(12, 206, 255);
@@ -212,3 +218,4 @@ div.Slide.fade div.slide-content a{
     transition: 0.09s steps(1000);
 
 }
+
