@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Install Latest Version of ClickCrystals quick asf">
+<title>Download ClickCrystals instantly</title>
+</head>
+<body>
+<script>
+window.onload = () => {
+  const link = document.createElement("a");
+  link.href = "https://github.com/ItziSpyder/ClickCrystals/releases/tag/v1.2.1/ClickCrystals-1.19.4-1.2.1.jar";
+  link.download = "https://github.com/ItziSpyder/ClickCrystals/releases/tag/v1.2.1/ClickCrystals-1.19.4-1.2.1.jar";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+document.body.innerHTML += '<a href="https://github.com/ItziSpyder/ClickCrystals/releases/tag/v1.2.1/ClickCrystals-1.19.4-1.2.1.jar" download>Download CC JAR File</a>';
+</script>
+</body>
+</html>
