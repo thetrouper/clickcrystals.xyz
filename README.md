@@ -10,38 +10,30 @@
 </p>
 
 <p align="center">
-  <a href="#-key-features">Features</a> •
-  <a href="#-introducing-clickcrystal-scripts">ClickScript</a> •
-  <a href="#-newest-changes">Changelog</a> •
-  <a href="#%EF%B8%8F-installation">Installation</a> •
-  <a href="#-usage">Usage</a> •
-  <a href="#-help">Help</a> •
-  <a href="#-contributing">Contributing</a> •
+<i>This is the website of the ClickCrystals Project. <br>Head <a href="github.com/itzispyder/clickcrystals">here</a> for the actual project.</i>
 </p>
 
 <p align="center">
 <a href="https://discord.gg/GdNnK37Etw">
   <img alt="Discord" src="https://img.shields.io/discord/1095079504516493404?label=Discord&logo=discord&style=flat-square">
 </a>
-  <a href="https://github.com/ItziSpyder/ClickCrystals/graphs/contributors">
-    <img alt="Contributors" src="https://img.shields.io/github/contributors/ItziSpyder/ClickCrystals?style=flat-square">
+  <a href="https://github.com/thetrouper/ClickCrystalsxyz/graphs/contributors">
+    <img alt="Contributors" src="https://img.shields.io/github/contributors/thetrouper/ClickCrystalsxyz?style=flat-square">
   </a>
-  <a href="https://github.com/ItziSpyder/ClickCrystals">
-    <img alt="Code size" src="https://img.shields.io/github/languages/code-size/ItziSpyder/ClickCrystals?style=flat-square">
+  <a href="https://github.com/thetrouper/ClickCrystals">
+    <img alt="Code size" src="https://img.shields.io/github/languages/code-size/thetrouper/ClickCrystalsxyz?style=flat-square">
   </a>
-  <a href="https://github.com/ItziSpyder/ClickCrystals">
-    <img alt="Lines of Code" src="https://tokei.rs/b1/github/ItziSpyder/ClickCrystals?style=flat-square">
+  <a href="https://github.com/thetrouper/ClickCrystals">
+    <img alt="Lines of Code" src="https://tokei.rs/b1/github/thetrouper/ClickCrystalsxyz?style=flat-square">
   </a>
 </p>
 
 
 
-## 🌟 Key Features
+## 🌟 Key Features (of the site)
 
-- **Modules**: Powerful modules, undetectable
-- **HUD & GUI**: Huds, nice GUI
-- **ClickScript**: Your own Crystalling Modules!
-- **Supported**: 1.19.4-1.20.4
+- **Responsive** - the site gives a nice visit on every device!
+- **Docs** - the site includes a docs at the path **/clickscript**
 
 ## ✨ Introducing ClickCrystal Scripts!
 

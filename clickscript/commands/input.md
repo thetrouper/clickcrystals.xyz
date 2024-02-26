@@ -9,7 +9,7 @@ Simulates a player input
    </td>
   </tr>
   <tr>
-   <td>input **<a href="#heading=h.mepejugzm16c">input_name</a>
+   <td>input **input_name
    </td>
    <td>input attack
    </td>
