@@ -4,9 +4,7 @@
 
 - Easily make your own scripts
 - Code your own kill aura
-- Say your client's name - ClickCrystals
-- EZ Speedrun BAN!
-
+- Dominate: Yes
 
 [Get ClickCrystals](https://clickcrystals.xyz/)
 [Get Started](#clickcrystals-wiki)
