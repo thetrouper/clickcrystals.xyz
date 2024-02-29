@@ -13,14 +13,41 @@ body {
 
 a {
   color: rgb(0, 142, 152);
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+@keyframes tilt {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
 }
 
+.link-button {
+  background-color:rgb(12, 206, 255);;
+  border-radius:0px;
+  padding: 8px;
+  border: 0px;
+  color:white;
+  animation: tilt ease-in-out;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+}
+.link-button:hover { border: 3px solid black; }
 .version a {
   text-decoration: none;
   color: rgb(230, 230, 230);
 }
 
 .version .link {
+  width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
   padding: 5px;
