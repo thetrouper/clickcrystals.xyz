@@ -1,2 +1,0 @@
-# Navigating With VSCode
-VSCode provides a fast and easier way to navigate your folders and files. The auto bracket enclosure and indentation provides a smoother development experience. If you do not have VSCode installed, you can use their [web version](https://vscode.dev/).

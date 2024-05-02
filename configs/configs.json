@@ -1,0 +1,14 @@
+{
+    "configs": [
+      {
+        "name": "ImoroperIssues' Config",
+        "desc": "An Official Config provided by the Owner of this Client, as the owner he will know exactly what are the limitations and apply that to his advantage.",
+        "contents":"configs/improper.json"
+      },
+      {
+        "name": "I No One's Config",
+        "desc": "I-No-oNe is the biggest CC Contributor and staff member and with a broad understanding of this mod he can really push the limits of what you can do with our mod.",
+        "contents": "configs/inoam.json"
+      }
+    ]
+  }
