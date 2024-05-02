@@ -7,17 +7,44 @@
 <title>Download ClickCrystals instantly</title>
 </head>
 <body>
-<script>
-window.onload = () => {
-  const link = document.createElement("a");
-  link.href = "https://github.com/ItziSpyder/ClickCrystals/releases/download/v1.2.1/ClickCrystals-1.19.4-1.2.1.jar";
-  link.download = "https://github.com/ItziSpyder/ClickCrystals/releases/download/v1.2.1/ClickCrystals-1.19.4-1.2.1.jar";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
+    <script>
+    window.onload = async () => {
+      try {
+        const response = await fetch('https://itzispyder.github.io/clickcrystals/info');
+        const data = await response.json();
+    
+        const latestVersion = data.latest;
+        const downloadUrl = `https://github.com/ItziSpyder/ClickCrystals/releases/download/v${latestVersion}/ClickCrystals-1.20.4-${latestVersion}.jar`;
+    
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = downloadUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error('Error fetching latest version:', error);
+      }
+    };
+    
+    document.body.innerHTML += '<a href="https://github.com/ItziSpyder/ClickCrystals/releases/download/v1.2.2/ClickCrystals-1.20.4-1.2.2.jar" id="manualDownloadLink">Click this if not downloaded</a>';
+    
+    document.getElementById('manualDownloadLink').addEventListener('click', async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch('https://itzispyder.github.io/clickcrystals/info');
+        const data = await response.json();
+    
+        const latestVersion = data.latest;
+        const downloadUrl = `https://github.com/ItziSpyder/ClickCrystals/releases/download/v${latestVersion}/ClickCrystals-1.20.4-${latestVersion}.jar`;
+    
+        window.location.href = downloadUrl;
+      } catch (error) {
+        console.error('Error fetching latest version:', error);
+      }
+    });
+    </script>
+    <script src="common/js/page.js"></script>
+    </body>
+    </html>
 
-document.body.innerHTML += '<a hrefhttps://github.com/ItziSpyder/ClickCrystals/releases/download/v1.2.1/ClickCrystals-1.19.4-1.2.1.jar" download>Click this if not downloaded</a>';
-</script>
-</body>
-</html>
