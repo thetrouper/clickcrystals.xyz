@@ -69,8 +69,9 @@ code = `<div>
                     <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
                         <h5 class="text-uppercase">Contributors</h5>
                         <ul class="list-unstyled mb-0">
-                            <li><a href="https://github.com/TaxEvasiqn" target="_blank" class="text-white">TaxEvasion</a></li>
+                            <li><a href="https://github.com/TutlaMC" target="_blank" class="text-white">TutlaMC</a></li>
                             <li><a href="https://github.com/i-no-one" target="_blank" class="text-white">I-No-oNe</a></li>
+                            <li><a href="https://github.com/TaxEvasiqn" target="_blank" class="text-white">TaxEvasion</a></li>
                             <li><a href="https://github.com/yirf" target="_blank" class="text-white">Yirf</a></li>
                             <li><a href="https://github.com/i-got-you-dead" target="_blank" class="text-white">I-Got-You-Dead</a></li>
                         </ul>
