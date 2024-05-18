@@ -14,6 +14,11 @@
       "name": "TutlaMC's Config",
       "desc": "A combination of ClickCrystal Modules made for playing on SMPs and Minehut Servers",
       "contents": "configs/tutla.json"
+    }, 
+    {
+      "name": "Wither123go's Config",
+      "desc": "Wither123go's config mainly used for crystal pvp but its amazing in general for every gamemode and no anti cheat can get triggered while using it.",
+      "contents": "configs/withergo.json"
     }
   ]
 }
