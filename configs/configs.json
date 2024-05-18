@@ -9,6 +9,11 @@
       "name": "I No One's Config",
       "desc": "I-No-oNe is the biggest CC Contributor and staff member and with a broad understanding of this mod he can really push the limits of what you can do with our mod.",
       "contents": "configs/noone.json"
+    }, 
+    {
+      "name": "TutlaMC's Config",
+      "desc": "A combination of ClickCrystal Modules made for playing on SMPs and Minehut Servers",
+      "contents": "configs/tutla.json"
     }
   ]
 }
