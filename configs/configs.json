@@ -1,9 +1,9 @@
 {
   "configs": [
     {
-      "name": "ImoroperIssues' Config",
+      "name": "ImproperIssues' Config",
       "desc": "An Official Config provided by the Owner of this Client, as the owner he will know exactly what are the limitations and apply that to his advantage.",
-      "contents":"configs/improper.json"
+      "contents": "configs/improper.json"
     },
     {
       "name": "I No One's Config",
