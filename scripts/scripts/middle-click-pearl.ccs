@@ -1,0 +1,21 @@
+def module middle-click-pearl
+def desc "Middle click your mouse to throw a pearl"
+
+on middle_click if hotbar_has #pearl if playing {
+    switch #pearl
+    input use
+
+    wait 0.05 {
+        switch back
+    }
+}
+
+on right_click if playing {
+    if holding :stick if hotbar_has #wool {
+        switch #wool
+
+        wait 0.05 {
+            switch back
+        }
+    }
+}

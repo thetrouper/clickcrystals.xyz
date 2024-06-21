@@ -1,0 +1,27 @@
+def module anchor-place
+def desc "Places a fully charged anchor when you right click your sword"
+
+on place_block {
+    if holding #anchor if hotbar_has #glowstone {
+        switch #glowstone
+    }
+}
+
+on right_click if playing {
+    if holding #glowstone if_not target_block #anchor {
+        switch #anchor
+    }
+    if hotbar_has #glowstone if holding #anchor if target_block #anchor {
+        switch #glowstone
+    }
+    if holding #sword if_not target_block #anchor if_not target_block #air {
+        switch #anchor
+        input use
+    }
+}
+
+on interact_block {
+    if holding #glowstone if target_block #anchor {
+        switch #sword
+    }
+}

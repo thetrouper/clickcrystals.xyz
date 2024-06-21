@@ -1,0 +1,40 @@
+{
+    "scripts": [
+      {
+        "name": "Middle Click Pearl",
+        "author": "ImproperIssues",
+        "desc": "Middle click your mouse to throw a pearl",
+        "contents": "scripts/middle-click-pearl.ccs"
+      },
+      {
+        "name": "Double Click",
+        "author": "ImproperIssues",
+        "desc": "Clicks a second time when you release your mouse",
+        "contents": "scripts/double-clicker.ccs"
+      },
+      {
+        "name": "Auto Totem",
+        "author": "ImproperIssues",
+        "desc": "Automatically replenishes your totems in your inventory",
+        "contents": "scripts/auto-totem.ccs"
+      },
+      {
+        "name": "Anti Weakness",
+        "author": "ImproperIssues",
+        "desc": "Allows crystalling even if you have weakness",
+        "contents": "scripts/no-weak.ccs"
+      },
+      {
+        "name": "Anchor Place",
+        "author": "ImproperIssues",
+        "desc": "Places a fully charged anchor when you right click your sword",
+        "contents": "scripts/op-anchors.ccs"
+      },
+      {
+        "name": "Sworld Hit",
+        "author": "ImproperIssues",
+        "desc": "Guarantees you hit your opponents with a sword and not anything else",
+        "contents": "scripts/sword-hit.ccs"
+      }
+    ]
+  }
