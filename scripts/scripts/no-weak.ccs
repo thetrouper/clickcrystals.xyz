@@ -1,0 +1,16 @@
+def module create no-weak
+def desc "Allows crystalling even if you have weakness"
+
+on left_click if playing {
+    if target_entity #crystal if holding #crystal if hotbar_has #sword {
+        if effect_duration #weak >0 {
+            switch #sword
+
+            wait 0.05 if_not targeting_entity {
+                if holding #sword {
+                    switch back
+                }
+            }
+        }
+    }    
+}

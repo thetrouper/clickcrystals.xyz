@@ -1,0 +1,30 @@
+def module auto-totem
+def desc "Automatically replenishes your totems in your inventory"
+
+on totem_pop {
+    if inventory_has #totem {
+        if_not input_active inventory {
+            input inventory
+        }
+
+        wait 0.05 if input_active inventory {
+            gui_swap #totem 
+            
+            wait 0.05 if input_active inventory {
+                input inventory
+            }
+        }
+    }
+}
+
+on key_press e if playing if_not off_holding #totem {
+    if inventory_has #totem {
+        wait 0.05 if input_active inventory {
+            gui_swap #totem 
+            
+            wait 0.05 if input_active inventory {
+                input inventory
+            }
+        }
+    }
+}
