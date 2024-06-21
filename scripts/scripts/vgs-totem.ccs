@@ -1,0 +1,29 @@
+def module totem-for-ez-tots
+def desc "totem fast"
+
+on totem_pop {
+    if hotbar_has #totem {
+        switch #totem 
+        wait 0.055 swap
+    }
+
+    !if hotbar_has #totem {
+        input inventory
+        wait 0.05 {
+            gui_swap #totem
+            input inventory
+        }
+    }
+}
+
+on key_press e if playing if_not off_holding #totem {
+    if inventory_has #totem {
+        wait 0.05 if input_active inventory {
+            gui_swap #totem 
+            
+            wait 0.05 if input_active inventory {
+                input inventory
+            }
+        }
+    }
+}

@@ -35,6 +35,18 @@
         "author": "ImproperIssues",
         "desc": "Guarantees you hit your opponents with a sword and not anything else",
         "contents": "scripts/sword-hit.ccs"
+      },
+      {
+        "name": "Fast EXP",
+        "author": "vgs",
+        "desc": "Uses experience bottles quickly while holding right-click",
+        "contents": "scripts/fast-exp.ccs"
+      },
+      {
+        "name": "vgs' ez totem",
+        "author": "vgs",
+        "desc": "totem fast",
+        "contents": "scripts/vgs-totem.ccs"
       }
     ]
   }
