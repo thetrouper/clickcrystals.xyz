@@ -1,6 +1,12 @@
 {
     "scripts": [
       {
+        "name": "Obi Switcher",
+        "author": "Wither123go",
+        "desc": "No description provided",
+        "contents": "scripts/obi-switcher.ccs"
+      },
+      {
         "name": "Middle Click Pearl",
         "author": "ImproperIssues",
         "desc": "Middle click your mouse to throw a pearl",
