@@ -1,0 +1,9 @@
+def module CW-CRYSTALS-LEGIT
+def desc CW CRYSTALS LEGIT LOOKING
+
+on tick if playing if holding #crystal if target_block :obsidian {
+  input right
+  wait 0.05 if target_entity :end_crystal {
+    input left 
+  }
+}

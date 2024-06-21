@@ -47,6 +47,30 @@
         "author": "vgs",
         "desc": "totem fast",
         "contents": "scripts/vgs-totem.ccs"
+      },
+      {
+        "name": "All Items KB",
+        "author": "Wither123go",
+        "desc": "KB for CPvP",
+        "contents": "scripts/all-items-kb.ccs"
+      },
+      {
+        "name": "2 Anchor Key",
+        "author": "Wither123go",
+        "desc": "Press N and double anchor with the speed of light",
+        "contents": "scripts/2-anchor-key.ccs"
+      },
+      {
+        "name": "CW CRYSTALS LEGIT",
+        "author": "Wither123go",
+        "desc": "CW CRYSTALS LEGIT LOOKING",
+        "contents": "scripts/cw-crystals-legit.ccs"
+      },
+      {
+        "name": "Safe Anchor Y",
+        "author": "Wither123go",
+        "desc": "Press Y for safe anchor",
+        "contents": "scripts/safe-anchor-y.ccs"
       }
     ]
   }
