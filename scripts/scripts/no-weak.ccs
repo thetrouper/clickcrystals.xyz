@@ -1,4 +1,4 @@
-def module create no-weak
+def module no-weak
 def desc "Allows crystalling even if you have weakness"
 
 on left_click if playing {
