@@ -7,6 +7,12 @@
         "contents": "scripts/Wither123go/obi-switcher.ccs"
       },
       {
+        "name": "Air Jump",
+        "author": "ImproperIssues",
+        "desc": "Allows you to jump while being in the air. You can edit the 0.5 to a higher value for higher jumps.",
+        "contents": "scripts/ImproperIssues/air-jump.ccs"
+      },
+      {
         "name": "New World",
         "author": "ImproperIssues",
         "desc": "Use this script to help set up new creative worlds with all the game modes ready, just press -",
