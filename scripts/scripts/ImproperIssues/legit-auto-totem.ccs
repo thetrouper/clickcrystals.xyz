@@ -1,4 +1,4 @@
-def module auto-totem
+def module legit-auto-totem
 def desc "Automatically replenishes your totems in your inventory"
 
 on totem_pop {

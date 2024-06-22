@@ -1,0 +1,19 @@
+def module new-world
+def desc "Use this script to help set up new creative worlds."
+
+on key_press - if playing {
+    say "/gamemode creative"
+    say "/gamerule keepInventory true"
+    say "/difficulty peaceful"
+    say "/gamerule doDaylightCycle false"
+    say "/gamerule doWeatherCycle false"
+    say "/gamerule doMobSpawning false"
+    say "/weather clear"
+    say "/time set day"
+    say "/clear"
+
+    loop_period 3 1 {
+        say "/kill @e[type=!player]"
+    }
+}
+
