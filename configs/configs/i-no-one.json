@@ -2,19 +2,19 @@
   "hasPlayedBefore": true,
   "overviewMode": false,
   "keybindEntries": {
-    "module-toggle-keybind": 256,
     "open-clickcrystals-module-screen": 344,
-    "open-hud-editor-screen": 59,
-    "zoom-key": 67,
+    "module-toggle-keybind": 256,
     "command-prefix": 44,
+    "zoom-key": 67,
+    "open-hud-editor-screen": 59,
     "message-resend-keybind": 265
   },
   "positionEntries": {
-    "crosshair-hud": {
-      "x": 10,
-      "y": 165,
-      "width": 60,
-      "height": 16
+    "icon-hud": {
+      "x": 0,
+      "y": 88,
+      "width": 120,
+      "height": 30
     },
     "module-list-text-hud": {
       "x": 0,
@@ -22,16 +22,34 @@
       "width": 0,
       "height": 0
     },
+    "clock-hud": {
+      "x": 438,
+      "y": 0,
+      "width": 50,
+      "height": 16
+    },
+    "target-hud": {
+      "x": 360,
+      "y": 14,
+      "width": 120,
+      "height": 16
+    },
     "direction-hud": {
       "x": 10,
       "y": 150,
-      "width": 66,
+      "width": 120,
       "height": 16
     },
-    "cps-hud": {
-      "x": 290,
-      "y": 214,
-      "width": 44,
+    "rotation-hud": {
+      "x": 10,
+      "y": 179,
+      "width": 120,
+      "height": 16
+    },
+    "ping-hud": {
+      "x": 398,
+      "y": 0,
+      "width": 50,
       "height": 16
     },
     "crystal-speed-hud": {
@@ -40,47 +58,41 @@
       "width": 0,
       "height": 0
     },
-    "biome-hud": {
-      "x": 10,
-      "y": 135,
-      "width": 80,
-      "height": 16
-    },
-    "rotation-hud": {
-      "x": 10,
-      "y": 179,
-      "width": 96,
-      "height": 16
-    },
     "notifications-hud": {
       "x": 0,
       "y": 0,
       "width": 0,
       "height": 0
     },
-    "icon-hud": {
-      "x": 0,
-      "y": 88,
+    "crosshair-hud": {
+      "x": 10,
+      "y": 165,
       "width": 120,
-      "height": 30
+      "height": 16
+    },
+    "cps-hud": {
+      "x": 290,
+      "y": 214,
+      "width": 50,
+      "height": 16
     },
     "pos-hud": {
       "x": 372,
       "y": 228,
-      "width": 48,
+      "width": 120,
       "height": 16
     },
-    "clock-hud": {
-      "x": 438,
-      "y": 0,
-      "width": 48,
+    "biome-hud": {
+      "x": 10,
+      "y": 135,
+      "width": 120,
       "height": 16
     },
-    "fps-hud": {
-      "x": 356,
+    "color-overlay-hud": {
+      "x": 0,
       "y": 0,
-      "width": 39,
-      "height": 16
+      "width": 0,
+      "height": 0
     },
     "entity-indicator-hud": {
       "x": 0,
@@ -89,28 +101,16 @@
       "height": 0
     },
     "resource-hud": {
-      "x": 454,
-      "y": 89,
+      "x": 439,
+      "y": 67,
       "width": 20,
-      "height": 94
+      "height": 20
     },
-    "color-overlay-hud": {
-      "x": 0,
+    "fps-hud": {
+      "x": 356,
       "y": 0,
-      "width": 0,
-      "height": 0
-    },
-    "ping-hud": {
-      "x": 398,
-      "y": 0,
-      "width": 34,
+      "width": 50,
       "height": 16
-    },
-    "target-hud": {
-      "x": 360,
-      "y": 14,
-      "width": 120,
-      "height": 12
     },
     "armor-hud": {
       "x": 0,
@@ -131,8 +131,8 @@
     },
     "Render": {
       "left": {
-        "x": 107,
-        "y": 28,
+        "x": 105,
+        "y": 17,
         "width": 90,
         "height": 25
       },
@@ -149,10 +149,10 @@
     },
     "Custom Made": {
       "left": {
-        "x": 388,
-        "y": 26,
+        "x": 382,
+        "y": 17,
         "width": 90,
-        "height": 133
+        "height": 109
       },
       "right": false
     },
@@ -170,7 +170,7 @@
         "x": 10,
         "y": 30,
         "width": 90,
-        "height": 40
+        "height": 45
       },
       "right": false
     },
@@ -179,14 +179,14 @@
         "x": 295,
         "y": 60,
         "width": 90,
-        "height": 85
+        "height": 73
       },
       "right": false
     },
     "Crystal": {
       "left": {
-        "x": 100,
-        "y": 56,
+        "x": 105,
+        "y": 30,
         "width": 90,
         "height": 25
       },
@@ -194,18 +194,18 @@
     }
   },
   "moduleEntries": {
-    "Elytra Switch": {
-      "id": "Elytra Switch",
+    "elytra-switch": {
+      "id": "elytra-switch",
       "objectEntries": {},
       "integerEntries": {
         "module-toggle-keybind": 256
       },
       "doubleEntries": {},
       "booleanEntries": {
-        "rocket-switch": true,
-        "chestplate-switch": true,
+        "rocket-switch": false,
+        "chestplate-switch": false,
         "module-game-join-disable": false,
-        "module-enabled": true
+        "module-enabled": false
       },
       "stringEntries": {}
     },
@@ -302,6 +302,21 @@
       },
       "stringEntries": {}
     },
+    "self-glow": {
+      "id": "self-glow",
+      "objectEntries": {},
+      "integerEntries": {
+        "module-toggle-keybind": 256
+      },
+      "doubleEntries": {},
+      "booleanEntries": {
+        "module-game-join-disable": false,
+        "module-enabled": false
+      },
+      "stringEntries": {
+        "glow-color": "CYAN"
+      }
+    },
     "gui-borders": {
       "id": "gui-borders",
       "objectEntries": {},
@@ -389,6 +404,19 @@
         "only-players": true,
         "module-enabled": true,
         "no-unliving": true
+      },
+      "stringEntries": {}
+    },
+    "inv-packet-sniffer": {
+      "id": "inv-packet-sniffer",
+      "objectEntries": {},
+      "integerEntries": {
+        "module-toggle-keybind": 256
+      },
+      "doubleEntries": {},
+      "booleanEntries": {
+        "module-game-join-disable": false,
+        "module-enabled": false
       },
       "stringEntries": {}
     },
@@ -876,7 +904,6 @@
       },
       "doubleEntries": {},
       "booleanEntries": {
-        "disable-blur-effect.": true,
         "module-game-join-disable": false,
         "module-enabled": true,
         "disable-black-overlay-effect": true
