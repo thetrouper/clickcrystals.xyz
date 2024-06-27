@@ -2,57 +2,69 @@
   "hasPlayedBefore": true,
   "overviewMode": false,
   "keybindEntries": {
-    "open-clickcrystals-module-screen": 344,
     "module-toggle-keybind": 256,
-    "command-prefix": 44,
+    "message-resend-keybind": 265,
     "zoom-key": 67,
     "open-hud-editor-screen": 59,
-    "message-resend-keybind": 265
+    "open-clickcrystals-module-screen": 344,
+    "command-prefix": 44
   },
   "positionEntries": {
-    "icon-hud": {
-      "x": 0,
-      "y": 88,
-      "width": 120,
-      "height": 30
-    },
-    "module-list-text-hud": {
+    "color-overlay-hud": {
       "x": 0,
       "y": 0,
       "width": 0,
       "height": 0
     },
-    "clock-hud": {
-      "x": 438,
+    "fps-hud": {
+      "x": 350,
       "y": 0,
-      "width": 50,
+      "width": 39,
       "height": 16
     },
-    "target-hud": {
-      "x": 360,
-      "y": 14,
-      "width": 120,
+    "crosshair-hud": {
+      "x": 10,
+      "y": 165,
+      "width": 60,
       "height": 16
+    },
+    "clock-hud": {
+      "x": 432,
+      "y": 0,
+      "width": 48,
+      "height": 16
+    },
+    "crystal-speed-hud": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
     },
     "direction-hud": {
       "x": 10,
       "y": 150,
-      "width": 120,
+      "width": 66,
       "height": 16
     },
-    "rotation-hud": {
-      "x": 10,
-      "y": 179,
-      "width": 120,
-      "height": 16
+    "resource-hud": {
+      "x": 460,
+      "y": 61,
+      "width": 20,
+      "height": 94
     },
     "ping-hud": {
-      "x": 398,
+      "x": 393,
       "y": 0,
-      "width": 50,
+      "width": 34,
       "height": 16
     },
-    "crystal-speed-hud": {
+    "biome-hud": {
+      "x": 10,
+      "y": 135,
+      "width": 72,
+      "height": 16
+    },
+    "armor-hud": {
       "x": 0,
       "y": 0,
       "width": 0,
@@ -64,31 +76,7 @@
       "width": 0,
       "height": 0
     },
-    "crosshair-hud": {
-      "x": 10,
-      "y": 165,
-      "width": 120,
-      "height": 16
-    },
-    "cps-hud": {
-      "x": 290,
-      "y": 214,
-      "width": 50,
-      "height": 16
-    },
-    "pos-hud": {
-      "x": 372,
-      "y": 228,
-      "width": 120,
-      "height": 16
-    },
-    "biome-hud": {
-      "x": 10,
-      "y": 135,
-      "width": 120,
-      "height": 16
-    },
-    "color-overlay-hud": {
+    "module-list-text-hud": {
       "x": 0,
       "y": 0,
       "width": 0,
@@ -100,23 +88,35 @@
       "width": 0,
       "height": 0
     },
-    "resource-hud": {
-      "x": 439,
-      "y": 67,
-      "width": 20,
-      "height": 20
-    },
-    "fps-hud": {
-      "x": 356,
-      "y": 0,
-      "width": 50,
+    "cps-hud": {
+      "x": 290,
+      "y": 214,
+      "width": 45,
       "height": 16
     },
-    "armor-hud": {
+    "icon-hud": {
+      "x": 0,
+      "y": 88,
+      "width": 120,
+      "height": 30
+    },
+    "pos-hud": {
       "x": 0,
       "y": 0,
-      "width": 0,
-      "height": 0
+      "width": 84,
+      "height": 16
+    },
+    "rotation-hud": {
+      "x": 10,
+      "y": 179,
+      "width": 96,
+      "height": 16
+    },
+    "target-hud": {
+      "x": 360,
+      "y": 14,
+      "width": 120,
+      "height": 59
     }
   },
   "overviewScreenEntries": {
@@ -202,10 +202,10 @@
       },
       "doubleEntries": {},
       "booleanEntries": {
-        "rocket-switch": false,
-        "chestplate-switch": false,
+        "rocket-switch": true,
+        "chestplate-switch": true,
         "module-game-join-disable": false,
-        "module-enabled": false
+        "module-enabled": true
       },
       "stringEntries": {}
     },
@@ -311,10 +311,10 @@
       "doubleEntries": {},
       "booleanEntries": {
         "module-game-join-disable": false,
-        "module-enabled": false
+        "module-enabled": true
       },
       "stringEntries": {
-        "glow-color": "CYAN"
+        "glow-color": "GREEN"
       }
     },
     "gui-borders": {
@@ -574,7 +574,7 @@
       "doubleEntries": {},
       "booleanEntries": {
         "module-game-join-disable": false,
-        "module-enabled": true
+        "module-enabled": false
       },
       "stringEntries": {
         "hand-option": "MAIN_HAND"
@@ -1126,13 +1126,13 @@
         "main-rotation-x": 0.0,
         "main-position-x": 0.5,
         "off-rotation-z": 0.0,
-        "main-position-y": -0.3,
+        "main-position-y": -0.5,
         "off-rotation-y": 0.0,
         "main-position-z": -0.8,
-        "off-position-y": 0.0,
-        "off-position-x": -0.8,
+        "off-position-y": -0.5,
+        "off-position-x": -0.5,
         "off-rotation-x": 0.0,
-        "off-position-z": 0.2
+        "off-position-z": -0.8
       },
       "booleanEntries": {
         "module-game-join-disable": false,
