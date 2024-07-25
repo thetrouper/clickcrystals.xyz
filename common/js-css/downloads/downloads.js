@@ -1,70 +1,165 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Downloads Page</title>
+const dls = [0, 0, 0];
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
+function parseNumber(num) {
+  const ranges = [
+    { value: 1e9, suffix: "b" },
+    { value: 1e6, suffix: "m" },
+    { value: 1e3, suffix: "k" },
+  ];
 
-        <title>ClickCrystals | Download</title>
-        <meta
-            name="description"
-            content="Download ClickCrystals from any of our links &amp; get access to all of our modules and scripting! We have CurseForge, Modrinth, Github &amp; Planet MC!"
-        />
-        <meta property="og:title" content="Download ClickCrystlas" />
-        <meta
-            property="og:description"
-            content="Download ClickCrystals from any of our links &amp; get access to all of our modules and scripting! We have CurseForge, Modrinth, Github &amp; Planet MC!"
-        />
-        <meta property="og:image" content="/clickscript/img/icon.png" />
-        <link
-            rel="shortcut icon"
-            href="./common/assets/icon.png"
-            type="image/x-icon"
-        />
-        <meta
-            property="og:image"
-            content="https://socialify.git.ci/ItziSpyder/ClickCrystals/png?description=1&amp;descriptionEditable=Your%20ultimate%20crystal%20PvP%20assistance%2C%20ClickCrystals%20at%20your%20service.&amp;font=Jost&amp;forks=1&amp;issues=1&amp;logo=https%3A%2F%2Fclickcrystals.xyz%2Fcommon%2Fassets%2Ficon.png&amp;name=1&amp;owner=1&amp;pattern=Solid&amp;pulls=1&amp;stargazers=1&amp;theme=Auto"
-        />
-        <meta property="og:image:width" content="1280" />
-        <meta property="og:image:height" content="640" />
-    </head>
-    <body data-bs-theme="dark">
-        <div class="container py-5">
-            <h1 class="mb-4">Downloads</h1>
-            <p>
-                Total: <span id="totalDls">fetching...</span><br />
-                Modrinth: <span id="modrinthDls"><i>fetching...</i></span>
-                <br />
-                Curseforge: <span id="curseforgeDls"><i>fetching...</i></span>
-                <br />
-                GitHub: <span id="githubDls"><i>fetching...</i></span>
-            </p>
-            <div class="table-responsive">
-                <table class="table table-dark table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>Version</th>
-                            <th>Source Code</th>
-                            <th>v1.21</th>
-                            <th>v1.20.6</th>
-                            <th>v1.20.4</th>
-                            <th>v1.20.2</th>
-                            <th>v1.20</th>
-                            <th>Downloads</th>
-                        </tr>
-                    </thead>
-                    <tbody id="versions"></tbody>
-                </table>
-            </div>
-        </div>
+  for (let i = 0; i < ranges.length; i++) {
+    if (num >= ranges[i].value) {
+      let roundedNum = (num / ranges[i].value).toFixed(2);
+      if (roundedNum % 1 !== 0) {
+        roundedNum = roundedNum.replace(/\.?0+$/, "");
+      }
+      return `${roundedNum}${ranges[i].suffix}`;
+    }
+  }
+  return num.toString();
+}
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="common/js-css/downloads/downloads.js"></script>
-        <script src="./common/js-css/page.js"></script>
-    </body>
-</html>
+async function getTotalGitHubCount() {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/ItziSpyder/ClickCrystals/releases`,
+    );
+    const releases = await response.json();
+
+    let totalDownloadCount = 0;
+
+    releases.forEach((release) => {
+      release.assets.forEach((asset) => {
+        totalDownloadCount += asset.download_count;
+      });
+    });
+
+    dls[0] = totalDownloadCount;
+    return parseNumber(totalDownloadCount);
+  } catch (error) {
+    return null;
+  }
+}
+
+getTotalGitHubCount().then((downls) => {
+  if (downls === null) {
+    document.getElementById("githubDls").innerHTML = "Error fetching downloads";
+    return;
+  }
+  document.getElementById("githubDls").innerHTML = downls;
+  document.getElementById("totalDls").innerHTML = parseNumber(
+    dls.reduce((a, b) => a + b, 0),
+  );
+});
+
+fetch("https://api.modrinth.com/v2/project/clickcrystals")
+  .then((response) => response.json())
+  .then((data) => {
+    dls[1] = data.downloads;
+    document.getElementById("modrinthDls").innerHTML = parseNumber(
+      data.downloads,
+    );
+    document.getElementById("totalDls").innerHTML = parseNumber(
+      dls.reduce((a, b) => a + b, 0),
+    );
+  })
+  .catch((error) => {
+    document.getElementById("modrinthDls").innerHTML =
+      "Error fetching downloads";
+  });
+
+fetch("https://api.curseforge.com/v1/mods/946253", {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    "x-api-key": "$2a$10$j9gT3w9JneeY6v49CpLj3uRDocQO/wgL0h6XAyiaOQ7q3K.gR8NUe",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    dls[2] = data.data.downloadCount;
+    console.log(data);
+    document.getElementById("curseforgeDls").innerHTML = parseNumber(
+      data.data.downloadCount,
+    );
+    document.getElementById("totalDls").innerHTML = parseNumber(
+      dls.reduce((a, b) => a + b, 0),
+    );
+  })
+  .catch((error) => {
+    document.getElementById("curseforgeDls").innerHTML =
+      "Error fetching downloads";
+    document.getElementById("totalDls").innerHTML = parseNumber(
+      dls.reduce((a, b) => a + b, 0),
+    );
+  });
+
+async function getGithubReleases(repoOwner, repoName) {
+  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
+  const response = await fetch(url);
+  const releases = await response.json();
+  return releases;
+}
+
+async function main() {
+  const repoOwner = "ItziSpyder";
+  const repoName = "ClickCrystals";
+  const releases = await getGithubReleases(repoOwner, repoName);
+
+  if (releases.length === 0) {
+    console.error("No releases found.");
+    return;
+  }
+
+  if (!document.getElementById("versions")) {
+    console.error("Element with ID 'versions' not found.");
+    return;
+  }
+
+  console.log(releases);
+
+  for (let i = 0; i < releases.length; i++) {
+    console.log(releases[i]);
+    const releaseTitle = releases[i].name || "Unnamed Release";
+    const sourceCodeUrl = releases[i].html_url;
+
+    let asset1214Url = null;
+    let asset1206Url = null;
+    let asset1204Url = null;
+    let asset1202Url = null;
+    let asset120Url = null;
+    let downloads = 0;
+
+    releases[i].assets.forEach((asset) => {
+      downloads += asset.download_count;
+      const assetName = asset.name;
+      const assetDownloadUrl = asset.browser_download_url;
+
+      if (assetName.includes("1.21")) {
+        asset1214Url = assetDownloadUrl;
+      } else if (assetName.includes("1.20.6")) {
+        asset1206Url = assetDownloadUrl;
+      } else if (assetName.includes("1.20.4")) {
+        asset1204Url = assetDownloadUrl;
+      } else if (assetName.includes("1.20.2")) {
+        asset1202Url = assetDownloadUrl;
+      } else if (assetName.includes("1.20")) {
+        asset120Url = assetDownloadUrl;
+      }
+    });
+    document.getElementById("versions").innerHTML += `
+      <tr>
+        <td>${releaseTitle}</td>
+        <td><a href="${sourceCodeUrl}" class="badge bg-secondary text-decoration-none">Source Code</a></td>
+        <td><a href="${asset1214Url || "#"}" class="badge bg-secondary text-decoration-none">${asset1214Url ? "V1.21 Download" : ""}</a></td>
+        <td><a href="${asset1206Url || "#"}" class="badge bg-secondary text-decoration-none">${asset1206Url ? "V1.20.6 Download" : ""}</a></td>
+        <td><a href="${asset1204Url || "#"}" class="badge bg-secondary text-decoration-none">${asset1204Url ? "V1.20.4 Download" : ""}</a></td>
+        <td><a href="${asset1202Url || "#"}" class="badge bg-secondary text-decoration-none">${asset1202Url ? "V1.20.2 Download" : ""}</a></td>
+        <td><a href="${asset120Url || "#"}" class="badge bg-secondary text-decoration-none">${asset120Url ? "V1.20 Download" : ""}</a></td>
+        <td>${parseNumber(downloads)}</td>
+      </tr>
+    `;
+  }
+}
+
+main();
