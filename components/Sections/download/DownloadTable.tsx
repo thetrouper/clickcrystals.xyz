@@ -14,13 +14,14 @@ export default function DownloadTable() {
   const [colDefs, setColDefs]: any[] = useState();
 
   const handleGridReady = (params: any) => {
-    params.api.sizeColumnsToFit();
+    // params.api.sizeColumnsToFit();
+    
   }
 
   useEffect(() => {
     setColDefs(
       [
-        { field: "version", pinned: true, movable: false },
+        { field: "version", pinned: true, movable: false, width: 126 },
         {
           field: "code",
           headerName: "Source Code",
@@ -31,12 +32,14 @@ export default function DownloadTable() {
               </Link>
             );
           },
+          width: 115,
         },
         {
           field: "downloads",
           cellRenderer: (params: any) => {
             return parseNumber(params.value);
           },
+          width: 115,
         },
         {
           field: "v121",
@@ -50,6 +53,7 @@ export default function DownloadTable() {
               </Link>
             );
           },
+          width: 160
         },
         {
           field: "v1206",
@@ -63,6 +67,7 @@ export default function DownloadTable() {
               </Link>
             );
           },
+          width: 160
         },
         {
           field: "v1204",
@@ -76,6 +81,7 @@ export default function DownloadTable() {
               </Link>
             );
           },
+          width: 160
         },
         {
           field: "v1202",
@@ -89,6 +95,7 @@ export default function DownloadTable() {
               </Link>
             );
           },
+          width: 160
         },
         {
           field: "v120",
@@ -102,6 +109,7 @@ export default function DownloadTable() {
               </Link>
             );
           },
+          width: 160
         },
       ]
     );
