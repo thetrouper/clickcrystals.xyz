@@ -7,6 +7,7 @@ import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
+import Latest from './Latest';
 
 export default function DownloadTable() {
   const [rowData, setRowData] = useState([]);
@@ -126,6 +127,7 @@ export default function DownloadTable() {
 
   return (
     <div className="my-4">
+      <Latest />
       <Downloads />
       
     <div
