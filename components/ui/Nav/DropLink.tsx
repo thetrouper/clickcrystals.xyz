@@ -3,7 +3,7 @@
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type DropLinkProps = {
   label: string;
@@ -13,36 +13,70 @@ type DropLinkProps = {
 
 export const DropLink = ({ label, links, url = "#" }: DropLinkProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (!('ontouchstart' in window)) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    if (!('ontouchstart' in window)) {
+      setIsHovered(false);
+    }
   };
 
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <li>
-      <Link
-        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 mb-0"
-        href={url}
+    <li className="relative">
+      <div
+        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 mb-0 cursor-pointer"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        {label}
+        <FontAwesomeIcon
+          icon={faAngleDown}
+          className={`transition-all size-3.5 ml-1.5 text-gray-400 ${isHovered || isOpen ? "rotate-180" : "rotate-0"}`}
+        />
+      </div>
+      <div
+        ref={dropdownRef}
+        className={`${(isHovered || isOpen) ? "opacity-100 visible" : "opacity-0 invisible"} z-[999999] transition-all absolute mt-0 w-48 bg-white rounded-md shadow-lg`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {label}
-        <FontAwesomeIcon icon={faAngleDown} className={`transition-all size-3.5 ml-1.5 text-gray-400 ${isHovered ? "rotate-180" : "rotate-0"}`} />
-      </Link>
-      <div className={`${isHovered ? "opacity-100" : "hidden opacity-0"} transition-all absolute mt-0 w-48 bg-white rounded-md shadow-lg`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div className="py-1">
           {links.map((link, index) => (
-            <>
-              {link.seperate && <div className="border-t border-gray-200" key={index*100}></div>}
-              <Link href={link.url} key={index} className="transition-all duration-75 block px-4 py-2 mt-0 mb-0 h-full w-full text-sm text-gray-700 hover:text-blue-500 hover:bg-gray-200">{link.label}</Link>
-            </>
+            <div key={index}>
+              {link.seperate && <div className="border-t border-gray-200"></div>}
+              <Link href={link.url} className="transition-all duration-75 block px-4 py-2 mt-0 mb-0 h-full w-full text-sm text-gray-700 hover:text-blue-500 hover:bg-gray-200">
+                {link.label}
+              </Link>
+            </div>
           ))}
         </div>
       </div>
     </li>
-  )
-}
+  );
+};
