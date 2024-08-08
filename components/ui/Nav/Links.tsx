@@ -9,10 +9,10 @@ export const Links = () => {
     <div className="hidden md:flex items-center md:mb-0 md:self-center">
       <div className="items-center hidden md:flex">
         <Container>
-          <Icon icon={faGithub} url="#" />
+          <Icon icon={faGithub} url="https://github.com/clickcrystals-development/ClickCrystals" />
         </Container>
         <Container>
-          <Icon icon={faDiscord} url="#" />
+          <Icon icon={faDiscord} url="https://discord.gg/zg3ge9VTgr" />
         </Container>
         <Container className="hidden lg:block">
           <span className="ml-4">
