@@ -127,7 +127,7 @@ export default function DownloadTable() {
 
   return (
     <div className="my-4">
-      <Latest />
+      {/* <Latest /> */}
       <Downloads />
       
     <div
