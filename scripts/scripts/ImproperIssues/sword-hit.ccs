@@ -1,8 +1,0 @@
-def module sword-hit
-def desc "Guarantees you hit your opponents with a sword"
-
-on left_click if playing {
-    if target_entity :player {
-        switch #sword
-    }
-}

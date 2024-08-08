@@ -1,5 +1,0 @@
-def module safe-anchor-y
-def desc Press "Y" for safe anchor
-
-on key_press Y if targeting_block !if target_block #air switch #anchor then input right then wait 0.05 then switch :glowstone then input right then wait 0.05 then input sneak then wait 0.05 then input right then wait 0.05 switch #totem
-on tick if holding #glowstone_dust wait 0.05 then switch #glowstone
