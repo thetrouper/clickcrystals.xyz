@@ -1,8 +1,0 @@
-def module fast-exp
-def desc "Uses experience bottles quickly while holding right-click"
-
-on tick if playing if holding #experience {
-    if input_active use if chance_of 75 {
-        input use
-    }
-}
