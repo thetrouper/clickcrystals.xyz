@@ -24,22 +24,24 @@ export async function getGitHubDownloads(): Promise<number> {
 }
 
 export async function getModrinthDownloads(): Promise<number>{
-  const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals");
+  const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals", {
+    cache: 'force-cache'
+  });
   const data = await mod.json();
   return data.downloads;
 }
 
 export async function getCurseForgeDownloads(): Promise<number> {
-  const headers = {
+  const mod = await fetch("https://api.curseforge.com/v1/mods/946253", {
     method: "GET",
+    cache: 'force-cache',
     headers: {
       Accept: "application/json",
       "x-api-key": "$2a$10$Sfn.ovCOUBg24FD1sBI/fe2cuWc2p/o6o7tVpWtNcnfDcyfjaqxTC",
       // this token is just giving access to API and its free and not used by anyone
       // no worries if its leaked.
     },
-  }
-  const mod = await fetch("https://api.curseforge.com/v1/mods/946253", headers);
+  });
   const data = await mod.json();
   return data.data.downloadCount;
 }

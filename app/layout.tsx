@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 import Header from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
+import { ScrollTop } from "@/components/ui/ScrollTop";
 
 export const metadata: Metadata = {
   title: "ClickCrystals",
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ScrollTop />
       </body>
     </html>
   );

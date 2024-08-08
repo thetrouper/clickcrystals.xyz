@@ -13,11 +13,6 @@ export default function DownloadTable() {
   const [loading, setLoading] = useState(true);
   const [colDefs, setColDefs]: any[] = useState();
 
-  const handleGridReady = (params: any) => {
-    // params.api.sizeColumnsToFit();
-    
-  }
-
   useEffect(() => {
     setColDefs(
       [
@@ -144,7 +139,6 @@ export default function DownloadTable() {
         pagination={true}
         paginationPageSize={10}
         paginationPageSizeSelector={[10, 20, 30, 50, 100]}
-        onGridReady={handleGridReady}
         paginationAutoPageSize={true}
         suppressMenuHide={true}
       />
