@@ -13,18 +13,18 @@ type ReviewProps = {
   url?: string;
 };
 
-const Review = ({ picture, name, message, rating, url = undefined }: ReviewProps) => {
+const Review = ({ picture, name, message, rating, url = "#" }: ReviewProps) => {
   return (
     <div className="p-6 rounded-lg bg-white border cursor-pointer">
       <div className="flex flex-row">
         <div className="flex items-center">
           <Container>
-            <a href={url} target={url === undefined ? undefined : "_blank"}>
+            <Link href={url} target={url === "#" ? undefined : "_blank"}>
               <Image src={picture} alt={name} className="rounded-full w-10 h-10" width={40} height={40} />
-            </a>
+            </Link>
           </Container>
           <div className="ml-4">
-            <Container><a href={url} target={url === undefined ? undefined : "_blank"}><h4 className="text-gray-800 text-sm">{name}</h4></a></Container>
+            <Container><Link href={url} target={url === "#" ? undefined : "_blank"}><h4 className="text-gray-800 text-sm">{name}</h4></Link></Container>
             <StarRating rating={rating} />
           </div>
         </div>
