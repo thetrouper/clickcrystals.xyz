@@ -1,5 +1,6 @@
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 type FeatureProps = {
   icon: React.ElementType;
@@ -17,9 +18,9 @@ const Feature = ({ icon: Icon, title, desc, linkTitle, linkUrl }: FeatureProps) 
       <p className="text-gray-400 mb-4">
         {desc}
       </p>
-      <a href={linkUrl} className="text-blue-500 text-sm font-medium group">{linkTitle}
+      <Link href={linkUrl} className="text-blue-500 text-sm font-medium group">{linkTitle}
         <FontAwesomeIcon icon={faAngleRight} className="size-3 ml-[2px] inline-flex text-blue-500 group-hover:ml-2 transition-all duration-75" />
-      </a>
+      </Link>
     </div>
   )
 }
