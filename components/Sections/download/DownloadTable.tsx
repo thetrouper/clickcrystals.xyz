@@ -7,16 +7,12 @@ import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
+import Latest from './Latest';
 
 export default function DownloadTable() {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [colDefs, setColDefs]: any[] = useState();
-
-  const handleGridReady = (params: any) => {
-    // params.api.sizeColumnsToFit();
-    
-  }
 
   useEffect(() => {
     setColDefs(
@@ -131,6 +127,7 @@ export default function DownloadTable() {
 
   return (
     <div className="my-4">
+      {/* <Latest /> */}
       <Downloads />
       
     <div
@@ -144,7 +141,6 @@ export default function DownloadTable() {
         pagination={true}
         paginationPageSize={10}
         paginationPageSizeSelector={[10, 20, 30, 50, 100]}
-        onGridReady={handleGridReady}
         paginationAutoPageSize={true}
         suppressMenuHide={true}
       />
