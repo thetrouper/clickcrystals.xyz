@@ -14,12 +14,11 @@ export async function getReleases() {
       "Authorization": `Bearer ${process.env.GITHUB_PAT}`
     } : undefined;
 
-    const options = {
+    const response = await fetch("https://api.github.com/repos/ItziSpyder/ClickCrystals/releases", {
       method: "GET",
-      headers: headers
-    };
-
-    const response = await fetch("https://api.github.com/repos/ItziSpyder/ClickCrystals/releases", options);
+      headers: headers,
+      cache: 'force-cache',
+    });
     const releases = await response.json();
     return releases;
   } catch (err) {
