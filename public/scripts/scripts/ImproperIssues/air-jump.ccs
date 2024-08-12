@@ -1,0 +1,6 @@
+def module air-jump
+def desc "Allows you to jump while being in the air. You can edit the 0.5 to a higher value for higher jumps."
+
+on key_press space if playing {
+   velocity ~ 0.5 ~
+}

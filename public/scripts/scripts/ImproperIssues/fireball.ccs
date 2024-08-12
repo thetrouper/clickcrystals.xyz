@@ -1,0 +1,40 @@
+def module fireball
+def desc "Shoots entities when you right click. Change the summon command to change the entities that you shoot."
+
+on right_click if playing wait 0.05 while 0.05 input_active use {
+    if holding :air {
+        say "/scoreboard objectives add x dummy"
+        say "/scoreboard objectives add y dummy"
+        say "/scoreboard objectives add z dummy"
+
+
+        say "/summon fireball ~ ~1.6 ~ {Tags:[fireball],ExplosionPower:5,Fuse:60,life:9999,damage:100}"
+        playsound #blast_far 10
+
+
+        say "/execute positioned ~ ~1.6 ~ run summon area_effect_cloud ^ ^ ^10 {Duration:10,Tags:[fireball_target]}"
+        say "/execute positioned ~ ~1.6 ~ run data modify entity @e[tag=fireball,limit=1,sort=nearest] Owner set from entity @s UUID"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result score @s x run data get entity @s Pos[0] 100"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result score @s y run data get entity @s Pos[1] 100"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result score @s z run data get entity @s Pos[2] 100"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball_target,limit=1,sort=nearest] at @s run execute store result score @s x run data get entity @s Pos[0] 100"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball_target,limit=1,sort=nearest] at @s run execute store result score @s y run data get entity @s Pos[1] 100"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball_target,limit=1,sort=nearest] at @s run execute store result score @s z run data get entity @s Pos[2] 100"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result score @s x run scoreboard players operation @e[type=area_effect_cloud,tag=fireball_target,limit=1,sort=nearest] x -= @s x"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result score @s y run scoreboard players operation @e[tag=fireball_target,limit=1,sort=nearest] y -= @s y"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result score @s z run scoreboard players operation @e[tag=fireball_target,limit=1,sort=nearest] z -= @s z"
+        say "/kill @e[type=area_effect_cloud,tag=fireball_target,limit=1,sort=nearest]"
+        
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result entity @s power[0] double 0.0001 run scoreboard players get @s x"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result entity @s power[1] double 0.0001 run scoreboard players get @s y"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result entity @s power[2] double 0.0001 run scoreboard players get @s z"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result entity @s Motion[0] double 0.002 run scoreboard players get @s x"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result entity @s Motion[1] double 0.002 run scoreboard players get @s y"
+        say "/execute positioned ~ ~1.6 ~ as @e[tag=fireball,limit=1,sort=nearest] at @s run execute store result entity @s Motion[2] double 0.002 run scoreboard players get @s z"
+        
+        say "/scoreboard objectives remove x"
+        say "/scoreboard objectives remove y"
+        say "/scoreboard objectives remove z"
+    }
+}
+
