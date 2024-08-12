@@ -1,0 +1,12 @@
+def module double-clicker
+def desc "Clicks a second time when you release your mouse"
+
+on left_release if playing {
+    input attack
+}
+
+on right_release if playing {
+    input use
+}
+
+

@@ -1,0 +1,112 @@
+{
+    "scripts": [
+      {
+        "name": "Obi Switcher",
+        "author": "Wither123go",
+        "desc": "No description provided",
+        "contents": "scripts/Wither123go/obi-switcher.ccs"
+      },
+      {
+        "name": "Air Jump",
+        "author": "ImproperIssues",
+        "desc": "Allows you to jump while being in the air. You can edit the 0.5 to a higher value for higher jumps.",
+        "contents": "scripts/ImproperIssues/air-jump.ccs"
+      },
+      {
+        "name": "New World",
+        "author": "ImproperIssues",
+        "desc": "Use this script to help set up new creative worlds with all the game modes ready, just press -",
+        "contents": "scripts/ImproperIssues/new-world.ccs"
+      },
+      {
+        "name": "Fireball",
+        "author": "ImproperIssues",
+        "desc": "Spams with just the right commands to fire a fireball in the direction you are looking at and you right click",
+        "contents": "scripts/ImproperIssues/fireball.ccs"
+      },
+      {
+        "name": "Walmart Flight",
+        "author": "ImproperIssues",
+        "desc": "Fake flight from walmart",
+        "contents": "scripts/ImproperIssues/flight.ccs"
+      },
+      {
+        "name": "Middle Click Pearl",
+        "author": "ImproperIssues",
+        "desc": "Middle click your mouse to throw a pearl",
+        "contents": "scripts/ImproperIssues/middle-click-pearl.ccs"
+      },
+      {
+        "name": "Double Click",
+        "author": "ImproperIssues",
+        "desc": "Clicks a second time when you release your mouse",
+        "contents": "scripts/ImproperIssues/double-clicker.ccs"
+      },
+      {
+        "name": "Legit Auto Totem",
+        "author": "ImproperIssues",
+        "desc": "Automatically replenishes your totems in your inventory",
+        "contents": "scripts/ImproperIssues/legit-auto-totem.ccs"
+      },
+      {
+        "name": "Auto Totem",
+        "author": "ImproperIssues",
+        "desc": "Literally the hack itself lmao",
+        "contents": "scripts/ImproperIssues/auto-totem.ccs"
+      },
+      {
+        "name": "Anti Weakness",
+        "author": "ImproperIssues",
+        "desc": "Allows crystalling even if you have weakness",
+        "contents": "scripts/ImproperIssues/no-weak.ccs"
+      },
+      {
+        "name": "Anchor Place",
+        "author": "obvWolf",
+        "desc": "Places a fully charged anchor when you right click your sword",
+        "contents": "scripts/obvWolf/op-anchors.ccs"
+      },
+      {
+        "name": "Sworld Hit",
+        "author": "ImproperIssues",
+        "desc": "Guarantees you hit your opponents with a sword and not anything else",
+        "contents": "scripts/ImproperIssues/sword-hit.ccs"
+      },
+      {
+        "name": "Fast EXP",
+        "author": "vgs",
+        "desc": "Uses experience bottles quickly while holding right-click",
+        "contents": "scripts/vgs/fast-exp.ccs"
+      },
+      {
+        "name": "vgs' ez totem",
+        "author": "vgs",
+        "desc": "totem fast",
+        "contents": "scripts/vgs/vgs-totem.ccs"
+      },
+      {
+        "name": "All Items KB",
+        "author": "Wither123go",
+        "desc": "KB for CPvP",
+        "contents": "scripts/Wither123go/all-items-kb.ccs"
+      },
+      {
+        "name": "2 Anchor Key",
+        "author": "Wither123go",
+        "desc": "Press N and double anchor with the speed of light",
+        "contents": "scripts/Wither123go/2-anchor-key.ccs"
+      },
+      {
+        "name": "CW CRYSTALS LEGIT",
+        "author": "Wither123go",
+        "desc": "CW CRYSTALS LEGIT LOOKING",
+        "contents": "scripts/Wither123go/cw-crystals-legit.ccs"
+      },
+      {
+        "name": "Safe Anchor Y",
+        "author": "Wither123go",
+        "desc": "Press Y for safe anchor",
+        "contents": "scripts/Wither123go/safe-anchor-y.ccs"
+      }
+    ]
+  }
