@@ -1,0 +1,24 @@
+{
+  "configs": [
+    {
+      "name": "ImproperIssues' Config",
+      "desc": "An Official Config provided by the Owner of this Client, as the owner he will know exactly what are the limitations and apply that to his advantage.",
+      "contents": "configs/improper.json"
+    },
+    {
+      "name": "I No One's Config",
+      "desc": "I-No-oNe is the biggest CC Contributor and staff member and with a broad understanding of this mod he can really push the limits of what you can do with our mod.",
+      "contents": "configs/i-no-one.json"
+    }, 
+    {
+      "name": "TutlaMC's Config",
+      "desc": "A combination of ClickCrystal Modules made for playing on SMPs and Minehut Servers",
+      "contents": "configs/tutla.json"
+    }, 
+    {
+      "name": "Wither123go's Config",
+      "desc": "Wither123go's config mainly used for crystal pvp but its amazing in general for every gamemode and no anti cheat can get triggered while using it.",
+      "contents": "configs/withergo.json"
+    }
+  ]
+}
