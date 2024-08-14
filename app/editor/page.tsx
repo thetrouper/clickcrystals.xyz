@@ -5,8 +5,13 @@ import Editor from "@monaco-editor/react"
 import { useState } from "react"
 
 export default function CCSEditor() {
-  const [code, setCode] = useState("// Hello");
-  const [result, setResult] = useState("// Hello");
+  const [code, setCode] = useState(`// @you
+def module create Module Name
+def desc Describe your module
+
+// this is the ClickScript playground
+// write your ClickScript codes here and directly format or minify the code!`);
+  const [result, setResult] = useState(`// When you click format or minify, the result will appear here.`);
 
   const handleCodeEdit = (value: any, event: any) => {
     setCode(value);
