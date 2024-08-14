@@ -26,7 +26,7 @@ export default function ScriptCard({ title, author, description, script }: Scrip
   };
 
   return (
-    <Card key={title} className="w-full h-full rounded">
+    <Card key={title} className="w-full h-full rounded border-blue-400">
       <CardHeader>
         <CardTitle className="text-xl">{title}</CardTitle>
         <span className="text-primary">by {author}</span>
