@@ -10,7 +10,7 @@ import DownloadTable from "./DownloadTable"
 
 export default function Download() {
   return (
-    <section className="my-12 mx-6 md:mx-24">
+    <main className="my-12 mx-6 md:mx-24">
       <div className="py-0 ">
         <div className="place-self-center">
           <h1 className="text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
@@ -28,6 +28,6 @@ export default function Download() {
           <DownloadTable />
         </div>
       </div>
-    </section>
+    </main>
   )
 }
