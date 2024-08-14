@@ -52,7 +52,8 @@ export const links = [
   <NavLink label="Home" url="/" key={0} />,
   <DropLink label="Download" links={downloadDropdown} url="/download" key={1} />,
   <NavLink label="Wiki" url="https://bit.ly/ccs-wiki" key={2} />,
-  <DropLink label="More" links={moreDropdown} url="#" key={3} />
+  <NavLink label="Scripts" url="/scripts" key={3} />,
+  <DropLink label="More" links={moreDropdown} url="#" key={4} />
 ]
 
 export const Nav = () => {

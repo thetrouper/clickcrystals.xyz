@@ -17,7 +17,7 @@ const footerLinks = [
     links: [
       { name: "ClickScript Wiki", url: "https://bit.ly/ccs-wiki" },
       { name: "Script Formatter", url: "https://clickcrystals.xyz/tools/scriptformatter.html" },
-      // { name: "API Tools", url: "#" }
+      { name: "Scripts Archive", url: "/scripts" }
     ]
   },
   {
