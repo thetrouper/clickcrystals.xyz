@@ -12,8 +12,7 @@ const scripts: Record<string, Script> = {
   "Obsidian Switcher": {
     author: "Wither123go",
     description: "Obsidian Switch by Wither123go.",
-    script: `// @wither123go
-def module obi-switcher
+    script: `def module obi-switcher
 def desc "obi switch"
 
 on tick {
