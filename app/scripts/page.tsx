@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import Scripts from "@/components/Sections/scripts/Scripts";
 
 export default function ScriptsArchive() {
   return (
@@ -14,110 +14,7 @@ export default function ScriptsArchive() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Card className="w-full h-full rounded">
-            <CardHeader>
-              <CardTitle className="text-xl">Obsidian Switcher</CardTitle>
-              <span className="text-primary">
-                by Wither123go
-              </span>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <p>
-                Obsidian Switch by Wither123go.
-              </p>
-              <div className="text-sm text-muted-foreground bg-muted rounded-md">
-                <pre className="overflow-x-scroll">
-                  <code>{`
-// @wither123go
-def module obi-switcher
-def desc "obi switch"
-
-on tick {
-   if playing {
-      if input_active use {
-         if holding #sword, #crystal {
-            if targeting_block {
-               if !if target_block #air, :charged_respawn_anchor {
-                  wait 0.02
-                  switch #obsidian
-                  input right
-               }
-            }
-         }
-      }
-   }
-}
-`}</code>
-                </pre>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="w-full h-full rounded">
-            <CardHeader>
-              <CardTitle className="text-xl">CW Crystals Legit</CardTitle>
-              <span className="text-primary">
-                by Wither123go
-              </span>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <p>
-                CW Crystals Legit-Looking
-              </p>
-              <div className="text-sm text-muted-foreground bg-muted rounded-md">
-                <pre className="overflow-x-scroll">
-                  <code>{`
-// @wither123go
-def module CW-CRYSTALS-LEGIT
-def desc CW CRYSTALS LEGIT LOOKING
-
-on tick if playing if holding #crystal if target_block :obsidian {
-   input right
-   wait 0.05 if target_entity :end_crystal {
-      input left
-   }
-}
-`}</code>
-                </pre>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="w-full h-full rounded">
-            <CardHeader>
-              <CardTitle className="text-xl">NoWeak</CardTitle>
-              <span className="text-primary">
-                by ItziSpyder
-              </span>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <p>
-                Allows crystalling even you have weakness
-              </p>
-              <div className="text-sm text-muted-foreground bg-muted rounded-md">
-                <pre className="overflow-x-scroll">
-                  <code>{`
-// @itzispyder
-def module no-weak
-def desc "Allows crystalling even if you have weakness"
-
-on left_click if playing {
-   if target_entity #crystal if holding #crystal if hotbar_has #sword {
-      if effect_duration #weak >0 {
-         switch #sword
-         wait 0.05 if_not targeting_entity {
-            if holding #sword {
-               switch back
-            }
-         }
-      }
-   }
-}
-`}</code>
-                </pre>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        <Scripts />
       </main>
     </>
   );
