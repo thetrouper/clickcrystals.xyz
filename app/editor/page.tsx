@@ -11,18 +11,21 @@ def desc Describe your module
 
 // this is the ClickScript playground
 // write your ClickScript codes here and directly format or minify the code!`);
+
   const [result, setResult] = useState(`// When you click format or minify, the result will appear here.`);
+
+  const compressor = new Compressor();
 
   const handleCodeEdit = (value: any, event: any) => {
     setCode(value);
   }
 
   const deCompressCode = (e: any) => {
-    setResult(new Compressor().decompress(code));
+    setResult(compressor.decompress(code));
   }
 
   const compressCode = (e: any) => {
-    setResult(new Compressor().compress(code));
+    setResult(compressor.compress(code));
   }
 
   return (

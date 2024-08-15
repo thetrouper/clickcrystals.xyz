@@ -6,6 +6,7 @@ interface ScriptInfo {
   author: string;
   description: string;
   script: string;
+  category: string;
 }
 
 type ParsedScripts = Record<string, ScriptInfo>;
@@ -38,7 +39,8 @@ async function fetchAndParseCategory(category: string): Promise<ParsedScripts> {
     parsed[name] = {
       author: author || "Unknown",
       description: desc,
-      script: script.trim()
+      script: script.trim(),
+      category: category
     };
   });
 
