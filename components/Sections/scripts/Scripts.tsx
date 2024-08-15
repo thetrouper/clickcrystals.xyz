@@ -80,7 +80,7 @@ export default function Scripts() {
         ) : (
           <div className="col-span-full text-center py-10">
             <h2 className="text-2xl font-semibold text-gray-600">No scripts found</h2>
-            <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+            <p className="text-gray-500">Try adjusting your search or filter to find what you&apos;re looking for.</p>
           </div>
         )}
       </div>
