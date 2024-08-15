@@ -1,25 +1,33 @@
+const info =
+  "\n\nThe error has also logged into the console.\n\nIf this issue happens often, reach out to the support team on our discord.\nhttps://discord.gg/zg3ge9VTgr";
+
 export class Compressor {
   compress(scr: string): string {
-    const lines = scr.split("\n");
-    let result = "";
+    try {
+      const lines = scr.split("\n");
+      let result = "";
 
-    for (let i = 0; i < lines.length; i++) {
-      let line = lines[i].trim().replace(/\s+/gi, " ");
-      result += line;
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim().replace(/\s+/gi, " ");
+        result += line;
 
-      if (line.length > 0) {
-        if (!line.endsWith("{") && !line.endsWith("}") && !line.endsWith(";")) {
-          result += ";";
+        if (line.length > 0) {
+          if (!line.endsWith("{") && !line.endsWith("}") && !line.endsWith(";")) {
+            result += ";";
+          }
+          result += " ";
         }
-        result += " ";
       }
-    }
 
-    return result;
+      return result;
+    } catch (err: any) {
+      return `Error while compressing:\n${err.message}${info}`;
+    }
   }
 
   decompress(scr: string): string {
-    scr = this.compress(scr);
+    try{
+      scr = this.compress(scr);
     let lines = scr.split(";");
     let result = "";
 
@@ -75,5 +83,8 @@ export class Compressor {
     }
 
     return result;
+    } catch (err: any) {
+      return `Error while decompressing:\n${err.message}${info}`;
+    }
   }
 }
