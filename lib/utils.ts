@@ -1,3 +1,10 @@
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 export function parseNumber(num: number) {
   return num >= 1e9
     ? (num / 1e9).toFixed(1) + "b"
