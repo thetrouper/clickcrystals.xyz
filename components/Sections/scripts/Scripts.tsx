@@ -42,6 +42,12 @@ export default function Scripts() {
     })
     : [];
 
+  if (selectedCategory === "All") {
+    filteredScripts.sort(([titleA]: any, [titleB]: any) =>
+      titleA.toLowerCase().localeCompare(titleB.toLowerCase())
+    );
+  }
+
   return (
     <div>
       <div className="flex gap-4 mb-4">
@@ -59,7 +65,7 @@ export default function Scripts() {
           Array.from({ length: 6 }).map((_, index) => (
             <SkeletonCard key={index} />
           ))
-        ) : (
+        ) : filteredScripts.length > 0 ? (
           <Suspense fallback={<SkeletonCard />}>
             {filteredScripts.map(([title, scriptData]: any) => (
               <ScriptCard
@@ -71,6 +77,11 @@ export default function Scripts() {
               />
             ))}
           </Suspense>
+        ) : (
+          <div className="col-span-full text-center py-10">
+            <h2 className="text-2xl font-semibold text-gray-600">No scripts found</h2>
+            <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+          </div>
         )}
       </div>
     </div>
