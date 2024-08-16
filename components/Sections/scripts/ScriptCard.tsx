@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Container } from "@/components/ui/Container";
 import { useRef } from "react";
 
 interface ScriptCardProps {
@@ -26,22 +27,24 @@ export default function ScriptCard({ title, author, description, script }: Scrip
   };
 
   return (
-    <Card key={title} className="w-full h-full rounded border-blue-400">
-      <CardHeader>
-        <CardTitle className="text-xl">{title}</CardTitle>
-        <span className="text-primary">by {author}</span>
-      </CardHeader>
-      <CardContent className="flex-1">
-        <p>{description}</p>
-        <div
-          className="text-sm text-muted-foreground bg-muted rounded-md cursor-pointer my-4"
-          onClick={handleCopyClick}
-        >
-          <pre ref={preRef} className="overflow-x-scroll">
-            <code>{script}</code>
-          </pre>
-        </div>
-      </CardContent>
-    </Card>
+    <Container tapScale={1.02} hoverScale={1.03}>
+      <Card key={title} className="w-full h-full rounded border-blue-400">
+        <CardHeader>
+          <CardTitle className="text-xl">{title}</CardTitle>
+          <span className="text-primary">by {author}</span>
+        </CardHeader>
+        <CardContent className="flex-1">
+          <p>{description}</p>
+          <div
+            className="text-sm text-muted-foreground bg-muted rounded-md cursor-pointer my-4"
+            onClick={handleCopyClick}
+          >
+            <pre ref={preRef} className="overflow-x-scroll">
+              <code>{script}</code>
+            </pre>
+          </div>
+        </CardContent>
+      </Card>
+    </Container>
   );
 }
