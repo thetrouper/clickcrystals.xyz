@@ -11,7 +11,7 @@ interface GitHubRelease {
 }
 
 export async function getGitHubDownloads(): Promise<number> {
-  const releases: GitHubRelease[] = await getReleases();
+  const releases: GitHubRelease[] = await getReleases(100);
   const downloads = releases.reduce(
     (acc: number, release: GitHubRelease) =>
       acc + release.assets.reduce(

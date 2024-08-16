@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { DownloadLink } from "./DownloadLink"
 import DownloadTable from "./DownloadTable"
-import DownloadBuilder from "./DownloadBuilder"
 
 export default function Download() {
   return (
@@ -26,7 +25,6 @@ export default function Download() {
             <DownloadLink link="https://modrinth.com/mod/clickcrystals" label="Modrinth" className="border-[#3eb326] bg-[#39a822] hover:bg-[#2d8a1a]" icon={<Image src={modrinth} width={24} height={24} alt="Modrinth" className="size-6 md:size-5" />} />
             <DownloadLink link="https://github.com/clickcrystals-development/ClickCrystals/releases" label="GitHub" className="border-[#3c444b] bg-[#202529] hover:bg-[#181b1f]" icon={<FontAwesomeIcon icon={faGithub} className="size-6 md:size-5" />} />
           </div>
-          <DownloadBuilder />
           <DownloadTable />
         </div>
       </div>
