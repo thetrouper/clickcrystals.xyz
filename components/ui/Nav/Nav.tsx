@@ -31,7 +31,7 @@ const downloadDropdown = [
 const moreDropdown = [
   {
     "label": "Help",
-    "url": "https://clickcrystals.xyz/faq.html"
+    "url": "/help"
   },
   {
     "label": "Gallery",
