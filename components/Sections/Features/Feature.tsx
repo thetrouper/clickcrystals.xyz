@@ -6,8 +6,8 @@ type FeatureProps = {
   icon: React.ElementType;
   title: string;
   desc: string;
-  linkTitle?: string | boolean;
-  linkUrl?: string | boolean;
+  linkTitle?: any;
+  linkUrl?: any;
 }
 
 const Feature = ({ icon: Icon, title, desc, linkTitle = false, linkUrl = false }: FeatureProps) => {
