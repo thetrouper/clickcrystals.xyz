@@ -7,7 +7,7 @@ const footerLinks = [
     links: [
       { name: "Home", url: "/" },
       { name: "Downloads", url: "/download" },
-      { name: "Gallery", url: "https://clickcrystals.xyz/gallery.html" },
+      { name: "Gallery", url: "/gallery" },
       { name: "Other Projects", url: "https://clickcrystals.xyz/projects.html" },
       { name: "Help", url: "https://clickcrystals.xyz/faq.html" }
     ]

@@ -35,7 +35,7 @@ const moreDropdown = [
   },
   {
     "label": "Gallery",
-    "url": "https://clickcrystals.xyz/gallery.html"
+    "url": "/gallery"
   },
   // {
   //   "label": "Tools",
