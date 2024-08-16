@@ -5,14 +5,20 @@ import Editor from "@monaco-editor/react"
 import { useEffect, useState } from "react"
 
 export default function CCSEditor() {
-  const [code, setCode] = useState(`// @you
-def module create Module Name
-def desc Describe your module
+  const [code, setCode] = useState(`def module custom-module
+def desc "Custom Scripted Module"
 
-// this is the ClickScript playground
-// write your ClickScript codes here and directly format or minify the code!`);
+on module_enable {
 
-  const [result, setResult] = useState(`// When you click format or minify, the result will appear here.`);
+}
+
+on module_disable {
+
+}`);
+
+  const compressor = new Compressor();
+
+  const [result, setResult] = useState(compressor.compress(code));
 
   const [dark, setDark] = useState(false);
 
@@ -26,7 +32,6 @@ def desc Describe your module
     }
   }, []);
 
-  const compressor = new Compressor();
 
   const handleCodeEdit = (value: any, event: any) => {
     setCode(value);
