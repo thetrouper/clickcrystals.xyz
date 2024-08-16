@@ -2,7 +2,7 @@
 
 import { Compressor } from "@/lib/compressor";
 import Editor from "@monaco-editor/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function CCSEditor() {
   const [code, setCode] = useState(`// @you
@@ -14,7 +14,17 @@ def desc Describe your module
 
   const [result, setResult] = useState(`// When you click format or minify, the result will appear here.`);
 
-  const [vstheme, setVsTheme] = useState('dark');
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (prefersDark) {
+      setDark(true);
+    }
+  }, []);
 
   const compressor = new Compressor();
 
@@ -31,14 +41,14 @@ def desc Describe your module
   }
 
   return (
-    <div className={`flex flex-col lg:flex-row h-screen bg-[${vstheme === "light" ? "#fffffe] text-black" : "#1e1e1e] text-white"}`}>
+    <div className={`flex flex-col lg:flex-row h-screen bg-[${dark ? "#1e1e1e] text-white" : "#ffffff] text-black"}`}>
       <div className="flex-1 h-full">
         <Editor
           language="plain"
           className="h-full"
           value={code}
           onChange={handleCodeEdit}
-          theme={vstheme}
+          theme={dark ? "vs-dark" : "light"}
           options={{
             'wordWrap': true,
           }}
@@ -54,7 +64,7 @@ def desc Describe your module
         <Editor
           language="plain"
           className="h-full"
-          theme={vstheme === "light" ? "light" : "vs-dark"}
+          theme={dark ? "vs-dark" : "light"}
           value={result}
           options={{
             'readOnly': true,
