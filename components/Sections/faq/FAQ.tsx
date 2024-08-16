@@ -75,7 +75,7 @@ const faqs = [
     question: "How do I access the ClickCrystals menu?",
     answer: (
       <>
-        By pressing the apostrophe key. If you don't know what it is, you're a third grader that shouldn't be play games and should be studying instead.
+        By pressing the apostrophe key. If you don&apos;t know what it is, you&apos;re a third grader that shouldn&apos;t be play games and should be studying instead.
         <Image src={"/img/key.png"} width={900} height={300} alt="Apostrophe key" className="w-auto h-auto my-4 rounded" />
       </>
     )
