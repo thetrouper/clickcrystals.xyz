@@ -17,33 +17,32 @@ on module_disable {
 }`);
 
   const compressor = new Compressor();
-
   const [result, setResult] = useState(compressor.compress(code));
-
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    if (prefersDark) {
-      setDark(true);
-    }
-  }, []);
-
 
   const handleCodeEdit = (value: any, event: any) => {
     setCode(value);
   }
-
   const deCompressCode = (e: any) => {
     setResult(compressor.decompress(code));
   }
-
   const compressCode = (e: any) => {
     setResult(compressor.compress(code));
   }
+
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    if (darkThemeQuery.matches) {
+      setDark(true);
+    }
+    darkThemeQuery.addEventListener("change", (e => {
+      if (e.matches) {
+        setDark(true);
+      } else {
+        setDark(false);
+      }
+    }));
+  }, []);
 
   return (
     <div className={`flex flex-col lg:flex-row h-screen bg-[${dark ? "#1e1e1e] text-white" : "#ffffff] text-black"}`}>
@@ -60,7 +59,7 @@ on module_disable {
         />
       </div>
 
-      <div className="flex flex-col justify-center items-center p-4 lg:w-1/12 lg:px-2 lg:py-8">
+      <div className={`flex flex-col justify-center items-center p-4 lg:w-1/12 lg:px-2 lg:py-8 ${dark && "bg-[#1e1e1e]"}`}>
         <button onClick={deCompressCode} className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] active:bg-[#2e3d75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full mb-4 lg:w-auto">Format</button>
         <button onClick={compressCode} className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] active:bg-[#2e3d75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full lg:w-auto">Minify</button>
       </div>
