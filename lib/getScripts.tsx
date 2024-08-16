@@ -37,9 +37,9 @@ async function fetchAndParseCategory(category: string): Promise<ParsedScripts> {
     });
 
     parsed[name] = {
-      author: author || "Unknown",
+      author: author || "Anonymous",
       description: desc,
-      script: script.trim(),
+      script: new Compressor().decompress(script.trim()),
       category: category
     };
   });
