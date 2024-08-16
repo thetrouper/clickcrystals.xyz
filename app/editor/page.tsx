@@ -14,6 +14,8 @@ def desc Describe your module
 
   const [result, setResult] = useState(`// When you click format or minify, the result will appear here.`);
 
+  const [vstheme, setVsTheme] = useState('dark');
+
   const compressor = new Compressor();
 
   const handleCodeEdit = (value: any, event: any) => {
@@ -29,14 +31,14 @@ def desc Describe your module
   }
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen bg-[#1e1e1e] text-white">
+    <div className={`flex flex-col lg:flex-row h-screen bg-[${vstheme === "light" ? "#fffffe] text-black" : "#1e1e1e] text-white"}`}>
       <div className="flex-1 h-full">
         <Editor
           language="plain"
           className="h-full"
           value={code}
           onChange={handleCodeEdit}
-          theme="vs-dark"
+          theme={vstheme}
           options={{
             'wordWrap': true,
           }}
@@ -52,7 +54,7 @@ def desc Describe your module
         <Editor
           language="plain"
           className="h-full"
-          theme="vs-dark"
+          theme={vstheme === "light" ? "light" : "vs-dark"}
           value={result}
           options={{
             'readOnly': true,
