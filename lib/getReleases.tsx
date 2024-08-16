@@ -8,13 +8,13 @@ type Assets = {
   v120: null | React.ReactElement;
 }
 
-export async function getReleases() {
+export async function getReleases(total: number = 30) {
   try {
     const headers = process.env.GITHUB_PAT ? {
       "Authorization": `Bearer ${process.env.GITHUB_PAT}`
     } : undefined;
 
-    const response = await fetch("https://api.github.com/repos/ItziSpyder/ClickCrystals/releases", {
+    const response = await fetch(`https://api.github.com/repos/ItziSpyder/ClickCrystals/releases?per_page=${total}`, {
       method: "GET",
       headers: headers,
       cache: 'force-cache',
@@ -30,6 +30,7 @@ export async function getParsedReleases() {
   try {
     const releases = await getReleases();
     const parsedReleases = releases.map((release: any) => {
+      let releaseName = release.name.replace("Release ", "");
       let downloads = 0;
       let assetsData: Assets = {
         v121: null,
@@ -42,7 +43,7 @@ export async function getParsedReleases() {
       release.assets.forEach((asset: any) => {
         downloads += asset.download_count;
         
-        let assetName = asset.name;
+        let assetName = asset.name
         let assetURL = asset.browser_download_url;
 
         if (assetName.includes("1.21")) {
@@ -59,7 +60,7 @@ export async function getParsedReleases() {
       });
 
       return {
-        version: release.name,
+        version: releaseName,
         code: release.html_url,
         downloads: downloads,
         ...assetsData,
