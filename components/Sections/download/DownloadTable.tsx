@@ -2,7 +2,7 @@
 
 import { AgGridReact } from 'ag-grid-react';
 import "@/styles/ag-grid-theme.css";
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
@@ -127,23 +127,30 @@ export default function DownloadTable() {
 
   return (
     <div className="my-4">
-      {/* <Latest /> */}
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-700">Download Statistics</h2>
+      <p className="text-gray-600 mb-4 max-w-4xl">
+        Here you can see the exact total download count of ClickCrystals from its all official sources. You can download any release for the available minecraft versions from the table below as well.
+      </p>
       <Downloads />
       
     <div
       className="ag-theme-custom h-[467px]"
     >
-      <AgGridReact
-        columnDefs={colDefs}
-        rowData={rowData}
-        loading={loading}
-        suppressTouch={false}
-        pagination={true}
-        paginationPageSize={10}
-        paginationPageSizeSelector={[10, 20, 30, 50, 100]}
-        paginationAutoPageSize={true}
-        suppressMenuHide={true}
-      />
+        {loading ? (
+          <div className="w-full h-full rounded bg-gray-200 animate-pulse"></div>
+        ) : (
+          <AgGridReact
+            columnDefs={colDefs}
+            rowData={rowData}
+            loading={loading}
+            suppressTouch={false}
+            pagination={true}
+            paginationPageSize={10}
+            paginationPageSizeSelector={[10, 20, 30, 50, 100]}
+            paginationAutoPageSize={true}
+            suppressMenuHide={true}
+          />
+        )}
     </div>
     </div>
   )

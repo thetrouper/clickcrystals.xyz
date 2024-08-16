@@ -6,11 +6,11 @@ type FeatureProps = {
   icon: React.ElementType;
   title: string;
   desc: string;
-  linkTitle: string;
-  linkUrl: string;
+  linkTitle?: any;
+  linkUrl?: any;
 }
 
-const Feature = ({ icon: Icon, title, desc, linkTitle, linkUrl }: FeatureProps) => {
+const Feature = ({ icon: Icon, title, desc, linkTitle = false, linkUrl = false }: FeatureProps) => {
   return (
     <div className="text-center mb-8">
       <Icon className="text-blue-600 w-12 h-12 mb-4 mx-auto" />
@@ -18,9 +18,11 @@ const Feature = ({ icon: Icon, title, desc, linkTitle, linkUrl }: FeatureProps) 
       <p className="text-gray-400 mb-4">
         {desc}
       </p>
-      <Link href={linkUrl} className="text-blue-500 text-sm font-medium group">{linkTitle}
-        <FontAwesomeIcon icon={faAngleRight} className="size-3 ml-[2px] inline-flex text-blue-500 group-hover:ml-2 transition-all duration-75" />
-      </Link>
+      {linkTitle && (
+        <Link href={linkUrl} className="text-blue-500 text-sm font-medium group">{linkTitle}
+          <FontAwesomeIcon icon={faAngleRight} className="size-3 ml-[2px] inline-flex text-blue-500 group-hover:ml-2 transition-all duration-75" />
+        </Link>
+      )}
     </div>
   )
 }
