@@ -51,9 +51,9 @@ const moreDropdown = [
 export const links = [
   <NavLink label="Home" url="/" key={0} />,
   <DropLink label="Download" links={downloadDropdown} url="/download" key={1} />,
-  <NavLink label="Wiki" url="https://bit.ly/ccs-wiki" key={2} />,
-  <NavLink label="Scripts" url="/scripts" key={3} />,
-  <NavLink label="Editor" url="/editor" key={4} />,
+  <NavLink label="Scripts" url="/scripts" key={2} />,
+  <NavLink label="Editor" url="/editor" key={3} />,
+  <NavLink label="Wiki" url="https://bit.ly/ccs-wiki" key={4} target="_blank" />,
   <DropLink label="More" links={moreDropdown} url="#" key={5} />
 ]
 
