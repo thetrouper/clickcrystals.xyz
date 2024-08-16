@@ -49,7 +49,6 @@ export default function Gallery() {
         <Carousel
           opts={{
             align: "start",
-            loop: true,
           }}
           setApi={setApi}
           plugins={[
