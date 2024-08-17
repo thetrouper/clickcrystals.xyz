@@ -112,7 +112,7 @@ function PublishForm({ className, code, closeState }: any) {
       <input name="script" type="hidden" value={code} />
       <p className="text-xs">We suggest you to also add{" "}
         <span className="p-1 font-mono bg-[#1e1e1e] font-droidmono">
-          <span className="text-[#6a9955]">//</span>{" "}
+          <span className="text-[#6a9955]">&#47;&#47;</span>{" "}
           <span className="text-[#D4D4D4]">@</span>
           <span className="text-[#4ec9b0]">your-name</span>
         </span>
