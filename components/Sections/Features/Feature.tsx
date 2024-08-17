@@ -19,7 +19,7 @@ const Feature = ({ icon: Icon, title, desc, linkTitle = false, linkUrl = false }
         {desc}
       </p>
       {linkTitle && (
-        <Link href={linkUrl} className="text-blue-500 text-sm font-medium group">{linkTitle}
+        <Link href={linkUrl} target="_blank" className="text-blue-500 text-sm font-medium group">{linkTitle}
           <FontAwesomeIcon icon={faAngleRight} className="size-3 ml-[2px] inline-flex text-blue-500 group-hover:ml-2 transition-all duration-75" />
         </Link>
       )}

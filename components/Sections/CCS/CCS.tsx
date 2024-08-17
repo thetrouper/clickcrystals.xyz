@@ -1,5 +1,6 @@
 'use client'
 
+import { CustomButton, GetClickCrystalsButton } from "@/components/ui/buttons/all"
 import { Container } from "@/components/ui/Container"
 import Link from "next/link"
 
@@ -18,12 +19,8 @@ export default function CCS() {
           </p>
           <div className="text-gray-500 text-xs my-4 text-center">We have auto sprint, fast EXP, jump reset & lot amazing scripts!<br />What are you waiting for?</div>
           <div className="flex flex-row gap-4 justify-center">
-            <Container tapScale={0.95}>
-              <Link href="/editor" className="ring-[#737679] btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 px-5.5 py-2.5 shadow-none text-sm">Script Editor</Link>
-            </Container>
-            <Container tapScale={0.95}>
-              <Link href="/scripts" className="ring-[#21582d] btn border-[#72da89] bg-[#247a37] hover:bg-[#1b5828] font-semibold px-6 px-5.5 py-2.5 shadow-none text-white text-sm">Explore Scripts</Link>
-            </Container>
+            <GetClickCrystalsButton name="Script Editor" link="/editor" />
+            <CustomButton name="Explore Scripts" link="/scripts" ring="#21582d" border="#72da89" bg="#247a37" hoverBg="#1b5828" />
           </div>
         </div>
       </div>
