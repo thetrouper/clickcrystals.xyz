@@ -58,8 +58,14 @@ on module_disable {
     setEditor(editor);
   };
 
+  const [loading, setLoading] = useState(true);
+
+  const editorsDidMount = (editor: any) => {
+    setLoading(false);
+  };
+
   return (
-    <div className={`flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white`}>
+    <div className={`flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white ${loading && 'opacity-0'}`}>
       <div className="flex-1 h-full">
         <Editor
           language="ccs"
@@ -92,6 +98,7 @@ on module_disable {
         <Editor
           language="ccs"
           className="h-full"
+          editorDidMount={editorsDidMount}
           theme={dark ? "ccs" : "light"}
           value={result}
           options={{
