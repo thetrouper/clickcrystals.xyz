@@ -3,10 +3,10 @@
 import { Compressor } from "@/lib/compressor";
 import Editor from "react-monaco-editor";
 import { languageDef, configuration, theme } from '@/lib/editor-config';
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 
 export default function CCSEditor() {
-  const defaultCode = `def module custom-module
+  const defaultCode = `// @anonymous\ndef module custom-module
 def desc "Custom Scripted Module"
 
 on module_enable {
@@ -29,20 +29,20 @@ on module_disable {
     setResult(compressor.compress(editor.getValue()));
   };
 
-  const [dark, setDark] = useState(false);
-  useEffect(() => {
-    const darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    if (darkThemeQuery.matches) {
-      setDark(true);
-    }
-    darkThemeQuery.addEventListener("change", (e) => {
-      if (e.matches) {
-        setDark(true);
-      } else {
-        setDark(false);
-      }
-    });
-  }, []);
+  const [dark, setDark] = useState(true);
+  // useEffect(() => {
+  //   const darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  //   if (darkThemeQuery.matches) {
+  //     setDark(true);
+  //   }
+  //   darkThemeQuery.addEventListener("change", (e) => {
+  //     if (e.matches) {
+  //       setDark(true);
+  //     } else {
+  //       setDark(false);
+  //     }
+  //   });
+  // }, []);
 
   const editorWillMount = (monaco: any) => {
     if (!monaco.languages.getLanguages().some(({ id }: any) => id === 'ccs')) {
@@ -75,8 +75,9 @@ on module_disable {
       </div>
 
       <div className={`flex flex-col justify-center items-center p-4 lg:w-1/12 lg:px-2 lg:py-8 ${dark && "bg-[#1e1e1e]"}`}>
-        <button onClick={deCompressCode} className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] active:bg-[#2e3d75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full mb-4 lg:w-auto">Format</button>
-        <button onClick={compressCode} className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] active:bg-[#2e3d75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full lg:w-auto">Minify</button>
+        <button onClick={deCompressCode} className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] active:bg-[#2e3d75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full lg:w-auto">Format</button>
+        <button onClick={compressCode} className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] active:bg-[#2e3d75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full my-4 lg:w-auto">Minify</button>
+        {/* <button className="btn border-[#ab72da] bg-[#a872da] hover:bg-[#9e54bb] active:bg-[#692e75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full lg:w-auto">Publish</button> */}
       </div>
 
       <div className="flex-1 h-full">
