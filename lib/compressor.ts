@@ -82,7 +82,7 @@ export class Compressor {
         "\n";
     }
 
-    return result;
+    return result.trim();
     } catch (err: any) {
       return `Error while decompressing:\n${err.message}${info}`;
     }

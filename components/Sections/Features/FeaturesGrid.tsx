@@ -6,11 +6,15 @@ const features = [
     icon: ShieldCheckIcon,
     title: "Safe on servers",
     desc: "ClickCrystals mod is undetectable, unless custom-modules by ClickScript. We keep improving the mod to add new features, enchance the current features & make them safe.",
+    linkTitle: "List of confirmed servers that allow this mod",
+    linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#but-isnt-this-cheating"
   },
   {
     icon: TrophyIcon,
     title: "Top-notch features",
     desc: "ClickCrystals mod is full of features that will help you to win every match. From swap modules, to utility and HUDs through a lot more features, there is no chance you lose.",
+    linkTitle: "List of all modules", 
+    linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#modules"
   },
   {
     icon: CodeBracketIcon,

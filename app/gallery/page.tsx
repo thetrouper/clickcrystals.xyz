@@ -17,6 +17,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 import { type CarouselApi } from "@/components/ui/carousel"
@@ -24,6 +26,7 @@ import { useEffect, useState } from "react";
 
 import { Container } from "@/components/ui/Container";
 import Link from "next/link";
+import { GetClickCrystalsButton, JoinDiscordButton } from "@/components/ui/buttons/all";
 
 export default function Gallery() {
   const [api, setApi] = useState<CarouselApi>();
@@ -66,24 +69,22 @@ export default function Gallery() {
               <CarouselItem key={i}>
                 <img
                   src={`/gallery/${slide}.png`}
-                  className="size-auto rounded-lg"
+                  className="size-auto rounded-3xl"
                   alt={`Slide ${slide}}`}
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
       </div>
       <div className="flex flex-row justify-center mb-4">
-        <p className="text-sm text-slate-800 font-medium mt-4 text-center">{current} / {count}</p>
+        <p className="text-sm text-slate-800 font-medium mt-4 text-center">Swipe left or right to change slides.</p>
       </div>
       <div className="flex flex-row gap-4 justify-center">
-        <Container tapScale={0.95}>
-          <Link href="/download" className="btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 px-5.5 py-2.5 shadow-none text-sm">Get ClickCrystals!</Link>
-        </Container>
-        <Container tapScale={0.95}>
-          <Link href="https://discord.gg/zg3ge9VTgr" className="btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] font-semibold px-6 px-5.5 py-2.5 shadow-none text-white text-sm">Join Discord</Link>
-        </Container>
+        <GetClickCrystalsButton />
+        <JoinDiscordButton />
       </div>
     </main>
   )
