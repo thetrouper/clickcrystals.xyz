@@ -6,48 +6,48 @@ export const languageDef = {
   tokenPostfix: ".ccs",
 
   keywords: [
-    "def",
-    "module",
-    "desc",
     "on",
     "if",
-    "wait",
-    "while",
-    "loop_period",
-    "input",
     "if_not",
-    "holding",
-    "description",
-    "attack",
-    "use",
-    "say",
+    "while",
+    "while_not",
     "execute",
-    "result",
-    "remove",
-    "add",
+    "execute_random",
     "execute_period",
-    "positioned",
-    "run",
-    "kill",
-    "summon",
+    "as",
+    "wait",
+    "wait_random",
+    "loop",
+    "loop_period",
+    "print",
+    "throw",
+    "exit",
+    "function",
+    "module",
+    "create",
+    "description",
+    "config",
+    "say",
+    "send",
+    "notify",
+    "playsound",
+    "define",
+    "drop",
+    "teleport",
     "velocity",
-    "chance_of",
-    "hotbar_has",
-    "holding",
-    "target_block",
-    "target_entity",
-    "entity_in_range",
-    "sneak",
-    "jump",
-    "forward",
-    "backward",
-    "strafe_left",
-    "strafe_right",
+    "turn_to",
+    "snap_to",
+    "damage",
+    "switch",
+    "swap",
+    "input",
+    "hold",
+    "gui_drop",
+    "gui_switch",
     "gui_swap",
     "gui_quickmove",
-    "gui_switch",
-    "wait_random",
-    "off_holding",
+    "def",
+    "desc",
   ],
 
   operators: [
@@ -86,37 +86,36 @@ export const languageDef = {
   tokenizer: {
     root: [
       // comments
-      [/@\w+/, "comment.author"],
-      [/\/\/.*/, "comment"],
+      [/\/\/\s*/, "comment.text"], // colors // and following space
+      [/\/\/\s*(\@[\w-]+)/, ["comment.text", "comment.author"]], // full author name like @i-no-one
 
-      // keywords and commands
+      // commands and keywords
       [
-        /\b(def|module|desc|on|if|wait|while|loop_period|input|attack|use|say|execute|store|result|score|remove|add|execute_period|positioned|run|kill|summon|playsound|velocity|chance_of|hotbar_has|holding|target_block|target_entity|entity_in_range|as|from|get|data|modify|sneak|jump|forward|backward|strafe_left|strafe_right|gui_swap|gui_quickmove|gui_switch|wait_random|off_holding)\b/,
+        /\b(on|if|if_not|while|while_not|execute|execute_random|execute_period|as|wait|wait_random|loop|loop_period|print|throw|exit|function|module|create|description|config|say|send|notify|playsound|define|drop|teleport|velocity|turn_to|snap_to|damage|switch|swap|input|hold|gui_drop|gui_switch|gui_swap|gui_quickmove|def|desc)\b/,
         "keyword",
       ],
+
+      // module names
+      [
+        /\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*)\b/,
+        { cases: { "@keywords": "string", "@default": "string" } },
+      ],
+
+      // arguments starting with # or :
+      [/(:\w+|#\w+(-\w+)*)/, "string2"],
 
       // identifiers
       [
         /[a-zA-Z_]\w*/,
-        {
-          cases: {
-            "@keywords": "keyword",
-            "@default": "identifier",
-          },
-        },
+        { cases: { "@keywords": "keyword", "@default": "identifier" } },
       ],
+
+      // numbers
+      [/\b\d+(_+\d+)*\b/, "number"],
 
       // delimiters and operators
       [/[{}()\[\]]/, "@brackets"],
-      [
-        /@symbols/,
-        {
-          cases: {
-            "@operators": "delimiter",
-            "@default": "",
-          },
-        },
-      ],
+      [/@symbols/, { cases: { "@operators": "delimiter", "@default": "" } }],
 
       // strings
       [/"([^"\\]|\\.)*$/, "string.invalid"], // non-terminated string
@@ -144,23 +143,26 @@ export const languageDef = {
 // This config defines the editor's behavior.
 export const configuration = {
   comments: {
-    lineComment: "//",
+    // lineComment: "//",
   },
   brackets: [
-    ["{", "}"], ["[", "]"], ["(", ")"],
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
   ],
-}
+};
 
+// This defines the color theme of the editor.
 export const theme = {
   base: "vs-dark",
   inherit: true,
   rules: [
     // Comments
-    { token: "comment", foreground: "6A9955" }, // Light green for comments
-    { token: "comment.author", foreground: "7A9A5B" }, // Slightly different green for author comments
+    { token: "comment.text", foreground: "6A9955" }, // Light green for comments
+    { token: "comment.author", foreground: "FFD700" }, // Gold for author comments, including the @ symbol
 
-    // Keywords
-    { token: "keyword", foreground: "C586C0" }, // Light purple for keywords
+    // Keywords and commands
+    { token: "keyword", foreground: "C586C0" }, // Light purple for commands
 
     // Identifiers
     { token: "identifier", foreground: "9CDCFE" }, // Light blue for identifiers
@@ -169,19 +171,15 @@ export const theme = {
     { token: "delimiter", foreground: "D4D4D4" }, // Light grey for delimiters
 
     // Strings
-    { token: "string", foreground: "CE9178" }, // Light orange for strings
+    { token: "string", foreground: "4EC9B0" }, // Green for regular strings
+    { token: "string.escape", foreground: "4EC9B0" }, // Same as strings
+    { token: "string2", foreground: "569CD6" }, // Dark blue for strings starting with # or :
 
-    // Characters
-    { token: "string.escape", foreground: "CE9178" }, // Same as strings
+    // Numbers
+    { token: "number", foreground: "B5CEA8" }, // Light greenish color for numbers
 
     // Brackets
     { token: "brackets", foreground: "D4D4D4" }, // Light grey for brackets
-
-    // Miscellaneous
-    { token: "custom-info", foreground: "9CDCFE" }, // Custom color for info
-    { token: "custom-error", foreground: "FF5C5C", fontStyle: "bold" }, // Custom color for errors
-    { token: "custom-notice", foreground: "FFA07A" }, // Custom color for notices
-    { token: "custom-date", foreground: "B5CEA8" }, // Custom color for dates
   ],
   colors: {},
 };
