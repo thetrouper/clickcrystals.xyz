@@ -42,8 +42,8 @@ const faqs = [
         CCS (ClickCrystals Script, aka ClickScript) is an in-game tool that allows you to create custom modules. It functions similarly to creating datapacks, enabling a high level of customization within the game.
         <br /><br />
         Additional official links related to CCS:{" "}
-        <Link href="https://bit.ly/ccs-wiki" target="_blank" className="text-blue-600">CCS Docs</Link>{" "}
-        <Link href="/editor" className="text-blue-600">CCS Editor</Link>{" "}
+        <Link href="https://bit.ly/ccs-wiki" target="_blank" className="text-blue-600">CCS Docs</Link>,{" "}
+        <Link href="/editor" className="text-blue-600">CCS Editor</Link>,{" "}
         <Link href="/scripts" className="text-blue-600">CCS Scripts Archive</Link>{" "}
       </>
     )

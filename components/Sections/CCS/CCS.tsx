@@ -19,10 +19,10 @@ export default function CCS() {
           <div className="text-gray-500 text-xs my-4 text-center">We have auto sprint, fast EXP, jump reset & lot amazing scripts!<br />What are you waiting for?</div>
           <div className="flex flex-row gap-4 justify-center">
             <Container tapScale={0.95}>
-              <Link href="/editor" className="btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 px-5.5 py-2.5 shadow-none text-sm">Script Editor</Link>
+              <Link href="/editor" className="ring-[#737679] btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 px-5.5 py-2.5 shadow-none text-sm">Script Editor</Link>
             </Container>
             <Container tapScale={0.95}>
-              <Link href="/scripts" className="btn border-[#000000] bg-[#06080e] hover:bg-[#0a0d1a] font-semibold px-6 px-5.5 py-2.5 shadow-none text-white text-sm">Explore Scripts</Link>
+              <Link href="/scripts" className="ring-[#21582d] btn border-[#72da89] bg-[#247a37] hover:bg-[#1b5828] font-semibold px-6 px-5.5 py-2.5 shadow-none text-white text-sm">Explore Scripts</Link>
             </Container>
           </div>
         </div>
