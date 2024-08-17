@@ -4,6 +4,7 @@ import { Compressor } from "@/lib/compressor";
 import Editor from "react-monaco-editor";
 import { languageDef, configuration, theme } from '@/lib/editor-config';
 import { useState } from "react";
+import Publish from "./Publish";
 
 export default function CCSEditor() {
   const defaultCode = `// @anonymous\ndef module custom-module
@@ -18,6 +19,7 @@ on module_disable {
 }`
   
   const compressor = new Compressor();
+  const [code, setCode] = useState(defaultCode);
   const [result, setResult] = useState("");
   const [editor, setEditor] = useState<any>();
 
@@ -28,6 +30,10 @@ on module_disable {
   const compressCode = () => {
     setResult(compressor.compress(editor.getValue()));
   };
+  
+  const updateCodeState = () => {
+    setCode(editor.getValue())
+  }
 
   const [dark, setDark] = useState(true);
   // useEffect(() => {
@@ -91,7 +97,7 @@ on module_disable {
       <div className="flex flex-col justify-center items-center p-4 lg:w-1/12 lg:px-2 lg:py-8 bg-white dark:bg-[#1e1e1e]">
         <button onClick={deCompressCode} className="btn focus:ring-0 focus:border-transparent focus:shadow-none border-[#ac8929] bg-[#ac8929] hover:bg-[#6e5717] font-semibold px-6 py-2.5 text-white text-sm w-full lg:w-auto">Format</button>
         <button onClick={compressCode} className="btn focus:ring-0 focus:border-transparent focus:shadow-none border-[#ac8929] bg-[#ac8929] hover:bg-[#6e5717] font-semibold px-6 py-2.5 text-white text-sm w-full my-4 lg:w-auto">Minify</button>
-        {/* <button className="btn border-[#ab72da] bg-[#a872da] hover:bg-[#9e54bb] active:bg-[#692e75] font-semibold px-6 py-2.5 shadow-none text-white text-sm w-full lg:w-auto">Publish</button> */}
+        <Publish onOpen={updateCodeState} code={code} />
       </div>
 
       <div className="flex-1 h-full">
