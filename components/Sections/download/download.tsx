@@ -20,10 +20,10 @@ export default function Download() {
             Our official downloads are available on CurseForge, PlanetMC and GitHub. ClickCrystals has been discontinued on Modrinth. Please refrain from downloading ClickCrystals from any other website other than listed here.
           </p>
           <div className="flex flex-row gap-2">
-            <DownloadLink link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals" label="CurseForge" className="border-[#ff7547] bg-[#f16436] hover:bg-[#df582c]" icon={<Image src={curseforge} width={24} height={24} alt="CurseForge" className="size-6 md:size-5" />} />
-            <DownloadLink link="https://planetminecraft.com/mod/clickcrystal" label="PlanetMC" className="border-[#2697b3] bg-[#1f86a0] hover:bg-[#126377]" icon={<Image src={planetmc} width={24} height={24} alt="PlanetMC" className="size-6 md:size-5" />} />
-            <DownloadLink link="https://modrinth.com/mod/clickcrystals" label="Modrinth" className="border-[#3eb326] bg-[#39a822] hover:bg-[#2d8a1a]" icon={<Image src={modrinth} width={24} height={24} alt="Modrinth" className="size-6 md:size-5" />} />
-            <DownloadLink link="https://github.com/clickcrystals-development/ClickCrystals/releases" label="GitHub" className="border-[#3c444b] bg-[#202529] hover:bg-[#181b1f]" icon={<FontAwesomeIcon icon={faGithub} className="size-6 md:size-5" />} />
+            <DownloadLink link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals" label="CurseForge" className="ring-[#ff7547] border-[#ff7547] bg-[#f16436] hover:bg-[#df582c]" icon={<Image src={curseforge} width={24} height={24} alt="CurseForge" className="size-6 md:size-5" />} />
+            <DownloadLink link="https://planetminecraft.com/mod/clickcrystal" label="PlanetMC" className="ring-[#2697b3] border-[#2697b3] bg-[#1f86a0] hover:bg-[#126377]" icon={<Image src={planetmc} width={24} height={24} alt="PlanetMC" className="size-6 md:size-5" />} />
+            <DownloadLink link="https://modrinth.com/mod/clickcrystals" label="Modrinth" className="ring-[#3eb326] border-[#3eb326] bg-[#39a822] hover:bg-[#2d8a1a]" icon={<Image src={modrinth} width={24} height={24} alt="Modrinth" className="size-6 md:size-5" />} />
+            <DownloadLink link="https://github.com/clickcrystals-development/ClickCrystals/releases" label="GitHub" className="ring-[#3c444b] border-[#3c444b] bg-[#202529] hover:bg-[#181b1f]" icon={<FontAwesomeIcon icon={faGithub} className="size-6 md:size-5" />} />
           </div>
           <DownloadTable />
         </div>
