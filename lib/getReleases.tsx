@@ -28,43 +28,44 @@ export async function getReleases(total: number = 30) {
 
 export async function getParsedReleases() {
   try {
-    const releases = await getReleases();
+    const releases = await getReleases(100);
     const parsedReleases = releases.map((release: any) => {
       let releaseName = release.name.replace("Release ", "");
+
       let downloads = 0;
-      let assetsData: Assets = {
-        v121: null,
-        v1206: null,
-        v1204: null,
-        v1202: null,
-        v120: null,
-      };
+        let assetsData: Assets = {
+          v121: null,
+          v1206: null,
+          v1204: null,
+          v1202: null,
+          v120: null,
+        };
 
-      release.assets.forEach((asset: any) => {
-        downloads += asset.download_count;
-        
-        let assetName = asset.name
-        let assetURL = asset.browser_download_url;
+        release.assets.forEach((asset: any) => {
+          downloads += asset.download_count;
 
-        if (assetName.includes("1.21")) {
-          assetsData['v121'] = assetURL
-        } else if (assetName.includes("1.20.6")) {
-          assetsData['v1206'] = assetURL
-        } else if (assetName.includes("1.20.4")) {
-          assetsData['v1204'] = assetURL
-        } else if (assetName.includes("1.20.2")) {
-          assetsData['v1202'] = assetURL
-        } else if (assetName.includes("1.20")) {
-          assetsData['v120'] = assetURL
-        }
-      });
+          let assetName = asset.name
+          let assetURL = asset.browser_download_url;
 
-      return {
-        version: releaseName,
-        code: release.html_url,
-        downloads: downloads,
-        ...assetsData,
-      };
+          if (assetName.includes("1.21")) {
+            assetsData['v121'] = assetURL
+          } else if (assetName.includes("1.20.6")) {
+            assetsData['v1206'] = assetURL
+          } else if (assetName.includes("1.20.4")) {
+            assetsData['v1204'] = assetURL
+          } else if (assetName.includes("1.20.2")) {
+            assetsData['v1202'] = assetURL
+          } else if (assetName.includes("1.20")) {
+            assetsData['v120'] = assetURL
+          }
+        });
+
+        return {
+          version: releaseName,
+          code: release.html_url,
+          downloads: downloads,
+          ...assetsData,
+        };
     });
 
     return parsedReleases;
