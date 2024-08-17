@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Header from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import { ScrollTop } from "@/components/ui/ScrollTop";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "ClickCrystals",
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${interHeading.variable} dark`}>
+      <body className={cn(`${inter.className} ${interHeading.variable} antialiased dark min-h-screen`)}>
         <Header />
         {children}
         <Footer />
