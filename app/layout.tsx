@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${interHeading.variable}`}>
+      <body className={`${inter.className} ${interHeading.variable} dark`}>
         <Header />
         {children}
         <Footer />
