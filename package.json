@@ -28,10 +28,12 @@
     "embla-carousel-autoplay": "^8.1.8",
     "embla-carousel-react": "^8.1.8",
     "framer-motion": "^11.3.17",
+    "monaco-editor": "^0.50.0",
     "next": "14.2.5",
     "react": "^18",
     "react-countup": "^6.5.3",
     "react-dom": "^18",
+    "react-monaco-editor": "^0.56.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },

@@ -1,8 +1,9 @@
 'use client'
 
 import { Compressor } from "@/lib/compressor";
-import Editor from "@monaco-editor/react"
-import { useEffect, useState } from "react"
+import Editor, {monaco} from "react-monaco-editor";
+import { languageDef, configuration, theme } from '@/lib/editor-config';
+import { useEffect, useState, useRef } from "react";
 
 export default function CCSEditor() {
   const [code, setCode] = useState(`def module custom-module
@@ -15,19 +16,21 @@ on module_enable {
 on module_disable {
 
 }`);
-
   const compressor = new Compressor();
-  const [result, setResult] = useState(compressor.compress(code));
+  const [result, setResult] = useState("");
 
-  const handleCodeEdit = (value: any, event: any) => {
+
+  const handleCodeEdit = (value: string, e:any) => {
     setCode(value);
-  }
-  const deCompressCode = (e: any) => {
+  };
+
+  const deCompressCode = () => {
     setResult(compressor.decompress(code));
-  }
-  const compressCode = (e: any) => {
+  };
+
+  const compressCode = () => {
     setResult(compressor.compress(code));
-  }
+  };
 
   const [dark, setDark] = useState(false);
   useEffect(() => {
@@ -35,26 +38,45 @@ on module_disable {
     if (darkThemeQuery.matches) {
       setDark(true);
     }
-    darkThemeQuery.addEventListener("change", (e => {
+    darkThemeQuery.addEventListener("change", (e) => {
       if (e.matches) {
         setDark(true);
       } else {
         setDark(false);
       }
-    }));
+    });
   }, []);
+
+  const editorWillMount = (monaco: any) => {
+    if (!monaco.languages.getLanguages().some(({ id }: any) => id === 'ccs')) {
+      // Register a new language
+      monaco.languages.register({ id: 'ccs' });
+      // Register a tokens provider for the language
+      monaco.languages.setMonarchTokensProvider('ccs', languageDef);
+      // Set the editing configuration for the language
+      monaco.languages.setLanguageConfiguration('ccs', configuration);
+      // Set the theme
+      monaco.editor.defineTheme('ccs', theme);
+    }
+  };
+
+  const editorDidMount = (editor: any) => {
+    editor.focus();
+  };
 
   return (
     <div className={`flex flex-col lg:flex-row h-screen bg-[${dark ? "#1e1e1e] text-white" : "#ffffff] text-black"}`}>
       <div className="flex-1 h-full">
         <Editor
-          language="plain"
+          language="ccs"
+          editorWillMount={editorWillMount}
+          editorDidMount={editorDidMount}
           className="h-full"
           value={code}
           onChange={handleCodeEdit}
-          theme={dark ? "vs-dark" : "light"}
+          theme={dark ? "ccs" : "light"}
           options={{
-            'wordWrap': true,
+            'wordWrap': 'on',
           }}
         />
       </div>
@@ -66,13 +88,15 @@ on module_disable {
 
       <div className="flex-1 h-full">
         <Editor
-          language="plain"
+          language="ccs"
+          editorWillMount={editorWillMount}
+          editorDidMount={editorDidMount}
           className="h-full"
-          theme={dark ? "vs-dark" : "light"}
+          theme={dark ? "ccs" : "light"}
           value={result}
           options={{
             'readOnly': true,
-            'wordWrap': true,
+            'wordWrap': "on",
           }}
         />
       </div>
