@@ -99,7 +99,7 @@ const projects = [
     author: "ImproperIssues"
   },
   {
-    name: "Helath Indicators",
+    name: "Health Indicators",
     description: "Renders player health above their heads",
     links: {
       "GitHub": "https://github.com/ItziSpyder/health-indicators",
@@ -171,14 +171,6 @@ const projects = [
     links: {
       "GitHub": "https://github.com/I-No-oNe/Glowing-entities",
       "Modrinth": "https://modrinth.com/mod/Glowing-entities"
-    },
-    author: "I-No-oNe"
-  },
-  {
-    name: "Free Camera",
-    description: "A minecraft mod that let your camera to be free while the player isn't moving 📸",
-    links: {
-      "GitHub": "https://github.com/I-No-oNe/Free-Camera"
     },
     author: "I-No-oNe"
   },

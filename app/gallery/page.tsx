@@ -24,8 +24,7 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react";
 
-import { Container } from "@/components/ui/Container";
-import Link from "next/link";
+import Image from "next/image";
 import { GetClickCrystalsButton, JoinDiscordButton } from "@/components/ui/buttons/all";
 
 export default function Gallery() {
@@ -67,10 +66,12 @@ export default function Gallery() {
           <CarouselContent>
             {slides.map((slide: string, i) => (
               <CarouselItem key={i}>
-                <img
+                <Image
                   src={`/gallery/${slide}.png`}
                   className="size-auto rounded-3xl"
                   alt={`Slide ${slide}}`}
+                  width={900} 
+                  height={300}
                 />
               </CarouselItem>
             ))}
