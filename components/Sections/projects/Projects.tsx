@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 const authors = {
   "ImproperIssues": "https://github.com/itzispyder",
-  "thetrouper": "https://github.com/thetrouper",
+  "TheTrouper": "https://github.com/thetrouper",
   "I-No-oNe": "https://github.com/I-No-oNe"
 }
 
@@ -137,7 +137,7 @@ const projects = [
     links: {
       "GitHub": "https://github.com/thetrouper/ClickCrystalsPlus"
     },
-    author: "thetrouper"
+    author: "TheTrouper"
   },
   {
     name: "View Model",
