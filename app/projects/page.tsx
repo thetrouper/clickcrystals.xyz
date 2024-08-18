@@ -10,7 +10,7 @@ export default function OtherProjects() {
               Other <span className="text-blue-600">Projects</span>
             </h1>
             <p className="text-gray-500 font-normal max-w-4xl my-3">
-              Here is a list of some of our, ClickCrystals&apos;s staff and its official projects.
+              Here is a list of some of our, ClickCrystals&apos;s staff projects and our official projects.
             </p>
           </div>
         </div>
