@@ -386,15 +386,21 @@ export default function DownloadTable() {
       </p>
       <Downloads />
       
-      <div className="flex items-center space-x-2 my-4 cursor-pointer">
-        <Checkbox id="showAllVers" value={showAllVers} onCheckedChange={handleShowAllVers} />
-        <label
-          htmlFor="showAllVers"
-          className="select-none text-[14px] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          Show all supported versions?
-        </label>
-      </div>
+      <div className="my-4">
+        <div className="flex items-center space-x-2 cursor-pointer">
+          <Checkbox id="showAllVers" value={showAllVers} onCheckedChange={handleShowAllVers} />
+          <label
+            htmlFor="showAllVers"
+            className="select-none text-[14px] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Show all supported version downloads?
+          </label>
+        </div>
+        <p className="text-xs text-black max-w-2xl select-none mt-2">
+          If your minecraft version is missing here even after ticking the checkbox above, it means that ClickCrystals has never supported that minecraft version. If your version is new, ClickCrystals&apos;s next update might release support for it.
+          <br /><br />
+          <span className="font-semibold">Note:</span> you will have to scroll right in the table below to see downloads for other versions</p>
+    </div>
       <div
       className="ag-theme-custom h-[467px]"
     >
