@@ -42,3 +42,13 @@ export function CustomButton({ name, link, ring, border, bg, hoverBg }: CustomPr
     </Container>
   </>)
 }
+
+export function ExploreScriptsButton({}) {
+  return (<>
+    <Container tapScale={0.95}>
+      <Link href={"/scripts"} className="ring-[#21582d] btn border-[#72da89] bg-[#247a37] hover:bg-[#1b5828] text-white font-semibold px-6 py-2.5 text-sm group">
+        Explore scripts
+      </Link>
+    </Container>
+  </>)
+}

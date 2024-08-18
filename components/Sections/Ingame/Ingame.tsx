@@ -4,6 +4,7 @@ import Image from "next/image";
 import cc from "@/public/cc-home.png"
 import { Container } from "@/components/ui/Container";
 import Link from "next/link";
+import { CustomButton, GetClickCrystalsButton } from "@/components/ui/buttons/all";
 
 export default function Ingame() {
   return (
@@ -25,12 +26,8 @@ export default function Ingame() {
           </div>
           <div className="text-gray-500 text-sm my-4 italic text-center">P.s. DrDonut loves this mod</div>
           <div className="flex flex-row gap-4 justify-center">
-            <Container tapScale={0.95}>
-              <Link href="/download" className="ring-[#737679] btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 px-5.5 py-2.5 shadow-none text-sm">Get ClickCrystals!</Link>
-            </Container>
-            <Container tapScale={0.95}>
-              <Link href="/gallery" className="ring-[#600c70] btn border-[#7d368b] bg-[#7d368b] hover:bg-[#511c5c] font-semibold px-6 px-5.5 py-2.5 shadow-none text-white text-sm">More screenshots</Link>
-            </Container>
+            <GetClickCrystalsButton />
+            <CustomButton name="More screenshots" link="/gallery" ring="#600c70" border="#7d3868b" bg="#7d368b" hoverBg="#511c5c" />
           </div>
         </div>
       </div>
