@@ -92,7 +92,7 @@ const projects = [
   },
   {
     name: "RandomKits",
-    description: "Renders player health above their heads",
+    description: "Loads a random kit everytime you die or rejoin",
     links: {
       "GitHub": "https://github.com/ItziSpyder/RandomKits"
     },
