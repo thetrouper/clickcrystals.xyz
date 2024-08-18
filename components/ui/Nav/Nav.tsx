@@ -43,7 +43,7 @@ const moreDropdown = [
   // },
   {
     "label": "Other Projects",
-    "url": "https://clickcrystals.xyz/projects.html",
+    "url": "/projects",
     "seperate": true
   },
 ]
