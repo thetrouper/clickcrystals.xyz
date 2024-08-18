@@ -1,4 +1,9 @@
+import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
+
+export const metadata: Metadata = {
+  title: "ClickCrystals - Editor",
+}
 
 const CCSEditor = dynamic(() => import('@/components/Sections/editor/Editor'), {
   ssr: false,

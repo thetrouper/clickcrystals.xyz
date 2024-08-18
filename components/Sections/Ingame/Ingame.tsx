@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import cc from "@/public/cc-home.png"
-import { Container } from "@/components/ui/Container";
-import Link from "next/link";
-import { CustomButton, GetClickCrystalsButton } from "@/components/ui/buttons/all";
+import { GetClickCrystalsButton, MoreScreenshotsButton } from "@/components/ui/buttons/all";
 
 export default function Ingame() {
   return (
@@ -27,7 +25,7 @@ export default function Ingame() {
           <div className="text-gray-500 text-sm my-4 italic text-center">P.s. DrDonut loves this mod</div>
           <div className="flex flex-row gap-4 justify-center">
             <GetClickCrystalsButton />
-            <CustomButton name="More screenshots" link="/gallery" ring="#600c70" border="#7d3868b" bg="#7d368b" hoverBg="#511c5c" />
+            <MoreScreenshotsButton />
           </div>
         </div>
       </div>
