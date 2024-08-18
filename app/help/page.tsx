@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ClickCrystals - Help",
+}
+
 import FAQ from "@/components/Sections/faq/FAQ";
 
 export default function Help() {

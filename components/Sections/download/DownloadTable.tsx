@@ -7,12 +7,265 @@ import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
+import { Checkbox } from '@/components/ui/checkbox';
 // import Latest from './Latest';
 
 export default function DownloadTable() {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showAllVers, setShowAllVers] = useState(0);
   const [colDefs, setColDefs]: any[] = useState();
+
+  const handleShowAllVers = (checked: boolean) => {
+    setShowAllVers(checked ? 1 : 0);
+    if (checked) {
+      setColDefs(
+        [
+          { field: "version", pinned: true, movable: false, width: 126 },
+          {
+            field: "code",
+            headerName: "Source Code",
+            cellRenderer: (params: any) => {
+              return (
+                <Link href={params.value} className="text-blue-500">
+                  Open
+                </Link>
+              );
+            },
+            width: 115,
+          },
+          {
+            field: "downloads",
+            cellRenderer: (params: any) => {
+              return parseNumber(params.value);
+            },
+            width: 115,
+          },
+          {
+            field: "v121",
+            headerName: "v1.21",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1206",
+            headerName: "v1.20.6",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1204",
+            headerName: "v1.20.4",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1202",
+            headerName: "v1.20.2",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1201",
+            headerName: "v1.20.1",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v120",
+            headerName: "v1.20",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1904",
+            headerName: "v1.19.4",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1903",
+            headerName: "v1.19.3",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1902",
+            headerName: "v1.19.2",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+        ]
+      );
+    } else {
+      setColDefs(
+        [
+          { field: "version", pinned: true, movable: false, width: 126 },
+          {
+            field: "code",
+            headerName: "Source Code",
+            cellRenderer: (params: any) => {
+              return (
+                <Link href={params.value} className="text-blue-500">
+                  Open
+                </Link>
+              );
+            },
+            width: 115,
+          },
+          {
+            field: "downloads",
+            cellRenderer: (params: any) => {
+              return parseNumber(params.value);
+            },
+            width: 115,
+          },
+          {
+            field: "v121",
+            headerName: "v1.21",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1206",
+            headerName: "v1.20.6",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1204",
+            headerName: "v1.20.4",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v1202",
+            headerName: "v1.20.2",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+          {
+            field: "v120",
+            headerName: "v1.20",
+            cellRenderer: (params: any) => {
+              return params.value === null ? (
+                "Not available"
+              ) : (
+                <Link href={params.value} className="text-blue-500">
+                  Download
+                </Link>
+              );
+            },
+            width: 160
+          },
+        ]
+      );
+    }
+  }
 
   useEffect(() => {
     setColDefs(
@@ -133,7 +386,22 @@ export default function DownloadTable() {
       </p>
       <Downloads />
       
-    <div
+      <div className="my-4">
+        <div className="flex items-center space-x-2 cursor-pointer">
+          <Checkbox id="showAllVers" value={showAllVers} onCheckedChange={handleShowAllVers} />
+          <label
+            htmlFor="showAllVers"
+            className="select-none text-[14px] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Show all supported version downloads?
+          </label>
+        </div>
+        <p className="text-xs text-black max-w-2xl select-none mt-2">
+          If your minecraft version is missing here even after ticking the checkbox above, it means that ClickCrystals has never supported that minecraft version. If your version is new, ClickCrystals&apos;s next update might release support for it.
+          <br /><br />
+          <span className="font-semibold">Note:</span> you will have to scroll right in the table below to see downloads for other versions</p>
+    </div>
+      <div
       className="ag-theme-custom h-[467px]"
     >
         {loading ? (

@@ -1,8 +1,6 @@
 'use client'
 
-import { CustomButton, GetClickCrystalsButton } from "@/components/ui/buttons/all"
-import { Container } from "@/components/ui/Container"
-import Link from "next/link"
+import { ExploreScriptsButton, GetClickCrystalsButton } from "@/components/ui/buttons/all"
 
 export default function CCS() {
   return (
@@ -20,7 +18,7 @@ export default function CCS() {
           <div className="text-gray-500 text-xs my-4 text-center">We have auto sprint, fast EXP, jump reset & lot amazing scripts!<br />What are you waiting for?</div>
           <div className="flex flex-row gap-4 justify-center">
             <GetClickCrystalsButton name="Script Editor" link="/editor" />
-            <CustomButton name="Explore Scripts" link="/scripts" ring="#21582d" border="#72da89" bg="#247a37" hoverBg="#1b5828" />
+            <ExploreScriptsButton />
           </div>
         </div>
       </div>

@@ -62,15 +62,15 @@ export const DropLink = ({ label, links, url = "#" }: DropLinkProps) => {
       </div>
       <div
         ref={dropdownRef}
-        className={`${(isHovered || isOpen) ? "opacity-100 visible" : "opacity-0 invisible"} z-[999999] transition-all absolute mt-0 w-48 bg-white rounded-md shadow-lg`}
+        className={`${(isHovered || isOpen) ? "opacity-100 visible" : "opacity-0 invisible"} z-[999999] transition-all absolute mt-0 w-48 bg-white rounded-sm p-0 m-0 shadow-lg`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="py-1">
+        <div>
           {links.map((link, index) => (
             <div key={index}>
               {link.seperate && <div className="border-t border-gray-200"></div>}
-              <Link href={link.url} className="transition-all duration-75 block px-4 py-2 mt-0 mb-0 h-full w-full text-sm text-gray-700 hover:text-blue-500 hover:bg-gray-200">
+              <Link href={link.url} className="transition-all duration-75 block px-4 py-2 my-0 h-full w-full text-sm text-gray-700 hover:text-blue-500 hover:bg-gray-200 rounded-sm">
                 {link.label}
               </Link>
             </div>
