@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ClickCrystals - Other Projects",
+}
+
 import Projects from "@/components/Sections/projects/Projects";
 
 export default function OtherProjects() {

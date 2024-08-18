@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ClickCrystals - Scripts Archive",
+}
+
 import Scripts from "@/components/Sections/scripts/Scripts";
 
 export default function ScriptsArchive() {
