@@ -1,6 +1,6 @@
 'use client'
 
-import { CustomButton, ExploreScriptsButton, GetClickCrystalsButton } from "@/components/ui/buttons/all"
+import { ExploreScriptsButton, GetClickCrystalsButton } from "@/components/ui/buttons/all"
 import { Container } from "@/components/ui/Container"
 import Link from "next/link"
 
