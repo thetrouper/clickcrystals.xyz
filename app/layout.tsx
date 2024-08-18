@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 import Header from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
-import { ScrollTop } from "@/components/ui/ScrollTop";
+// import { ScrollTop } from "@/components/ui/ScrollTop";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster"
 
@@ -22,11 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(`${inter.className} ${interHeading.variable} antialiased min-h-screen`)}>
+      <body className={cn(`${inter.className} ${interHeading.variable} antialiased min-h-screen`,
+        "selection:text-white selection:bg-blue-800"
+      )}>
         <Header />
         {children}
         <Footer />
-        <ScrollTop />
+        {/* <ScrollTop /> */}
         <div className="dark">
           <Toaster />
         </div>
