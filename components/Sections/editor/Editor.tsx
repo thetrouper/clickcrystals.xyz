@@ -32,28 +32,38 @@ on module_disable {
 
   useEffect(() => {
     const handleLoadSnippet = async () => {
-      const query = await loadCode(codeId);
+      try {
+        const query = await loadCode(codeId);
 
-      if (query.success) {
-        setCode(query.code);
-      } else {
-        router.push("/editor")
+        if (query.success) {
+          setCode(query.code);
+        } else {
+          router.push("/editor");
+          toast({
+            title: "Failed to load snippet",
+            description: query.error,
+            variant: "destructive"
+          });
+          setCode(defaultCode);
+        }
+      } catch (error: any) {
+        router.push("/editor");
         toast({
           title: "Failed to load snippet",
-          description: query.error,
+          description: error.message || "An unexpected error occurred.",
           variant: "destructive"
-        })
+        });
         setCode(defaultCode);
+      } finally {
+        setFetching(false);
       }
-      setFetching(false);
+    };
+
+    if (codeId !== "") {
+      handleLoadSnippet();
     }
-  
-    return () => {
-      if (codeId != "") {
-        handleLoadSnippet();
-      }
-    }
-  }, [])
+
+  }, [codeId]);
 
 
   const deCompressCode = () => {
