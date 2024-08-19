@@ -18,6 +18,7 @@ export async function saveCode(code: string) {
     .single();
 
   if (error) {
+    console.log(error);
     return  { id: null, error: "There was an error while saving your snippet", success: false };
   }
 
@@ -39,6 +40,7 @@ export async function loadCode(id: string) {
     };
   } else {
     if (error) {
+      console.log(error);
       return { code: null, error: `There was an error while loading snippet ${id}`, success: false };
     }
   }
