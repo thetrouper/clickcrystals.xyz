@@ -29,7 +29,6 @@ on module_disable {
   const [editor, setEditor] = useState<any>();
   const { toast } = useToast();
   const router = useRouter();
-
   useEffect(() => {
     const handleLoadSnippet = async () => {
       try {
@@ -63,7 +62,8 @@ on module_disable {
       handleLoadSnippet();
     }
 
-  }, [codeId]);
+  }, [codeId, defaultCode, router, toast]);
+
 
 
   const deCompressCode = () => {
