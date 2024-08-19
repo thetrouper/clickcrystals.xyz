@@ -2,8 +2,8 @@
 
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://uqivuaypwdteeyyuxans.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxaXZ1YXlwd2R0ZWV5eXV4YW5zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQwNTE5NTEsImV4cCI6MjAzOTYyNzk1MX0.wSX_PJftG5IPqvWZye00k3Earw2n1RfyGfES-T83ZAY";
+const supabaseUrl = process.env.SUPABASE_URL || ""; // required
+const supabaseKey = process.env.SUPABASE_KEY || ""; // required
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function saveCode(code: string) {
