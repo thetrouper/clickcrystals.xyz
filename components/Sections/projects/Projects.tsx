@@ -23,6 +23,15 @@ const projects = [
     author: "ImproperIssues"
   },
   {
+    name: "Impropers 3D Minimap",
+    description: "Minimap but with 3D terrain!",
+    links: {
+      "GitHub": "https://github.com/ItziSpyder/Impropers3DMinimap",
+      "Modrinth": "https://modrinth.com/mod/impropers-3d-minimap"
+    },
+    author: "ImproperIssues"
+  },
+  {
     name: "CrosshairTarget",
     description: "Changes your crosshair in-game depending on context.",
     links: {
@@ -36,31 +45,6 @@ const projects = [
     description: "Minecraft mod that lets you debug list of entities in your world",
     links: {
       "GitHub": "https://github.com/ItziSpyder/mobslist"
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "FunnySentences",
-    description: "Generate funny sentences!",
-    links: {
-      "GitHub": "https://github.com/ItziSpyder/FunnySentences",
-      "Modrinth": "https://modrinth.com/mod/funnysentences"
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "Explosion Control",
-    description: "Control the explosions in your Minecraft server",
-    links: {
-      "GitHub": "https://github.com/ItziSpyder/explosionscontrol"
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "DotChaos",
-    description: "Submerged in an infinite 2D world where dots fall out of the sky.",
-    links: {
-      "GitHub": "https://github.com/ItziSpyder/dotchaos"
     },
     author: "ImproperIssues"
   },
@@ -83,51 +67,11 @@ const projects = [
     author: "ImproperIssues"
   },
   {
-    name: "EnderPV",
-    description: "Ender chests are now expanded by a lot! Store 54 vaults with each capable of saving up to 54 items!",
-    links: {
-      "GitHub": "https://github.com/ItziSpyder/EnderPV"
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "RandomKits",
-    description: "Loads a random kit everytime you die or rejoin",
-    links: {
-      "GitHub": "https://github.com/ItziSpyder/RandomKits"
-    },
-    author: "ImproperIssues"
-  },
-  {
     name: "Health Indicators",
     description: "Renders player health above their heads",
     links: {
       "GitHub": "https://github.com/ItziSpyder/health-indicators",
       "Modrinth": "https://modrinth.com/mod/healthindicators"
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "Coherent",
-    description: "Private hacked client",
-    links: {
-      "Won't release to public": ""
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "CC Lite",
-    description: "ClickCrystals version without modules that give it its \"hacked client\" tags",
-    links: {
-      "Lost to history because of modrinth": ""
-    },
-    author: "ImproperIssues"
-  },
-  {
-    name: "Netsky",
-    description: "The first ever hacked client developed by ImproperIssues",
-    links: {
-      "Lost to history after it got leaked": ""
     },
     author: "ImproperIssues"
   },
