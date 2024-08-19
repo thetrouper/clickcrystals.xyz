@@ -8,7 +8,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function saveCode(code: string) {
   if (code.trim() === "") {
-    return { id: null, error: "Code is required", success: false };
+    return { id: null, error: "The snippet cannot be empty is required", success: false };
   }
 
   const { data, error } = await supabase
@@ -18,8 +18,7 @@ export async function saveCode(code: string) {
     .single();
 
   if (error) {
-    console.error("Error saving code:", error.message);
-    return { id: null, error: "Error saving code", success: false };
+    return  { id: null, error: "There was an error while saving your snippet", success: false };
   }
 
   return { id: data?.id ?? null, error: null, success: data?.id ? true : false };
@@ -33,16 +32,15 @@ export async function loadCode(id: string) {
     .single();
 
   if (error?.code === "PGRST116") {
-    return { code: null, error: "Not found", success: false };
+    return {
+      code: null,
+      error: `The requested snippet ${id} doesn't exist`,
+      success: false,
+    };
   } else {
     if (error) {
-      console.error("Error loading code: ", error.message);
-      return { code: null, error: "Error loading code", success: false };
+      return { code: null, error: `There was an error while loading snippet ${id}`, success: false };
     }
-  }
-
-  if (!data) {
-    return { code: null, error: "Not found", success: false };
   }
 
   return { code: data.code, error: null, success: true };
