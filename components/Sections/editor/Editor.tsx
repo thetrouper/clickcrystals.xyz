@@ -3,10 +3,12 @@
 import { Compressor } from "@/lib/compressor";
 import Editor from "react-monaco-editor";
 import { languageDef, configuration, theme } from '@/lib/editor-config';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Publish from "./Publish";
+import { loadCode, saveCode } from "@/lib/supabase";
+import Share from "./Share";
 
-export default function CCSEditor() {
+const CCSEditor = ({codeId} : {codeId: string}) => {
   const defaultCode = `// @anonymous\ndef module custom-module
 def desc "Custom Scripted Module"
 
@@ -22,6 +24,29 @@ on module_disable {
   const [code, setCode] = useState(defaultCode);
   const [result, setResult] = useState("");
   const [editor, setEditor] = useState<any>();
+
+  useEffect(() => {
+    const handleLoadSnippet = async () => {
+      const query = await loadCode(codeId);
+
+      if (query.success) {
+        alert(query.code)
+      } else {
+        if (query.error === "Not found") {
+          alert("Not found");
+        } else {
+          alert("Something went wrong");
+        }
+      }
+    }
+  
+    return () => {
+      if (codeId != "") {
+        handleLoadSnippet();
+      }
+    }
+  }, [])
+
 
   const deCompressCode = () => {
     setResult(compressor.decompress(editor.getValue()));
@@ -95,9 +120,10 @@ on module_disable {
       </div>
 
       <div className="flex flex-col justify-center items-center p-4 lg:w-1/12 lg:px-2 lg:py-8 bg-white dark:bg-[#1e1e1e]">
-        <button onClick={deCompressCode} className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full lg:w-auto">Format</button>
-        <button onClick={compressCode} className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full my-4 lg:w-auto">Minify</button>
+        <button onClick={deCompressCode} className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Format</button>
+        <button onClick={compressCode} className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Minify</button>
         <Publish onOpen={updateCodeState} code={code} />
+        <Share />
       </div>
 
       <div className="flex-1 h-full">
@@ -116,3 +142,5 @@ on module_disable {
     </div>
   )
 }
+
+export default CCSEditor;
