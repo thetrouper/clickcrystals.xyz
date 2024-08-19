@@ -23,7 +23,13 @@ const Save = ({ receiveCode, disabled }: SaveProps) => {
     const query = await saveCode(code);
 
     if (query.success) {
+      navigator.clipboard.writeText(`${window.location.hostname}/editor/${query.id}`);
       router.push(`/editor/${query.id}`);
+      toast({
+        title: "Successfully saved snippet",
+        description: "The link to share it has been copied to clipboard",
+        variant: "passive"
+      });
     } else {
       toast({
         title: "Failed to save snippet",
