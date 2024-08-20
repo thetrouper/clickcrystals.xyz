@@ -7,7 +7,7 @@ const reviews = [
   },
   {
     picture: '/staff/improperissues.png',
-    name: 'Improperissues',
+    name: 'ImproperIssues',
     url: "https://github.com/Improperissues",
     message: "I highly recommend ClickCrystals to everyone. It's not about cheating; every action requires a click or key press. Vanilla Minecraft has noticeable delays that can affect your performance. Those who use ClickCrystals to eliminate these delays are true legends. Give it a try!",
     rating: 5
@@ -22,7 +22,6 @@ const reviews = [
   {
     picture: '/staff/ayaantutla.png',
     name: 'Ayaan Tutla',
-    url: '',
     message: "Honestly amazing, if I had to pick one Minecraft Mod, I'd select ClickCrystals.If you aren't using it, you haven't heard of it.Don't even get me started on CC Scripting.",
     rating: 5
   },
