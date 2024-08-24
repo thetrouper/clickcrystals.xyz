@@ -19,7 +19,7 @@ const Review = ({ picture, name, message, rating, url = "#" }: ReviewProps) => {
       <div className="flex flex-row">
         <div className="flex items-center">
           <Container>
-            <Link href={url} target={url === "#" ? undefined : "_blank"}>
+            <Link href={url === "#" ? "" : url} target={url === "#" ? undefined : "_blank"}>
               <Image src={picture} alt={name} className="rounded-full w-10 h-10" width={40} height={40} />
             </Link>
           </Container>
