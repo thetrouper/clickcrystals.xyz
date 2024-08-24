@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export const Links = () => {
   return (
-    <div className="hidden md:flex items-center md:mb-0 md:self-center">
-      <div className="items-center hidden md:flex">
+    <div className="hidden lg:flex items-center md:mb-0 md:self-center">
+      <div className="items-center hidden lg:flex">
         <Container>
           <Icon icon={faGithub} url="https://github.com/clickcrystals-development/ClickCrystals" />
         </Container>

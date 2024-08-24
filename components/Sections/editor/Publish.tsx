@@ -127,9 +127,10 @@ function PublishForm({ className, code, closeState }: any) {
 type PublishProps = {
   onOpen: any;
   code: string;
+  disabled: boolean;
 }
 
-const Publish = ({onOpen, code}: PublishProps) => {
+const Publish = ({onOpen, code, disabled}: PublishProps) => {
   const [open, setOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -160,7 +161,7 @@ const Publish = ({onOpen, code}: PublishProps) => {
     return (
       <Dialog open={open} onOpenChange={handleOpen}>
         <DialogTrigger asChild>
-          <button className="btn focus:ring-0 focus:border-transparent focus:shadow-none border-[#29ac60] bg-[#20a055] hover:bg-[#14723b] font-semibold px-6 py-2.5 text-white text-sm w-full lg:w-auto">Publish</button>
+          <button disabled={disabled} className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Publish</button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -178,7 +179,7 @@ const Publish = ({onOpen, code}: PublishProps) => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <button className="btn focus:ring-0 focus:border-transparent focus:shadow-none border-[#29ac60] bg-[#20a055] hover:bg-[#14723b] font-semibold px-6 py-2.5 text-white text-sm w-full lg:w-auto">Publish</button>
+        <button disabled={disabled} className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Publish</button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
