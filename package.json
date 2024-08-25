@@ -28,6 +28,7 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@supabase/supabase-js": "^2.45.1",
     "ag-grid-react": "^32.0.2",
+    "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.1.8",
