@@ -1,6 +1,7 @@
 'use server'
 
 import { getReleases } from "./getReleases";
+import { load } from 'cheerio';
 
 interface GitHubAsset {
   download_count: number;
@@ -23,7 +24,7 @@ export async function getGitHubDownloads(): Promise<number> {
   return downloads;
 }
 
-export async function getModrinthDownloads(): Promise<number>{
+export async function getModrinthDownloads(): Promise<number> {
   const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals", {
     cache: 'force-cache'
   });
@@ -44,4 +45,15 @@ export async function getCurseForgeDownloads(): Promise<number> {
   });
   const data = await mod.json();
   return data.data.downloadCount;
+}
+
+export async function getPlanetMCDownloads(): Promise<number> {
+  const response = await fetch('https://www.planetminecraft.com/mod/clickcrystal/', { cache: 'force-cache' });
+  const body = await response.text();
+
+  const $ = load(body);
+  const downloadText = $('#resource-info > ul > li:nth-child(2) > span:nth-child(1)').text();
+  const downloads = parseInt(downloadText.replace(/,/g, ''), 10);
+
+  return downloads;
 }
