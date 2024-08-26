@@ -22,7 +22,7 @@ export default function Ingame() {
               We have so many things which we haven't listed out here! Built-in modules, ClickScript IDE, Configs, Renders, Capes & much... much more. Just give us a try and then tell us how you lived without CC?
             </p>
           </div>
-          <div className="text-gray-500 text-sm my-4 italic text-center">Crush CPVP to death with ClickCrystals</div>
+          <div className="text-gray-500 text-sm my-4 italic text-center">Tip: Use the downloadable configs to get configurations optimized for gamemodes</div>
           <div className="flex flex-row gap-4 justify-center">
             <GetClickCrystalsButton />
             <MoreScreenshotsButton />
