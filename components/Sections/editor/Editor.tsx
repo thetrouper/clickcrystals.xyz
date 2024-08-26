@@ -10,7 +10,7 @@ import Save from "./Save";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
-const CCSEditor = ({codeId} : {codeId: string}) => {
+const CCSEditor = ({ codeId }: { codeId: string }) => {
   const defaultCode = `// @anonymous\ndef module custom-module
 def desc "Custom Scripted Module"
 
@@ -21,7 +21,7 @@ on module_enable {
 on module_disable {
 
 }`
-  
+
   const compressor = new Compressor();
   const [fetching, setFetching] = useState(codeId != "");
   const [code, setCode] = useState(codeId === "" ? defaultCode : (fetching ? `Loading snippet ${codeId}...` : ""));
@@ -73,7 +73,7 @@ on module_disable {
   const compressCode = () => {
     setResult(compressor.compress(editor.getValue()));
   };
-  
+
   const updateCodeState = () => {
     setCode((v: string) => editor.getValue())
     return editor.getValue();
@@ -117,14 +117,14 @@ on module_disable {
   return (
     <div>
       <div className="flex flex-row bg-white dark:bg-[#1e1e1e] gap-2 md:gap-4 pt-4 mx-8 justify-between">
-        <div className="flex flex-row gap-2 md:gap-4">
+        <div className="block md:flex md:flex-row md:gap-4 md:mx-4">
           <button disabled={fetching} onClick={deCompressCode} className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Format</button>
           <button disabled={fetching} onClick={compressCode} className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Minify</button>
-      </div>
-        <div className="flex flex-row gap-2 md:gap-4">
+        </div>
+        <div className="block md:flex md:flex-row md:gap-4 md:mx-4">
           <Publish onOpen={updateCodeState} code={code} disabled={fetching} />
           <Save receiveCode={updateCodeState} disabled={fetching} />
-      </div>
+        </div>
       </div>
       <div className={`flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white ${loading && 'opacity-0'}`}>
         <div className="flex-1 h-full">
