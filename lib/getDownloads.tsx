@@ -57,3 +57,14 @@ export async function getPlanetMCDownloads(): Promise<number> {
 
   return downloads;
 }
+
+export async function getTotalDownloads(): Promise<number> {
+  const [githubDls, modrinthDls, curseforgeDls, planetMcDls] = await Promise.all([
+    getGitHubDownloads(),
+    getModrinthDownloads(),
+    getCurseForgeDownloads(),
+    getPlanetMCDownloads()
+  ])
+
+  return githubDls + modrinthDls + curseforgeDls + planetMcDls;
+}
