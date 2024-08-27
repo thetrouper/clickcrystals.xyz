@@ -1,12 +1,17 @@
+'use client'
+
 import CountUp from "react-countup";
 import { Container } from "@/components/ui/Container";
 import { getTotalDownloads } from "@/lib/getDownloads";
+import { useEffect, useState } from "react";
 
-export default async function Progress() {
+export default function Progress() {
+  const [downloads, setDownloads] = useState(0);
+
   const progress = [
     {
       metric: "Total Downloads",
-      value: await getTotalDownloads(),
+      value: downloads,
       postfix: "+",
     },
     {
@@ -20,6 +25,15 @@ export default async function Progress() {
       postfix: "+",
     },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const totalDownloads = await getTotalDownloads();
+      setDownloads(totalDownloads)
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="py-12 bg-gray-800">
@@ -48,5 +62,5 @@ export default async function Progress() {
         })}
       </div>
     </div>
-  )
+  );
 }
