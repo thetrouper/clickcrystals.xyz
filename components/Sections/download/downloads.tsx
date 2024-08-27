@@ -10,6 +10,7 @@ interface DownloadState {
 
 import { getCurseForgeDownloads, getGitHubDownloads, getModrinthDownloads, getPlanetMCDownloads } from "@/lib/getDownloads";
 import { parseNumber } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Downloads() {
@@ -40,11 +41,28 @@ export default function Downloads() {
 
   return (
     <div className="text-gray-700 text-sm mb-4">
-      Modrinth: {modrinth}<br />
-      CurseForge: {curseforge}<br />
-      PlanetMC: {planetMC}<br />
-      GitHub: {github}<br />
-      <span className="font-semibold">Total</span>: {total}
+      <span className="font-semibold">ClickCrystals has been officially downloaded about
+        {" "}
+        <motion.span
+          className="font-medium bg-[linear-gradient(to_right,#711f73,#65551d,#6b891d,#174965,#1b6969,#511553)] [background-size:200%] bg-clip-text text-transparent"
+          animate={{
+            backgroundPositionX: "200%"
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop"
+          }}
+        >{total}</motion.span>
+        {" "}times!</span>
+      <br />
+      <span className="text-xs">
+        Modrinth: {modrinth}<br />
+        CurseForge: {curseforge}<br />
+        GitHub: {github}<br />
+        PlanetMC: {planetMC}
+      </span>
     </div>
   )
 }
