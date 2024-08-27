@@ -25,9 +25,7 @@ export async function getGitHubDownloads(): Promise<number> {
 }
 
 export async function getModrinthDownloads(): Promise<number> {
-  const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals", {
-    cache: 'force-cache'
-  });
+  const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals");
   const data = await mod.json();
   return data.downloads;
 }
@@ -35,7 +33,6 @@ export async function getModrinthDownloads(): Promise<number> {
 export async function getCurseForgeDownloads(): Promise<number> {
   const mod = await fetch("https://api.curseforge.com/v1/mods/946253", {
     method: "GET",
-    cache: 'force-cache',
     headers: {
       Accept: "application/json",
       "x-api-key": "$2a$10$Sfn.ovCOUBg24FD1sBI/fe2cuWc2p/o6o7tVpWtNcnfDcyfjaqxTC",
@@ -48,7 +45,7 @@ export async function getCurseForgeDownloads(): Promise<number> {
 }
 
 export async function getPlanetMCDownloads(): Promise<number> {
-  const response = await fetch('https://www.planetminecraft.com/mod/clickcrystal/', { cache: 'force-cache' });
+  const response = await fetch('https://www.planetminecraft.com/mod/clickcrystal/');
   const body = await response.text();
 
   const $ = load(body);
