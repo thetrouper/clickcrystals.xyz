@@ -25,6 +25,7 @@ export async function getReleases(total: number = 30) {
     const response = await fetch(`https://api.github.com/repos/ItziSpyder/ClickCrystals/releases?per_page=${total}`, {
       method: "GET",
       headers: headers,
+      next: { revalidate: 300 }
     });
     const releases = await response.json();
     return releases;
