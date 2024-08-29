@@ -34,6 +34,19 @@ export default function Downloads() {
       setPlanetMC(parseNumber(planetMcDls))
       setCurseforge(parseNumber(curseforgeDls));
       setTotal(parseNumber(githubDls + modrinthDls + curseforgeDls + planetMcDls));
+
+      if (githubDls === 0) {
+        setGithub(<i className="text-red-500">failed to fetch</i>);
+      }
+      if (modrinthDls === 0) {
+        setModrinth(<i className="text-red-500">failed to fetch</i>);
+      }
+      if (planetMcDls === 0) {
+        setPlanetMC(<i className="text-red-500">failed to fetch</i>);
+      }
+      if (curseforgeDls === 0) {
+        setCurseforge(<i className="text-red-500">failed to fetch</i>);
+      }
     }
 
     fetchData();

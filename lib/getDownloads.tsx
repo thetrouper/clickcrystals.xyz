@@ -57,7 +57,7 @@ export async function getPlanetMCDownloads(): Promise<number> {
   const downloadText = $('#resource-info > ul > li:nth-child(2) > span:nth-child(1)').text();
   const downloads = parseInt(downloadText.replace(/,/g, ''), 10);
 
-  return downloads;
+  return Number.isNaN(downloads) ? 0 : downloads;
 }
 
 export async function getTotalDownloads(): Promise<number> {
