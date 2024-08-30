@@ -31,7 +31,7 @@ const PlusIcon = () => (
 
 export default function NewConfigCard() {
   const { toast } = useToast();
-  const { data: session } = useSession(); // Use next-auth session
+  const { data: session } = useSession();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [jsonData, setJsonData] = useState<any>(null);
   const [open, setOpen] = useState(false);
