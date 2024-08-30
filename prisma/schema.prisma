@@ -22,5 +22,6 @@ model Config {
   description String // config desc
   categories  String[] // config categories
   config      Json // config
+  userId      BigInt
   createdAt   DateTime @default(now()) @map("created_at") // createdAt
 }
