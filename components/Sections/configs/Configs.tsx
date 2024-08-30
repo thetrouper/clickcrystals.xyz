@@ -1,5 +1,5 @@
 import NewConfigCard from "./NewConfig";
-import ConfigCard from "./ConfigCard"; // New client component
+import ConfigCard from "./ConfigCard";
 import prisma from "@/lib/db";
 
 export default async function Configs() {
