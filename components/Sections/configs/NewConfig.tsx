@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { saveConfig } from "./SaveConfig";
 
 const PlusIcon = () => (
@@ -30,6 +31,7 @@ const PlusIcon = () => (
 
 export default function NewConfigCard() {
   const { toast } = useToast();
+  const { data: session } = useSession(); // Use next-auth session
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [jsonData, setJsonData] = useState<any>(null);
   const [open, setOpen] = useState(false);
@@ -116,6 +118,9 @@ export default function NewConfigCard() {
       title: trimmedTitle,
       description: trimmedDescription,
       categories: trimmedCategories,
+      author: session?.user?.name || "",
+      avatar: session?.user?.image || "",
+      userId: (session?.user as { id: number }).id || 0,
     };
 
     try {
@@ -158,15 +163,37 @@ export default function NewConfigCard() {
         <Label htmlFor="categories">Categories (comma separated)</Label>
         <Input id="categories" name="categories" value={jsonData?.categories?.join(', ') || ''} onChange={(e) => setJsonData({ ...jsonData, categories: e.target.value.split(',').map((cat: string) => cat.trim()) })} />
       </div>
-      <div className="grid gap-2">
-        <Label htmlFor="author">Author</Label>
-        <Input id="author" name="author" value={jsonData?.author || ''} onChange={handleFormChange} />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="avatar">Avatar</Label>
-        <Input id="avatar" name="avatar" value={jsonData?.avatar || ''} onChange={handleFormChange} />
-      </div>
-      <Button type="submit">Submit</Button>
+
+     {session ? (
+        <>
+          <div className="grid gap-2 mt-2">
+            <Label>Posting as</Label>
+            <div className="flex items-center gap-3 p-[6px] rounded-lg">
+              <img
+                src={session.user?.image || ""}
+                alt="avatar"
+                className="size-8 rounded-full border border-gray-300"
+              />
+              <span className="font-medium text-gray-800 text-[16px]">
+                {session.user?.name || "Unknown"}
+              </span>
+            </div>
+          </div>
+          <Button type="button" variant="outline" onClick={() => signOut()}>
+            Logout
+          </Button>
+        </>
+      ) : (
+        <>
+          <p className="text-sm text-gray-500 m-1 max-md:mt-2">
+            You must login before publishing a config.{" "}
+            <span className="text-blue-500 underline cursor-pointer" onClick={() => signIn("discord")}>
+              Login here
+            </span>
+          </p>
+        </>
+      )}
+      <Button type="submit" disabled={!session}>Submit</Button>
     </form>
   );
 

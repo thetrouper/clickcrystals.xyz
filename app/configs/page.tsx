@@ -1,14 +1,14 @@
+import { NextAuthProvider } from "@/lib/provider";
+import Configs from "@/components/Sections/configs/Configs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "ClickCrystals - Configs Explorer",
 }
 
-import Configs from "@/components/Sections/configs/Configs";
-
 export default function ScriptsArchive() {
   return (
-    <>
+    <NextAuthProvider>
       <main className="my-12 mx-6 md:mx-24">
         <div className="py-0">
           <div className="text-left">
@@ -24,6 +24,6 @@ export default function ScriptsArchive() {
         </div>
         <Configs />
       </main>
-    </>
+    </NextAuthProvider>
   );
 }
