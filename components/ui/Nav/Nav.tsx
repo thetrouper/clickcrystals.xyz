@@ -30,6 +30,10 @@ const downloadDropdown = [
 
 const moreDropdown = [
   {
+    "label": "Configs Library",
+    "url": "/configs"
+  },
+  {
     "label": "Help",
     "url": "/help"
   },

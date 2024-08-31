@@ -17,6 +17,7 @@ const footerLinks = [
     links: [
       { name: "ClickScript Wiki", url: "https://bit.ly/ccs-wiki" },
       { name: "Scripts Archive", url: "/scripts" },
+      { name: "Configs Library", url: "/configs" },
       { name: "Script Editor", url: "/editor" },
     ]
   },
