@@ -4,7 +4,6 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { JsonValue } from "@prisma/client/runtime/library";
-import { motion } from "framer-motion";
 
 type Config = {
   id?: number | string;
@@ -32,17 +31,7 @@ export default function ConfigCard({ config }: { config: Config }) {
   };
 
   return (
-    <motion.div
-      initial={{
-        opacity: 0
-      }}
-      animate={{
-        opacity: 100
-      }}
-      transition={{
-        duration: 0.2,
-      } }
-    >
+    <div>
       <Card
       className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col"
       onClick={handleDownload}
@@ -74,6 +63,6 @@ export default function ConfigCard({ config }: { config: Config }) {
         </div>
       </CardHeader>
     </Card>
-    </motion.div>
+    </div>
   );
 }
