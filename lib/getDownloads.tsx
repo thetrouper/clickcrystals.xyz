@@ -25,7 +25,9 @@ export async function getGitHubDownloads(): Promise<number> {
 }
 
 export async function getModrinthDownloads(): Promise<number> {
-  const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals");
+  const mod = await fetch("https://api.modrinth.com/v2/project/clickcrystals", {
+    next: { revalidate: 300 },
+  });
   const data = await mod.json();
   return data.downloads;
 }
@@ -33,6 +35,7 @@ export async function getModrinthDownloads(): Promise<number> {
 export async function getCurseForgeDownloads(): Promise<number> {
   const mod = await fetch("https://api.curseforge.com/v1/mods/946253", {
     method: "GET",
+    next: { revalidate: 300 },
     headers: {
       Accept: "application/json",
       "x-api-key": "$2a$10$Sfn.ovCOUBg24FD1sBI/fe2cuWc2p/o6o7tVpWtNcnfDcyfjaqxTC",
@@ -45,14 +48,16 @@ export async function getCurseForgeDownloads(): Promise<number> {
 }
 
 export async function getPlanetMCDownloads(): Promise<number> {
-  const response = await fetch('https://www.planetminecraft.com/mod/clickcrystal/');
+  const response = await fetch('https://www.planetminecraft.com/mod/clickcrystal/', {
+    next: { revalidate: 300 },
+  });
   const body = await response.text();
 
   const $ = load(body);
   const downloadText = $('#resource-info > ul > li:nth-child(2) > span:nth-child(1)').text();
   const downloads = parseInt(downloadText.replace(/,/g, ''), 10);
 
-  return downloads;
+  return Number.isNaN(downloads) ? 0 : downloads;
 }
 
 export async function getTotalDownloads(): Promise<number> {
