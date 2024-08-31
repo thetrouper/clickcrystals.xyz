@@ -1,30 +1,23 @@
-import NewConfigCard from "./NewConfig";
-import ConfigCard from "./ConfigCard";
-import prisma from "@/lib/db";
+import ConfigsGrid from "./ConfigsGrid";
+import SkeletonCard from "./SkeletonCard";
+import { Suspense } from "react";
 
-export default async function Configs() {
-  const configs = await prisma.config.findMany({
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      author: true,
-      avatar: true,
-      categories: true,
-      config: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-
+export default function Configs() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
-      <NewConfigCard />
-
-      {configs.map((config) => (
-        <ConfigCard key={config.id} config={config} />
-      ))}
+      <Suspense fallback={<Fallback />}>
+        <ConfigsGrid />
+      </Suspense>
     </div>
   );
+}
+
+function Fallback() {
+  return (
+    <>
+    {Array(6).fill(null).map((_, index: number) => (
+       <SkeletonCard key={index} />
+    ))}
+    </>
+  )
 }

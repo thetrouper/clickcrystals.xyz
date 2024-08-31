@@ -1,6 +1,7 @@
 import { NextAuthProvider } from "@/lib/provider";
 import Configs from "@/components/Sections/configs/Configs";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "ClickCrystals - Configs Explorer",
@@ -18,7 +19,7 @@ export default function ScriptsArchive() {
             <p className="text-gray-500 font-normal max-w-4xl mt-3 mb-6">
               ClickCrystals Configs are used to import/export and share your ClickCrystals module, HUD and core settings with others. Here are some of our configs and you can also share your config by uploading here!
               <br/>
-              Learn how to create your own configs! <span className="text-blue-500">Configs Tutorial</span>
+              Need to explore scripts? <Link className="text-blue-500" href="/scripts">Scripts Archive</Link>
             </p>
           </div>
         </div>
