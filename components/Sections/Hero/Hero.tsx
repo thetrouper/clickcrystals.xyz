@@ -9,16 +9,16 @@ export default function Hero() {
       <div className="py-6 px-4 lg:grid lg:gap-8 lg:grid-cols-12">
         <div className="place-self-center col-span-5 lg:col-span-7">
           <h1 className="text-center lg:text-left text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl lg:max-w-2xl mb-6 m-0">
-            Enchance your <span className="text-blue-600">Crystal PvP</span> experience,
+            You'd never have to lose in <span className="text-blue-600">Crystal PvP</span> again,
             <br />
-            only with <span className="text-blue-600">ClickCrystals</span>!
+            with <span className="text-blue-600">ClickCrystals</span>
           </h1>
           <div className="grid justify-center">
             <p className="text-gray-500 font-normal max-w-2xl m-0 text-center lg:text-left">
-              Introducing ClickCrystals, a feature-rich, free and open-source modification for minecraft to enchance your Crystal PvP experience without including cheats! Packed with the ultimate amount of modules, become DrDonut v2!
+              Imagine dominating a duel with an undetectable tool that gives your PvP skills a cherry on top and a valuable advantage. Not only do you enhance your Crystal PvP experience without cheats, but you also gain the upper hand with custom scripts and 50 other modules!
             </p>
           </div>
-          <div className="text-gray-500 text-sm my-4 italic text-center lg:text-left">P.s. DrDonut loves this mod</div>
+          <div className="text-gray-500 text-sm my-4 italic text-center lg:text-left">You'll never have to cheat again</div>
           <div className="flex flex-row gap-4 justify-center lg:justify-start">
             <GetClickCrystalsButton />
             <JoinDiscordButton />
