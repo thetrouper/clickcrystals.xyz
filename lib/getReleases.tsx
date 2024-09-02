@@ -1,19 +1,20 @@
 'use server'
 
 type Assets = {
-  v121: null | React.ReactElement;
-  v1206: null | React.ReactElement;
-  v1205: null | React.ReactElement;
-  v1204: null | React.ReactElement;
-  v1203: null | React.ReactElement;
-  v1202: null | React.ReactElement;
-  v1201: null | React.ReactElement;
-  v120: null | React.ReactElement;
-  v1904: null | React.ReactElement;
-  v1903: null | React.ReactElement;
-  v1902: null | React.ReactElement;
-  v1901: null | React.ReactElement;
-  v19: null | React.ReactElement;
+  "1211": null | React.ReactElement;
+  "121": null | React.ReactElement;
+  "1206": null | React.ReactElement;
+  "1205": null | React.ReactElement;
+  "1204": null | React.ReactElement;
+  "1203": null | React.ReactElement;
+  "1202": null | React.ReactElement;
+  "1201": null | React.ReactElement;
+  "120": null | React.ReactElement;
+  "1194": null | React.ReactElement;
+  "1193": null | React.ReactElement;
+  "1192": null | React.ReactElement;
+  "1191": null | React.ReactElement;
+  "119": null | React.ReactElement;
 }
 
 export async function getReleases(total: number = 30) {
@@ -34,6 +35,17 @@ export async function getReleases(total: number = 30) {
   }
 }
 
+async function getCCMappings() {
+  const response = await fetch("https://itzispyder.github.io/clickcrystals/info", {
+    method: "GET",
+    next: { revalidate: 200 }
+  });
+
+  const info = JSON.parse(await response.text());
+
+  return info['versionMappings'];
+}
+
 export async function getParsedReleases() {
   try {
     const releases = await getReleases(100);
@@ -42,19 +54,20 @@ export async function getParsedReleases() {
 
       let downloads = 0;
       let assetsData: Assets = {
-        v121: null,
-        v1206: null,
-        v1205: null,
-        v1204: null,
-        v1203: null,
-        v1202: null,
-        v1201: null,
-        v120: null,
-        v1904: null,
-        v1903: null,
-        v1902: null,
-        v1901: null,
-        v19: null,
+        "1211": null,
+        "121": null,
+        "1206": null,
+        "1205": null,
+        "1204": null,
+        "1203": null,
+        "1202": null,
+        "1201": null,
+        "120": null,
+        "1194": null,
+        "1193": null,
+        "1192": null,
+        "1191": null,
+        "119": null,
       };
 
       release.assets.forEach((asset: any) => {
@@ -63,32 +76,34 @@ export async function getParsedReleases() {
         let assetName = asset.name
         let assetURL = asset.browser_download_url;
 
-        if (assetName.includes("1.21")) {
-          assetsData['v121'] = assetURL
+        if (assetName.includes("1.21.1")) {
+          assetsData['1211'] = assetURL
+        } else if (assetName.includes("1.21")) {
+          assetsData['121'] = assetURL
         } else if (assetName.includes("1.20.6")) {
-          assetsData['v1206'] = assetURL
+          assetsData['1206'] = assetURL
         } else if (assetName.includes("1.20.5")) {
-          assetsData['v1205'] = assetURL
+          assetsData['1205'] = assetURL
         } else if (assetName.includes("1.20.4")) {
-          assetsData['v1204'] = assetURL
+          assetsData['1204'] = assetURL
         } else if (assetName.includes("1.20.3")) {
-          assetsData['v1203'] = assetURL
+          assetsData['1203'] = assetURL
         } else if (assetName.includes("1.20.2")) {
-          assetsData['v1202'] = assetURL
+          assetsData['1202'] = assetURL
         } else if (assetName.includes("1.20.1")) {
-          assetsData['v1201'] = assetURL
+          assetsData['1201'] = assetURL
         } else if (assetName.includes("1.20")) {
-          assetsData['v120'] = assetURL
+          assetsData['120'] = assetURL
         } else if (assetName.includes("1.19.4")) {
-          assetsData['v1904'] = assetURL
+          assetsData['1194'] = assetURL
         } else if (assetName.includes("1.19.3")) {
-          assetsData['v1903'] = assetURL
+          assetsData['1193'] = assetURL
         } else if (assetName.includes("1.19.2")) {
-          assetsData['v1902'] = assetURL
+          assetsData['1192'] = assetURL
         } else if (assetName.includes("1.19.1")) {
-          assetsData['v1901'] = assetURL
+          assetsData['1191'] = assetURL
         } else if (assetName.includes("1.19")) {
-          assetsData['v19'] = assetURL
+          assetsData['119'] = assetURL
         }
       });
 
@@ -100,8 +115,20 @@ export async function getParsedReleases() {
       };
     });
 
+    const mappings = await getCCMappings();
+
+    Object.entries(mappings).forEach(([key, value]: any) => {
+      const version = key.replaceAll(".", "");
+      const mappedVersion = typeof value === 'string' ? value.replaceAll(".", "") : null;
+
+      if (mappedVersion !== null && mappings[version] !== mappedVersion) {
+        parsedReleases[0][version] = parsedReleases[0][mappedVersion]
+      }
+    });
+
+
     return parsedReleases;
   } catch (err) {
-    throw new Error("Failed to fetch from API");
+    throw new Error("Failed to fetch from API" + err);
   }
 }
