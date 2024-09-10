@@ -4,23 +4,23 @@ import Feature from "./Feature";
 const features = [
   {
     icon: ShieldCheckIcon,
-    title: "Safe on servers",
-    desc: "ClickCrystals mod is undetectable, unless custom-modules by ClickScript. We keep improving the mod to add new features, enchance the current features & make them safe.",
-    linkTitle: "List of confirmed servers that allow this mod",
+    title: "Safe & Risk-free Gameplay",
+    desc: "We provide built-in modules that are undetectable on all servers. Improved features come out frequently. that keep you safe.",
+    linkTitle: "List of servers to avoid/play on",
     linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#but-isnt-this-cheating"
   },
   {
     icon: TrophyIcon,
-    title: "Top-notch features",
-    desc: "ClickCrystals mod is full of features that will help you to win every match. From swap modules, to utility and HUDs through a lot more features, there is no chance you lose.",
-    linkTitle: "List of all modules", 
+    title: "Premium Quality Features",
+    desc: "Your new client is full of features proven to give you an astounding advantage in every match. Swap modules from instant & better hotkeying to utility modules that replace the need for any other mod. We have detailed HUDs including HP/Armour & Tool indicators that provide an opportunity for you to grasp.",
+    linkTitle: "See what's innit", 
     linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#modules"
   },
   {
     icon: CodeBracketIcon,
     title: "ClickScript",
-    desc: "Automate your farms or always do doubleclick. Fast exp and autototems. We've got you covered with ClickScript, a powerful scripting language that will help you to automate your tasks.",
-    linkTitle: "How to code your own ClickScript modules",
+    desc: "See improved versions of modules when you make them yourself. Automate your farms or make the building process easier. Make the next revolutionary autototem or killaura hack. We've got you covered with ClickScript, a powerful scripting language that's made for you and your next-level gameplay.",
+    linkTitle: "I'm making modules right now!",
     linkUrl: "https://bit.ly/ccs-wiki"
   }
 ]
