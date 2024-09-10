@@ -8,10 +8,10 @@ export default function GetStarted() {
     <section className="py-12 flex items-center">
       <div className="py-6 px-4 flex flex-row justify-center w-full">
         <div className="px-0 md:px-6">
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-3xl md:text-4xl lg:text-5xl my-6">
-            What&apos;s left to <span className="text-blue-500">do</span>?
+          <h1 className="text-center text-gray-600 tracking-tight leading-[1.3] font-extrabold text-3xl md:text-4xl lg:text-5xl my-6">
+            You're <span className="text-blue-500">3</span> clicks away from <span className="text-blue-500">success</span>
             <br />
-            Just get{' '}
+            It's free, It's here. Get{' '}
             <span className="relative">
               <span className="italic bg-gradient-to-br from-blue-400 to-blue-500 bg-clip-text text-transparent">
                 ClickCrystals
