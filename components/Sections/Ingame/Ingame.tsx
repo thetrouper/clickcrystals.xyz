@@ -12,7 +12,9 @@ export default function Ingame() {
           <div className="w-full flex flex-row justify-center px-6">
             <Image src={cc} alt="ClickCrystals Client Menu" className="rounded-lg" />
           </div>
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
+          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt
+Get ClickCrystals
+More screenshots-6">
             <span className="text-xl md:text-2xl font-semibold tracking-tight">Packed with the features</span>
             <br />
             That you cannot <span className="text-blue-600">miss</span>!
