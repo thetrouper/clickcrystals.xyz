@@ -15,7 +15,7 @@ export default function CCS() {
           <p className="text-gray-500 font-normal max-w-2xl m-0 text-center">
             ClickScript (CCS) lets you create modules, macros, and more. Write .ccs files, and use our in-game editor to build, debug, and run scripts. Download and enable scripts from our online library or manually add your own. Explore prebuilt scripts published by community and staff on our discord!
           </p>
-          <div className="text-gray-500 text-xs my-4 text-center">We have auto sprint, fast EXP, jump reset & lot amazing scripts!<br />What are you waiting for?</div>
+          <div className="text-gray-500 text-xs my-4 text-center">We have killauras, powerful macros & lot amazing scripts that have been proven to bypass anticheats</div>
           <div className="flex flex-row gap-4 justify-center">
             <GetClickCrystalsButton name="Script Editor" link="/editor" />
             <ExploreScriptsButton />
