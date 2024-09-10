@@ -9,13 +9,13 @@ export default function Hero() {
       <div className="py-6 px-4 lg:grid lg:gap-8 lg:grid-cols-12">
         <div className="place-self-center col-span-5 lg:col-span-7">
           <h1 className="text-center lg:text-left text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl lg:max-w-2xl mb-6 m-0">
-            Enchance your <span className="text-blue-600">Crystal PvP</span> experience,
+            Elevate your <span className="text-blue-600">Crystal PvP</span> Gameplay,
             <br />
             only with <span className="text-blue-600">ClickCrystals</span>!
           </h1>
           <div className="grid justify-center">
             <p className="text-gray-500 font-normal max-w-2xl m-0 text-center lg:text-left">
-              Introducing ClickCrystals, a feature-rich, free and open-source modification for minecraft to enchance your Crystal PvP experience without including cheats! Packed with the ultimate amount of modules, become DrDonut v2!
+              Discover ClickCrystals—a powerful, free, and open-source Minecraft mod designed to enhance your Crystal PvP experience, all without cheats! Loaded with a comprehensive set of modules, you&apos;ll feel like DrDonut 2.0!
             </p>
           </div>
           <div className="text-gray-500 text-sm my-4 italic text-center lg:text-left">P.s. DrDonut loves this mod</div>
