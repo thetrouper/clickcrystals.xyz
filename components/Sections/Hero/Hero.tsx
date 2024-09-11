@@ -14,11 +14,13 @@ export default function Hero() {
             with <span className="text-blue-600">ClickCrystals</span>
           </h1>
           <div className="grid justify-center">
-            <p className="text-gray-500 font-normal max-w-2xl m-0 text-center lg:text-left">
+            <p className="text-gray-500 font-normal max-w-2xl mb-4 lg:mb-0 text-center lg:text-left">
               Discover ClickCrystals—a powerful, free, and open-source Minecraft mod designed to enhance your Crystal PvP experience, all without cheats! Loaded with a comprehensive set of modules, you&apos;ll feel like DrDonut 2.0!
             </p>
           </div>
-          <div className="text-gray-500 max-w-2xl  text-sm my-4 italic text-center lg:text-left">ClickCrystals has already proven to not only dominate in crystal pvp, but also 1.8.9 minigames like BedWars, Sumo, etc! Join the growing community and start clicking today!</div>
+          <div className="text-gray-500 max-w-2xl text-sm my-4 italic text-center lg:text-left hidden lg:block">
+          A minecraft client that does not limit you to its provided modules, but gives you the key to unlock the full potential of ClickCrystals. Scroll down and read what&apos;s ClickScript!
+          </div>
           <div className="flex flex-row gap-4 justify-center lg:justify-start">
             <GetClickCrystalsButton />
             <JoinDiscordButton />
