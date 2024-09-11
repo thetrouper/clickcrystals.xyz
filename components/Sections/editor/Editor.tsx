@@ -35,7 +35,7 @@ on module_disable {
         const query = await loadCode(codeId);
 
         if (query.success) {
-          setCode(query.code);
+          setCode(query?.code || "");
         } else {
           router.push("/editor");
           toast({
