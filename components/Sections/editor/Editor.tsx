@@ -5,7 +5,7 @@ import Editor from "react-monaco-editor";
 import { languageDef, configuration, theme } from '@/lib/editor-config';
 import { useEffect, useState } from "react";
 import Publish from "./Publish";
-import { loadCode, saveCode } from "@/lib/supabase";
+import { loadCode, saveCode } from "@/lib/scripts";
 import Save from "./Save";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";

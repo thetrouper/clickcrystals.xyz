@@ -1,8 +1,7 @@
 'use server'
 
-import prisma from './db';  // Import your Prisma client
+import prisma from './db';
 
-// Helper function to generate a 12-character random string
 function generateRandomString(length: number): string {
   const characters = '0aAbBc1CdDeE2fFgGh3HiIjJ4kKlLm5MnNoO6pPqQr7RsStT8uUvVw9WxXyYz0';
   let result = '';
@@ -17,7 +16,7 @@ export async function saveCode(code: string) {
     return { id: null, error: "The snippet cannot be empty", success: false };
   }
 
-  const id = generateRandomString(12);  // Generate a 12-character random ID
+  const id = generateRandomString(12);
 
   try {
     const newCode = await prisma.script.create({
