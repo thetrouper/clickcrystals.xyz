@@ -18,12 +18,21 @@ export async function saveConfig(configData: {
       data: {
         title: title,
         description: description,
-        author: author,
-        avatar: avatar,
         categories: categories,
-        userId: parseInt(userId.toString()),
         config: {
           ...rest
+        },
+        user: {
+          connectOrCreate: {
+            where: {
+              id: userId
+            },
+            create: {
+              id: userId,
+              name: author,
+              avatar: avatar,
+            }
+          }
         }
       },
     });
