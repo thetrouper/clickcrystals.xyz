@@ -1,12 +1,14 @@
 'use client'
 
+import Image from "next/image"
+import crystal from "@/public/img/crystal.png";
 import Progress from "../Progress/Progress"
 import { GetClickCrystalsButton, JoinDiscordButton } from "@/components/ui/buttons/all"
 
 export default function Hero() {
   return (
     <section className="py-4">
-      <div className="py-6 px-4 lg:grid lg:gap-8 lg:grid-cols-12">
+      <div className="py-6 px-8 lg:grid lg:gap-8 lg:grid-cols-12">
         <div className="place-self-center col-span-5 lg:col-span-7">
           <h1 className="text-center lg:text-left text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl lg:max-w-2xl mb-6 m-0">
             Elevate your <span className="text-blue-600">Crystal PvP</span> Gameplay,
