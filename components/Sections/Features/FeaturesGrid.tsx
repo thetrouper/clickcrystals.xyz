@@ -5,22 +5,22 @@ const features = [
   {
     icon: ShieldCheckIcon,
     title: "Safe & Risk-free Gameplay",
-    desc: "We provide built-in modules that are undetectable on all servers. Improved features come out frequently. that keep you safe.",
+    desc: "All of our modules are designed to be safe, easy to use, and free of any potential risks. We regularly test our modules on different servers to ensure they are risk-free and do not flag.",
     linkTitle: "List of servers to avoid/play on",
     linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#but-isnt-this-cheating"
   },
   {
     icon: TrophyIcon,
-    title: "Premium Quality Features",
-    desc: "Your new client is full of features proven to give you an astounding advantage in every match. Swap modules from instant & better hotkeying to utility modules that replace the need for any other mod. We have detailed HUDs including HP/Armour & Tool indicators that provide an opportunity for you to grasp.",
-    linkTitle: "See what's innit", 
+    title: "Premium-quality Features",
+    desc: "The ClickCrystals mod is full of features proven to give you an astounding advantage in every match. From simple automation to advanced PvP modules, we've got you everything to dominate the game—autoattack, jump reset, auto totem, auto pot, auto pearl and whatsover.",
+    linkTitle: "Explore the features",
     linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#modules"
   },
   {
     icon: CodeBracketIcon,
     title: "ClickScript",
-    desc: "See improved versions of modules when you make them yourself. Automate your farms or make the building process easier. Make the next revolutionary autototem or killaura hack. We've got you covered with ClickScript, a powerful scripting language that's made for you and your next-level gameplay.",
-    linkTitle: "I'm making modules right now!",
+    desc: "ClickScript (CCS) is a scripting language that lets you create modules, macros, and more. Write .ccs files, and use our in-game editor to build, debug, and run scripts. Download and enable scripts from our online library or manually add your own. From simple swaps, to fully auto grinding bots, it's your choice!",
+    linkTitle: "Read the CCS Documentation",
     linkUrl: "https://bit.ly/ccs-wiki"
   }
 ]

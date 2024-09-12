@@ -12,17 +12,16 @@ export default function Ingame() {
           <div className="w-full flex flex-row justify-center px-6">
             <Image src={cc} alt="ClickCrystals Client Menu" className="rounded-lg" />
           </div>
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl my-6">
-            It's time <span className="text-blue-600">you</span>
+          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
+            <span className="text-xl md:text-2xl lg:text-3xl">Packed with the ultimate features</span>
             <br />
-            take a &apos;s <span className="text-blue-600">look</span> inside!
+            That you cannot <span className="text-blue-600">miss</span>!
           </h1>
           <div className="w-full flex flex-row justify-center">
-            <p className="text-gray-500 font-normal m-0 text-center max-w-4xl">
+            <p className="text-gray-500 font-normal my-4 text-center max-w-4xl">
               We have so many things which we haven't listed out here! Built-in modules, ClickScript IDE, Configs, Renders, Capes & much... much more. Just give us a try and then tell us how you lived without CC?
             </p>
           </div>
-          <div className="text-gray-500 text-sm my-4 italic text-center">Tip: Use the downloadable configs to get configurations optimized for gamemodes</div>
           <div className="flex flex-row gap-4 justify-center">
             <GetClickCrystalsButton />
             <MoreScreenshotsButton />

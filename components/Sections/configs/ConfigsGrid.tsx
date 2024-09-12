@@ -8,10 +8,9 @@ export default async function ConfigsGrid() {
       id: true,
       title: true,
       description: true,
-      author: true,
-      avatar: true,
       categories: true,
       config: true,
+      user: true
     },
     orderBy: {
       createdAt: 'desc',
