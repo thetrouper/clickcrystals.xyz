@@ -9,8 +9,7 @@ type Config = {
   id?: number | string;
   title: string;
   description: string;
-  author: string;
-  avatar: string;
+  user: any;
   categories: string[];
   config: JsonValue;
 };
@@ -49,16 +48,16 @@ export default function ConfigCard({ config }: { config: Config }) {
           {config.description}
         </CardDescription>
         <div className="flex items-center space-x-2 pt-2">
-          {config.avatar != "#" && (
+          {config.user.avatar != "#" && (
             <Avatar className="w-6 h-6">
-            <AvatarImage src={config.avatar} alt={config.author} className="rounded-full" />
-            <AvatarFallback>{config.author.slice(0, 2).toUpperCase()}</AvatarFallback>
+            <AvatarImage src={config.user.avatar} alt={config.user.name} className="rounded-full" />
+            <AvatarFallback>{config.user.name.slice(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           )}
-            {config.avatar != "#" ? (
-              <div className="text-sm">{config.author}</div>
+            {config.user.avatar != "#" ? (
+              <div className="text-sm">{config.user.name}</div>
             ) : (
-                <>by<div className="text-sm font-semibold ml-1">{config.author}</div></>
+                <>by<div className="text-sm font-semibold ml-1">{config.user.name}</div></>
           )}
         </div>
       </CardHeader>
