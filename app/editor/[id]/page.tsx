@@ -1,17 +1,29 @@
+import { loadCode } from '@/lib/scripts';
 import dynamic from 'next/dynamic'
+import { redirect, } from 'next/navigation';
 
 const CCSEditor = dynamic(() => import('@/components/Sections/editor/Editor'), {
   ssr: false,
 })
 
-const EditorPage = ({ params }: { params: { id: string } }) => {
-  return (
-    <div className="dark">
-      <div className="min-h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
-        <CCSEditor codeId={params.id} />
-      </div>
-    </div>
-  )
+const EditorPage = async ({ params }: { params: { id: string } }) => {
+  try {
+    const query = await loadCode(params.id);
+
+    if (query.success) {
+      return (
+        <div className="dark">
+          <div className="min-h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
+            <CCSEditor defaultCode={query.code} />
+          </div>
+        </div>
+      )
+    } else {
+      return redirect("/editor?error=failed")
+    }
+  } catch (error: any) {
+    return redirect("/editor?error=exception")
+  }
 }
 
 export default EditorPage;
