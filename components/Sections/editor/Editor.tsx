@@ -3,9 +3,11 @@
 import { Compressor } from "@/lib/compressor";
 import Editor from "react-monaco-editor";
 import { languageDef, configuration, theme } from '@/lib/editor-config';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Publish from "./Publish";
 import Save from "./Save";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
   const defaultSnippet = `// @anonymous\ndef module custom-module
@@ -23,6 +25,9 @@ on module_disable {
   const [code, setCode] = useState(defaultCode === null ? defaultSnippet : defaultCode);
   const [result, setResult] = useState("");
   const [editor, setEditor] = useState<any>();
+  const { toast } = useToast();
+  const searchParams = useSearchParams()
+  const router = useRouter();
 
   const deCompressCode = () => {
     setResult(compressor.decompress(editor.getValue()));
@@ -36,6 +41,28 @@ on module_disable {
     setCode((v: string) => editor.getValue())
     return editor.getValue();
   }
+  useEffect(() => {
+    return () => {
+      const error = searchParams.get("error");
+
+      if (error === "exception") {
+        toast({
+          title: "Failed to load snippet",
+          description: "There was some server-side error during loading of snippet. Please try again later.",
+          variant: "destructive"
+        })
+        router.push("/editor")
+      } else if (error === "not_found") {
+        toast({
+          title: "Snippet does not exist",
+          description: "The snippet you are trying to load does not exist in our database.",
+          variant: "destructive"
+        })
+        router.push("/editor")
+      }
+    }
+  }, []);
+
 
   const [dark, setDark] = useState(true);
   // useEffect(() => {

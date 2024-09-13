@@ -42,7 +42,7 @@ const footerLinks = [
 
 export default function FooterLinks() {
   return (
-    <div className="bg-blue-500">
+    <div className="bg-blue-800/80">
       <div className="mx-auto w-full max-w-screen-xl">
         <div className="px-4 lg:px-6 py-6 lg:py-8 mx-6 grid grid-cols-2 gap-8 md:grid-cols-4">
           {footerLinks.map((section, index) => (
