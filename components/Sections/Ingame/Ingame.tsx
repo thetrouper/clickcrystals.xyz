@@ -3,14 +3,26 @@
 import Image from "next/image";
 import cc from "@/public/cc-home.png"
 import { GetClickCrystalsButton, MoreScreenshotsButton } from "@/components/ui/buttons/all";
+import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef } from "react";
 
 export default function Ingame() {
+  const sectionRef = useRef(null);
+  const {scrollYProgress} = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  })
+
+  const translateY = useTransform(scrollYProgress, [0, 1], [180, -180]);
+
   return (
-    <section className="py-4">
+    <section className="py-4" ref={sectionRef}>
       <div className="py-6 px-4 flex flex-row justify-center">
         <div className="px-0 md:px-6">
-          <div className="w-full flex flex-row justify-center px-6">
-            <Image src={cc} alt="ClickCrystals Client Menu" className="rounded-lg" />
+          <div className="w-full flex flex-row justify-center">
+            <Image src={cc} alt="ClickCrystals Client Menu" className="px-6 rounded-lg [mask-image:linear-gradient(to_bottom,black_25%,black_50%,black_75%,transparent)]" style={{
+              "imageRendering": "pixelated"
+            }} />
           </div>
           <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
             <span className="text-xl md:text-2xl lg:text-3xl">Packed with the ultimate features</span>
@@ -27,6 +39,21 @@ export default function Ingame() {
             <MoreScreenshotsButton />
           </div>
         </div>
+      </div>
+      <div className="hidden lg:block">
+        <motion.img src={"/img/clickscript.png"} alt="" className="left-[20px] top-[2180px] absolute size-[150px]" style={{
+          "imageRendering": "pixelated",
+          translateY,
+        }} />
+        <motion.img src={"/textures/totem.png"} alt="" className="right-[20px] top-[1853px] absolute size-[120px]" style={{
+          "imageRendering": "pixelated",
+          "rotate": "-9deg",
+          translateY,
+        }} />
+        <motion.img src={"/icon.png"} alt="" className="right-[80px] top-[2280px] absolute size-[50px]" style={{
+          "rotate": "-19deg",
+          translateY,
+        }} />
       </div>
     </section>
   );

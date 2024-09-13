@@ -19,10 +19,10 @@ const EditorPage = async ({ params }: { params: { id: string } }) => {
         </div>
       )
     } else {
-      return redirect("/editor?error=failed")
+      return redirect("/editor?error=not_found")
     }
   } catch (error: any) {
-    return redirect("/editor?error=exception")
+    return redirect("/editor?error=not_found")
   }
 }
 
