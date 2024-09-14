@@ -1,10 +1,15 @@
 import { loadCode } from '@/lib/scripts';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic'
-import { redirect, } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 const CCSEditor = dynamic(() => import('@/components/Sections/editor/Editor'), {
   ssr: false,
 })
+
+export const metadata: Metadata = {
+  title: "ClickCrystals - CCS Playground",
+}
 
 const EditorPage = async ({ params }: { params: { id: string } }) => {
   try {

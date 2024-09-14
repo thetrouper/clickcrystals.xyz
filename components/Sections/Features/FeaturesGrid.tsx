@@ -26,9 +26,17 @@ const features = [
     icon: "/textures/diamond_sword.png",
     title: "Win every match",
     desc: "AutoAttack, AimAssist, SpecatorSight and awesome things. Never miss a hit on your opponent and auto-respond with a L.",
-    linkTitle: "Explore Scripts",
-    linkUrl: "/scripts"
-  }
+  },
+  {
+    icon: "/textures/bed.png",
+    title: "Tailored to your mode",
+    desc: "ClickCrystals is tailored for Crystal PvP, however its many utillity modules and the custom coded ClickScript modules prove to bypass many ACs and players use ClickCrystals for all the different gamemodes!",
+  },
+  {
+    icon: "/textures/painting.png",
+    title: "With the HUDs!",
+    desc: "FPS, CPS, Server IP, ArrayList, etc. all the HUDs, enable by your choice! All the pixel-perfect HUDs you'll love.",
+  },
 ]
 
 export default function FeaturesGrid() {

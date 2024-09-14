@@ -20,7 +20,7 @@ export async function saveCode(code: string) {
   const id = generateRandomString(12);
 
   try {
-    const newCode = await prisma.script.create({
+    const newCode = await prisma.playgroundScripts.create({
       data: {
         id: id,
         script: code,
@@ -39,7 +39,7 @@ export async function saveCode(code: string) {
 
 export async function loadCode(id: string) {
   try {
-    const codeData = await prisma.script.findUnique({
+    const codeData = await prisma.playgroundScripts.findUnique({
       where: {
         id: id,
       },
