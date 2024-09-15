@@ -5,7 +5,12 @@ import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
-    <div className="bg-slate-800 tracking-tight text-white">
+    <div className="tracking-tight text-white" style={{
+      "background": "url('/textures/obsidian.png')",
+      "backgroundRepeat": "repeat",
+      "imageRendering": "pixelated",
+      "backgroundSize": '32px'
+    }}>
       <header className="w-full duration-100 ease-in flex-none sticky top-0 transition-all z-40">
         <div className="w-full flex max-w-7xl justify-between md:items-center md:mx-auto md:px-4 md:py-3.5">
           <div className="hidden md:flex justify-between">
