@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getLatestLink } from "../api/get/route";
+import { getLatestLink } from "@/lib/getLatest";
 import { redirect } from "next/navigation";
 
 const metadata: Metadata = {
