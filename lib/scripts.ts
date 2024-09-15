@@ -1,5 +1,6 @@
 'use server'
 
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import prisma from './db';
 
 function generateRandomString(length: number): string {
@@ -19,7 +20,7 @@ export async function saveCode(code: string) {
   const id = generateRandomString(12);
 
   try {
-    const newCode = await prisma.script.create({
+    const newCode = await prisma.playgroundScripts.create({
       data: {
         id: id,
         script: code,
@@ -38,7 +39,7 @@ export async function saveCode(code: string) {
 
 export async function loadCode(id: string) {
   try {
-    const codeData = await prisma.script.findUnique({
+    const codeData = await prisma.playgroundScripts.findUnique({
       where: {
         id: id,
       },
@@ -52,13 +53,21 @@ export async function loadCode(id: string) {
         code: null,
         error: `The requested snippet ${id} doesn't exist`,
         success: false,
+        errorCode: 404,
       };
     }
 
     return { code: codeData.script, error: null, success: true };
 
   } catch (error) {
-    console.log(error);
-    return { code: null, error: `There was an error while loading snippet ${id}`, success: false };
+    if ((error as PrismaClientKnownRequestError).code === 'P2025') {
+      return {
+        code: null,
+        error: `The requested snippet ${id} doesn't exist`,
+        success: false,
+        errorCode: 404,
+      };
+    }
+    return { code: null, error: `There was an error while loading snippet ${id}`, success: false, errorCode: 500 };
   }
 }
