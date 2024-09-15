@@ -61,7 +61,7 @@ on module_disable {
         router.push("/editor")
       }
     }
-  }, []);
+  }, [searchParams, router, toast]);
 
 
   const [dark, setDark] = useState(true);
