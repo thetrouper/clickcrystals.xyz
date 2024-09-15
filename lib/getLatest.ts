@@ -3,7 +3,6 @@
 const latestMc = "1211"
 
 import { getParsedReleases } from "@/lib/getReleases";
-import { NextResponse } from "next/server";
 
 export async function getLatestLink() {
   try {
@@ -14,13 +13,4 @@ export async function getLatestLink() {
   } catch (err) {
     return null;
   }
-}
-
-export async function GET(request: any) {
-  const resp = await getLatestLink();
-
-  if (resp === null) {
-    return NextResponse.json({ error: 500 })
-  }
-  return NextResponse.redirect(resp)
 }
