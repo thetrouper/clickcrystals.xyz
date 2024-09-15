@@ -92,8 +92,8 @@ const TestimonalsCol = (props: {
       }}>
       {[...new Array(2)].fill(0).map((_, index) => (
         <Fragment key={index}>
-          {props.testimonals.map(({ picture, name, url, message, username }: any) => (
-        <div className="p-10 border border-[#222222]/10 rounded-3xl shadow-[0_7px_14px_#EAEAEA] w-full">
+          {props.testimonals.map(({ picture, name, url, message, username }, index: any) => (
+        <div key={index} className="p-10 border border-[#222222]/10 rounded-3xl shadow-[0_7px_14px_#EAEAEA] w-full">
           <div>{message}</div>
           <div className="flex items-center gap-2 mt-5">
             <Image src={picture} alt={name} className="w-10 h-10 rounded-full" width={40} height={40} />
