@@ -31,7 +31,7 @@ export default function Ingame() {
           </h1>
           <div className="w-full flex flex-row justify-center">
             <p className="text-gray-500 font-normal my-4 text-center max-w-4xl">
-              We have so many things which we haven't listed out here! Built-in modules, ClickScript IDE, Configs, Renders, Capes & much... much more. Just give us a try and then tell us how you lived without CC?
+              We have so many things which we haven't listed out here! Built-in modules, CCS IDE, Configs, Renders, Capes & much... much more. Just give us a try and then tell us how you lived without CC?
             </p>
           </div>
           <div className="flex flex-row gap-4 justify-center">
@@ -41,7 +41,7 @@ export default function Ingame() {
         </div>
       </div>
       <div className="hidden lg:block">
-        <motion.img src={"/img/clickscript.png"} alt="" className="left-[20px] top-[2380px] absolute size-[150px]" style={{
+        <motion.img src={"/img/ccs.png"} alt="" className="left-[20px] top-[2380px] absolute size-[150px]" style={{
           "imageRendering": "pixelated",
           translateY,
         }} />

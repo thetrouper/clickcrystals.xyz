@@ -22,7 +22,7 @@ export default function ScriptsArchive() {
               <p className="md:max-w-3xl text-sm text-green-900 font-semibold mb-2">Did you know?</p>
               <p className="md:max-w-3xl text-xs my-4">The scripts you&apos;re currently seeing on this page are the same scripts as you can see in the ClickCrystals in-game Online Script Browser! Get ClickCrystals and instantly test these scripts in less than 3 clicks!</p>
               <p className="md:max-w-3xl text-xs">
-                <b>ClickCrystals Script, aka ClickScript/CCS</b> can do a lot of tasks. From simple swaps and hotbar changing, through automatic complete farms, to blatent auto-totem, kill-aura, auto-pot, jump-reset, anchor-switch, obsidian-switch, etc. a lot much can be done!
+                <b>ClickCrystals Script, aka CCS</b> can do a lot of tasks. From simple swaps and hotbar changing, to blatent auto-totem, kill-aura, auto-pot, jump-reset, anchor-switch, obsidian-switch, etc. a lot much can be done!
               </p>
             </div>
           </div>

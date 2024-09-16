@@ -16,9 +16,9 @@ const features = [
     linkUrl: "https://github.com/clickcrystals-development/ClickCrystals#modules"
   },
   {
-    icon: "/img/clickscript.png",
-    title: "ClickScript",
-    desc: "ClickScript (CCS) is a scripting language that lets you create modules, macros, and more. Write .ccs files, and use our in-game editor to build, debug, and run scripts. Automatic farms, kill aura, auto pots and a lot more!",
+    icon: "/img/ccs.png",
+    title: "CCS",
+    desc: "CCS is a scripting language that lets you create modules, macros, and more. Write .ccs files, and use our in-game editor to build, debug, and run scripts. Automatic farms, kill aura, auto pots and a lot more!",
     linkTitle: "Read the CCS Documentation",
     linkUrl: "https://bit.ly/ccs-wiki"
   },
@@ -28,14 +28,14 @@ const features = [
     desc: "AutoAttack, AimAssist, SpecatorSight and awesome things. Never miss a hit on your opponent and auto-respond with a L.",
   },
   {
-    icon: "/textures/bed.png",
-    title: "Tailored to your mode",
-    desc: "ClickCrystals is tailored for Crystal PvP, however its many utillity modules and the custom coded ClickScript modules prove to bypass many ACs and players use ClickCrystals for all the different gamemodes!",
+    icon: "/textures/diamond_pickaxe.png",
+    title: "Customized to your liking",
+    desc: "ClickCrystals is especially designed for Crystal PvP, however its many utillity modules and the custom modules prove to bypass many ACs and players use ClickCrystals for all the different gamemodes!",
   },
   {
     icon: "/textures/painting.png",
-    title: "With the HUDs!",
-    desc: "FPS, CPS, Server IP, ArrayList, etc. all the HUDs, enable by your choice! All the pixel-perfect HUDs you'll love.",
+    title: "Check Out Our Huds!",
+    desc: "FPS, CPS, ArrayList, etc. all of the HUDs you need for perfect pvp gameplay, enable by your choice! Choos'e the huds color to your liking.",
   },
 ]
 

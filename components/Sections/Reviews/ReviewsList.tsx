@@ -40,7 +40,7 @@ const reviews = [
     picture: '/staff/josh.png',
     name: 'Josh',
     url: 'https://discordapp.com/users/1250828225161068674',
-    message: "ClickCrystals is the ultimate lifechanger! It's not just limited to Crystal PvP, it's ClickScript feature is actually useful for every mode—whether you try BedWars, Sumo, SkyWars or whatever! Doesn't flag at all as well, you should totally check it out!",
+    message: "ClickCrystals is the ultimate lifechanger! It's not just limited to Crystal PvP, it's scripting features are actually useful for every mode—whether you try BedWars, Sumo, SkyWars or whatever! Doesn't flag at all as well, you should totally check it out!",
     username: "@josh"
   },
   {
