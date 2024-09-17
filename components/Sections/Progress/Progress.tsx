@@ -1,35 +1,35 @@
-'use client'
+'use client';
 
-import CountUp from "react-countup";
-import { Container } from "@/components/ui/Container";
-import { getTotalDownloads } from "@/lib/getDownloads";
-import { useEffect, useState } from "react";
+import CountUp from 'react-countup';
+import { Container } from '@/components/ui/Container';
+import { getTotalDownloads } from '@/lib/getDownloads';
+import { useEffect, useState } from 'react';
 
 export default function Progress() {
   const [downloads, setDownloads] = useState(0);
 
   const progress = [
     {
-      metric: "Total Downloads",
+      metric: 'Total Downloads',
       value: downloads,
-      postfix: "+",
+      postfix: '+',
     },
     {
-      metric: "Staff",
+      metric: 'Staff',
       value: 20,
-      postfix: "+",
+      postfix: '+',
     },
     {
-      metric: "Years",
+      metric: 'Years',
       value: 2,
-      postfix: "+",
+      postfix: '+',
     },
   ];
 
   useEffect(() => {
     const fetchData = async () => {
       const totalDownloads = await getTotalDownloads();
-      setDownloads(totalDownloads)
+      setDownloads(totalDownloads);
     };
 
     fetchData();
@@ -56,7 +56,9 @@ export default function Progress() {
                   {progress.postfix}
                 </h2>
               </Container>
-              <p className="text-white text-base text-center">{progress.metric}</p>
+              <p className="text-white text-base text-center">
+                {progress.metric}
+              </p>
             </div>
           );
         })}

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import scrollIcon from "@/public/icons/scroll.svg";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import scrollIcon from '@/public/icons/scroll.svg';
 
 export const ScrollTop = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -10,7 +10,7 @@ export const ScrollTop = () => {
   const handleScrollTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: 'smooth',
     });
   };
 
@@ -23,17 +23,18 @@ export const ScrollTop = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div
-      className={`transition duration-200 opacity-full pointer-events-auto fixed bottom-0 z-[10] flex right-0 p-10 ${!showScrollTop && "opacity-0"
-        }`}
+      className={`transition duration-200 opacity-full pointer-events-auto fixed bottom-0 z-[10] flex right-0 p-10 ${
+        !showScrollTop && 'opacity-0'
+      }`}
       onClick={handleScrollTop}
     >
       <button className="text-primary-400 ml-auto aspect-square cursor-pointer rounded-full bg-blue-600 px-1 hover:bg-blue-800 sm:px-2 transition-colors">

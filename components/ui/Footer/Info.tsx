@@ -1,6 +1,6 @@
-import Image from "next/image";
-import logo from "@/public/cc-full.png"
-import Link from "next/link";
+import Image from 'next/image';
+import logo from '@/public/cc-full.png';
+import Link from 'next/link';
 
 export default function Info() {
   return (

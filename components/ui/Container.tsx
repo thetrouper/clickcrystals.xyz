@@ -3,11 +3,17 @@ type ContainerProps = {
   tapScale?: number | string;
   className?: string;
   hoverScale?: number | string;
-}
+};
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-export const Container = ({children, tapScale = 0.95, className = "", hoverScale = 1, ...props}: ContainerProps) => {
+export const Container = ({
+  children,
+  tapScale = 0.95,
+  className = '',
+  hoverScale = 1,
+  ...props
+}: ContainerProps) => {
   return (
     <motion.div
       className={`transition scale-1 inline cursor-pointer ${className}`}
