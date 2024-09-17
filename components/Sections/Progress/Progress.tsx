@@ -36,7 +36,7 @@ export default function Progress() {
   }, []);
 
   return (
-    <div className="py-12 bg-[#491649] my-0 [mask-image:linear-gradient(to_top,black_15%,black_30%,black_75%,transparent)] relative">
+    <div className="py-12 bg-[#143761] my-0 [mask-image:linear-gradient(to_top,black_15%,black_30%,black_75%,transparent)] relative">
       <div className="rounded-md py-8 px-4 lg:px-32 flex gap-4 sm:flex-row flex-col justify-between">
         {progress.map((progress, index) => {
           return (
