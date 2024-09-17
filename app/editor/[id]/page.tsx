@@ -1,15 +1,15 @@
 import { loadCode } from '@/lib/scripts';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
 const CCSEditor = dynamic(() => import('@/components/Sections/editor/Editor'), {
   ssr: false,
-})
+});
 
 export const metadata: Metadata = {
-  title: "ClickCrystals - CCS Playground",
-}
+  title: 'ClickCrystals - CCS Playground',
+};
 
 const EditorPage = async ({ params }: { params: { id: string } }) => {
   try {
@@ -22,13 +22,13 @@ const EditorPage = async ({ params }: { params: { id: string } }) => {
             <CCSEditor defaultCode={query.code} />
           </div>
         </div>
-      )
+      );
     } else {
-      return redirect("/editor?error=not_found")
+      return redirect('/editor?error=not_found');
     }
   } catch (error: any) {
-    return redirect("/editor?error=not_found")
+    return redirect('/editor?error=not_found');
   }
-}
+};
 
 export default EditorPage;

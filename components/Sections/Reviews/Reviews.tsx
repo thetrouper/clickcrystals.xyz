@@ -1,4 +1,4 @@
-import ReviewsList from "./ReviewsList";
+import ReviewsList from './ReviewsList';
 
 export default function Reviews() {
   return (
@@ -7,12 +7,13 @@ export default function Reviews() {
         <div className="grid md:grid-cols-3 gap-4">
           <div className="col-span-3">
             <h2 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
-              What our users think <span className="text-blue-500">about ClickCrystals</span>
+              What our users think{' '}
+              <span className="text-blue-500">about ClickCrystals</span>
             </h2>
           </div>
         </div>
         <ReviewsList />
       </div>
     </div>
-  )
+  );
 }

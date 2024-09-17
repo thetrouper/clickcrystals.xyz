@@ -4,7 +4,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select';
 
 const FilterSelectMenu = ({ value, onChange }: any) => {
   return (
@@ -13,15 +13,15 @@ const FilterSelectMenu = ({ value, onChange }: any) => {
         <SelectValue placeholder="All" />
       </SelectTrigger>
       <SelectContent>
-          <SelectItem value="All">All</SelectItem>
-          <SelectItem value="anchor">Anchor</SelectItem>
-          <SelectItem value="crystal">Crystal</SelectItem>
-          <SelectItem value="hacks">Hacks</SelectItem>
-          <SelectItem value="macros">Macro</SelectItem>
-          <SelectItem value="totem">Totem</SelectItem>
+        <SelectItem value="All">All</SelectItem>
+        <SelectItem value="anchor">Anchor</SelectItem>
+        <SelectItem value="crystal">Crystal</SelectItem>
+        <SelectItem value="hacks">Hacks</SelectItem>
+        <SelectItem value="macros">Macro</SelectItem>
+        <SelectItem value="totem">Totem</SelectItem>
       </SelectContent>
     </Select>
-  )
-}
+  );
+};
 
 export default FilterSelectMenu;

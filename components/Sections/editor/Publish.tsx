@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 import {
   Drawer,
   DrawerClose,
@@ -19,60 +19,65 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useState, useEffect } from "react"
-import { handleSubmit } from "./handleSubmit"
-import { ReloadIcon } from "@radix-ui/react-icons"
-import { useToast } from "@/components/ui/use-toast"
+} from '@/components/ui/drawer';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useState, useEffect } from 'react';
+import { handleSubmit } from './handleSubmit';
+import { ReloadIcon } from '@radix-ui/react-icons';
+import { useToast } from '@/components/ui/use-toast';
 
 function PublishForm({ className, code, closeState }: any) {
-  const { toast } = useToast()
-  const [submitDisabled, setSubmitDisabled] = useState<boolean>(false)
+  const { toast } = useToast();
+  const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
   const [form, setForm] = useState({
-    title: "",
-    author: "",
+    title: '',
+    author: '',
   });
 
-  const sendForm = async(formData: FormData) => {
+  const sendForm = async (formData: FormData) => {
     const titleValue = formData?.get('title');
     if (typeof titleValue === 'string') {
-      formData.set("title", titleValue.trim());
+      formData.set('title', titleValue.trim());
     }
     const authorValue = formData?.get('author');
     if (typeof authorValue === 'string') {
-      formData.set("author", authorValue.trim());
+      formData.set('author', authorValue.trim());
     }
-    formData.set("script", code.trim());
+    formData.set('script', code.trim());
 
-    if (formData.get("title") === "" || formData.get("author") === "" || formData.get('script') === "") {
+    if (
+      formData.get('title') === '' ||
+      formData.get('author') === '' ||
+      formData.get('script') === ''
+    ) {
       return;
     }
 
-    try{
+    try {
       const response = await handleSubmit(formData);
-      if (response.status === "success") {
+      if (response.status === 'success') {
         toast({
-          title: "Successfully published your script",
-          description: "It will be added to the forum and shown in few mins",
-          variant: "passive"
+          title: 'Successfully published your script',
+          description: 'It will be added to the forum and shown in few mins',
+          variant: 'passive',
         });
       } else {
         toast({
-          title: "Oops, something went wrong.",
-          description: "There was a error publishing your script into the forum.",
-          variant: "destructive"
+          title: 'Oops, something went wrong.',
+          description:
+            'There was a error publishing your script into the forum.',
+          variant: 'destructive',
         });
       }
     } catch (err) {
       toast({
-        title: "Oops, something went wrong.",
-        description: "There was a error publishing your script into the forum.",
-        variant: "destructive"
+        title: 'Oops, something went wrong.',
+        description: 'There was a error publishing your script into the forum.',
+        variant: 'destructive',
       });
     }
-    
+
     setSubmitDisabled(false);
     closeState(false);
   };
@@ -80,88 +85,116 @@ function PublishForm({ className, code, closeState }: any) {
   const handleFormChange = (e: any) => {
     const { name, value } = e.target;
 
-    const sanitizedValue = value.replace(/\s{2,}/g, " ");
+    const sanitizedValue = value.replace(/\s{2,}/g, ' ');
 
     setForm({ ...form, [name]: sanitizedValue });
   };
 
   const handleButtonClick = (e: any) => {
-    if (!(form.title?.trim() === "") && !(form.author?.trim() === "") && !(code.trim() === "")) {
+    if (
+      !(form.title?.trim() === '') &&
+      !(form.author?.trim() === '') &&
+      !(code.trim() === '')
+    ) {
       setTimeout(() => {
         setSubmitDisabled(true);
       }, 1);
     } else {
       toast({
-        title: "Please include all values!",
-        description: "Author name, script title and script, all are mandatory.",
-        variant: "destructive"
+        title: 'Please include all values!',
+        description: 'Author name, script title and script, all are mandatory.',
+        variant: 'destructive',
       });
     }
-  }
+  };
 
   return (
-    <form className={cn("grid items-start gap-4", className)} action={sendForm}>
+    <form className={cn('grid items-start gap-4', className)} action={sendForm}>
       <div className="grid gap-2">
         <Label htmlFor="title">Script Title</Label>
-        <Input id="title" placeholder="Potion Swap" name="title" onChange={handleFormChange} value={form.title} />
+        <Input
+          id="title"
+          placeholder="Potion Swap"
+          name="title"
+          onChange={handleFormChange}
+          value={form.title}
+        />
       </div>
       <div className="grid gap-2">
         <Label htmlFor="author">Author</Label>
-        <Input id="author" placeholder="ItziSpyder" name="author" onChange={handleFormChange} value={form.author} />
+        <Input
+          id="author"
+          placeholder="ItziSpyder"
+          name="author"
+          onChange={handleFormChange}
+          value={form.author}
+        />
       </div>
       <input name="script" type="hidden" value={code} />
-      <p className="text-xs">We suggest you to also add{" "}
+      <p className="text-xs">
+        We suggest you to also add{' '}
         <span className="p-1 font-mono bg-[#1e1e1e] font-droidmono">
-          <span className="text-[#6a9955]">&#47;&#47;</span>{" "}
+          <span className="text-[#6a9955]">&#47;&#47;</span>{' '}
           <span className="text-[#D4D4D4]">@</span>
           <span className="text-[#4ec9b0]">your-name</span>
-        </span>
-        {" "}at first line to represent your name.</p>
-      <Button type="submit" disabled={submitDisabled} onClick={handleButtonClick} className="transition-all">
-        {submitDisabled && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}Publish
+        </span>{' '}
+        at first line to represent your name.
+      </p>
+      <Button
+        type="submit"
+        disabled={submitDisabled}
+        onClick={handleButtonClick}
+        className="transition-all"
+      >
+        {submitDisabled && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+        Publish
       </Button>
     </form>
-  )
+  );
 }
 
 type PublishProps = {
   onOpen: any;
   code: string;
   disabled: boolean;
-}
+};
 
-const Publish = ({onOpen, code, disabled}: PublishProps) => {
-  const [open, setOpen] = useState(false)
+const Publish = ({ onOpen, code, disabled }: PublishProps) => {
+  const [open, setOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
 
   const handleOpen = (open: boolean) => {
     setOpen(open);
     onOpen();
-  }
+  };
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 768px)");
-    if(desktopQuery.matches) {
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    if (desktopQuery.matches) {
       setIsDesktop(true);
     } else {
       setIsDesktop(false);
     }
 
-    desktopQuery.addEventListener("change", (e: any) => {
+    desktopQuery.addEventListener('change', (e: any) => {
       if (e.matches) {
         setIsDesktop(true);
       } else {
         setIsDesktop(false);
       }
-    })
-  }, [])
-  
+    });
+  }, []);
 
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={handleOpen}>
         <DialogTrigger asChild>
-          <button disabled={disabled} className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Publish</button>
+          <button
+            disabled={disabled}
+            className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+          >
+            Publish
+          </button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -173,13 +206,18 @@ const Publish = ({onOpen, code, disabled}: PublishProps) => {
           <PublishForm closeState={setOpen} code={code} />
         </DialogContent>
       </Dialog>
-    )
+    );
   }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <button disabled={disabled} className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto">Publish</button>
+        <button
+          disabled={disabled}
+          className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+        >
+          Publish
+        </button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
@@ -196,7 +234,7 @@ const Publish = ({onOpen, code, disabled}: PublishProps) => {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  )
-}
+  );
+};
 
 export default Publish;

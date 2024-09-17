@@ -1,19 +1,19 @@
 'use client';
 
-import { Suspense, useEffect, useState } from "react";
-import ScriptCard from "./ScriptCard";
-import SkeletonCard from "./SkeletonCard";
-import { getParsedScripts } from "@/lib/getScripts";
-import FilterSelectMenu from "./FilterSelectMenu";
-import { Input } from "@/components/ui/input"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import { Suspense, useEffect, useState } from 'react';
+import ScriptCard from './ScriptCard';
+import SkeletonCard from './SkeletonCard';
+import { getParsedScripts } from '@/lib/getScripts';
+import FilterSelectMenu from './FilterSelectMenu';
+import { Input } from '@/components/ui/input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function Scripts() {
   const [scripts, setScripts] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState<string | boolean>(false);
 
   useEffect(() => {
@@ -41,25 +41,31 @@ export default function Scripts() {
 
   const filteredScripts = scripts
     ? Object.entries(scripts).filter(([title, scriptData]: any) => {
-      const matchesCategory =
-        selectedCategory === "All" || scriptData.category === selectedCategory.toLowerCase();
-      const matchesSearchQuery =
-        title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        scriptData.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearchQuery;
-    })
+        const matchesCategory =
+          selectedCategory === 'All' ||
+          scriptData.category === selectedCategory.toLowerCase();
+        const matchesSearchQuery =
+          title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          scriptData.description
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearchQuery;
+      })
     : [];
 
-  if (selectedCategory === "All") {
+  if (selectedCategory === 'All') {
     filteredScripts.sort(([titleA]: any, [titleB]: any) =>
-      titleA.toLowerCase().localeCompare(titleB.toLowerCase())
+      titleA.toLowerCase().localeCompare(titleB.toLowerCase()),
     );
   }
 
   return (
     <div>
       <div className="flex gap-4 mb-4">
-        <FilterSelectMenu value={selectedCategory} onChange={handleCategoryChange} />
+        <FilterSelectMenu
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+        />
         <Input
           type="text"
           placeholder="Search scripts..."
@@ -75,10 +81,24 @@ export default function Scripts() {
           ))
         ) : error ? (
           <div className="flex flex-col col-span-full text-center py-10 gap-2">
-            <FontAwesomeIcon icon={faXmarkCircle} className="size-8 text-red-500 left-0 right-0 mx-auto" />
-            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">Sorry, a error occured!</h2>
+            <FontAwesomeIcon
+              icon={faXmarkCircle}
+              className="size-8 text-red-500 left-0 right-0 mx-auto"
+            />
+            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+              Sorry, a error occured!
+            </h2>
             <div className="flex justify-center">
-              <p className="text-gray-500 text-center max-w-4xl md:max-w-2xl">Some error occured while we tried to load the scripts. Please contact us through Discord if you need assistance.<br /><br />Error message: <span className="bg-black text-sm p-1 text-white font-mono">{error}</span></p>
+              <p className="text-gray-500 text-center max-w-4xl md:max-w-2xl">
+                Some error occured while we tried to load the scripts. Please
+                contact us through Discord if you need assistance.
+                <br />
+                <br />
+                Error message:{' '}
+                <span className="bg-black text-sm p-1 text-white font-mono">
+                  {error}
+                </span>
+              </p>
             </div>
           </div>
         ) : filteredScripts.length > 0 ? (
@@ -95,10 +115,18 @@ export default function Scripts() {
           </Suspense>
         ) : (
           <div className="flex flex-col col-span-full text-center py-10 gap-2">
-            <FontAwesomeIcon icon={faXmarkCircle} className="size-8 text-black left-0 right-0 mx-auto" />
-            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">No scripts found</h2>
+            <FontAwesomeIcon
+              icon={faXmarkCircle}
+              className="size-8 text-black left-0 right-0 mx-auto"
+            />
+            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+              No scripts found
+            </h2>
             <div className="flex justify-center">
-              <p className="text-gray-500 text-center max-w-4xl">Try adjusting your search or filters to find what you&apos;re looking for.</p>
+              <p className="text-gray-500 text-center max-w-4xl">
+                Try adjusting your search or filters to find what you&apos;re
+                looking for.
+              </p>
             </div>
           </div>
         )}

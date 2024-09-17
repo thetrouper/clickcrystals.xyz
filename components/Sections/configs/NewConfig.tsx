@@ -1,15 +1,31 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { useState, useEffect, useRef } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/components/ui/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { saveConfig } from "./SaveConfig";
+import { saveConfig } from './SaveConfig';
 
 const PlusIcon = () => (
   <svg
@@ -44,23 +60,25 @@ export default function NewConfigCard() {
   };
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
     setIsDesktop(desktopQuery.matches);
 
     const handleMediaChange = (e: MediaQueryListEvent) => {
       setIsDesktop(e.matches);
     };
 
-    desktopQuery.addEventListener("change", handleMediaChange);
+    desktopQuery.addEventListener('change', handleMediaChange);
 
     return () => {
-      desktopQuery.removeEventListener("change", handleMediaChange);
+      desktopQuery.removeEventListener('change', handleMediaChange);
     };
   }, []);
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
-    if (file && file.type === "application/json") {
+    if (file && file.type === 'application/json') {
       try {
         const fileContent = await file.text();
         const parsedData = JSON.parse(fileContent);
@@ -70,24 +88,24 @@ export default function NewConfigCard() {
           setOpen(true);
         } else {
           toast({
-            title: "Invalid JSON",
-            description: "The JSON is empty or does not contain valid data.",
-            variant: "destructive",
+            title: 'Invalid JSON',
+            description: 'The JSON is empty or does not contain valid data.',
+            variant: 'destructive',
           });
         }
       } catch (error) {
-        console.error("Failed to parse JSON:", error);
+        console.error('Failed to parse JSON:', error);
         toast({
-          title: "Error",
-          description: "Failed to parse the JSON file.",
-          variant: "destructive",
+          title: 'Error',
+          description: 'Failed to parse the JSON file.',
+          variant: 'destructive',
         });
       }
     } else {
       toast({
-        title: "Invalid File Format",
-        description: "Please select a valid JSON file.",
-        variant: "destructive",
+        title: 'Invalid File Format',
+        description: 'Please select a valid JSON file.',
+        variant: 'destructive',
       });
     }
   };
@@ -102,13 +120,15 @@ export default function NewConfigCard() {
 
     const trimmedTitle = jsonData.title?.trim();
     const trimmedDescription = jsonData.description?.trim();
-    const trimmedCategories = jsonData.categories?.map((cat: string) => cat.trim()).filter((cat: string) => cat !== "");
+    const trimmedCategories = jsonData.categories
+      ?.map((cat: string) => cat.trim())
+      .filter((cat: string) => cat !== '');
 
     if (!trimmedTitle || !trimmedDescription) {
       toast({
-        title: "Required Fields Missing",
-        description: "Title and Description cannot be empty.",
-        variant: "destructive",
+        title: 'Required Fields Missing',
+        description: 'Title and Description cannot be empty.',
+        variant: 'destructive',
       });
       return;
     }
@@ -118,8 +138,8 @@ export default function NewConfigCard() {
       title: trimmedTitle,
       description: trimmedDescription,
       categories: trimmedCategories,
-      author: session?.user?.name || "",
-      avatar: session?.user?.image || "",
+      author: session?.user?.name || '',
+      avatar: session?.user?.image || '',
       userId: (session?.user as { id: number }).id || 0,
     };
 
@@ -127,22 +147,24 @@ export default function NewConfigCard() {
       const success = await saveConfig(updatedJsonData);
       if (success) {
         toast({
-          title: "Successfully uploaded config!",
-          description: "The config is now available for download on the explorer!",
-          variant: "passive",
+          title: 'Successfully uploaded config!',
+          description:
+            'The config is now available for download on the explorer!',
+          variant: 'passive',
         });
       } else {
         toast({
-          title: "Failed to upload config",
-          description: "There was an error while uploading your config to the database. Please try again!",
-          variant: "destructive",
+          title: 'Failed to upload config',
+          description:
+            'There was an error while uploading your config to the database. Please try again!',
+          variant: 'destructive',
         });
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "An error occurred while uploading the config.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'An error occurred while uploading the config.',
+        variant: 'destructive',
       });
     } finally {
       setOpen(false);
@@ -150,32 +172,63 @@ export default function NewConfigCard() {
   };
 
   const renderForm = () => (
-    <form className="grid items-start gap-4 max-md:px-4" onSubmit={handleSubmit}>
+    <form
+      className="grid items-start gap-4 max-md:px-4"
+      onSubmit={handleSubmit}
+    >
       <div className="grid gap-2">
-        <Label htmlFor="title">Title <span className="text-red-500">*</span></Label>
-        <Input id="title" name="title" value={jsonData?.title || ''} onChange={handleFormChange} required />
+        <Label htmlFor="title">
+          Title <span className="text-red-500">*</span>
+        </Label>
+        <Input
+          id="title"
+          name="title"
+          value={jsonData?.title || ''}
+          onChange={handleFormChange}
+          required
+        />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="description">Description <span className="text-red-500">*</span></Label>
-        <Input id="description" name="description" value={jsonData?.description || ''} onChange={handleFormChange} required />
+        <Label htmlFor="description">
+          Description <span className="text-red-500">*</span>
+        </Label>
+        <Input
+          id="description"
+          name="description"
+          value={jsonData?.description || ''}
+          onChange={handleFormChange}
+          required
+        />
       </div>
       <div className="grid gap-2">
         <Label htmlFor="categories">Categories (comma separated)</Label>
-        <Input id="categories" name="categories" value={jsonData?.categories?.join(', ') || ''} onChange={(e) => setJsonData({ ...jsonData, categories: e.target.value.split(',').map((cat: string) => cat.trim()) })} />
+        <Input
+          id="categories"
+          name="categories"
+          value={jsonData?.categories?.join(', ') || ''}
+          onChange={(e) =>
+            setJsonData({
+              ...jsonData,
+              categories: e.target.value
+                .split(',')
+                .map((cat: string) => cat.trim()),
+            })
+          }
+        />
       </div>
 
-     {session ? (
+      {session ? (
         <>
           <div className="grid gap-2 mt-2">
             <Label>Posting as</Label>
             <div className="flex items-center gap-3 p-[6px] rounded-lg">
               <img
-                src={session.user?.image || ""}
+                src={session.user?.image || ''}
                 alt="avatar"
                 className="size-8 rounded-full border border-gray-300"
               />
               <span className="font-medium text-gray-800 text-[16px]">
-                {session.user?.name || "Unknown"}
+                {session.user?.name || 'Unknown'}
               </span>
             </div>
           </div>
@@ -186,14 +239,19 @@ export default function NewConfigCard() {
       ) : (
         <>
           <p className="text-sm text-gray-500 m-1 max-md:mt-2">
-            You must login before publishing a config.{" "}
-            <span className="text-blue-500 underline cursor-pointer" onClick={() => signIn("discord")}>
+            You must login before publishing a config.{' '}
+            <span
+              className="text-blue-500 underline cursor-pointer"
+              onClick={() => signIn('discord')}
+            >
               Login here
             </span>
           </p>
         </>
       )}
-      <Button type="submit" disabled={!session}>Submit</Button>
+      <Button type="submit" disabled={!session}>
+        Submit
+      </Button>
     </form>
   );
 
@@ -207,7 +265,9 @@ export default function NewConfigCard() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Configure Config Details</DialogTitle>
-              <DialogDescription>Fill in the details to publish your config!</DialogDescription>
+              <DialogDescription>
+                Fill in the details to publish your config!
+              </DialogDescription>
             </DialogHeader>
             {renderForm()}
           </DialogContent>
@@ -222,7 +282,9 @@ export default function NewConfigCard() {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Configure Config Details</DrawerTitle>
-            <DrawerDescription>Fill in the details to publish your config!</DrawerDescription>
+            <DrawerDescription>
+              Fill in the details to publish your config!
+            </DrawerDescription>
           </DrawerHeader>
           {renderForm()}
           <DrawerFooter>
@@ -250,7 +312,7 @@ export default function NewConfigCard() {
       <input
         type="file"
         ref={fileInputRef}
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
         accept=".json"
         onChange={handleFileChange}
       />

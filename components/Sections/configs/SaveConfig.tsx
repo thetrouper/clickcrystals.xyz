@@ -1,7 +1,7 @@
-'use server'
+'use server';
 
-import prisma from "@/lib/db";
-import { revalidatePath } from "next/cache";
+import prisma from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 
 export async function saveConfig(configData: {
   title: string;
@@ -13,30 +13,31 @@ export async function saveConfig(configData: {
   [key: string]: any;
 }) {
   try {
-    const { title, description, author, avatar, categories, userId, ...rest } = configData;
+    const { title, description, author, avatar, categories, userId, ...rest } =
+      configData;
     await prisma.config.create({
       data: {
         title: title,
         description: description,
         categories: categories,
         config: {
-          ...rest
+          ...rest,
         },
         user: {
           connectOrCreate: {
             where: {
-              id: userId
+              id: userId,
             },
             create: {
               id: userId,
               name: author,
               avatar: avatar,
-            }
-          }
-        }
+            },
+          },
+        },
       },
     });
-    revalidatePath("/configs");
+    revalidatePath('/configs');
     return true;
   } catch (error) {
     console.log(error);
