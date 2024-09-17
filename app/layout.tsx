@@ -25,12 +25,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `${inter.className} ${interHeading.variable} antialiased min-h-screen`,
+          `${inter.className} ${interHeading.variable} antialiased`,
           'selection:text-white selection:bg-blue-800',
         )}
       >
         <Header />
-        {children}
+        <div className="min-h-screen">{children}</div>
         <Footer />
         {/* <ScrollTop /> */}
         <div className="dark">
