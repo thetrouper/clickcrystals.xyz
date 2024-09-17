@@ -10,13 +10,13 @@ import { motion } from 'framer-motion';
 export default function Hero() {
   return (
     <section className="pt-4 lg:pt-0 text-white bg-transparent">
-      <div className="top-0 left-0 absolute w-screen z-[-1] bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#502250,#000000_100%)] h-hero"></div>
+      <div className="top-0 left-0 absolute w-screen z-[-1] bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#054874,#000000_100%)] h-hero"></div>
       <div className="py-6 px-8 lg:grid lg:gap-8 lg:grid-cols-12 lg:py-8 lg:h-screen">
         <div className="place-self-center col-span-5 lg:col-span-7 h-auto py-8 lg:py-0">
           <h1 className="text-left text-gray-200 tracking-normal leading-[1] font-extrabold text-6xl xl:text-8xl lg:max-w-2xl mb-6 m-0">
             Like Steroids,
             <br /> For{' '}
-            <span className="bg-[radial-gradient(ellipse_200%_100%_at_top_center,#a31ca5_100%,#ab46af_100%)] text-transparent bg-clip-text">
+            <span className="bg-[radial-gradient(ellipse_200%_100%_at_top_center,#2f8dbb_100%,#28429f_90%)] text-transparent bg-clip-text">
               Crystal PvP.
             </span>
           </h1>
