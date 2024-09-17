@@ -57,7 +57,7 @@ export default function Ingame() {
         <motion.img
           src={'/img/clickscript.png'}
           alt=""
-          className="left-[20px] top-[2380px] absolute size-[150px]"
+          className="left-[20px] top-[2480px] absolute size-[150px]"
           style={{
             imageRendering: 'pixelated',
             translateY,
@@ -66,7 +66,7 @@ export default function Ingame() {
         <motion.img
           src={'/textures/totem.png'}
           alt=""
-          className="right-[20px] top-[2053px] absolute size-[120px]"
+          className="right-[20px] top-[2153px] absolute size-[120px]"
           style={{
             imageRendering: 'pixelated',
             rotate: '-9deg',
@@ -76,7 +76,7 @@ export default function Ingame() {
         <motion.img
           src={'/icon.png'}
           alt=""
-          className="right-[80px] top-[2480px] absolute size-[50px]"
+          className="right-[80px] top-[2580px] absolute size-[50px]"
           style={{
             rotate: '-19deg',
             translateY,
