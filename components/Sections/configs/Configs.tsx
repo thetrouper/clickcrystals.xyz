@@ -1,6 +1,6 @@
-import ConfigsGrid from "./ConfigsGrid";
-import SkeletonCard from "./SkeletonCard";
-import { Suspense } from "react";
+import ConfigsGrid from './ConfigsGrid';
+import SkeletonCard from './SkeletonCard';
+import { Suspense } from 'react';
 
 export default function Configs() {
   return (
@@ -15,9 +15,11 @@ export default function Configs() {
 function Fallback() {
   return (
     <>
-    {Array(6).fill(null).map((_, index: number) => (
-       <SkeletonCard key={index} />
-    ))}
+      {Array(6)
+        .fill(null)
+        .map((_, index: number) => (
+          <SkeletonCard key={index} />
+        ))}
     </>
-  )
+  );
 }

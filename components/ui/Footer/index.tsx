@@ -5,5 +5,5 @@ export default function Footer() {
     <footer className="m-0">
       <FooterLinks />
     </footer>
-  )
+  );
 }

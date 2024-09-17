@@ -1,4 +1,4 @@
-import { StarIcon } from "@heroicons/react/16/solid";
+import { StarIcon } from '@heroicons/react/16/solid';
 
 type StarRatingProps = {
   rating: number;
@@ -17,13 +17,19 @@ export const StarRating = ({ rating }: StarRatingProps) => {
       {hasHalfStar && (
         <div className="relative">
           <StarIcon className="w-6 h-6 text-gray-200" />
-          <div className="absolute left-0 top-0 overflow-hidden" style={{ width: '50%' }}>
+          <div
+            className="absolute left-0 top-0 overflow-hidden"
+            style={{ width: '50%' }}
+          >
             <StarIcon className="size-4 text-yellow-400" />
           </div>
         </div>
       )}
       {[...Array(emptyStars)].map((_, index) => (
-        <StarIcon key={index + fullStars + (hasHalfStar ? 1 : 0)} className="w-6 h-6 text-gray-200" />
+        <StarIcon
+          key={index + fullStars + (hasHalfStar ? 1 : 0)}
+          className="w-6 h-6 text-gray-200"
+        />
       ))}
     </div>
   );

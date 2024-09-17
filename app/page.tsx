@@ -1,9 +1,9 @@
-import CCS from "@/components/Sections/CCS/CCS";
-import GetStarted from "@/components/Sections/GetStarted/GetStarted";
-import Ingame from "@/components/Sections/Ingame/Ingame";
-import Reviews from "@/components/Sections/Reviews/Reviews";
-import Features from "@/components/Sections/Features/Features";
-import Hero from "@/components/Sections/Hero/Hero";
+import CCS from '@/components/Sections/CCS/CCS';
+import GetStarted from '@/components/Sections/GetStarted/GetStarted';
+import Ingame from '@/components/Sections/Ingame/Ingame';
+import Reviews from '@/components/Sections/Reviews/Reviews';
+import Features from '@/components/Sections/Features/Features';
+import Hero from '@/components/Sections/Hero/Hero';
 
 export default function Home() {
   return (
@@ -11,9 +11,9 @@ export default function Home() {
       <Hero />
       <CCS />
       <Features />
-      <Ingame /> 
+      <Ingame />
       <Reviews />
       <GetStarted />
     </>
-  )
+  );
 }
