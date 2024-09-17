@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
-export default function MobileMenuNav({handler}: any) {
+export default function MobileMenuNav({ handler }: any) {
   const [navbarOpen, setNavbarOpen] = useState(true);
-  
+
   const toggle = () => {
     setNavbarOpen(!navbarOpen);
     handler(navbarOpen);
@@ -23,7 +23,11 @@ export default function MobileMenuNav({handler}: any) {
             stroke="currentColor"
             strokeWidth="1.5"
             strokeLinecap="round"
-            animate={navbarOpen ? { d: "M3 6h18M3 12h18M3 18h18" } : { d: "M3 3l18 18M3 21l18-18" }}
+            animate={
+              navbarOpen
+                ? { d: 'M3 6h18M3 12h18M3 18h18' }
+                : { d: 'M3 3l18 18M3 21l18-18' }
+            }
             transition={{ duration: 0.2 }}
           />
         </svg>

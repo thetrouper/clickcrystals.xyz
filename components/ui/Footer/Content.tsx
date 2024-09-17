@@ -1,5 +1,5 @@
-import Socials from "./Socials";
-import Info from "./Info";
+import Socials from './Socials';
+import Info from './Info';
 
 export default function Content() {
   return (
@@ -9,5 +9,5 @@ export default function Content() {
         <Socials />
       </div>
     </div>
-  )
+  );
 }

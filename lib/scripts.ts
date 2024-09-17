@@ -1,10 +1,11 @@
-'use server'
+'use server';
 
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import prisma from './db';
 
 function generateRandomString(length: number): string {
-  const characters = '0aAbBc1CdDeE2fFgGh3HiIjJ4kKlLm5MnNoO6pPqQr7RsStT8uUvVw9WxXyYz0';
+  const characters =
+    '0aAbBc1CdDeE2fFgGh3HiIjJ4kKlLm5MnNoO6pPqQr7RsStT8uUvVw9WxXyYz0';
   let result = '';
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -13,8 +14,8 @@ function generateRandomString(length: number): string {
 }
 
 export async function saveCode(code: string) {
-  if (code.trim() === "") {
-    return { id: null, error: "The snippet cannot be empty", success: false };
+  if (code.trim() === '') {
+    return { id: null, error: 'The snippet cannot be empty', success: false };
   }
 
   const id = generateRandomString(12);
@@ -27,13 +28,17 @@ export async function saveCode(code: string) {
       },
       select: {
         id: true,
-      }
+      },
     });
 
     return { id: newCode.id, error: null, success: true };
   } catch (error) {
     console.log(error);
-    return { id: null, error: "There was an error while saving your snippet", success: false };
+    return {
+      id: null,
+      error: 'There was an error while saving your snippet',
+      success: false,
+    };
   }
 }
 
@@ -45,7 +50,7 @@ export async function loadCode(id: string) {
       },
       select: {
         script: true,
-      }
+      },
     });
 
     if (!codeData) {
@@ -58,7 +63,6 @@ export async function loadCode(id: string) {
     }
 
     return { code: codeData.script, error: null, success: true };
-
   } catch (error) {
     if ((error as PrismaClientKnownRequestError).code === 'P2025') {
       return {
@@ -68,6 +72,11 @@ export async function loadCode(id: string) {
         errorCode: 404,
       };
     }
-    return { code: null, error: `There was an error while loading snippet ${id}`, success: false, errorCode: 500 };
+    return {
+      code: null,
+      error: `There was an error while loading snippet ${id}`,
+      success: false,
+      errorCode: 500,
+    };
   }
 }

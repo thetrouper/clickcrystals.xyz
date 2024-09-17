@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import Link from "next/link";
+import Link from 'next/link';
 
 type NavLinkProps = {
   label: string;
@@ -7,7 +7,7 @@ type NavLinkProps = {
   target?: string;
 };
 
-export const NavLink = ({ label, url, target = "" }: NavLinkProps) => {
+export const NavLink = ({ label, url, target = '' }: NavLinkProps) => {
   return (
     <Container>
       <Link

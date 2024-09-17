@@ -1,6 +1,6 @@
-import NewConfigCard from "./NewConfig";
-import prisma from "@/lib/db";
-import ConfigCard from "./ConfigCard";
+import NewConfigCard from './NewConfig';
+import prisma from '@/lib/db';
+import ConfigCard from './ConfigCard';
 
 export default async function ConfigsGrid() {
   const configs = await prisma.config.findMany({
@@ -10,7 +10,7 @@ export default async function ConfigsGrid() {
       description: true,
       categories: true,
       config: true,
-      user: true
+      user: true,
     },
     orderBy: {
       createdAt: 'desc',
@@ -25,5 +25,5 @@ export default async function ConfigsGrid() {
         <ConfigCard key={config.id} config={config} />
       ))}
     </>
-  )
+  );
 }

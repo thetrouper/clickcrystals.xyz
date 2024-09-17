@@ -1,8 +1,8 @@
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Container } from "@/components/ui/Container";
-import { useRef } from "react";
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Container } from '@/components/ui/Container';
+import { useRef } from 'react';
 
 interface ScriptCardProps {
   title: string;
@@ -11,7 +11,12 @@ interface ScriptCardProps {
   script: string;
 }
 
-export default function ScriptCard({ title, author, description, script }: ScriptCardProps) {
+export default function ScriptCard({
+  title,
+  author,
+  description,
+  script,
+}: ScriptCardProps) {
   const preRef = useRef<HTMLPreElement>(null);
 
   const handleCopyClick = () => {
@@ -22,7 +27,7 @@ export default function ScriptCard({ title, author, description, script }: Scrip
       selection?.removeAllRanges();
       selection?.addRange(range);
 
-      navigator.clipboard.writeText(preRef.current.textContent || "");
+      navigator.clipboard.writeText(preRef.current.textContent || '');
     }
   };
 

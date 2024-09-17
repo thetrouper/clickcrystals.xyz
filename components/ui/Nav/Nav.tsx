@@ -1,65 +1,75 @@
-"use client"
+'use client';
 
-import { DropLink } from "./DropLink"
-import { NavLink } from "./NavLink"
+import { DropLink } from './DropLink';
+import { NavLink } from './NavLink';
 
 const downloadDropdown = [
   {
-    "label": "Official",
-    "url": "/download",
+    label: 'Official',
+    url: '/download',
   },
   {
-    "label": "PlanetMinecraft",
-    "url": "https://www.planetminecraft.com/mod/clickcrystal/",
-    "seperate": true
+    label: 'PlanetMinecraft',
+    url: 'https://www.planetminecraft.com/mod/clickcrystal/',
+    seperate: true,
   },
   {
-    "label": "CurseForge",
-    "url": "https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
+    label: 'CurseForge',
+    url: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
   },
   {
-    "label": "GitHub Releases",
-    "url": "https://github.com/clickcrystals-development/ClickCrystals/releases"
+    label: 'GitHub Releases',
+    url: 'https://github.com/clickcrystals-development/ClickCrystals/releases',
   },
   {
-    "label": "Modrinth",
-    "url": "https://modrinth.com/mod/clickcrystals",
-    "seperate": true
-  }
-]
+    label: 'Modrinth',
+    url: 'https://modrinth.com/mod/clickcrystals',
+    seperate: true,
+  },
+];
 
 const moreDropdown = [
   {
-    "label": "Configs Library",
-    "url": "/configs"
+    label: 'Configs Library',
+    url: '/configs',
   },
   {
-    "label": "Help",
-    "url": "/help"
+    label: 'Help',
+    url: '/help',
   },
   {
-    "label": "Gallery",
-    "url": "/gallery"
+    label: 'Gallery',
+    url: '/gallery',
   },
   // {
   //   "label": "Tools",
   //   "url": "#"
   // },
   {
-    "label": "Other Projects",
-    "url": "/projects",
-    "seperate": true
+    label: 'Other Projects',
+    url: '/projects',
+    seperate: true,
   },
-]
+];
 
 export const links = [
   <NavLink label="Home" url="/" key={0} />,
-  <DropLink label="Download" links={downloadDropdown} url="/download" key={1} />,
+  <DropLink
+    label="Download"
+    links={downloadDropdown}
+    url="/download"
+    key={1}
+  />,
   <NavLink label="Scripts" url="/scripts" key={2} />,
   <NavLink label="Editor" url="/editor" key={3} />,
-  <NavLink label="Wiki" url="https://bit.ly/ccs-wiki" key={4} target="_blank" />,
-  <DropLink label="More" links={moreDropdown} url="#" key={5} />
-]
+  <NavLink
+    label="Wiki"
+    url="https://bit.ly/ccs-wiki"
+    key={4}
+    target="_blank"
+  />,
+  <DropLink label="More" links={moreDropdown} url="#" key={5} />,
+];
 
 export const Nav = () => {
   return (
@@ -70,5 +80,5 @@ export const Nav = () => {
         </ul>
       </nav>
     </>
-  )
-}
+  );
+};

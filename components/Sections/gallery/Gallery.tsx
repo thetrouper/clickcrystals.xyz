@@ -1,31 +1,34 @@
-'use client'
+'use client';
 
 const slides = [
-  "cc-home",
-  "cc-bulletin",
-  "cc-modules",
-  "cc-config",
-  "cc-search",
-  "cc-huds",
-  "cc-settings",
-  "cc-scripts",
-  "cc-ide",
-]
+  'cc-home',
+  'cc-bulletin',
+  'cc-modules',
+  'cc-config',
+  'cc-search',
+  'cc-huds',
+  'cc-settings',
+  'cc-scripts',
+  'cc-ide',
+];
 
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from 'embla-carousel-autoplay';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
-import { type CarouselApi } from "@/components/ui/carousel"
-import { useEffect, useState } from "react";
+import { type CarouselApi } from '@/components/ui/carousel';
+import { useEffect, useState } from 'react';
 
-import Image from "next/image";
-import { GetClickCrystalsButton, JoinDiscordButton } from "@/components/ui/buttons/all";
+import Image from 'next/image';
+import {
+  GetClickCrystalsButton,
+  JoinDiscordButton,
+} from '@/components/ui/buttons/all';
 
 export default function Gallery() {
   const [api, setApi] = useState<CarouselApi>();
@@ -34,23 +37,23 @@ export default function Gallery() {
 
   useEffect(() => {
     if (!api) {
-      return
+      return;
     }
 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1)
-    })
-  }, [api])
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   return (
     <main className="mx-8 my-12 md:mx-24">
       <div className="flex flex-row justify-center">
         <Carousel
           opts={{
-            align: "start",
+            align: 'start',
           }}
           setApi={setApi}
           plugins={[
@@ -81,12 +84,14 @@ export default function Gallery() {
         </Carousel>
       </div>
       <div className="flex flex-row justify-center mb-4">
-        <p className="text-sm text-slate-800 font-medium mt-4 text-center">Swipe left or right to change slides.</p>
+        <p className="text-sm text-slate-800 font-medium mt-4 text-center">
+          Swipe left or right to change slides.
+        </p>
       </div>
       <div className="flex flex-row gap-4 justify-center">
         <GetClickCrystalsButton />
         <JoinDiscordButton />
       </div>
     </main>
-  )
+  );
 }

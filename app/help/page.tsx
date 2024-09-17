@@ -1,10 +1,10 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "ClickCrystals - Help",
-}
+  title: 'ClickCrystals - Help',
+};
 
-import FAQ from "@/components/Sections/faq/FAQ";
+import FAQ from '@/components/Sections/faq/FAQ';
 
 export default function Help() {
   return (
@@ -17,7 +17,10 @@ export default function Help() {
             </h1>
             <div className="flex flex-row justify-center w-full">
               <p className="text-gray-500 font-normal max-w-4xl my-3">
-                Have some questions with ClickCrystals? Read out our FAQs here. Still have a question that is not here? Join our discord server and mention a support staff with your question and they&apos;ll get your answer solved on the way!
+                Have some questions with ClickCrystals? Read out our FAQs here.
+                Still have a question that is not here? Join our discord server
+                and mention a support staff with your question and they&apos;ll
+                get your answer solved on the way!
               </p>
             </div>
           </div>
