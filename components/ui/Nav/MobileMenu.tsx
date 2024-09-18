@@ -24,10 +24,10 @@ const MenuOverlay = () => {
     >
       <div className="flex flex-row justify-between pl-2 pr-4">
         <Title />
-        <MobileMenuNav handler={setActive} />
+        <MobileMenuNav state={active} handler={setActive} />
       </div>
       {active && (
-        <ul className="flex flex-col items-center justify-center flex-1 px-4 py-8">
+        <ul className="flex flex-col items-center justify-center px-4 h-screen overflow-y-scroll">
           {links.map((link: any, index: any) => (
             <motion.li
               key={index}
