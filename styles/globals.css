@@ -71,7 +71,7 @@ b {
 
 @layer components {
   .obsidian_line {
-    @apply absolute h-4 z-50 bottom-0 left-0 p-4 w-screen bg-repeat;
+    @apply absolute h-4 z-50 bottom-0 left-0 p-3 w-screen bg-repeat;
     background-image: url('/textures/obsidian.png');
   }
 }
