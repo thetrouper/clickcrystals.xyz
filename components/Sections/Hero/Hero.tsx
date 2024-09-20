@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="py-6 px-8 lg:grid lg:gap-8 lg:grid-cols-12 lg:py-8 lg:h-screen">
         <div className="place-self-center col-span-5 lg:col-span-7 h-auto py-8 lg:py-0">
           <h1 className="text-left text-gray-200 tracking-normal leading-[1] font-extrabold text-6xl xl:text-8xl lg:max-w-2xl mb-6 m-0">
-            Like Steroids,
+            Advanced hotkeys,
             <br /> For{' '}
             <span className="bg-[radial-gradient(ellipse_200%_100%_at_top_center,#a31ca5_100%,#ab46af_100%)] text-transparent bg-clip-text">
               Crystal PvP.
@@ -24,8 +24,7 @@ export default function Hero() {
             <p className="text-gray-200/90 font-normal max-w-2xl text-left">
               Discover ClickCrystals—a powerful, free, and open-source Minecraft
               mod designed to enhance your Crystal PvP experience, all without
-              cheats! Loaded with a comprehensive set of modules, you&apos;ll
-              feel like DrDonut 2.0!
+              cheats! Loaded with a comprehensive set of modules to modify your human input.
             </p>
           </div>
           <div className="flex flex-row gap-4 mt-4">
