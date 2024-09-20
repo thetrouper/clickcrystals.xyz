@@ -36,7 +36,7 @@ export default function Progress() {
   }, []);
 
   return (
-    <div className="py-12 bg-[#143761] my-0 [mask-image:linear-gradient(to_top,black_15%,black_30%,black_75%,transparent)] relative">
+    <div className="py-12 bg-[#0c3768] my-0 bg-[radial-gradient(ellipse_200%_200%_at_bottom_left,#054874,#000000_100%)]">
       <div className="rounded-md py-8 px-4 lg:px-32 flex gap-4 sm:flex-row flex-col justify-between">
         {progress.map((progress, index) => {
           return (
@@ -63,7 +63,6 @@ export default function Progress() {
           );
         })}
       </div>
-      <div className="obsidian_line"></div>
     </div>
   );
 }
