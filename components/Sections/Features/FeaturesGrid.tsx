@@ -12,7 +12,7 @@ const features = [
   {
     icon: '/textures/diamond.png',
     title: 'Credible quality for free!',
-    desc: "Clickcrystals is full of powerful features to let you achieve success. From left clicking to both break and place crystals to automaticaly throwing a pearl apon your request, ClickCrystals will simplify your interactions. Clickcrystals includes powerful rendering modules to display FPS, CPS, Server IP, ArrayList, Armor Durrability, and more! All huds are rendered in high quality, displaying accurate information on your gameplay.",
+    desc: 'Clickcrystals is full of powerful features to let you achieve success. From left clicking to both break and place crystals to automaticaly throwing a pearl apon your request, ClickCrystals will simplify your interactions. Clickcrystals includes powerful rendering modules to display FPS, CPS, Server IP, ArrayList, Armor Durrability, and more! All huds are rendered in high quality, displaying accurate information on your gameplay.',
     linkTitle: 'Explore the features',
     linkUrl:
       'https://github.com/clickcrystals-development/ClickCrystals#modules',
@@ -23,7 +23,7 @@ const features = [
     desc: 'ClickScript (CCS) is a scripting language that lets you create modules, macros, and more. Write .ccs files, and use our in-game editor to build, debug, and run scripts. Automate chat commands, farming, or any other action.',
     linkTitle: 'Read the CCS Documentation',
     linkUrl: 'https://bit.ly/ccs-wiki',
-  }
+  },
 ];
 
 export default function FeaturesGrid() {

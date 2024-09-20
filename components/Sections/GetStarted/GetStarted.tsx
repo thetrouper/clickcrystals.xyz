@@ -43,7 +43,7 @@ export default function GetStarted() {
             <p className="text-gray-500 font-normal m-0 text-center max-w-3xl">
               With built-in modules, ClickScript, and an online library for easy
               script downloads, ClickCrystals offers comprehensive customization
-              options. Join our thriving community today. Experience high level 
+              options. Join our thriving community today. Experience high level
               gameplay with the ultimate Minecraft mod.
             </p>
           </div>

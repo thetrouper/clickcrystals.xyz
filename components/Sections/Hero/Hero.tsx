@@ -24,7 +24,8 @@ export default function Hero() {
             <p className="text-gray-200/90 font-normal max-w-2xl text-left">
               Discover ClickCrystals—a powerful, free, and open-source Minecraft
               mod designed to enhance your Crystal PvP experience, all without
-              cheats! Loaded with a comprehensive set of modules to modify your human input.
+              cheats! Loaded with a comprehensive set of modules to modify your
+              human input.
             </p>
           </div>
           <div className="flex flex-row gap-4 mt-4">
