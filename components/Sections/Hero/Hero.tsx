@@ -1,6 +1,5 @@
 'use client';
 
-import Progress from '../Progress/Progress';
 import {
   GetClickCrystalsButton,
   JoinDiscordButton,

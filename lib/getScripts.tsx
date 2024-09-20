@@ -13,7 +13,7 @@ type ParsedScripts = Record<string, ScriptInfo>;
 
 async function fetchAndParseCategory(category: string): Promise<ParsedScripts> {
   const response = await fetch(
-    `https://itzispyder.github.io/scripts/content/${category}.category`,
+    `https://itzispyder.github.io/clickcrystals/scripts/content/${category}.category`,
     {
       cache: 'force-cache',
     },

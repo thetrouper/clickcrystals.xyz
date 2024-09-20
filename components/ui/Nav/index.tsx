@@ -13,20 +13,19 @@ export default function Header() {
     return () => {
       if (typeof window != null) {
         window.addEventListener('scroll', () => {
-          setIsTop(window.scrollY === 0 && window.location.pathname === '/');
+          console.log(window.scrollY);
+          setIsTop(window.scrollY <= 70 && window.location.pathname === '/');
         });
       }
-      setIsTop(window.scrollY === 0 && window.location.pathname === '/');
+      setIsTop(window.scrollY <= 70 && window.location.pathname === '/');
     };
   }, []);
   return (
     <div
       className="tracking-tight text-white sticky top-0 z-[99999] transition-transform duration-200"
       style={{
-        background: isTop ? 'black' : "url('/textures/obsidian.png')",
-        backgroundRepeat: 'repeat',
+        background: isTop ? 'black' : "url('/textures/obsidian.png') repeat",
         imageRendering: 'pixelated',
-        backgroundSize: '48px',
       }}
     >
       <header className="w-full duration-100 ease-in top-0 transition-all z-40">
