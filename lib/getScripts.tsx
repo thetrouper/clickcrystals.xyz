@@ -19,7 +19,7 @@ async function fetchAndParseCategory(category: string): Promise<ParsedScripts> {
     },
   );
   if (!response.ok || response.status != 200) {
-    throw Error("failed to fetch scripts from github pages")
+    throw Error('failed to fetch scripts from github pages');
   }
   const compressed: string = await response.text();
   const decompressed: string = new Compressor().decompress(compressed);
