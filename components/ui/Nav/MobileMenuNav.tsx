@@ -3,12 +3,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function MobileMenuNav({ handler }: any) {
-  const [navbarOpen, setNavbarOpen] = useState(true);
-
+export default function MobileMenuNav({ handler, state }: any) {
   const toggle = () => {
-    setNavbarOpen(!navbarOpen);
-    handler(navbarOpen);
+    handler(!state);
   };
 
   return (
@@ -24,9 +21,9 @@ export default function MobileMenuNav({ handler }: any) {
             strokeWidth="1.5"
             strokeLinecap="round"
             animate={
-              navbarOpen
-                ? { d: 'M3 6h18M3 12h18M3 18h18' }
-                : { d: 'M3 3l18 18M3 21l18-18' }
+              state
+                ? { d: 'M3 3l18 18M3 21l18-18' }
+                : { d: 'M3 6h18M3 12h18M3 18h18' }
             }
             transition={{ duration: 0.2 }}
           />

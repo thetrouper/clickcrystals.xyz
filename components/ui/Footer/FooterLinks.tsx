@@ -48,6 +48,7 @@ const footerLinks = [
         url: 'https://github.com/clickcrystals-development/ClickCrystals',
       },
       { name: 'Modrinth', url: 'https://modrinth.com/mod/clickcrystals' },
+      { name: 'Instant Download', url: '/get' },
     ],
   },
 ];

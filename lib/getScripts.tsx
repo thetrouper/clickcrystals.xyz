@@ -13,11 +13,14 @@ type ParsedScripts = Record<string, ScriptInfo>;
 
 async function fetchAndParseCategory(category: string): Promise<ParsedScripts> {
   const response = await fetch(
-    `https://itzispyder.github.io/scripts/content/${category}.category`,
+    `https://itzispyder.github.io/clickcrystals/scripts/content/${category}.category`,
     {
       cache: 'force-cache',
     },
   );
+  if (!response.ok || response.status != 200) {
+    throw Error('failed to fetch scripts from github pages');
+  }
   const compressed: string = await response.text();
   const decompressed: string = new Compressor().decompress(compressed);
   const scripts: string[] = decompressed

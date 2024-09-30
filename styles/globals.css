@@ -42,36 +42,3 @@ body {
 b {
   font-weight: 600;
 }
-
-.font-droidmono {
-  font-family: 'Droid Sans Mono', 'monospace', monospace;
-  font-weight: normal;
-  font-feature-settings:
-    'liga' 0,
-    'calt' 0;
-  font-variation-settings: normal;
-  line-height: 19px;
-  letter-spacing: 0px;
-}
-
-.h-hero {
-  height: 150vh;
-}
-@media (min-width: 512px) {
-  .h-hero {
-    height: 125vh;
-  }
-}
-
-@media (min-width: 1024px) {
-  .h-hero {
-    height: 125vh;
-  }
-}
-
-@layer components {
-  .obsidian_line {
-    @apply absolute h-4 z-50 bottom-0 left-0 p-4 w-screen bg-repeat;
-    background-image: url('/textures/obsidian.png');
-  }
-}
