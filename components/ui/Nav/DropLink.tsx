@@ -65,7 +65,7 @@ export const DropLink = ({ label, links, url = '#' }: DropLinkProps) => {
       </div>
       <div
         ref={dropdownRef}
-        className={`${isHovered || isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} z-[999999] transition-all absolute mt-0 w-48 bg-white rounded-sm p-0 m-0 shadow-lg`}
+        className={`${isHovered || isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} z-[999999] transition-all absolute mt-0 w-48 bg-white rounded-sm p-0 m-0 shadow-lg right-0`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

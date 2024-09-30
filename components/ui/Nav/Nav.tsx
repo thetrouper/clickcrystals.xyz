@@ -9,6 +9,10 @@ const downloadDropdown = [
     url: '/download',
   },
   {
+    label: 'Instant Download',
+    url: '/get',
+  },
+  {
     label: 'PlanetMinecraft',
     url: 'https://www.planetminecraft.com/mod/clickcrystal/',
     seperate: true,
