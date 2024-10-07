@@ -8,7 +8,10 @@ type ConfigID = number;
 
 type UpdatedConfig = Omit<Config, 'user' | 'id'> & { userId: number };
 
-export async function updateConfig(configId: ConfigID, updatedData: UpdatedConfig) {
+export async function updateConfig(
+  configId: ConfigID,
+  updatedData: UpdatedConfig,
+) {
   const { title, description, categories, config, userId } = updatedData;
   if (!configId) {
     throw new Error('Config ID is required');
@@ -32,14 +35,14 @@ export async function updateConfig(configId: ConfigID, updatedData: UpdatedConfi
         description: description,
         categories: categories,
         config: {
-          ...(typeof config === 'object' && config !== null ? config : {})
+          ...(typeof config === 'object' && config !== null ? config : {}),
         },
         user: {
           connect: {
             id: userId,
           },
         },
-      }
+      },
     });
 
     revalidatePath('/configs');

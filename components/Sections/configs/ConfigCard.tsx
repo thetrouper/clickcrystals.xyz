@@ -9,7 +9,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
 import { JsonValue } from '@prisma/client/runtime/library';
-import ConfigCardControls from "./ConfigCardControls.tsx";
+import ConfigCardControls from './ConfigCardControls.tsx';
 
 export type Config = {
   id: number;
@@ -39,9 +39,7 @@ export default async function ConfigCard({ config }: { config: Config }) {
 
   return (
     <div>
-      <Card
-        className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col"
-      >
+      <Card className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col">
         <CardContent className="flex-grow space-y-2 p-4">
           <CardTitle className="text-lg">{config.title}</CardTitle>
           <div className="flex flex-wrap gap-2 -ml-1">
