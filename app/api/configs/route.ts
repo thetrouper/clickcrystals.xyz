@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const response = configs.map(config => ({
+    const response = configs.map((config) => ({
       id: config.id.toString(),
       authorId: config.user.id.toString(),
       author: config.user.name,
@@ -37,6 +37,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(response);
   } catch (error) {
     console.error('Error fetching configs:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 },
+    );
   }
 }

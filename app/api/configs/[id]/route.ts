@@ -2,7 +2,10 @@ import prisma from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 // GET /api/configs/[id]
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {
   const { id } = params;
 
   const config = await prisma.config.findUnique({
