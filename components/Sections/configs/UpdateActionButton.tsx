@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -26,7 +26,7 @@ import {
 import { useSession } from 'next-auth/react';
 import { updateConfig } from './UpdateConfigAction';
 import { deleteConfig } from './DeleteServerAction';
-import { type Config } from "./ConfigCard";
+import { type Config } from './ConfigCard';
 
 const UpdateAction = ({ config }: { config: Config }) => {
   const { toast } = useToast();
@@ -97,7 +97,8 @@ const UpdateAction = ({ config }: { config: Config }) => {
       } else {
         toast({
           title: 'Failed to update config',
-          description: 'There was an error while updating your config. Please try again!',
+          description:
+            'There was an error while updating your config. Please try again!',
           variant: 'destructive',
         });
       }
@@ -113,7 +114,10 @@ const UpdateAction = ({ config }: { config: Config }) => {
   };
 
   const renderForm = () => (
-    <form className="grid items-start gap-4 max-md:px-4" onSubmit={handleSubmit}>
+    <form
+      className="grid items-start gap-4 max-md:px-4"
+      onSubmit={handleSubmit}
+    >
       <div className="grid gap-2">
         <Label htmlFor="title">
           Title <span className="text-red-500">*</span>
@@ -149,14 +153,12 @@ const UpdateAction = ({ config }: { config: Config }) => {
               ...formData,
               categories: e.target.value
                 .split(',')
-                .map((cat: string) => cat.trim())
+                .map((cat: string) => cat.trim()),
             })
           }
         />
       </div>
-      <Button type="submit">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
       <Button
         variant="destructive"
         onClick={async (e) => {
@@ -175,7 +177,8 @@ const UpdateAction = ({ config }: { config: Config }) => {
             } else {
               toast({
                 title: 'Failed to delete config',
-                description: 'There was an error while deleting your config. Please try again!',
+                description:
+                  'There was an error while deleting your config. Please try again!',
                 variant: 'destructive',
               });
             }
@@ -240,7 +243,7 @@ const UpdateAction = ({ config }: { config: Config }) => {
       <Button
         variant="secondary"
         onClick={() => setOpen(true)}
-        className='w-full m-0 rounded-tl-none rounded-tr-none hover:opacity-80 transition-all duration-100 bg-[#4482ef] text-white hover:bg-[#4471efe6] rounded-br-none rounded-bl-none'
+        className="w-full m-0 rounded-tl-none rounded-tr-none hover:opacity-80 transition-all duration-100 bg-[#4482ef] text-white hover:bg-[#4471efe6] rounded-br-none rounded-bl-none"
       >
         Update
       </Button>
