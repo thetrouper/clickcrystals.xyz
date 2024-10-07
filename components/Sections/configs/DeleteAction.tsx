@@ -7,12 +7,12 @@ const DeleteAction = ({ configId }: { configId: number }) => {
       <Button
         variant="destructive"
         onClick={() => deleteConfig(configId)}
-        className='w-full m-0 rounded-tl-none rounded-br-none rounded-tr-none hover:opacity-80 transition-all duration-100'
+        className="w-full m-0 rounded-tl-none rounded-br-none rounded-tr-none hover:opacity-80 transition-all duration-100"
       >
         Delete
       </Button>
     </>
-  )
-}
+  );
+};
 
 export default DeleteAction;
