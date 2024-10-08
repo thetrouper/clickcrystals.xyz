@@ -8,7 +8,7 @@ export default function Header() {
     <div
       className="tracking-tight text-white sticky top-0 z-[99999] transition-transform duration-200"
       style={{
-        background: "black",
+        background: 'black',
         imageRendering: 'pixelated',
       }}
     >

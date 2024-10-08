@@ -1,5 +1,5 @@
-import prisma from "@/lib/db";
-import ConfigsGrid from "./ConfigsGrid";
+import prisma from '@/lib/db';
+import ConfigsGrid from './ConfigsGrid';
 
 export default async function Configs() {
   const configs = await prisma.config.findMany({
@@ -16,7 +16,5 @@ export default async function Configs() {
     },
   });
 
-  return (
-    <ConfigsGrid configs={configs} />
-  );
+  return <ConfigsGrid configs={configs} />;
 }
