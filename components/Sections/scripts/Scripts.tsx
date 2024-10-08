@@ -41,16 +41,16 @@ export default function Scripts() {
 
   const filteredScripts = scripts
     ? Object.entries(scripts).filter(([title, scriptData]: any) => {
-      const matchesCategory =
-        selectedCategory === 'All' ||
-        scriptData.category === selectedCategory.toLowerCase();
-      const matchesSearchQuery =
-        title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        scriptData.description
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearchQuery;
-    })
+        const matchesCategory =
+          selectedCategory === 'All' ||
+          scriptData.category === selectedCategory.toLowerCase();
+        const matchesSearchQuery =
+          title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          scriptData.description
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearchQuery;
+      })
     : [];
 
   if (selectedCategory === 'All') {

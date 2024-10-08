@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import NewConfigCard from './NewConfig';
 import prisma from '@/lib/db';
@@ -16,26 +16,28 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
 
   const updateCategory = (value: string) => {
     setCategory(value);
-  }
+  };
 
   const updateFilter = (e: any) => {
     setFilter(e.target.value);
-  }
+  };
 
-  const filteredConfigs = configs.filter(({ title, description, categories, user }: any) => {
-    const matchesCategory =
-      category === 'All' ||
-      categories.map((cate: string) => cate.toLowerCase()).includes(category.toLowerCase());
-    const matchesSearchQuery =
-      title.toLowerCase().includes(filter.toLowerCase()) ||
-      description
-        .toLowerCase()
+  const filteredConfigs = configs.filter(
+    ({ title, description, categories, user }: any) => {
+      const matchesCategory =
+        category === 'All' ||
+        categories
+          .map((cate: string) => cate.toLowerCase())
+          .includes(category.toLowerCase());
+      const matchesSearchQuery =
+        title.toLowerCase().includes(filter.toLowerCase()) ||
+        description.toLowerCase().includes(filter.toLowerCase());
+      categories
+        .map((cat: string) => cat.toLowerCase())
         .includes(filter.toLowerCase());
-    categories.map((cat: string) => cat.toLowerCase())
-      .includes(filter.toLowerCase());
-    return matchesCategory && matchesSearchQuery;
-  })
-
+      return matchesCategory && matchesSearchQuery;
+    },
+  );
 
   return (
     <div>
@@ -69,11 +71,9 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
           ) : (
             <>
               <NewConfigCard />
-              {
-                filteredConfigs.map((config: any) => (
-                  <ConfigCard key={config.id} config={config} />
-                ))
-              }
+              {filteredConfigs.map((config: any) => (
+                <ConfigCard key={config.id} config={config} />
+              ))}
             </>
           )}
         </Suspense>
@@ -81,8 +81,6 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
     </div>
   );
 }
-
-
 
 function Fallback() {
   return (
