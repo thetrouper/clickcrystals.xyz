@@ -39,7 +39,7 @@ export default async function ConfigCard({ config }: { config: Config }) {
 
   return (
     <div>
-      <Card className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col">
+      <Card className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col h-full">
         <CardContent className="flex-grow space-y-2 p-4">
           <CardTitle className="text-lg">{config.title}</CardTitle>
           <div className="flex flex-wrap gap-2 -ml-1">
