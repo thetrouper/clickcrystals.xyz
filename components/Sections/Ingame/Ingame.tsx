@@ -34,10 +34,10 @@ export default function Ingame() {
           </div>
           <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
             <span className="text-xl md:text-2xl lg:text-3xl">
-              Ultimate features are inside!
+              Ultimate utilities are inside!
             </span>
             <br />
-            That <span className="text-blue-600">beats</span> everyone!!
+            That <span className="text-blue-600">enhance</span> your experience!
           </h1>
           <div className="w-full flex flex-row justify-center">
             <p className="text-gray-500 font-normal my-4 text-center max-w-4xl">
