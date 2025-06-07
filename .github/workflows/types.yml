@@ -24,20 +24,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies
-        run: pnpm i
+        run: npm install --legacy-peer-deps
 
       - name: Run ESLint
-        run: pnpm lint --fix
+        run: npm run lint --fix
 
       - name: Run Prettier
-        run: pnpm format
+        run: npm run format
 
       - name: Run Type Check
-        run: pnpm type-check
+        run: npm run type-check
 
       - name: Commit and Push Changes
         run: |
