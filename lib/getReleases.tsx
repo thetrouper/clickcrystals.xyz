@@ -20,26 +20,45 @@ type Assets = {
 export async function getReleases(total: number = 30) {
   try {
     const headers = process.env.GITHUB_PAT
-      ? {
-          Authorization: `Bearer ${process.env.GITHUB_PAT}`,
-        }
+      ? { Authorization: `Bearer ${process.env.GITHUB_PAT}` }
       : undefined;
-
     const response = await fetch(
       `https://api.github.com/repos/ItziSpyder/ClickCrystals/releases?per_page=${total}`,
-      {
-        method: 'GET',
-        headers: headers,
-        next: { revalidate: 300 },
-      },
+      { method: 'GET', headers, next: { revalidate: 300 } },
     );
     const releases = await response.json();
-    return releases;
-  } catch (err) {
+    return releases.slice(
+      0,
+      releases.findIndex((r: any) => r.name === 'Release 1.20.2-1.1.4'),
+    );
+  } catch {
     throw new Error('Failed to fetch from API');
   }
 }
 
+/* 
+Last updated: 2025-07-06
+  {'1.21.5': '1.21.5', 
+  '1.21.4': null, 
+  '1.21.3': null, 
+  '1.21.2': null, 
+  '1.21.1': '1.21', 
+  '1.21': '1.21', 
+  '1.20.6': '1.20.6', 
+  '1.20.5': null, 
+  '1.20.4': '1.20.4', 
+  '1.20.3': '1.20.4', 
+  '1.20.2': '1.20.2', 
+  '1.20.1': '1.20', 
+  '1.20': '1.20'} 
+
+  This means that builds of the mod for 1.20 are also intended to be used for 1.20.1.
+  x: x means the x mod's build for minecraft versions x is intended to be used for the x version
+  x: y means the y version's build is intended to be used for the x version of the game
+  x: null means that the x version of minecraft is not supported by the mod
+  This is used to map the mod's builds to the minecraft versions without duplicating the builds.
+  e.g. 1.20 builds are intended to be used in 1.20 itself as well as 1.20.1 (1.20: 1.20 and 1.20.1: 1.20)
+*/
 async function getCCMappings() {
   const response = await fetch(
     'https://itzispyder.github.io/clickcrystals/info',
