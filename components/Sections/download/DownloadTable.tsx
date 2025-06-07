@@ -2,30 +2,29 @@
 
 import { AgGridReact } from 'ag-grid-react';
 import '@/styles/ag-grid-theme.css';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
-import { Checkbox } from '@/components/ui/checkbox';
 // import Latest from './Latest';
 
 export default function DownloadTable() {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showAllVers, setShowAllVers] = useState(0);
   const [colDefs, setColDefs]: any[] = useState();
 
   useEffect(() => {
     const versionColumns = [
+      { field: '1215', headerName: '1.21.5' },
       { field: '1211', headerName: '1.21.1' },
       { field: '121', headerName: '1.21' },
       { field: '1206', headerName: '1.20.6' },
       { field: '1204', headerName: '1.20.4' },
-      { field: '1203', headerName: '1.20.3' },
       { field: '1202', headerName: '1.20.2' },
       { field: '1201', headerName: '1.20.1' },
       { field: '120', headerName: '1.20' },
+      { field: '1194', headerName: '1.19.4' },
     ];
 
     setColDefs([
