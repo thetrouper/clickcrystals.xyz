@@ -28,7 +28,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install --legacy-peer-deps
+        run: pnpm i
 
       - name: Run ESLint
         run: pnpm lint --fix
