@@ -164,8 +164,8 @@
   --ag-row-height: var(
     --ag-inherited-row-height,
     calc(
-      max(var(--ag-icon-size), var(--ag-font-size)) + var(--ag-grid-size) * 3.5 *
-        var(--ag-row-vertical-padding-scale)
+      max(var(--ag-icon-size), var(--ag-font-size)) + var(--ag-grid-size) *
+        3.5 * var(--ag-row-vertical-padding-scale)
     )
   );
   --ag-row-vertical-padding-scale: var(
@@ -175,8 +175,8 @@
   --ag-header-height: var(
     --ag-inherited-header-height,
     calc(
-      max(var(--ag-icon-size), var(--ag-font-size)) + var(--ag-grid-size) * 4.25 *
-        var(--ag-header-vertical-padding-scale)
+      max(var(--ag-icon-size), var(--ag-font-size)) + var(--ag-grid-size) *
+        4.25 * var(--ag-header-vertical-padding-scale)
     )
   );
   --ag-header-vertical-padding-scale: var(
@@ -1981,7 +1981,8 @@ ag-grid-polymer {
   );
 }
 .ag-cell-range-selected-3:not(.ag-cell-focus) {
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       var(--ag-range-selection-background-color),
       var(--ag-range-selection-background-color)
     ),
@@ -1991,7 +1992,8 @@ ag-grid-polymer {
     );
 }
 .ag-cell-range-selected-4:not(.ag-cell-focus) {
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       var(--ag-range-selection-background-color),
       var(--ag-range-selection-background-color)
     ),
@@ -3728,14 +3730,14 @@ ag-grid-polymer {
 }
 .ag-ltr .ag-set-filter-item {
   padding-left: calc(
-    var(--ag-widget-container-horizontal-padding) + var(--ag-indentation-level) *
-      var(--ag-set-filter-indent-size)
+    var(--ag-widget-container-horizontal-padding) +
+      var(--ag-indentation-level) * var(--ag-set-filter-indent-size)
   );
 }
 .ag-rtl .ag-set-filter-item {
   padding-right: calc(
-    var(--ag-widget-container-horizontal-padding) + var(--ag-indentation-level) *
-      var(--ag-set-filter-indent-size)
+    var(--ag-widget-container-horizontal-padding) +
+      var(--ag-indentation-level) * var(--ag-set-filter-indent-size)
   );
 }
 .ag-ltr .ag-set-filter-add-group-indent {
@@ -5528,14 +5530,14 @@ input[class^='ag-'][type='range']:disabled {
   margin: 0;
 }
 :where(
-    input[class^='ag-']:not([type]),
-    input[class^='ag-'][type='text'],
-    input[class^='ag-'][type='number'],
-    input[class^='ag-'][type='tel'],
-    input[class^='ag-'][type='date'],
-    input[class^='ag-'][type='datetime-local'],
-    textarea[class^='ag-']
-  ) {
+  input[class^='ag-']:not([type]),
+  input[class^='ag-'][type='text'],
+  input[class^='ag-'][type='number'],
+  input[class^='ag-'][type='tel'],
+  input[class^='ag-'][type='date'],
+  input[class^='ag-'][type='datetime-local'],
+  textarea[class^='ag-']
+) {
   background-color: var(--ag-input-background-color);
   border: var(--ag-input-border);
   border-radius: var(--ag-input-border-radius);
