@@ -17,6 +17,9 @@ type Assets = {
   '119': null | React.ReactElement;
 };
 
+// Releases are fetched and stripped to nearly the first 15 releases because
+// the first few releases meet our format requirements so can be
+// easy to parse.
 export async function getReleases(total: number = 30) {
   try {
     const headers = process.env.GITHUB_PAT
