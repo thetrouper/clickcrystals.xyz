@@ -64,7 +64,7 @@ export async function getPlanetMCDownloads(): Promise<number> {
   ).text();
   const downloads = parseInt(downloadText.replace(/,/g, ''), 10);
 
-  return Number.isNaN(downloads) ? 8459 : downloads; // hardcoded
+  return Number.isNaN(downloads) ? 10020 : downloads; // hardcoded
 }
 
 export async function getTotalDownloads(): Promise<number> {

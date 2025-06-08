@@ -2,499 +2,61 @@
 
 import { AgGridReact } from 'ag-grid-react';
 import '@/styles/ag-grid-theme.css';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
-import { Checkbox } from '@/components/ui/checkbox';
 // import Latest from './Latest';
 
 export default function DownloadTable() {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showAllVers, setShowAllVers] = useState(0);
   const [colDefs, setColDefs]: any[] = useState();
 
-  const handleShowAllVers = (checked: boolean) => {
-    setShowAllVers(checked ? 1 : 0);
-    if (checked) {
-      setColDefs([
-        { field: 'version', pinned: true, movable: false, width: 126 },
-        {
-          field: 'code',
-          headerName: 'Source Code',
-          cellRenderer: (params: any) => {
-            return (
-              <Link href={params.value} className="text-blue-500">
-                Open
-              </Link>
-            );
-          },
-          width: 115,
-        },
-        {
-          field: 'downloads',
-          cellRenderer: (params: any) => {
-            return parseNumber(params.value);
-          },
-          width: 115,
-        },
-        {
-          field: '1211',
-          headerName: '1.21.1',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '121',
-          headerName: '1.21',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1206',
-          headerName: '1.20.6',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1205',
-          headerName: '1.20.5',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1204',
-          headerName: '1.20.4',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1203',
-          headerName: '1.20.3',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1202',
-          headerName: '1.20.2',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1201',
-          headerName: '1.20.1',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '120',
-          headerName: '1.20',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1194',
-          headerName: '1.19.4',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1193',
-          headerName: '1.19.3',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1192',
-          headerName: '1.19.2',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1191',
-          headerName: '1.19.1',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-      ]);
-    } else {
-      setColDefs([
-        { field: 'version', pinned: true, movable: false, width: 126 },
-        {
-          field: 'code',
-          headerName: 'Source Code',
-          cellRenderer: (params: any) => {
-            return (
-              <Link href={params.value} className="text-blue-500">
-                Open
-              </Link>
-            );
-          },
-          width: 115,
-        },
-        {
-          field: 'downloads',
-          cellRenderer: (params: any) => {
-            return parseNumber(params.value);
-          },
-          width: 115,
-        },
-        {
-          field: '1211',
-          headerName: '1.21.1',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '121',
-          headerName: '1.21',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1206',
-          headerName: '1.20.6',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1204',
-          headerName: '1.20.4',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1203',
-          headerName: '1.20.3',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1202',
-          headerName: '1.20.2',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '1201',
-          headerName: '1.20.1',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-        {
-          field: '120',
-          headerName: '1.20',
-          cellRenderer: (params: any) => {
-            return params.value === null ? (
-              'Not available'
-            ) : (
-              <Link href={params.value} className="text-blue-500">
-                Download
-              </Link>
-            );
-          },
-          width: 160,
-        },
-      ]);
-    }
-  };
-
   useEffect(() => {
+    const versionColumns = [
+      { field: '1215', headerName: '1.21.5' },
+      { field: '1211', headerName: '1.21.1' },
+      { field: '121', headerName: '1.21' },
+      { field: '1206', headerName: '1.20.6' },
+      { field: '1204', headerName: '1.20.4' },
+      { field: '1202', headerName: '1.20.2' },
+      { field: '1201', headerName: '1.20.1' },
+      { field: '120', headerName: '1.20' },
+      { field: '1194', headerName: '1.19.4' },
+    ];
+
     setColDefs([
       { field: 'version', pinned: true, movable: false, width: 126 },
       {
         field: 'code',
         headerName: 'Source Code',
-        cellRenderer: (params: any) => {
-          return (
-            <Link href={params.value} className="text-blue-500">
-              Open
-            </Link>
-          );
-        },
+        cellRenderer: (params: any) => (
+          <Link href={params.value} className="text-blue-500">
+            Open
+          </Link>
+        ),
         width: 115,
       },
       {
         field: 'downloads',
-        cellRenderer: (params: any) => {
-          return parseNumber(params.value);
-        },
+        cellRenderer: (params: any) => parseNumber(params.value),
         width: 115,
       },
-      {
-        field: '1211',
-        headerName: '1.21.1',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
+      ...versionColumns.map((col) => ({
+        field: col.field,
+        headerName: col.headerName,
+        cellRenderer: (params: any) =>
+          params.value === null ? (
             'Not available'
           ) : (
             <Link href={params.value} className="text-blue-500">
               Download
             </Link>
-          );
-        },
+          ),
         width: 160,
-      },
-      {
-        field: '121',
-        headerName: '1.21',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
-      {
-        field: '1206',
-        headerName: '1.20.6',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
-      {
-        field: '1204',
-        headerName: '1.20.4',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
-      {
-        field: '1203',
-        headerName: '1.20.3',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
-      {
-        field: '1202',
-        headerName: '1.20.2',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
-      {
-        field: '1201',
-        headerName: '1.20.1',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
-      {
-        field: '120',
-        headerName: '1.20',
-        cellRenderer: (params: any) => {
-          return params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          );
-        },
-        width: 160,
-      },
+      })),
     ]);
     const loadReleases = async () => {
       try {
@@ -523,45 +85,40 @@ export default function DownloadTable() {
       <Downloads />
 
       <div className="my-4">
-        <div className="flex items-center space-x-2 cursor-pointer">
-          <Checkbox
-            id="showAllVers"
-            value={showAllVers}
-            onCheckedChange={handleShowAllVers}
-          />
-          <label
-            htmlFor="showAllVers"
-            className="select-none text-[14px] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Show all supported version downloads?
-          </label>
-        </div>
         <p className="text-xs text-black max-w-2xl select-none mt-2">
-          If your minecraft version is missing here even after ticking the
-          checkbox above, it means that ClickCrystals has never supported that
-          minecraft version. If your version is new, ClickCrystals&apos;s next
-          update might release support for it.
+          The table below shows several of the recent releases of ClickCrystals.
+          If you want to see all our 90+ releases, please visit our GitHub
+          releases page.
           <br />
           <br />
-          <span className="font-semibold">Note:</span> you will have to scroll
-          right in the table below to see downloads for other versions
+          Many of the minecraft versions are not supported by the mod, so if
+          there isn't a specific column for your version, it may not be
+          supported.
+          <br />
+          <br />
+          <span className="font-semibold">Note:</span> you might have to scroll
+          right in the grid to see downloads for other versions.
         </p>
         <div className="border-l-4 border-yellow-500 bg-yellow-100 p-4 my-4">
           <p className="md:max-w-3xl text-sm text-yellow-800 font-semibold mb-2">
             Important Safety Warning:
           </p>
           <p className="md:max-w-3xl text-xs">
-            ClickCrystals has only ever been released for Fabric and we do not
-            plan to support Forge or any other mod loaders.
+            ClickCrystals is only available for the Fabric modloader and there
+            are no current or future plans to port the mod to other modloaders.
           </p>
-          <p className="md:max-w-3xl text-xs text-yellow-900 font-semibold mt-2">
-            There are no official ports for other modloaders of ClickCrystals.
-            If you ever find a ClickCrystal port for another modloader, THEN DO
-            NOT DOWNLOAD OR USE IT. They can add rats hidden in the code and
-            your minecraft account might get hacked by the fake version's
-            author. The original, official ClickCrystals staff is not
-            responsible for your account being hacked by a ClickCrystal ratted
-            version.
+          <p className="md:max-w-3xl text-xs text-yellow-900 mt-2">
+            If you see any downloads for ClickCrystals on other modloaders, they
+            are not official and may contain malicious code. Please only
+            download ClickCrystals from the official sources listed below.
+            <br />
+            <br />
+            <span className="font-semibold">
+              This is not rare, we have seen several websites publishing
+              unofficial malware versions of ClickCrystals.
+            </span>{' '}
+            Therefore, please be careful and only download from the official
+            sources listed on our website.
           </p>
         </div>
       </div>

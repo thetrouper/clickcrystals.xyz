@@ -3,15 +3,16 @@
 import {
   Card,
   CardDescription,
-  CardHeader,
+  CardContent,
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
 import { JsonValue } from '@prisma/client/runtime/library';
+import ConfigCardControls from './ConfigCardControls.tsx';
 
-type Config = {
-  id?: number | string;
+export type Config = {
+  id: number;
   title: string;
   description: string;
   user: any;
@@ -19,7 +20,7 @@ type Config = {
   config: JsonValue;
 };
 
-export default function ConfigCard({ config }: { config: Config }) {
+export default async function ConfigCard({ config }: { config: Config }) {
   const handleDownload = () => {
     const blob = new Blob([JSON.stringify(config.config, null, 2)], {
       type: 'application/json',
@@ -38,11 +39,8 @@ export default function ConfigCard({ config }: { config: Config }) {
 
   return (
     <div>
-      <Card
-        className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col"
-        onClick={handleDownload}
-      >
-        <CardHeader className="flex-grow space-y-2 p-4">
+      <Card className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col h-full">
+        <CardContent className="flex-grow space-y-2 p-4">
           <CardTitle className="text-lg">{config.title}</CardTitle>
           <div className="flex flex-wrap gap-2 -ml-1">
             {config.categories.map((category, index) => (
@@ -78,7 +76,8 @@ export default function ConfigCard({ config }: { config: Config }) {
               </>
             )}
           </div>
-        </CardHeader>
+        </CardContent>
+        <ConfigCardControls downloadAction={handleDownload} config={config} />
       </Card>
     </div>
   );
