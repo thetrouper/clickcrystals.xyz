@@ -64,7 +64,7 @@ Last updated: 2025-07-06
 */
 async function getCCMappings() {
   const response = await fetch(
-    'https://itzispyder.github.io/clickcrystals/info',
+    'https://itzispyder.github.io/clickcrystals/info.json',
     {
       method: 'GET',
       next: { revalidate: 200 },
