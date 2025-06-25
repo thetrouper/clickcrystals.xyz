@@ -1,6 +1,7 @@
 'use server';
 
 type Assets = {
+  '1216': null | React.ReactElement;
   '1215': null | React.ReactElement;
   '1211': null | React.ReactElement;
   '121': null | React.ReactElement;
@@ -71,7 +72,7 @@ async function getCCMappings() {
     },
   );
 
-  const info = JSON.parse(await response.text());
+  const info = await response.json();
 
   return info['versionMappings'];
 }
@@ -84,6 +85,7 @@ export async function getParsedReleases() {
 
       let downloads = 0;
       let assetsData: Assets = {
+        '1216': null,
         '1215': null,
         '1211': null,
         '121': null,
@@ -101,7 +103,9 @@ export async function getParsedReleases() {
         let assetName = asset.name;
         let assetURL = asset.browser_download_url;
 
-        if (assetName.includes('1.21.5')) {
+        if (assetName.includes('1.21.6')) {
+          assetsData['1216'] = assetURL;
+        } else if (assetName.includes('1.21.5')) {
           assetsData['1215'] = assetURL;
         } else if (assetName.includes('1.21.1')) {
           assetsData['1211'] = assetURL;
