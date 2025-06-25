@@ -29,20 +29,20 @@ export default function Footer() {
               icon: faDiscord,
               url: 'https://discord.gg/zg3ge9VTgr',
               label: 'Discord',
-              color: 'blue-600'
+              color: 'blue-600',
             },
             {
               icon: faYoutube,
               url: 'https://www.youtube.com/@itzispyder',
               label: 'YouTube',
-              color: 'red-600'
+              color: 'red-600',
             },
             {
               icon: faGithub,
               url: 'https://github.com/clickcrystals-development/ClickCrystals',
-              label: "GitHub",
-              color: 'slate-800'
-            }
+              label: 'GitHub',
+              color: 'slate-800',
+            },
           ].map(({ icon, url, label, color }) => (
             <Link
               key={label}
@@ -56,23 +56,23 @@ export default function Footer() {
           ))}
           {[
             {
-              color: "[#f16436]",
-              label: "CurseForge",
-              link: "https://www.curseforge.com/minecraft/mc-mods/clickcrystals",
-              icon: "/icons/curseforge.svg"
+              color: '[#f16436]',
+              label: 'CurseForge',
+              link: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
+              icon: '/icons/curseforge.svg',
             },
             {
-              color: "[#1f86a0]",
-              label: "PlanetMC",
-              link: "https://www.planetminecraft.com/mod/clickcrystal/",
-              icon: "/icons/planetmc.svg"
+              color: '[#1f86a0]',
+              label: 'PlanetMC',
+              link: 'https://www.planetminecraft.com/mod/clickcrystal/',
+              icon: '/icons/planetmc.svg',
             },
             {
-              color: "[#39a822]",
-              label: "Modrinth",
-              link: "https://modrinth.com/mod/clickcrystals",
-              icon: "/icons/modrinth.svg"
-            }
+              color: '[#39a822]',
+              label: 'Modrinth',
+              link: 'https://modrinth.com/mod/clickcrystals',
+              icon: '/icons/modrinth.svg',
+            },
           ].map(({ color, label, link, icon }) => (
             <Link
               key={label}
@@ -95,13 +95,18 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-1 md:gap-3 text-blue-200 text-xs text-center md:text-left">
         <span>
           Website made by{' '}
-          <Link target="_blank" href="https://ashish.top" className="text-white">
+          <Link
+            target="_blank"
+            href="https://ashish.top"
+            className="text-white"
+          >
             Ashish Agarwal
           </Link>
         </span>
         <span className="hidden md:inline">|</span>
         <span>
-          &copy; {new Date().getFullYear()} ClickCrystals. Not affiliated with Mojang or Microsoft.
+          &copy; {new Date().getFullYear()} ClickCrystals. Not affiliated with
+          Mojang or Microsoft.
         </span>
       </div>
     </footer>
