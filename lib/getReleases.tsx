@@ -1,6 +1,8 @@
 'use server';
 
 type Assets = {
+  '1218': null | React.ReactElement;
+  '1217': null | React.ReactElement;
   '1216': null | React.ReactElement;
   '1215': null | React.ReactElement;
   '1211': null | React.ReactElement;
@@ -85,6 +87,8 @@ export async function getParsedReleases() {
 
       let downloads = 0;
       let assetsData: Assets = {
+        '1218': null,
+        '1217': null,
         '1216': null,
         '1215': null,
         '1211': null,
