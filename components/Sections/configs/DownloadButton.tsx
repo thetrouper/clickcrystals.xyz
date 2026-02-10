@@ -10,7 +10,7 @@ export default function DownloadButton({
   return (
     <Button
       onClick={downloadAction}
-      className="w-full m-0 rounded-tl-none rounded-tr-none hover:opacity-80 transition-all duration-100 bg-[#2b65ca] text-white hover:bg-[#2359b6] rounded-bl-none rounded-br-none"
+      className="w-full mt-3 bg-emerald-800 hover:bg-emerald-700 text-emerald-300 hover:text-emerald-200 transition-colors font-medium text-sm"
     >
       Download
     </Button>

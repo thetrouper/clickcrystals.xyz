@@ -29,7 +29,7 @@ export default async function ConfigCard({ config }: { config: Config }) {
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'config.json';
+    a.download = `${config.title.toLowerCase().replace(/\s+/g, '-')}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -38,47 +38,40 @@ export default async function ConfigCard({ config }: { config: Config }) {
   };
 
   return (
-    <div>
-      <Card className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col h-full">
-        <CardContent className="flex-grow space-y-2 p-4">
-          <CardTitle className="text-lg">{config.title}</CardTitle>
-          <div className="flex flex-wrap gap-2 -ml-1">
-            {config.categories.map((category, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {category}
-              </Badge>
-            ))}
-          </div>
-          <CardDescription className="text-sm text-muted-foreground line-clamp-3">
-            {config.description}
-          </CardDescription>
-          <div className="flex items-center space-x-2 pt-2">
-            {config.user.avatar != '#' && (
-              <Avatar className="w-6 h-6">
-                <AvatarImage
-                  src={config.user.avatar}
-                  alt={config.user.name}
-                  className="rounded-full"
-                />
-                <AvatarFallback>
-                  {config.user.name.slice(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-            )}
-            {config.user.avatar != '#' ? (
-              <div className="text-sm">{config.user.name}</div>
-            ) : (
-              <>
-                by
-                <div className="text-sm font-semibold ml-1">
-                  {config.user.name}
-                </div>
-              </>
-            )}
-          </div>
-        </CardContent>
-        <ConfigCardControls downloadAction={handleDownload} config={config} />
-      </Card>
+    <div className="border border-slate-800 bg-slate-900/50 hover:bg-slate-900/80 rounded-lg p-4 transition-all group flex flex-col h-full">
+      <div className="flex-grow space-y-3">
+        <h3 className="text-base font-semibold text-white group-hover:text-blue-400 transition-colors">
+          {config.title}
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {config.categories.map((category, index) => (
+            <Badge key={index} variant="outline" className="text-xs border-slate-700 text-slate-400 bg-slate-800/50">
+              {category}
+            </Badge>
+          ))}
+        </div>
+        <p className="text-sm text-slate-400 line-clamp-2 leading-relaxed">
+          {config.description}
+        </p>
+        <div className="flex items-center space-x-2 pt-2">
+          {config.user.avatar != '#' && (
+            <Avatar className="w-5 h-5">
+              <AvatarImage
+                src={config.user.avatar}
+                alt={config.user.name}
+                className="rounded-full"
+              />
+              <AvatarFallback>
+                {config.user.name.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          )}
+          <span className="text-xs text-slate-500 font-medium">
+            by {config.user.name}
+          </span>
+        </div>
+      </div>
+      <ConfigCardControls downloadAction={handleDownload} config={config} />
     </div>
   );
 }

@@ -29,15 +29,15 @@ import { saveConfig } from './SaveConfig';
 
 const PlusIcon = () => (
   <svg
-    width="128"
-    height="128"
+    width="64"
+    height="64"
     viewBox="0 0 128 128"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       d="M64 16V112M16 64H112"
-      stroke="#c3c3c3"
+      stroke="#475569"
       strokeWidth="12"
       strokeLinecap="square"
       strokeLinejoin="miter"
@@ -299,15 +299,15 @@ export default function NewConfigCard() {
 
   return (
     <>
-      <Card
-        className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col"
+      <div
+        className="border-2 border-dashed border-slate-700 bg-slate-900/30 hover:bg-slate-900/50 hover:border-slate-600 rounded-lg p-4 transition-all cursor-pointer flex flex-col items-center justify-center h-full min-h-[200px] group"
         onClick={handleNewConfigClick}
       >
-        <CardContent className="flex items-center justify-center h-full text-muted-foreground/20 p-3">
+        <div className="group-hover:scale-110 transition-transform">
           <PlusIcon />
-          <span className="sr-only">Add new config</span>
-        </CardContent>
-      </Card>
+        </div>
+        <p className="text-sm text-slate-500 group-hover:text-slate-400 font-medium mt-2 transition-colors">Upload New Config</p>
+      </div>
 
       <input
         type="file"

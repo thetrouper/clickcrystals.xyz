@@ -41,16 +41,17 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
 
   return (
     <div>
-      <div className="flex mb-4 gap-4">
+      <div className="flex gap-4 mb-4">
         <SearchCategoryMenu value={category} onChange={updateCategory} />
         <Input
           type="text"
-          placeholder="Filter Configs"
+          placeholder="Search configs..."
           value={filter}
           onChange={updateFilter}
+          className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 focus:border-blue-500"
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <Suspense fallback={<Fallback />}>
           {filteredConfigs.length === 0 ? (
             <div className="flex flex-col col-span-full text-center py-10 gap-2">
@@ -59,7 +60,7 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
                 className="size-8 text-black left-0 right-0 mx-auto"
               />
               <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
-                No scripts found
+                No configs found
               </h2>
               <div className="flex justify-center">
                 <p className="text-gray-500 text-center max-w-4xl">

@@ -13,11 +13,11 @@ export default function ScriptsArchive() {
       <main className="my-12 mx-6 md:mx-24">
         <div className="py-0">
           <div className="text-left">
-            <h1 className="text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
+            <h1 className="text-white tracking-tight font-bold text-3xl md:text-4xl lg:text-5xl">
               ClickCrystals{' '}
-              <span className="text-blue-600">Configs Explorer</span>
+              <span className="text-blue-500">Configs Explorer</span>
             </h1>
-            <p className="text-gray-500 font-normal max-w-4xl mt-3 mb-6">
+            <p className="text-slate-400 text-base md:text-lg max-w-3xl my-4">
               ClickCrystals Configs are used to import/export and share your
               ClickCrystals module, HUD and core settings with others. Here are
               some of our configs and you can also share your config by
