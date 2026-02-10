@@ -29,15 +29,15 @@ const MenuOverlay = () => {
       {active && (
         <ul className="flex flex-col items-center justify-center px-4 h-screen overflow-y-scroll">
           {links.map((link: any, index: any) => (
-            <motion.li
+            <motion.div
               key={index}
-              className="text-xl mb-4"
+              className="text-xl mb-4 w-full"
               initial={{ opacity: 0, rotate: index % 2 === 0 ? -90 : 90 }}
               animate={{ opacity: 1, rotate: 0 }}
               transition={{ duration: 0.3, delay: index * 0.2 }}
             >
               {link}
-            </motion.li>
+            </motion.div>
           ))}
         </ul>
       )}
