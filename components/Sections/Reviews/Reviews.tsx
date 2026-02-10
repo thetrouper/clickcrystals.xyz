@@ -2,16 +2,12 @@ import ReviewsList from './ReviewsList';
 
 export default function Reviews() {
   return (
-    <div className="lg:p-12 p-6 bg-blue-50">
-      <div className="max-w-6xl max-md:max-w-xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-4">
-          <div className="col-span-3">
-            <h2 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
-              What our users think{' '}
-              <span className="text-blue-500">about ClickCrystals</span>
-            </h2>
-          </div>
-        </div>
+    <div className="py-20 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-center text-4xl lg:text-5xl font-bold text-white mb-16">
+          What Players Say About{' '}
+          <span className="text-blue-400">ClickCrystals</span>
+        </h2>
         <ReviewsList />
       </div>
     </div>
