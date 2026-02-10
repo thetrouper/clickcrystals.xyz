@@ -9,10 +9,10 @@
 .ag-root-wrapper,
 .ag-measurement-container,
 .ag-apply-theme-variables {
-  --ag-background-color: var(--ag-inherited-background-color, #eefbff);
-  --ag-foreground-color: var(--ag-inherited-foreground-color, #133847);
+  --ag-background-color: var(--ag-inherited-background-color, #1a1a1a);
+  --ag-foreground-color: var(--ag-inherited-foreground-color, #e0e0e0);
   --ag-text-color: var(--ag-inherited-text-color, var(--ag-foreground-color));
-  --ag-accent-color: var(--ag-inherited-accent-color, #a3d6ff);
+  --ag-accent-color: var(--ag-inherited-accent-color, #3b82f6);
   --ag-invalid-color: var(--ag-inherited-invalid-color, #e02525);
   --ag-border-color: var(
     --ag-inherited-border-color,
@@ -1798,7 +1798,7 @@ ag-grid-polymer {
   bottom: 0;
 }
 .ag-row-odd {
-  background-color: var(--ag-odd-row-background-color);
+  background-color: transparent;
 }
 .ag-row-selected:before {
   background-color: var(--ag-selected-row-background-color);
@@ -1953,10 +1953,10 @@ ag-grid-polymer {
   background-color: var(--ag-range-selection-background-color);
 }
 .ag-cell-range-chart:is(
-    .ag-cell-range-selected:not(.ag-cell-focus),
-    .ag-body-viewport:not(.ag-has-focus)
-      .ag-cell-range-single-cell:not(.ag-cell-inline-editing)
-  ) {
+  .ag-cell-range-selected:not(.ag-cell-focus),
+  .ag-body-viewport:not(.ag-has-focus)
+    .ag-cell-range-single-cell:not(.ag-cell-inline-editing)
+) {
   background-color: var(--ag-range-selection-chart-background-color) !important;
 }
 .ag-cell-range-chart.ag-cell-range-chart-category:is(
@@ -5182,23 +5182,23 @@ input[class^='ag-'][type='range']:disabled {
   opacity: 0.35;
 }
 :is(
-    .ag-header-cell-menu-button,
-    .ag-header-cell-filter-button,
-    .ag-panel-title-bar-button,
-    .ag-header-expand-icon,
-    .ag-column-group-icons,
-    .ag-set-filter-group-icons,
-    .ag-group-expanded .ag-icon,
-    .ag-group-contracted .ag-icon,
-    .ag-chart-settings-prev,
-    .ag-chart-settings-next,
-    .ag-group-title-bar-icon,
-    .ag-column-select-header-icon,
-    .ag-floating-filter-button-button,
-    .ag-filter-toolpanel-expand,
-    .ag-panel-title-bar-button-icon,
-    .ag-chart-menu-icon
-  ):hover {
+  .ag-header-cell-menu-button,
+  .ag-header-cell-filter-button,
+  .ag-panel-title-bar-button,
+  .ag-header-expand-icon,
+  .ag-column-group-icons,
+  .ag-set-filter-group-icons,
+  .ag-group-expanded .ag-icon,
+  .ag-group-contracted .ag-icon,
+  .ag-chart-settings-prev,
+  .ag-chart-settings-next,
+  .ag-group-title-bar-icon,
+  .ag-column-select-header-icon,
+  .ag-floating-filter-button-button,
+  .ag-filter-toolpanel-expand,
+  .ag-panel-title-bar-button-icon,
+  .ag-chart-menu-icon
+):hover {
   background-color: var(--ag-icon-button-hover-color);
   border-radius: 1px;
   box-shadow: 0 0 0 4px var(--ag-icon-button-hover-color);
@@ -5521,11 +5521,11 @@ input[class^='ag-'][type='range']:disabled {
   -moz-appearance: textfield;
 }
 :where(
-    input[class^='ag-'][type='number']:not(.ag-number-field-input-stepper)
-  )::-webkit-inner-spin-button,
+  input[class^='ag-'][type='number']:not(.ag-number-field-input-stepper)
+)::-webkit-inner-spin-button,
 :where(
-    input[class^='ag-'][type='number']:not(.ag-number-field-input-stepper)
-  )::-webkit-outer-spin-button {
+  input[class^='ag-'][type='number']:not(.ag-number-field-input-stepper)
+)::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -5569,54 +5569,54 @@ input[class^='ag-'][type='range']:disabled {
   padding-right: var(--ag-input-padding-start);
 }
 :where(
-    input[class^='ag-']:not([type]),
-    input[class^='ag-'][type='text'],
-    input[class^='ag-'][type='number'],
-    input[class^='ag-'][type='tel'],
-    input[class^='ag-'][type='date'],
-    input[class^='ag-'][type='datetime-local'],
-    textarea[class^='ag-']
-  ):where(:disabled) {
+  input[class^='ag-']:not([type]),
+  input[class^='ag-'][type='text'],
+  input[class^='ag-'][type='number'],
+  input[class^='ag-'][type='tel'],
+  input[class^='ag-'][type='date'],
+  input[class^='ag-'][type='datetime-local'],
+  textarea[class^='ag-']
+):where(:disabled) {
   background-color: var(--ag-input-disabled-background-color);
   border: var(--ag-input-disabled-border);
   color: var(--ag-input-disabled-text-color);
 }
 :where(
-    input[class^='ag-']:not([type]),
-    input[class^='ag-'][type='text'],
-    input[class^='ag-'][type='number'],
-    input[class^='ag-'][type='tel'],
-    input[class^='ag-'][type='date'],
-    input[class^='ag-'][type='datetime-local'],
-    textarea[class^='ag-']
-  ):where(:focus) {
+  input[class^='ag-']:not([type]),
+  input[class^='ag-'][type='text'],
+  input[class^='ag-'][type='number'],
+  input[class^='ag-'][type='tel'],
+  input[class^='ag-'][type='date'],
+  input[class^='ag-'][type='datetime-local'],
+  textarea[class^='ag-']
+):where(:focus) {
   background-color: var(--ag-input-focus-background-color);
   border: var(--ag-input-focus-border);
   box-shadow: var(--ag-input-focus-shadow);
   color: var(--ag-input-focus-text-color);
 }
 :where(
-    input[class^='ag-']:not([type]),
-    input[class^='ag-'][type='text'],
-    input[class^='ag-'][type='number'],
-    input[class^='ag-'][type='tel'],
-    input[class^='ag-'][type='date'],
-    input[class^='ag-'][type='datetime-local'],
-    textarea[class^='ag-']
-  ):where(:invalid) {
+  input[class^='ag-']:not([type]),
+  input[class^='ag-'][type='text'],
+  input[class^='ag-'][type='number'],
+  input[class^='ag-'][type='tel'],
+  input[class^='ag-'][type='date'],
+  input[class^='ag-'][type='datetime-local'],
+  textarea[class^='ag-']
+):where(:invalid) {
   background-color: var(--ag-input-invalid-background-color);
   border: var(--ag-input-invalid-border);
   color: var(--ag-input-invalid-text-color);
 }
 :where(
-    input[class^='ag-']:not([type]),
-    input[class^='ag-'][type='text'],
-    input[class^='ag-'][type='number'],
-    input[class^='ag-'][type='tel'],
-    input[class^='ag-'][type='date'],
-    input[class^='ag-'][type='datetime-local'],
-    textarea[class^='ag-']
-  ):where(.invalid) {
+  input[class^='ag-']:not([type]),
+  input[class^='ag-'][type='text'],
+  input[class^='ag-'][type='number'],
+  input[class^='ag-'][type='tel'],
+  input[class^='ag-'][type='date'],
+  input[class^='ag-'][type='datetime-local'],
+  textarea[class^='ag-']
+):where(.invalid) {
   background-color: var(--ag-input-invalid-background-color);
   border: var(--ag-input-invalid-border);
   color: var(--ag-input-invalid-text-color);
