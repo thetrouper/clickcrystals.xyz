@@ -136,32 +136,47 @@ const projects = [
 export default function Projects() {
   return (
     <>
-      <Table className="border">
+      <Table className="border border-slate-800">
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[200px]">Project</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead className="w-[200px]">Link</TableHead>
-            <TableHead className="w-[150px]">Author</TableHead>
+          <TableRow className="border-slate-800 hover:bg-slate-900">
+            <TableHead className="w-[200px] text-white font-semibold">
+              Project
+            </TableHead>
+            <TableHead className="text-white font-semibold">
+              Description
+            </TableHead>
+            <TableHead className="w-[200px] text-white font-semibold">
+              Link
+            </TableHead>
+            <TableHead className="w-[150px] text-white font-semibold">
+              Author
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {projects.map((project, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{project.name}</TableCell>
-              <TableCell>{project.description}</TableCell>
+            <TableRow
+              key={index}
+              className="border-slate-800 hover:bg-slate-900/50"
+            >
+              <TableCell className="font-medium text-white">
+                {project.name}
+              </TableCell>
+              <TableCell className="text-slate-300">
+                {project.description}
+              </TableCell>
               <TableCell>
                 {Object.entries(project.links).map(
                   ([label, link], linkIndex) => (
                     <div key={linkIndex}>
                       {link === '' ? (
-                        <span className="text-red-600">{label} </span>
+                        <span className="text-red-500">{label} </span>
                       ) : (
                         <Link
                           href={link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600"
+                          className="text-blue-400 hover:text-blue-300"
                         >
                           {label}{' '}
                         </Link>
@@ -175,7 +190,7 @@ export default function Projects() {
                   href={authors[project.author as keyof typeof authors]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-900"
+                  className="text-blue-400 hover:text-blue-300"
                 >
                   {project.author}
                 </Link>{' '}

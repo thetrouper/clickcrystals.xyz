@@ -31,34 +31,55 @@ export default function DownloadTable() {
     ];
 
     setColDefs([
-      { field: 'version', pinned: true, movable: false, width: 126 },
+      {
+        field: 'version',
+        headerName: 'Version',
+        pinned: true,
+        width: 150,
+        cellStyle: { fontWeight: '600', color: '#f8fafc' },
+      },
       {
         field: 'code',
-        headerName: 'Source Code',
+        headerName: 'Source',
         cellRenderer: (params: any) => (
-          <Link href={params.value} className="text-blue-500">
-            Open
-          </Link>
+          <a
+            href={params.value}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 underline"
+          >
+            View Code
+          </a>
         ),
-        width: 115,
+        width: 130,
       },
       {
         field: 'downloads',
-        cellRenderer: (params: any) => parseNumber(params.value),
-        width: 115,
+        headerName: 'Downloads',
+        cellRenderer: (params: any) => (
+          <span className="font-mono text-slate-400">
+            {parseNumber(params.value)}
+          </span>
+        ),
+        width: 130,
       },
       ...versionColumns.map((col) => ({
         field: col.field,
         headerName: col.headerName,
         cellRenderer: (params: any) =>
-          params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
+          params.value ? (
+            <a
+              href={params.value}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 underline"
+            >
               Download
-            </Link>
+            </a>
+          ) : (
+            <span className="text-slate-600">—</span>
           ),
-        width: 160,
+        width: 150,
       })),
     ]);
     const loadReleases = async () => {
@@ -76,56 +97,51 @@ export default function DownloadTable() {
   }, []);
 
   return (
-    <div className="my-4">
-      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-700">
+    <div className="mt-16">
+      <h2 className="text-3xl font-bold mb-4 text-white tracking-tight">
         Download Statistics
       </h2>
-      <p className="text-gray-600 mb-4 max-w-4xl">
-        Here you can see the exact total download count of ClickCrystals from
-        its all official sources. You can download any release for the available
-        minecraft versions from the table below as well.
+      <p className="text-lg text-slate-300 mb-8 max-w-4xl leading-relaxed">
+        View total download counts and download any release for available
+        Minecraft versions.
       </p>
       <Downloads />
 
-      <div className="my-4">
-        <p className="text-xs text-black max-w-2xl select-none mt-2">
-          The table below shows several of the recent releases of ClickCrystals.
-          If you want to see all our 90+ releases, please visit our GitHub
-          releases page.
+      <div className="my-8">
+        <p className="text-sm text-slate-400 max-w-3xl mb-6 leading-relaxed">
+          The table below shows recent releases of ClickCrystals. For all 90+
+          releases, visit our GitHub releases page.
           <br />
           <br />
-          Many of the minecraft versions are not supported by the mod, so if
-          there isn't a specific column for your version, it may not be
-          supported.
+          Many Minecraft versions are not supported. If there isn't a column for
+          your version, it may not be supported.
           <br />
           <br />
-          <span className="font-semibold">Note:</span> you might have to scroll
+          <span className="font-semibold text-slate-300">Note:</span> Scroll
           right in the grid to see downloads for other versions.
         </p>
-        <div className="border-l-4 border-yellow-500 bg-yellow-100 p-4 my-4">
-          <p className="md:max-w-3xl text-sm text-yellow-800 font-semibold mb-2">
-            Important Safety Warning:
+        <div className="border-l-4 border-yellow-500 bg-yellow-500/10 backdrop-blur-sm p-6 rounded-r-lg">
+          <p className="text-base text-yellow-200 font-semibold mb-3">
+            Important Safety Warning
           </p>
-          <p className="md:max-w-3xl text-xs">
-            ClickCrystals is only available for the Fabric modloader and there
-            are no current or future plans to port the mod to other modloaders.
+          <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+            ClickCrystals is only available for the Fabric modloader. There are
+            no plans to port to other modloaders.
           </p>
-          <p className="md:max-w-3xl text-xs text-yellow-900 mt-2">
-            If you see any downloads for ClickCrystals on other modloaders, they
-            are not official and may contain malicious code. Please only
-            download ClickCrystals from the official sources listed below.
+          <p className="text-sm text-slate-300 leading-relaxed">
+            Downloads for other modloaders are not official and may contain
+            malicious code. Only download from official sources listed above.
             <br />
             <br />
-            <span className="font-semibold">
-              This is not rare, we have seen several websites publishing
-              unofficial malware versions of ClickCrystals.
+            <span className="font-semibold text-yellow-200">
+              We have seen several websites publishing unofficial malware
+              versions of ClickCrystals.
             </span>{' '}
-            Therefore, please be careful and only download from the official
-            sources listed on our website.
+            Please be careful and only download from official sources.
           </p>
         </div>
       </div>
-      <div className="ag-theme-custom h-[467px]">
+      <div className="ag-theme-quartz-dark h-[467px] rounded-lg overflow-hidden">
         {loading ? (
           <div className="w-full h-full rounded bg-gray-200 animate-pulse"></div>
         ) : (

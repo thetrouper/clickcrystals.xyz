@@ -111,32 +111,38 @@ function PublishForm({ className, code, closeState }: any) {
   return (
     <form className={cn('grid items-start gap-4', className)} action={sendForm}>
       <div className="grid gap-2">
-        <Label htmlFor="title">Script Title</Label>
+        <Label htmlFor="title" className="text-slate-300">
+          Script Title
+        </Label>
         <Input
           id="title"
           placeholder="Potion Swap"
           name="title"
           onChange={handleFormChange}
           value={form.title}
+          className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-500"
         />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="author">Author</Label>
+        <Label htmlFor="author" className="text-slate-300">
+          Author
+        </Label>
         <Input
           id="author"
           placeholder="ItziSpyder"
           name="author"
           onChange={handleFormChange}
           value={form.author}
+          className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-500"
         />
       </div>
       <input name="script" type="hidden" value={code} />
-      <p className="text-xs">
+      <p className="text-xs text-slate-400">
         We suggest you to also add{' '}
-        <span className="p-1 font-mono bg-[#1e1e1e] font-droidmono">
-          <span className="text-[#6a9955]">&#47;&#47;</span>{' '}
-          <span className="text-[#D4D4D4]">@</span>
-          <span className="text-[#4ec9b0]">your-name</span>
+        <span className="px-2 py-1 font-mono bg-slate-950 text-emerald-400 rounded">
+          <span className="text-slate-500">&#47;&#47;</span>{' '}
+          <span className="text-slate-400">@</span>
+          <span className="text-emerald-400">your-name</span>
         </span>{' '}
         at first line to represent your name.
       </p>
@@ -144,7 +150,7 @@ function PublishForm({ className, code, closeState }: any) {
         type="submit"
         disabled={submitDisabled}
         onClick={handleButtonClick}
-        className="transition-all"
+        className="bg-emerald-700 hover:bg-emerald-600 transition-all"
       >
         {submitDisabled && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
         Publish
@@ -191,15 +197,17 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
         <DialogTrigger asChild>
           <button
             disabled={disabled}
-            className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+            className="bg-emerald-700 hover:bg-emerald-600 font-semibold px-4 py-2 text-white text-sm rounded transition-colors w-full mb-4 lg:w-auto"
           >
             Publish
           </button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] bg-slate-900 border-slate-800">
           <DialogHeader>
-            <DialogTitle>Publish script to archive</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-white">
+              Publish script to archive
+            </DialogTitle>
+            <DialogDescription className="text-slate-400">
               Give your script a title and set your author name to publish!
             </DialogDescription>
           </DialogHeader>
