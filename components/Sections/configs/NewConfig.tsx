@@ -306,7 +306,9 @@ export default function NewConfigCard() {
         <div className="group-hover:scale-110 transition-transform">
           <PlusIcon />
         </div>
-        <p className="text-sm text-slate-500 group-hover:text-slate-400 font-medium mt-2 transition-colors">Upload New Config</p>
+        <p className="text-sm text-slate-500 group-hover:text-slate-400 font-medium mt-2 transition-colors">
+          Upload New Config
+        </p>
       </div>
 
       <input

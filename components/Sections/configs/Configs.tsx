@@ -9,8 +9,8 @@ export default function Configs() {
 
   useEffect(() => {
     fetch('/api/configs')
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setConfigs(data);
         setLoading(false);
       })

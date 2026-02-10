@@ -45,7 +45,11 @@ export default async function ConfigCard({ config }: { config: Config }) {
         </h3>
         <div className="flex flex-wrap gap-2">
           {config.categories.map((category, index) => (
-            <Badge key={index} variant="outline" className="text-xs border-slate-700 text-slate-400 bg-slate-800/50">
+            <Badge
+              key={index}
+              variant="outline"
+              className="text-xs border-slate-700 text-slate-400 bg-slate-800/50"
+            >
               {category}
             </Badge>
           ))}
