@@ -12,9 +12,11 @@ export default function Loading() {
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 animate-pulse">
-          {Array(4).fill(null).map((_, i) => (
-            <div key={i} className="h-16 bg-slate-800/50 rounded" />
-          ))}
+          {Array(4)
+            .fill(null)
+            .map((_, i) => (
+              <div key={i} className="h-16 bg-slate-800/50 rounded" />
+            ))}
         </div>
         <div className="h-64 bg-slate-800/50 rounded animate-pulse" />
       </div>

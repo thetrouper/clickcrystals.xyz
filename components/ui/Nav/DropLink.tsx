@@ -12,7 +12,12 @@ type DropLinkProps = {
   onLinkClick?: () => void;
 };
 
-export const DropLink = ({ label, links, url = '#', onLinkClick }: DropLinkProps) => {
+export const DropLink = ({
+  label,
+  links,
+  url = '#',
+  onLinkClick,
+}: DropLinkProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

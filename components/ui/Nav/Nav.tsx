@@ -74,7 +74,13 @@ export const getLinks = (onLinkClick?: () => void) => [
     target="_blank"
     onLinkClick={onLinkClick}
   />,
-  <DropLink label="More" links={moreDropdown} url="#" key={5} onLinkClick={onLinkClick} />,
+  <DropLink
+    label="More"
+    links={moreDropdown}
+    url="#"
+    key={5}
+    onLinkClick={onLinkClick}
+  />,
 ];
 
 export const links = getLinks();
