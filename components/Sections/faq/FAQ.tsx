@@ -152,7 +152,7 @@ export default function FAQ() {
   const rightColumnFAQs = faqs.filter((_, i) => i % 2 !== 0);
 
   return (
-    <Accordion type="single">
+    <Accordion type="single" collapsible>
       <div className="flex flex-col lg:flex-row lg:justify-between mx-0 lg:mx-4">
         <div className="w-full lg:w-1/2 lg:mx-4">
           {leftColumnFAQs.map((faq, i) => (

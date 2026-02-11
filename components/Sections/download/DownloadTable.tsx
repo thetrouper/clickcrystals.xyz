@@ -143,7 +143,7 @@ export default function DownloadTable() {
       </div>
       <div className="ag-theme-quartz-dark h-[467px] rounded-lg overflow-hidden">
         {loading ? (
-          <div className="w-full h-full rounded bg-gray-200 animate-pulse"></div>
+          <div className="w-full h-full rounded bg-slate-800/30"></div>
         ) : (
           <AgGridReact
             columnDefs={colDefs}

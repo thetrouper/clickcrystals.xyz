@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'nprogress/nprogress.css';
+
+#nprogress .bar {
+  background: #3b82f6 !important;
+  height: 3px !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #3b82f6, 0 0 5px #3b82f6 !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -41,4 +52,50 @@ body {
 
 b {
   font-weight: 600;
+}
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #3b82f6;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  animation: nprogress-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nprogress-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+body.page-loading::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgb(15 23 42), rgb(15 23 42 / 0.95), rgb(30 41 59));
+  z-index: 9998;
+}
+
+body.page-loading::before {
+  content: '';
+  position: fixed;
+  top: 3rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 3rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 0.5rem;
+  z-index: 9999;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }

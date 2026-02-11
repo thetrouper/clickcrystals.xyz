@@ -104,31 +104,29 @@ on module_disable {
 
   return (
     <div>
-      <div className="flex flex-row bg-white dark:bg-[#1e1e1e] gap-2 md:gap-4 pt-4 mx-8 justify-between">
-        <div className="block md:flex md:flex-row md:gap-4 md:mx-4">
+      <div className="flex flex-row bg-gradient-to-b from-slate-900 to-slate-950 gap-2 md:gap-4 pt-4 px-8 justify-between border-b border-slate-800">
+        <div className="block md:flex md:flex-row md:gap-3">
           <button
             disabled={false}
             onClick={deCompressCode}
-            className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+            className="bg-slate-800 hover:bg-slate-700 font-semibold px-4 py-2 text-white text-sm rounded transition-colors w-full mb-4 lg:w-auto"
           >
             Format
           </button>
           <button
             disabled={false}
             onClick={compressCode}
-            className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+            className="bg-slate-800 hover:bg-slate-700 font-semibold px-4 py-2 text-white text-sm rounded transition-colors w-full mb-4 lg:w-auto"
           >
             Minify
           </button>
         </div>
-        <div className="block md:flex md:flex-row md:gap-4 md:mx-4">
+        <div className="block md:flex md:flex-row md:gap-3">
           <Publish onOpen={updateCodeState} code={code} disabled={false} />
           <Save receiveCode={updateCodeState} disabled={false} />
         </div>
       </div>
-      <div
-        className={`flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white ${loading && 'opacity-0'}`}
-      >
+      <div className="flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
         <div className="flex-1 h-full">
           <Editor
             language={'ccs'}

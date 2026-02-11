@@ -1,7 +1,7 @@
 'use client';
 
-import NewConfigCard from './NewConfig';
-import prisma from '@/lib/db';
+import dynamic from 'next/dynamic';
+import { NextAuthProvider } from '@/lib/provider';
 import ConfigCard from './ConfigCard';
 import { Input } from '@/components/ui/input';
 import SearchCategoryMenu from './SearchCategoryMenu';
@@ -9,6 +9,11 @@ import SkeletonCard from './SkeletonCard';
 import { Suspense, useState } from 'react';
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const NewConfigCard = dynamic(() => import('./NewConfig'), {
+  ssr: false,
+  loading: () => <div className="h-[200px] bg-slate-800/50 rounded animate-pulse" />,
+});
 
 export default function ConfigsGrid({ configs }: { configs: any }) {
   const [category, setCategory] = useState('All');
@@ -71,7 +76,9 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
             </div>
           ) : (
             <>
-              <NewConfigCard />
+              <NextAuthProvider>
+                <NewConfigCard />
+              </NextAuthProvider>
               {filteredConfigs.map((config: any) => (
                 <ConfigCard key={config.id} config={config} />
               ))}

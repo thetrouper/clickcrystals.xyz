@@ -1,5 +1,10 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 import { Container } from '../Container';
+import NProgress from 'nprogress';
 
 type GetClickCrystalsProps = {
   name?: string;
@@ -10,61 +15,83 @@ export function GetClickCrystalsButton({
   name = 'Get ClickCrystals',
   link = '/download',
 }: GetClickCrystalsProps) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   return (
-    <>
-      <Container tapScale={0.95}>
-        <Link
-          href={link}
-          className="ring-[#737679] btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 py-2.5 shadow-none text-sm group"
-        >
-          {name}
-        </Link>
-      </Container>
-    </>
+    <Container tapScale={0.97}>
+      <button
+        onClick={() => {
+          NProgress.start();
+          startTransition(() => {
+            router.push(link);
+            NProgress.done();
+          });
+        }}
+        disabled={isPending}
+        className="inline-block px-7 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm"
+      >
+        {name}
+      </button>
+    </Container>
   );
 }
 
 export function JoinDiscordButton() {
   return (
-    <>
-      <Container tapScale={0.95}>
-        <Link
-          href="https://discord.gg/zg3ge9VTgr"
-          className="ring-[#4287f5] btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] font-semibold px-6 py-2.5 shadow-none text-white text-sm"
-        >
-          Join Discord
-        </Link>
-      </Container>
-    </>
+    <Container tapScale={0.97}>
+      <Link
+        href="https://discord.gg/n9hfHNJVe6"
+        className="inline-block px-7 py-3 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-medium rounded-lg transition-all text-sm"
+      >
+        Join Discord
+      </Link>
+    </Container>
   );
 }
 
-export function ExploreScriptsButton({}) {
+export function ExploreScriptsButton() {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   return (
-    <>
-      <Container tapScale={0.95}>
-        <Link
-          href={'/scripts'}
-          className="ring-[#21582d] btn border-[#72da89] bg-[#247a37] hover:bg-[#1b5828] text-white font-semibold px-6 py-2.5 text-sm group"
-        >
-          Explore scripts
-        </Link>
-      </Container>
-    </>
+    <Container tapScale={0.97}>
+      <button
+        onClick={() => {
+          NProgress.start();
+          startTransition(() => {
+            router.push('/scripts');
+            NProgress.done();
+          });
+        }}
+        disabled={isPending}
+        className="inline-block px-7 py-3 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 disabled:bg-slate-800/50 text-white font-medium rounded-lg transition-all text-sm"
+      >
+        Explore Scripts
+      </button>
+    </Container>
   );
 }
 
-export function MoreScreenshotsButton({}) {
+export function MoreScreenshotsButton() {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   return (
-    <>
-      <Container tapScale={0.95}>
-        <Link
-          href={'/gallery'}
-          className="ring-[#4f2158] btn border-[#7d3868] bg-[#7d368b] hover:bg-[#511c5c] text-white font-semibold px-6 py-2.5 text-sm group"
-        >
-          More screenshots
-        </Link>
-      </Container>
-    </>
+    <Container tapScale={0.97}>
+      <button
+        onClick={() => {
+          NProgress.start();
+          startTransition(() => {
+            router.push('/gallery');
+            NProgress.done();
+          });
+        }}
+        disabled={isPending}
+        className="inline-block px-7 py-3 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 disabled:bg-slate-800/50 text-white font-medium rounded-lg transition-all text-sm"
+      >
+        View Gallery
+      </button>
+    </Container>
   );
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 import modrinth from '@/public/icons/modrinth.svg';
 import curseforge from '@/public/icons/curseforge.svg';
@@ -6,7 +7,11 @@ import planetmc from '@/public/icons/planetmc.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { DownloadLink } from './DownloadLink';
-import DownloadTable from './DownloadTable';
+
+const DownloadTable = dynamic(() => import('./DownloadTable'), {
+  ssr: false,
+  loading: () => <div className="h-64 bg-slate-800/50 rounded animate-pulse" />,
+});
 
 export default function Download() {
   return (
