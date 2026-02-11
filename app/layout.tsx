@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 
 import Header from '@/components/ui/Nav';
 import Footer from '@/components/ui/Footer';
-// import { ScrollTop } from "@/components/ui/ScrollTop";
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
+import RouteLoader from '@/components/RouteLoader';
 
 export const metadata: Metadata = {
   title: 'ClickCrystals',
@@ -25,14 +25,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `${inter.className} ${interHeading.variable} antialiased`,
+          `${inter.className} ${interHeading.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950`,
           'selection:text-white selection:bg-blue-800',
         )}
       >
+        <RouteLoader />
         <Header />
         <div className="min-h-screen">{children}</div>
         <Footer />
-        {/* <ScrollTop /> */}
         <div className="dark">
           <Toaster />
         </div>

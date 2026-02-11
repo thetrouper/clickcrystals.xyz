@@ -56,24 +56,28 @@ const moreDropdown = [
   },
 ];
 
-export const links = [
-  <NavLink label="Home" url="/" key={0} />,
+export const getLinks = (onLinkClick?: () => void) => [
+  <NavLink label="Home" url="/" key={0} onLinkClick={onLinkClick} />,
   <DropLink
     label="Download"
     links={downloadDropdown}
     url="/download"
     key={1}
+    onLinkClick={onLinkClick}
   />,
-  <NavLink label="Scripts" url="/scripts" key={2} />,
-  <NavLink label="Editor" url="/editor" key={3} />,
+  <NavLink label="Scripts" url="/scripts" key={2} onLinkClick={onLinkClick} />,
+  <NavLink label="Editor" url="/editor" key={3} onLinkClick={onLinkClick} />,
   <NavLink
     label="Wiki"
     url="https://bit.ly/ccs-wiki"
     key={4}
     target="_blank"
+    onLinkClick={onLinkClick}
   />,
-  <DropLink label="More" links={moreDropdown} url="#" key={5} />,
+  <DropLink label="More" links={moreDropdown} url="#" key={5} onLinkClick={onLinkClick} />,
 ];
+
+export const links = getLinks();
 
 export const Nav = () => {
   return (

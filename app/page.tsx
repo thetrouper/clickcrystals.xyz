@@ -1,10 +1,12 @@
-import CCS from '@/components/Sections/CCS/CCS';
-import GetStarted from '@/components/Sections/GetStarted/GetStarted';
-import Ingame from '@/components/Sections/Ingame/Ingame';
-import Reviews from '@/components/Sections/Reviews/Reviews';
-import Features from '@/components/Sections/Features/Features';
+import dynamic from 'next/dynamic';
 import Hero from '@/components/Sections/Hero/Hero';
-import Progress from '@/components/Sections/Progress/Progress';
+
+const Progress = dynamic(() => import('@/components/Sections/Progress/Progress'));
+const CCS = dynamic(() => import('@/components/Sections/CCS/CCS'));
+const Features = dynamic(() => import('@/components/Sections/Features/Features'));
+const Ingame = dynamic(() => import('@/components/Sections/Ingame/Ingame'));
+const Reviews = dynamic(() => import('@/components/Sections/Reviews/Reviews'));
+const GetStarted = dynamic(() => import('@/components/Sections/GetStarted/GetStarted'));
 
 export default function Home() {
   return (
