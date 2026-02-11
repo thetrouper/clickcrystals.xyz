@@ -10,7 +10,12 @@ type NavLinkProps = {
   onLinkClick?: () => void;
 };
 
-export const NavLink = ({ label, url, target = '', onLinkClick }: NavLinkProps) => {
+export const NavLink = ({
+  label,
+  url,
+  target = '',
+  onLinkClick,
+}: NavLinkProps) => {
   return (
     <Container>
       <Link
