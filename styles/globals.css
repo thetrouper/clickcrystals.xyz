@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'nprogress/nprogress.css';
-
-#nprogress .bar {
-  background: #3b82f6 !important;
-  height: 3px !important;
-}
-
-#nprogress .peg {
-  box-shadow:
-    0 0 10px #3b82f6,
-    0 0 5px #3b82f6 !important;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -78,25 +65,15 @@ b {
 }
 
 @keyframes nprogress-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 body.page-loading::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    to bottom right,
-    rgb(15 23 42),
-    rgb(15 23 42 / 0.95),
-    rgb(30 41 59)
-  );
+  background: linear-gradient(to bottom right, rgb(15 23 42), rgb(15 23 42 / 0.95), rgb(30 41 59));
   z-index: 9998;
 }
 
@@ -114,11 +91,6 @@ body.page-loading::before {
 }
 
 @keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }

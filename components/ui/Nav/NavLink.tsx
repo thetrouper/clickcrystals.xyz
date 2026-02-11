@@ -2,8 +2,6 @@
 
 import { Container } from '@/components/ui/Container';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
 
 type NavLinkProps = {
   label: string;
@@ -12,44 +10,17 @@ type NavLinkProps = {
   onLinkClick?: () => void;
 };
 
-export const NavLink = ({
-  label,
-  url,
-  target = '',
-  onLinkClick,
-}: NavLinkProps) => {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const isExternal = target === '_blank' || url.startsWith('http');
-
-  if (isExternal) {
-    return (
-      <Container>
-        <a
-          href={url}
-          target={target}
-          className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 transiion-nav"
-          onClick={onLinkClick}
-        >
-          {label}
-        </a>
-      </Container>
-    );
-  }
-
+export const NavLink = ({ label, url, target = '', onLinkClick }: NavLinkProps) => {
   return (
     <Container>
-      <button
-        onClick={() => {
-          onLinkClick?.();
-          startTransition(() => {
-            router.push(url);
-          });
-        }}
-        className={`transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 transiion-nav ${isPending ? 'opacity-50' : ''}`}
+      <Link
+        href={url}
+        target={target}
+        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 transiion-nav"
+        onClick={onLinkClick}
       >
         {label}
-      </button>
+      </Link>
     </Container>
   );
 };
