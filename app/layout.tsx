@@ -6,7 +6,6 @@ import Header from '@/components/ui/Nav';
 import Footer from '@/components/ui/Footer';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import RouteLoader from '@/components/RouteLoader';
 
 export const metadata: Metadata = {
   title: 'ClickCrystals',
@@ -29,7 +28,6 @@ export default function RootLayout({
           'selection:text-white selection:bg-blue-800',
         )}
       >
-        <RouteLoader />
         <Header />
         <div className="min-h-screen">{children}</div>
         <Footer />
