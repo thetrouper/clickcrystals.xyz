@@ -12,7 +12,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NewConfigCard = dynamic(() => import('./NewConfig'), {
   ssr: false,
-  loading: () => <div className="h-[200px] bg-slate-800/50 rounded animate-pulse" />,
+  loading: () => (
+    <div className="h-[200px] bg-slate-800/50 rounded animate-pulse" />
+  ),
 });
 
 export default function ConfigsGrid({ configs }: { configs: any }) {

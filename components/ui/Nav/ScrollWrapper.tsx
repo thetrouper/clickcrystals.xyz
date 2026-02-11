@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-export default function ScrollWrapper({ children }: { children: React.ReactNode }) {
+export default function ScrollWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

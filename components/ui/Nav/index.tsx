@@ -4,7 +4,10 @@ import { Links } from '@/components/ui/Nav/Links';
 import dynamic from 'next/dynamic';
 import ScrollWrapper from './ScrollWrapper';
 
-const MobileMenu = dynamic(() => import('./MobileMenu'), { ssr: false, loading: () => null });
+const MobileMenu = dynamic(() => import('./MobileMenu'), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Header() {
   return (

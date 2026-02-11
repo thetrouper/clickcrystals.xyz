@@ -6,9 +6,11 @@ export default function Loading() {
         <div className="h-10 bg-slate-800/50 rounded flex-1" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {Array(6).fill(null).map((_, i) => (
-          <div key={i} className="h-[200px] bg-slate-800/50 rounded" />
-        ))}
+        {Array(6)
+          .fill(null)
+          .map((_, i) => (
+            <div key={i} className="h-[200px] bg-slate-800/50 rounded" />
+          ))}
       </div>
     </div>
   );

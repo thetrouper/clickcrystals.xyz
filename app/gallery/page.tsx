@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   title: 'ClickCrystals - Gallery',
 };
 
-
 export default function GalleryPage() {
   return <Gallery />;
 }

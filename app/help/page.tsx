@@ -5,9 +5,11 @@ const FAQ = dynamic(() => import('@/components/Sections/faq/FAQ'), {
   ssr: false,
   loading: () => (
     <div className="max-w-3xl mx-auto space-y-4 mt-8">
-      {Array(8).fill(null).map((_, i) => (
-        <div key={i} className="h-16 bg-slate-800/50 rounded animate-pulse" />
-      ))}
+      {Array(8)
+        .fill(null)
+        .map((_, i) => (
+          <div key={i} className="h-16 bg-slate-800/50 rounded animate-pulse" />
+        ))}
     </div>
   ),
 });
@@ -15,7 +17,6 @@ const FAQ = dynamic(() => import('@/components/Sections/faq/FAQ'), {
 export const metadata: Metadata = {
   title: 'ClickCrystals - Help',
 };
-
 
 export default function Help() {
   return (

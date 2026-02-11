@@ -11,9 +11,14 @@ const Configs = dynamic(() => import('@/components/Sections/configs/Configs'), {
         <div className="h-10 bg-slate-800/50 rounded flex-1 animate-pulse" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {Array(6).fill(null).map((_, i) => (
-          <div key={i} className="h-[200px] bg-slate-800/50 rounded animate-pulse" />
-        ))}
+        {Array(6)
+          .fill(null)
+          .map((_, i) => (
+            <div
+              key={i}
+              className="h-[200px] bg-slate-800/50 rounded animate-pulse"
+            />
+          ))}
       </div>
     </div>
   ),
@@ -35,8 +40,8 @@ export default function ScriptsArchive() {
           <p className="text-slate-400 text-base md:text-lg max-w-3xl my-4">
             ClickCrystals Configs are used to import/export and share your
             ClickCrystals module, HUD and core settings with others. Here are
-            some of our configs and you can also share your config by
-            uploading here!
+            some of our configs and you can also share your config by uploading
+            here!
             <br />
             Need to explore scripts?{' '}
             <Link className="text-blue-500" href="/scripts">

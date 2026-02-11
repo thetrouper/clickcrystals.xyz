@@ -10,9 +10,14 @@ const Scripts = dynamic(() => import('@/components/Sections/scripts/Scripts'), {
         <div className="h-10 bg-slate-800/50 rounded flex-1 animate-pulse" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {Array(6).fill(null).map((_, i) => (
-          <div key={i} className="h-[200px] bg-slate-800/50 rounded animate-pulse" />
-        ))}
+        {Array(6)
+          .fill(null)
+          .map((_, i) => (
+            <div
+              key={i}
+              className="h-[200px] bg-slate-800/50 rounded animate-pulse"
+            />
+          ))}
       </div>
     </div>
   ),
@@ -21,7 +26,6 @@ const Scripts = dynamic(() => import('@/components/Sections/scripts/Scripts'), {
 export const metadata: Metadata = {
   title: 'ClickCrystals - Scripts Archive',
 };
-
 
 export default function ScriptsArchive() {
   return (

@@ -12,7 +12,12 @@ type NavLinkProps = {
   onLinkClick?: () => void;
 };
 
-export const NavLink = ({ label, url, target = '', onLinkClick }: NavLinkProps) => {
+export const NavLink = ({
+  label,
+  url,
+  target = '',
+  onLinkClick,
+}: NavLinkProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const isExternal = target === '_blank' || url.startsWith('http');

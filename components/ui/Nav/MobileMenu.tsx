@@ -46,10 +46,18 @@ const MenuOverlay = () => {
       <div className="flex flex-row justify-between items-center px-4 py-3">
         <Title />
         <div className="flex items-center gap-3">
-          <Link href="https://github.com/clickcrystals-development/ClickCrystals" target="_blank" className="text-slate-400 hover:text-white transition-colors">
+          <Link
+            href="https://github.com/clickcrystals-development/ClickCrystals"
+            target="_blank"
+            className="text-slate-400 hover:text-white transition-colors"
+          >
             <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
           </Link>
-          <Link href="https://discord.gg/n9hfHNJVe6" target="_blank" className="text-slate-400 hover:text-white transition-colors">
+          <Link
+            href="https://discord.gg/n9hfHNJVe6"
+            target="_blank"
+            className="text-slate-400 hover:text-white transition-colors"
+          >
             <FontAwesomeIcon icon={faDiscord} className="w-5 h-5" />
           </Link>
           <MobileMenuNav state={active} handler={setActive} />
@@ -63,10 +71,7 @@ const MenuOverlay = () => {
           >
             <ul className="flex flex-col items-center px-4 py-8">
               {links.map((link: any, index: any) => (
-                <div
-                  key={index}
-                  className="text-xl mb-4 w-full"
-                >
+                <div key={index} className="text-xl mb-4 w-full">
                   {link}
                 </div>
               ))}
