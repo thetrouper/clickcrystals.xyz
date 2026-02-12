@@ -7,7 +7,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center pb-20 relative">
+    <section className="min-h-screen flex items-center pb-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
 
