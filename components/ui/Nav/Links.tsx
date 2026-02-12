@@ -16,7 +16,11 @@ export const Links = () => {
         />
       </Container>
       <Container>
-        <Icon icon={faDiscord} url="https://discord.gg/n9hfHNJVe6" hoverColor="hover:text-[#5865F2]" />
+        <Icon
+          icon={faDiscord}
+          url="https://discord.gg/n9hfHNJVe6"
+          hoverColor="hover:text-[#5865F2]"
+        />
       </Container>
     </div>
   );
