@@ -20,10 +20,7 @@ export default function Hero() {
         />
       </div>
 
-      <div
-        className="relative w-full max-w-7xl mx-auto px-6 lg:px-8"
-        style={{ marginLeft: 'calc(50% - 672px - 5px)' }}
-      >
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <div className="max-w-4xl lg:pr-64">
             <div className="inline-block px-3 py-1 mb-6 text-sm font-medium text-blue-400 bg-blue-400/10 rounded-full border border-blue-400/20">
