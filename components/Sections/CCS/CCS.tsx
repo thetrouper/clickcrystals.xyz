@@ -10,7 +10,7 @@ export default function CCS() {
   return (
     <section className="py-24 bg-slate-950">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <motion.h2 
+        <motion.h2
           className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export default function CCS() {
         >
           Meet <span className="text-emerald-400">ClickScript</span>
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-xl text-slate-300 mb-6 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function CCS() {
           language. Use the in-game editor to build, debug, and run scripts
           instantly.
         </motion.p>
-        <motion.p 
+        <motion.p
           className="text-lg text-slate-400 mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function CCS() {
           Access community scripts or create your own. Killauras, macros, and
           more—all proven to work.
         </motion.p>
-        <motion.div 
+        <motion.div
           className="flex flex-wrap gap-4 justify-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
