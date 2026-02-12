@@ -18,7 +18,7 @@ export function GetClickCrystalsButton({
     <Container tapScale={0.97}>
       <Link
         href={link}
-        className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold rounded-lg transition-all text-base shadow-lg shadow-blue-600/50 hover:shadow-xl hover:shadow-blue-600/60"
+        className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all text-base"
       >
         {name}
       </Link>

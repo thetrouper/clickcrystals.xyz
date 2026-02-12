@@ -31,8 +31,8 @@ export default function Hero() {
   }, []);
   return (
     <section className="min-h-screen flex items-center py-20 px-4 sm:px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950 -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent_50%)] -z-10" />
 
       {particles.map((particle) => (
         <motion.div
@@ -55,16 +55,16 @@ export default function Hero() {
       ))}
 
       <motion.div
-        className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2"
+        className="hidden lg:block absolute right-0 top-1/2 -translate-y-[60%]"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.2),transparent_60%)] blur-2xl scale-110" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent_60%)] blur-2xl scale-110" />
         <img
           src="/textures/custom/player.png"
           alt="Crystal PvP"
-          className="h-[500px] w-auto relative z-10"
+          className="h-[450px] w-auto relative z-10"
         />
       </motion.div>
 
@@ -92,13 +92,12 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              className="text-base sm:text-lg lg:text-xl text-slate-300 mb-10 sm:mb-12 leading-relaxed max-w-2xl"
+              className="text-base sm:text-lg lg:text-xl text-slate-300 mb-12 sm:mb-14 leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              80+ modules, custom scripting, and precision hotkeys. Everything
-              you need to dominate Crystal PvP.
+              80+ modules, custom scripting engine, and precision hotkeys — everything you need to dominate Crystal PvP.
             </motion.p>
 
             <motion.div
