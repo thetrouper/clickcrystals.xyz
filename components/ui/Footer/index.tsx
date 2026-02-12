@@ -59,7 +59,8 @@ export default function Footer() {
               label: 'CurseForge',
               link: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
               icon: '/icons/curseforge.svg',
-              hoverClass: 'hover:[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(93%)_saturate(4062%)_hue-rotate(3deg)_brightness(104%)_contrast(101%)]',
+              hoverClass:
+                'hover:[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(93%)_saturate(4062%)_hue-rotate(3deg)_brightness(104%)_contrast(101%)]',
             },
             {
               label: 'Modrinth',
@@ -81,7 +82,14 @@ export default function Footer() {
               aria-label={label}
               className="opacity-60 hover:opacity-100 transition-opacity inline-flex items-center justify-center w-5 h-5"
             >
-              <Image src={icon} alt={label} width={20} height={20} className={`transition-all ${hoverClass}`} style={{display:'block'}} />
+              <Image
+                src={icon}
+                alt={label}
+                width={20}
+                height={20}
+                className={`transition-all ${hoverClass}`}
+                style={{ display: 'block' }}
+              />
             </Link>
           ))}
         </div>

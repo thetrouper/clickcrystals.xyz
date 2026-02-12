@@ -8,7 +8,11 @@ type IconProps = {
   hoverColor?: string;
 };
 
-export const Icon = ({ icon, url, hoverColor = 'hover:text-gray-700' }: IconProps) => {
+export const Icon = ({
+  icon,
+  url,
+  hoverColor = 'hover:text-gray-700',
+}: IconProps) => {
   return (
     <Link
       href={url}
