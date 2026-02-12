@@ -18,7 +18,7 @@ export default function Download() {
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 py-20">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
+          <h1 className="text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight">
             Download <span className="text-blue-400">ClickCrystals</span>
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">

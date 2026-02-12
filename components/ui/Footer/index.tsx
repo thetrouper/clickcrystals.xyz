@@ -29,24 +29,27 @@ export default function Footer() {
               icon: faDiscord,
               url: 'https://discord.gg/n9hfHNJVe6',
               label: 'Discord',
+              hoverColor: 'hover:text-[#5865F2]',
             },
             {
               icon: faGithub,
               url: 'https://github.com/clickcrystals-development/ClickCrystals',
               label: 'GitHub',
+              hoverColor: 'hover:text-white',
             },
             {
               icon: faYoutube,
               url: 'https://www.youtube.com/@itzispyder',
               label: 'YouTube',
+              hoverColor: 'hover:text-[#FF0000]',
             },
-          ].map(({ icon, url, label }) => (
+          ].map(({ icon, url, label, hoverColor }) => (
             <Link
               key={label}
               href={url}
               target="_blank"
               aria-label={label}
-              className="text-slate-400 hover:text-white transition-colors"
+              className={`text-slate-400 transition-colors inline-flex items-center justify-center w-5 h-5 ${hoverColor}`}
             >
               <FontAwesomeIcon icon={icon} className="w-5 h-5" />
             </Link>
@@ -56,26 +59,29 @@ export default function Footer() {
               label: 'CurseForge',
               link: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
               icon: '/icons/curseforge.svg',
+              hoverClass: 'hover:[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(93%)_saturate(4062%)_hue-rotate(3deg)_brightness(104%)_contrast(101%)]',
             },
             {
               label: 'Modrinth',
               link: 'https://modrinth.com/mod/clickcrystals',
               icon: '/icons/modrinth.svg',
+              hoverClass: 'hover:brightness-110 hover:saturate-150',
             },
             {
               label: 'PlanetMC',
               link: 'https://www.planetminecraft.com/mod/clickcrystal/',
               icon: '/icons/planetmc.svg',
+              hoverClass: 'hover:brightness-110 hover:saturate-150',
             },
-          ].map(({ label, link, icon }) => (
+          ].map(({ label, link, icon, hoverClass }) => (
             <Link
               key={label}
               href={link}
               target="_blank"
               aria-label={label}
-              className="opacity-60 hover:opacity-100 transition-opacity"
+              className="opacity-60 hover:opacity-100 transition-opacity inline-flex items-center justify-center w-5 h-5"
             >
-              <Image src={icon} alt={label} width={20} height={20} />
+              <Image src={icon} alt={label} width={20} height={20} className={`transition-all ${hoverClass}`} style={{display:'block'}} />
             </Link>
           ))}
         </div>

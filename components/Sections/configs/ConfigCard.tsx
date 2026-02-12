@@ -38,7 +38,7 @@ export default async function ConfigCard({ config }: { config: Config }) {
   };
 
   return (
-    <div className="border border-slate-800 bg-slate-900/50 hover:bg-slate-900/80 rounded-lg p-4 transition-all group flex flex-col h-full">
+    <div className="relative border-2 border-slate-700/50 bg-slate-800/40 hover:bg-slate-800/60 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 rounded-lg p-5 transition-all duration-200 group flex flex-col h-full">
       <div className="flex-grow space-y-3">
         <h3 className="text-base font-semibold text-white group-hover:text-blue-400 transition-colors">
           {config.title}

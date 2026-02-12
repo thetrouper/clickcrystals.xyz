@@ -64,13 +64,13 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
             <div className="flex flex-col col-span-full text-center py-10 gap-2">
               <FontAwesomeIcon
                 icon={faXmarkCircle}
-                className="size-8 text-black left-0 right-0 mx-auto"
+                className="size-8 text-slate-500 left-0 right-0 mx-auto"
               />
-              <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+              <h2 className="text-2xl font-semibold text-slate-400 font-sans tracking-tight">
                 No configs found
               </h2>
               <div className="flex justify-center">
-                <p className="text-gray-500 text-center max-w-4xl">
+                <p className="text-slate-500 text-center max-w-4xl">
                   Try adjusting your search or filters to find what you&apos;re
                   looking for.
                 </p>

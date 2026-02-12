@@ -43,7 +43,7 @@ const reviews = [
     url: 'https://discordapp.com/users/1250828225161068674',
     message:
       'Before discovering ClickCrystals, Crystal PvP felt either too intimidating or too simplistic to me. But ClickCrystal changed everything, sparking a passion and transforming my skills. In just a few weeks, I advanced from a novice to a high-tier legend, dominating the battlefield. ClickCrystals is incredible and highly recommended!',
-    username: '@practice',
+    username: '@letmepractice',
   },
   {
     picture: '/staff/josh.png',

@@ -7,13 +7,22 @@ import {
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center pb-20">
+    <section className="min-h-screen flex items-center pb-20 relative">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-2xl">
+      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.2),transparent_60%)] blur-2xl scale-110" />
+        <img
+          src="/textures/custom/player.png"
+          alt="Crystal PvP"
+          className="h-[500px] w-auto relative z-10"
+        />
+      </div>
+
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8" style={{ marginLeft: 'calc(50% - 672px - 5px)' }}>
+        <div className="grid lg:grid-cols-1 gap-12 items-center">
+          <div className="max-w-4xl lg:pr-64">
             <div className="inline-block px-3 py-1 mb-6 text-sm font-medium text-blue-400 bg-blue-400/10 rounded-full border border-blue-400/20">
               Free & Open Source
             </div>
@@ -33,14 +42,6 @@ export default function Hero() {
               <GetClickCrystalsButton />
               <JoinDiscordButton />
             </div>
-          </div>
-
-          <div className="hidden lg:flex justify-center">
-            <img
-              src="/textures/custom/player.png"
-              alt="Crystal PvP"
-              className="h-[450px] w-auto"
-            />
           </div>
         </div>
       </div>
