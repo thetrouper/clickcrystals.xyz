@@ -1,6 +1,7 @@
 'use client';
 
 import CountUp from 'react-countup';
+import { motion } from 'framer-motion';
 import { getTotalDownloads } from '@/lib/getDownloads';
 import { useEffect, useState } from 'react';
 
@@ -36,7 +37,14 @@ export default function Progress() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {progress.map((item, index) => (
-            <div key={index} className="text-center">
+            <motion.div
+              key={index}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <div className="text-5xl font-bold text-white mb-3">
                 <CountUp
                   start={0}
@@ -49,7 +57,7 @@ export default function Progress() {
               <p className="text-slate-400 text-sm uppercase tracking-wide">
                 {item.metric}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
