@@ -4,7 +4,7 @@ export default function Features() {
   return (
     <section className="py-24 bg-slate-900">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
             Built for <span className="text-blue-400">Every Player</span>
           </h2>

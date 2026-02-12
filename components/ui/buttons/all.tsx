@@ -18,7 +18,7 @@ export function GetClickCrystalsButton({
     <Container tapScale={0.97}>
       <Link
         href={link}
-        className="inline-block px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm"
+        className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-base"
       >
         {name}
       </Link>
@@ -31,7 +31,7 @@ export function JoinDiscordButton() {
     <Container tapScale={0.97}>
       <Link
         href="https://discord.gg/n9hfHNJVe6"
-        className="inline-block px-7 py-3 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-medium rounded-lg transition-all text-sm"
+        className="inline-block px-8 py-4 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-semibold rounded-lg transition-all text-base"
       >
         Join Discord
       </Link>
@@ -44,7 +44,7 @@ export function ExploreScriptsButton() {
     <Container tapScale={0.97}>
       <Link
         href="/scripts"
-        className="inline-block px-7 py-3 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-medium rounded-lg transition-all text-sm"
+        className="inline-block px-8 py-4 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-semibold rounded-lg transition-all text-base"
       >
         Explore Scripts
       </Link>
@@ -57,7 +57,7 @@ export function MoreScreenshotsButton() {
     <Container tapScale={0.97}>
       <Link
         href="/gallery"
-        className="inline-block px-7 py-3 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-medium rounded-lg transition-all text-sm"
+        className="inline-block px-8 py-4 border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-800/50 text-white font-semibold rounded-lg transition-all text-base"
       >
         View Gallery
       </Link>

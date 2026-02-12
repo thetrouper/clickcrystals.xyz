@@ -17,12 +17,13 @@ export const DownloadLink = ({
   link,
 }: DownloadLinkProps) => {
   return (
-    <Container tapScale={0.95}>
+    <Container tapScale={0.97}>
       <Link
         href={link}
-        className={`btn text-white font-semibold px-2.5 md:px-5 py-2.5 shadow-none text-sm ${className}`}
+        className={`flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-lg transition-all text-base ${className}`}
       >
-        {icon} <span className="hidden md:block ml-2">{label}</span>
+        {icon}
+        <span>{label}</span>
       </Link>
     </Container>
   );

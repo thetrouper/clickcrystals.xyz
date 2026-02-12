@@ -157,7 +157,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <TableRow
               key={index}
-              className="border-slate-800 hover:bg-slate-900/50"
+              className="border-slate-800 hover:bg-slate-900/50 hover:border-blue-500/30 transition-all duration-200"
             >
               <TableCell className="font-medium text-white">
                 {project.name}

@@ -1,7 +1,6 @@
 'use client';
 
 import CountUp from 'react-countup';
-import { Container } from '@/components/ui/Container';
 import { getTotalDownloads } from '@/lib/getDownloads';
 import { useEffect, useState } from 'react';
 
@@ -10,19 +9,16 @@ export default function Progress() {
 
   const progress = [
     {
-      metric: 'Total Downloads',
+      metric: 'Downloads',
       value: downloads,
-      postfix: '+',
     },
     {
-      metric: 'Staff',
+      metric: 'Staff Members',
       value: 20,
-      postfix: '+',
     },
     {
-      metric: 'Years',
+      metric: 'Years Active',
       value: 2,
-      postfix: '+',
     },
   ];
 
@@ -36,33 +32,27 @@ export default function Progress() {
   }, []);
 
   return (
-    <div className="py-12 bg-[#0c3768] my-0 bg-[radial-gradient(ellipse_200%_200%_at_bottom_left,#054874,#000000_100%)]">
-      <div className="rounded-md py-8 px-4 lg:px-32 flex gap-4 sm:flex-row flex-col justify-between">
-        {progress.map((progress, index) => {
-          return (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center mx-4"
-            >
-              <Container>
-                <h2 className="text-yellow-300 text-4xl font-bold flex flex-row">
-                  <CountUp
-                    start={0}
-                    end={progress.value}
-                    duration={4}
-                    separator=","
-                    className="text-red-500 text-4xl font-bold"
-                  />
-                  {progress.postfix}
-                </h2>
-              </Container>
-              <p className="text-white text-base text-center">
-                {progress.metric}
+    <section className="py-24 bg-slate-900 border-b border-slate-800">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {progress.map((item, index) => (
+            <div key={index} className="text-center">
+              <div className="text-5xl font-bold text-white mb-3">
+                <CountUp
+                  start={0}
+                  end={item.value}
+                  duration={2.5}
+                  separator=","
+                />
+                +
+              </div>
+              <p className="text-slate-400 text-sm uppercase tracking-wide">
+                {item.metric}
               </p>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

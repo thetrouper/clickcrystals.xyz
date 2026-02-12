@@ -15,7 +15,7 @@ type ReviewProps = {
 
 const Review = ({ picture, name, message, rating, url = '#' }: ReviewProps) => {
   return (
-    <div className="p-6 rounded-lg bg-white border cursor-pointer">
+    <div className="p-6 rounded-lg bg-slate-800/40 border-2 border-slate-700/50 hover:border-slate-600 transition-all cursor-pointer">
       <div className="flex flex-row">
         <div className="flex items-center">
           <Container>
@@ -35,7 +35,7 @@ const Review = ({ picture, name, message, rating, url = '#' }: ReviewProps) => {
           <div className="ml-4">
             <Container>
               <Link href={url} target={url === '#' ? undefined : '_blank'}>
-                <h4 className="text-gray-800 text-sm">{name}</h4>
+                <h4 className="text-white text-sm font-semibold">{name}</h4>
               </Link>
             </Container>
             <StarRating rating={rating} />
@@ -43,7 +43,7 @@ const Review = ({ picture, name, message, rating, url = '#' }: ReviewProps) => {
         </div>
       </div>
       <div className="mt-6">
-        <p className="text-gray-800 text-sm leading-relaxed">“{message}”</p>
+        <p className="text-slate-300 text-sm leading-relaxed">"{message}"</p>
       </div>
     </div>
   );

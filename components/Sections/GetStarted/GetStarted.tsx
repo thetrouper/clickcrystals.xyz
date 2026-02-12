@@ -7,7 +7,7 @@ import {
 
 export default function GetStarted() {
   return (
-    <section className="py-20 bg-slate-950 border-t border-slate-800/50">
+    <section className="py-24 bg-slate-950 border-t border-slate-800/50">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-white mb-4">
           Ready to Get Started?
