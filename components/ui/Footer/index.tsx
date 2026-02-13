@@ -66,7 +66,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} ClickCrystals
           </span>
         </div>
-        
+
         <div className="flex items-center gap-4">
           {socialLinks.map(({ icon, url, label, hoverColor }) => (
             <Link
@@ -80,7 +80,7 @@ export default function Footer() {
               <FontAwesomeIcon icon={icon} className="w-5 h-5" />
             </Link>
           ))}
-          
+
           {platformLinks.map(({ label, link, icon, hoverClass }) => (
             <Link
               key={label}

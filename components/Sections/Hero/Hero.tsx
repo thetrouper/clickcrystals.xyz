@@ -55,7 +55,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              80+ modules, custom scripting engine, and precision hotkeys — everything you need to dominate Crystal PvP.
+              80+ modules, custom scripting engine, and precision hotkeys —
+              everything you need to dominate Crystal PvP.
             </motion.p>
 
             <motion.div

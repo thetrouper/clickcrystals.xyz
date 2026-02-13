@@ -65,8 +65,8 @@ const MenuOverlay = () => {
           >
             <FontAwesomeIcon icon={faDiscord} className="w-5 h-5" />
           </Link>
-          <MobileMenuNav 
-            state={active} 
+          <MobileMenuNav
+            state={active}
             handler={setActive}
             onOpen={() => setScrollPosition(window.scrollY)}
           />
