@@ -99,7 +99,9 @@ export default function ReviewsList() {
               height={48}
             />
             <div className="flex flex-col">
-              <div className="font-semibold text-white text-sm">{review.name}</div>
+              <div className="font-semibold text-white text-sm">
+                {review.name}
+              </div>
               <Link
                 target="_blank"
                 href={review.url}

@@ -19,7 +19,9 @@ export default function Ingame() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-wider text-slate-500 mb-3">Interface</p>
+          <p className="text-sm uppercase tracking-wider text-slate-500 mb-3">
+            Interface
+          </p>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             In-Game Interface
           </h2>
@@ -59,8 +61,13 @@ export default function Ingame() {
             { title: 'Config System', desc: 'Save & load setups' },
             { title: 'HUD Designer', desc: 'Customize display' },
           ].map((feature, i) => (
-            <div key={i} className="text-center px-4 py-4 rounded-xl bg-slate-800/20 border border-slate-700/30 hover:border-slate-600/50 transition-colors">
-              <h3 className="text-white font-semibold mb-1 text-sm">{feature.title}</h3>
+            <div
+              key={i}
+              className="text-center px-4 py-4 rounded-xl bg-slate-800/20 border border-slate-700/30 hover:border-slate-600/50 transition-colors"
+            >
+              <h3 className="text-white font-semibold mb-1 text-sm">
+                {feature.title}
+              </h3>
               <p className="text-slate-400 text-xs">{feature.desc}</p>
             </div>
           ))}

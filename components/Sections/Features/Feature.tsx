@@ -46,8 +46,12 @@ const Feature = ({
         </div>
       )}
       <div className="flex flex-col flex-1">
-        <h3 className="text-white font-semibold text-2xl mb-3 leading-tight">{title}</h3>
-        <p className="text-slate-300 text-base mb-6 leading-relaxed flex-1">{desc}</p>
+        <h3 className="text-white font-semibold text-2xl mb-3 leading-tight">
+          {title}
+        </h3>
+        <p className="text-slate-300 text-base mb-6 leading-relaxed flex-1">
+          {desc}
+        </p>
         {linkTitle && (
           <Link
             href={linkUrl}
