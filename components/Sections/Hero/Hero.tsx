@@ -1,58 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import {
   GetClickCrystalsButton,
   JoinDiscordButton,
 } from '@/components/ui/buttons/all';
 
 export default function Hero() {
-  const [particles, setParticles] = useState<
-    Array<{
-      id: number;
-      left: number;
-      top: number;
-      duration: number;
-      delay: number;
-    }>
-  >([]);
-
-  useEffect(() => {
-    setParticles(
-      [...Array(20)].map((_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        duration: 3 + Math.random() * 2,
-        delay: Math.random() * 2,
-      })),
-    );
-  }, []);
   return (
-    <section className="min-h-screen flex items-center py-20 px-4 sm:px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950 -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent_50%)] -z-10" />
-
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
-          style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-          }}
-        />
-      ))}
+    <section className="min-h-screen flex items-center py-24 px-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)] -z-10" />
 
       <motion.div
         className="hidden lg:block absolute right-0 top-1/2 -translate-y-[60%]"
@@ -60,7 +18,7 @@ export default function Hero() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent_60%)] blur-2xl scale-110" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_60%)] blur-3xl" />
         <img
           src="/textures/custom/player.png"
           alt="Crystal PvP"
@@ -70,21 +28,21 @@ export default function Hero() {
 
       <div className="relative w-full max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
-          <div className="max-w-4xl lg:pr-64">
+          <div className="lg:pr-64">
             <motion.div
-              className="inline-block px-4 py-1.5 mb-8 text-xs sm:text-sm font-medium text-blue-400 bg-blue-400/10 rounded-full border border-blue-400/20"
+              className="inline-block px-5 py-2.5 mb-8 text-sm font-medium text-blue-400 bg-blue-400/10 rounded-full border border-blue-400/20"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6 }}
             >
               Free & Open Source
             </motion.div>
 
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight tracking-tight"
+              className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               Crystal PvP Mod
               <br />
@@ -92,10 +50,10 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              className="text-base sm:text-lg lg:text-xl text-slate-300 mb-12 sm:mb-14 leading-relaxed max-w-2xl"
+              className="text-lg text-slate-300 mb-12 leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               80+ modules, custom scripting engine, and precision hotkeys — everything you need to dominate Crystal PvP.
             </motion.p>
@@ -104,7 +62,7 @@ export default function Hero() {
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <GetClickCrystalsButton />
               <JoinDiscordButton />
