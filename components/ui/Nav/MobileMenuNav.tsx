@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function MobileMenuNav({ handler, state }: any) {
+export default function MobileMenuNav({ handler, state, onOpen }: any) {
   const toggle = () => {
+    if (!state) {
+      onOpen();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     handler(!state);
   };
 

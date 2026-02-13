@@ -14,6 +14,7 @@ import { usePathname, useRouter } from 'next/navigation';
 const MenuOverlay = () => {
   const [active, setActive] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const pathname = usePathname();
   const router = useRouter();
   const links = getLinks(() => {
@@ -31,11 +32,15 @@ const MenuOverlay = () => {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      if (scrollPosition > 0 && !isNavigating) {
+        window.scrollTo({ top: scrollPosition, behavior: 'instant' });
+        setScrollPosition(0);
+      }
     }
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [active]);
+  }, [active, scrollPosition, isNavigating]);
 
   if (isNavigating) {
     return null;
@@ -60,7 +65,11 @@ const MenuOverlay = () => {
           >
             <FontAwesomeIcon icon={faDiscord} className="w-5 h-5" />
           </Link>
-          <MobileMenuNav state={active} handler={setActive} />
+          <MobileMenuNav 
+            state={active} 
+            handler={setActive}
+            onOpen={() => setScrollPosition(window.scrollY)}
+          />
         </div>
       </div>
       <AnimatePresence>
