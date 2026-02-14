@@ -18,7 +18,7 @@ export default function ScrollWrapper({
   return (
     <div
       className={`tracking-tight text-white sticky top-0 z-[99999] transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-xl bg-black/30 shadow-lg' : ''
+        scrolled ? 'backdrop-blur-md bg-black/50 shadow-lg' : 'bg-transparent'
       }`}
     >
       {children}

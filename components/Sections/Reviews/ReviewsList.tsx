@@ -79,13 +79,19 @@ export default function ReviewsList() {
       viewport={{ once: true, amount: 0.1 }}
       className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
     >
-      {reviews.map((review, index) => (
-        <motion.div
-          key={index}
-          variants={item}
-          className="p-6 bg-slate-800/50 rounded-xl backdrop-blur-sm border border-slate-700/50 flex flex-col"
-        >
-          <div className="text-slate-300 leading-relaxed mb-6 flex-1 text-base">
+      {reviews.map((review, index) => {
+        // Show only ImproperIssues, I-No-oNe, and Practice on mobile
+        const isMobileVisible = ['ImproperIssues', 'I-No-oNe', 'Practice'].includes(review.name);
+        
+        return (
+          <motion.div
+            key={index}
+            variants={item}
+            className={`p-6 md:p-8 bg-slate-800/50 rounded-xl backdrop-blur-sm border border-slate-700/50 flex flex-col ${
+              isMobileVisible ? '' : 'hidden md:flex'
+            }`}
+          >
+          <div className="text-slate-300 leading-relaxed mb-6 md:mb-8 flex-1 text-base">
             <span className="text-slate-500 text-xl leading-none">"</span>
             {review.message}
             <span className="text-slate-500 text-xl leading-none">"</span>
@@ -99,7 +105,7 @@ export default function ReviewsList() {
               height={48}
             />
             <div className="flex flex-col">
-              <div className="font-semibold text-white text-sm">
+              <div className="font-bold text-white text-base">
                 {review.name}
               </div>
               <Link
@@ -112,7 +118,8 @@ export default function ReviewsList() {
             </div>
           </div>
         </motion.div>
-      ))}
+        );
+      })}
     </motion.div>
   );
 }

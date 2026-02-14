@@ -8,7 +8,7 @@ import {
 
 export default function CCS() {
   return (
-    <section className="py-24 bg-slate-950 border-t border-slate-800/50">
+    <section className="py-16 md:py-24 bg-slate-950 border-t border-slate-800/50">
       <div className="max-w-7xl mx-auto px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,17 +17,17 @@ export default function CCS() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <p className="text-sm uppercase tracking-wider text-slate-500 mb-3">
+          <p className="text-xs md:text-sm uppercase tracking-wider text-slate-500 mb-3">
             Scripting
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Meet ClickScript
           </h2>
-          <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+          <p className="text-base md:text-lg text-slate-300 mb-8 leading-relaxed">
             A built-in scripting engine for creating custom modules and
             automating gameplay — no Java required.
           </p>
-          <ul className="space-y-3 text-slate-300 mb-8 max-w-xl mx-auto inline-block text-left">
+          <ul className="space-y-2 text-slate-300 mb-6 max-w-xl mx-auto text-left md:inline-block md:text-left">
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
               <span className="leading-relaxed">
@@ -47,7 +47,7 @@ export default function CCS() {
               </span>
             </li>
           </ul>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
             <GetClickCrystalsButton name="Script Editor" link="/editor" />
             <ExploreScriptsButton />
           </div>

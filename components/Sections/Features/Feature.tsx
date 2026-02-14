@@ -29,7 +29,7 @@ const Feature = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full p-6 rounded-xl bg-slate-800/30 border border-slate-700/40 hover:border-slate-600/60 transition-colors"
+      className="flex flex-col h-full p-5 md:p-6 rounded-xl bg-slate-800/30 border border-slate-700/40 hover:border-slate-600/60 transition-colors"
     >
       {icon != null && (
         <div className="mb-4">
@@ -46,7 +46,7 @@ const Feature = ({
         </div>
       )}
       <div className="flex flex-col flex-1">
-        <h3 className="text-white font-semibold text-2xl mb-3 leading-tight">
+        <h3 className="text-white font-semibold text-xl md:text-2xl mb-3 leading-tight">
           {title}
         </h3>
         <p className="text-slate-300 text-base mb-6 leading-relaxed flex-1">
