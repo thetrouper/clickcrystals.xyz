@@ -52,7 +52,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-slate-900 border-t border-slate-800/50 py-8 px-8">
+    <footer className="w-full bg-slate-900 border-t border-slate-800/50 py-6 md:py-8 px-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <Image

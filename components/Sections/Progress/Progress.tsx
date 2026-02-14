@@ -33,9 +33,9 @@ export default function Progress() {
   }, []);
 
   return (
-    <section className="py-24 bg-slate-900 border-t border-slate-800/50">
+    <section className="py-16 md:py-32 bg-slate-900 border-t border-slate-800/50">
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {progress.map((item, index) => (
             <motion.div
               key={index}
@@ -45,7 +45,7 @@ export default function Progress() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+              <div className="text-3xl md:text-5xl font-bold text-white mb-2">
                 <CountUp
                   start={0}
                   end={item.value}
@@ -54,7 +54,7 @@ export default function Progress() {
                 />
                 <span className="text-blue-400">+</span>
               </div>
-              <p className="text-slate-400 text-base uppercase tracking-wider">
+              <p className="text-slate-300 text-base uppercase tracking-wider">
                 {item.metric}
               </p>
             </motion.div>

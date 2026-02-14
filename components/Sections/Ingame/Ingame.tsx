@@ -10,7 +10,7 @@ import {
 
 export default function Ingame() {
   return (
-    <section className="py-24 bg-slate-950 border-t border-slate-800/50 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-slate-950 border-t border-slate-800/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -19,13 +19,13 @@ export default function Ingame() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-wider text-slate-500 mb-3">
+          <p className="text-xs md:text-sm uppercase tracking-wider text-slate-500 mb-3">
             Interface
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
             In-Game Interface
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Everything you need, accessible without leaving the game
           </p>
         </motion.div>
@@ -35,9 +35,9 @@ export default function Ingame() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-12 relative max-w-7xl mx-auto"
+          className="mb-6 md:mb-8 relative max-w-7xl mx-auto"
         >
-          <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full" />
+          <div className="absolute inset-0 bg-blue-500/4 blur-2xl rounded-full" />
           <Image
             src={cc}
             alt="ClickCrystals Client Menu"
@@ -53,7 +53,7 @@ export default function Ingame() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid md:grid-cols-4 gap-6 mb-12 max-w-7xl mx-auto"
+          className="hidden md:grid md:grid-cols-4 gap-6 mb-12 max-w-7xl mx-auto"
         >
           {[
             { title: 'Module Manager', desc: 'Toggle & configure' },
@@ -78,7 +78,7 @@ export default function Ingame() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-wrap gap-4 justify-center max-w-7xl mx-auto"
+          className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center max-w-7xl mx-auto"
         >
           <GetClickCrystalsButton />
           <MoreScreenshotsButton />
