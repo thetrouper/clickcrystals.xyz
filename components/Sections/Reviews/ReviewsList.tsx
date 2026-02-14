@@ -81,8 +81,12 @@ export default function ReviewsList() {
     >
       {reviews.map((review, index) => {
         // Show only ImproperIssues, I-No-oNe, and Practice on mobile
-        const isMobileVisible = ['ImproperIssues', 'I-No-oNe', 'Practice'].includes(review.name);
-        
+        const isMobileVisible = [
+          'ImproperIssues',
+          'I-No-oNe',
+          'Practice',
+        ].includes(review.name);
+
         return (
           <motion.div
             key={index}
@@ -91,33 +95,33 @@ export default function ReviewsList() {
               isMobileVisible ? '' : 'hidden md:flex'
             }`}
           >
-          <div className="text-slate-300 leading-relaxed mb-6 md:mb-8 flex-1 text-base">
-            <span className="text-slate-500 text-xl leading-none">"</span>
-            {review.message}
-            <span className="text-slate-500 text-xl leading-none">"</span>
-          </div>
-          <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-700/30">
-            <Image
-              src={review.picture}
-              alt={review.name}
-              className="w-12 h-12 rounded-full ring-2 ring-slate-700/50"
-              width={48}
-              height={48}
-            />
-            <div className="flex flex-col">
-              <div className="font-bold text-white text-base">
-                {review.name}
-              </div>
-              <Link
-                target="_blank"
-                href={review.url}
-                className="text-slate-400 text-xs"
-              >
-                {review.username}
-              </Link>
+            <div className="text-slate-300 leading-relaxed mb-6 md:mb-8 flex-1 text-base">
+              <span className="text-slate-500 text-xl leading-none">"</span>
+              {review.message}
+              <span className="text-slate-500 text-xl leading-none">"</span>
             </div>
-          </div>
-        </motion.div>
+            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-700/30">
+              <Image
+                src={review.picture}
+                alt={review.name}
+                className="w-12 h-12 rounded-full ring-2 ring-slate-700/50"
+                width={48}
+                height={48}
+              />
+              <div className="flex flex-col">
+                <div className="font-bold text-white text-base">
+                  {review.name}
+                </div>
+                <Link
+                  target="_blank"
+                  href={review.url}
+                  className="text-slate-400 text-xs"
+                >
+                  {review.username}
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         );
       })}
     </motion.div>
