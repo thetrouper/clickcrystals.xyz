@@ -20,7 +20,7 @@ export type Config = {
   config: JsonValue;
 };
 
-export default async function ConfigCard({ config }: { config: Config }) {
+export default function ConfigCard({ config }: { config: Config }) {
   const handleDownload = () => {
     const blob = new Blob([JSON.stringify(config.config, null, 2)], {
       type: 'application/json',

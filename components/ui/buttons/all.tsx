@@ -18,7 +18,7 @@ export function GetClickCrystalsButton({
     <Container tapScale={0.97}>
       <Link
         href={link}
-        className="inline-block w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all text-base text-center shadow-[0_0_16px_rgba(37,99,235,0.25)] hover:shadow-[0_0_20px_rgba(37,99,235,0.3)]"
+        className="inline-block w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all text-base text-center active:scale-95 duration-200 border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)]"
       >
         {name}
       </Link>
@@ -31,7 +31,7 @@ export function JoinDiscordButton() {
     <Container tapScale={0.97}>
       <Link
         href="https://discord.gg/n9hfHNJVe6"
-        className="inline-block w-full sm:w-auto px-8 py-4 border-2 border-slate-700/50 hover:border-slate-600/70 hover:bg-slate-800/50 text-white/85 hover:text-white font-semibold rounded-lg transition-all text-base text-center"
+        className="inline-block w-full sm:w-auto px-8 py-4 bg-slate-800/30 hover:bg-slate-800/50 text-white/90 hover:text-white font-semibold rounded-xl transition-all text-base text-center duration-200 border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]"
       >
         Join Discord
       </Link>
@@ -44,7 +44,7 @@ export function ExploreScriptsButton() {
     <Container tapScale={0.97}>
       <Link
         href="/scripts"
-        className="inline-block w-full sm:w-auto px-8 py-4 border-2 border-slate-700/50 hover:border-slate-600/70 hover:bg-slate-800/50 text-white/85 hover:text-white font-semibold rounded-lg transition-all text-base text-center"
+        className="inline-block w-full sm:w-auto px-8 py-4 bg-slate-800/30 hover:bg-slate-800/50 text-white/90 hover:text-white font-semibold rounded-xl transition-all text-base text-center duration-200 border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]"
       >
         Explore Scripts
       </Link>
@@ -57,7 +57,7 @@ export function MoreScreenshotsButton() {
     <Container tapScale={0.97}>
       <Link
         href="/gallery"
-        className="inline-block w-full sm:w-auto px-8 py-4 border-2 border-slate-700/50 hover:border-slate-600/70 hover:bg-slate-800/50 text-white/85 hover:text-white font-semibold rounded-lg transition-all text-base text-center"
+        className="inline-block w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all text-base text-center active:scale-95 duration-200 border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)]"
       >
         View Gallery
       </Link>

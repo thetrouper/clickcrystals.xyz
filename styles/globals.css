@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply leading-tight tracking-tight;
+  }
+  
+  p {
+    @apply leading-relaxed;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -28,8 +38,57 @@ body {
   @apply ring-offset-2 ring;
 }
 
-*:focus {
-  outline: none;
+*:focus-visible {
+  outline: 2px solid rgb(59, 130, 246);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.ag-theme-quartz-dark a:focus,
+.ag-theme-quartz-dark a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ag-cell:focus,
+.ag-cell:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ag-theme-quartz-dark {
+  --ag-focus-shadow: none !important;
+}
+
+.ag-theme-quartz-dark .ag-cell a,
+.ag-theme-quartz-dark .ag-cell a:focus,
+.ag-theme-quartz-dark .ag-cell a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.ag-theme-quartz-dark * {
+  outline: none !important;
+}
+
+.ag-theme-quartz-dark *:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ag-theme-quartz-dark .ag-cell:focus,
+.ag-theme-quartz-dark .ag-cell.ag-cell-focus {
+  border: 1px solid transparent !important;
+  outline: none !important;
+  background-color: rgba(148, 163, 184, 0.1) !important;
+  transition: background-color 0.2s ease;
+}
+
+.ag-theme-quartz-dark .ag-cell-range-selected:not(.ag-cell-focus) {
+  border: 1px solid transparent !important;
+  background-color: rgba(148, 163, 184, 0.05) !important;
+  transition: background-color 0.2s ease;
 }
 
 .bg-downloads {

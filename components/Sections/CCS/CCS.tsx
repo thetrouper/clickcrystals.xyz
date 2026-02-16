@@ -17,32 +17,32 @@ export default function CCS() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <p className="text-xs md:text-sm uppercase tracking-wider text-slate-500 mb-3">
+          <p className="text-sm uppercase tracking-widest text-blue-400/70 font-semibold mb-3">
             Scripting
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Meet ClickScript
           </h2>
-          <p className="text-base md:text-lg text-slate-300 mb-8 leading-relaxed">
+          <p className="text-base md:text-lg text-slate-200 mb-8">
             A built-in scripting engine for creating custom modules and
             automating gameplay — no Java required.
           </p>
-          <ul className="space-y-2 text-slate-300 mb-6 max-w-xl mx-auto text-left md:inline-block md:text-left">
+          <ul className="space-y-2 text-slate-200 mb-8 max-w-xl mx-auto text-left md:inline-block md:text-left">
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
-              <span className="leading-relaxed">
+              <span>
                 Built-in IDE with syntax highlighting
               </span>
             </li>
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
-              <span className="leading-relaxed">
+              <span>
                 Hot reload—test scripts without restarting
               </span>
             </li>
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
-              <span className="leading-relaxed">
+              <span>
                 Community script library included
               </span>
             </li>

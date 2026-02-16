@@ -91,7 +91,7 @@ export default function ReviewsList() {
           <motion.div
             key={index}
             variants={item}
-            className={`p-6 md:p-8 bg-slate-800/50 rounded-xl backdrop-blur-sm border border-slate-700/50 flex flex-col ${
+            className={`p-6 md:p-8 bg-slate-800/30 rounded-xl backdrop-blur-sm border border-slate-700/50 flex flex-col ${
               isMobileVisible ? '' : 'hidden md:flex'
             }`}
           >
