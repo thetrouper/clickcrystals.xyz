@@ -61,11 +61,15 @@ const addToRemoveQueue = (toastId: string) => {
   }
 
   const timeout = setTimeout(() => {
-    toastTimeouts.delete(toastId);
-    dispatch({
-      type: 'REMOVE_TOAST',
-      toastId: toastId,
-    });
+    try {
+      toastTimeouts.delete(toastId);
+      dispatch({
+        type: 'REMOVE_TOAST',
+        toastId: toastId,
+      });
+    } catch (error) {
+      console.error('Failed to remove toast:', error);
+    }
   }, TOAST_REMOVE_DELAY);
 
   toastTimeouts.set(toastId, timeout);
@@ -131,10 +135,14 @@ const listeners: Array<(state: State) => void> = [];
 let memoryState: State = { toasts: [] };
 
 function dispatch(action: Action) {
-  memoryState = reducer(memoryState, action);
-  listeners.forEach((listener) => {
-    listener(memoryState);
-  });
+  try {
+    memoryState = reducer(memoryState, action);
+    listeners.forEach((listener) => {
+      listener(memoryState);
+    });
+  } catch (error) {
+    console.error('Toast dispatch failed:', error);
+  }
 }
 
 type Toast = Omit<ToasterToast, 'id'>;

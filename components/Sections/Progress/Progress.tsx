@@ -33,7 +33,7 @@ export default function Progress() {
   }, []);
 
   return (
-    <section className="py-16 md:py-32 bg-slate-900 border-t border-slate-800/50">
+    <section className="py-16 md:py-24 bg-slate-900 border-t border-slate-800/50">
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {progress.map((item, index) => (

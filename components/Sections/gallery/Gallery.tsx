@@ -63,8 +63,8 @@ export default function Gallery() {
           ]}
           className="mx-auto max-w-[800px] md:max-w-[1000px]"
         >
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] mb-4 font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            ClickCrystals <span className="text-blue-600">Gallery</span>
+          <h1 className="text-center text-white tracking-tight leading-[1.3] mb-4 font-bold text-2xl md:text-3xl lg:text-4xl">
+            ClickCrystals <span className="text-blue-500">Gallery</span>
           </h1>
           <CarouselContent>
             {slides.map((slide: string, i) => (
@@ -84,11 +84,11 @@ export default function Gallery() {
         </Carousel>
       </div>
       <div className="flex flex-row justify-center mb-4">
-        <p className="text-sm text-slate-800 font-medium mt-4 text-center">
+        <p className="text-sm text-slate-400 font-medium mt-4 text-center">
           Swipe left or right to change slides.
         </p>
       </div>
-      <div className="flex flex-row gap-4 justify-center">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <GetClickCrystalsButton />
         <JoinDiscordButton />
       </div>

@@ -8,7 +8,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center py-12 md:py-16 px-8 relative overflow-hidden">
+    <section className="min-h-screen flex items-center py-16 md:py-24 px-8 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black -z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)] -z-10" />
 
@@ -29,17 +29,8 @@ export default function Hero() {
       <div className="relative w-full max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <div className="lg:pr-64">
-            <motion.div
-              className="hidden md:inline-block px-5 py-2.5 mb-8 text-sm font-medium text-blue-400/80 bg-blue-400/5 rounded-full border border-blue-400/10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              Free & Open Source
-            </motion.div>
-
             <motion.h1
-              className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight"
+              className="text-5xl md:text-7xl font-bold text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -50,7 +41,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 leading-relaxed max-w-2xl"
+              className="text-base md:text-lg text-slate-200 mb-10 max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -60,7 +51,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}

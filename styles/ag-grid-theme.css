@@ -11,12 +11,12 @@
 .ag-apply-theme-variables {
   --ag-background-color: var(--ag-inherited-background-color, #1a1a1a);
   --ag-foreground-color: var(--ag-inherited-foreground-color, #e0e0e0);
-  --ag-text-color: var(--ag-inherited-text-color, var(--ag-foreground-color));
+  --ag-text-color: var(--ag-inherited-text-color, #cbd5e1);
   --ag-accent-color: var(--ag-inherited-accent-color, #3b82f6);
   --ag-invalid-color: var(--ag-inherited-invalid-color, #e02525);
   --ag-border-color: var(
     --ag-inherited-border-color,
-    color-mix(in srgb, transparent, var(--ag-foreground-color) 15%)
+    color-mix(in srgb, transparent, var(--ag-foreground-color) 8%)
   );
   --ag-wrapper-border: var(
     --ag-inherited-wrapper-border,
@@ -24,7 +24,7 @@
   );
   --ag-row-border: var(
     --ag-inherited-row-border,
-    solid 1px var(--ag-border-color)
+    solid 1px color-mix(in srgb, transparent, var(--ag-border-color) 40%)
   );
   --ag-color-scheme: var(--ag-inherited-color-scheme, light);
   --ag-header-row-border: var(
@@ -70,7 +70,7 @@
   --ag-header-font-size: var(--ag-inherited-header-font-size, 14px);
   --ag-header-text-color: var(
     --ag-inherited-header-text-color,
-    var(--ag-text-color)
+    #f8fafc
   );
   --ag-header-cell-hover-background-color: var(
     --ag-inherited-header-cell-hover-background-color,
@@ -165,7 +165,7 @@
     --ag-inherited-row-height,
     calc(
       max(var(--ag-icon-size), var(--ag-font-size)) + var(--ag-grid-size) *
-        3.5 * var(--ag-row-vertical-padding-scale)
+        5.5 * var(--ag-row-vertical-padding-scale)
     )
   );
   --ag-row-vertical-padding-scale: var(
@@ -5069,9 +5069,10 @@ input[class^='ag-'][type='range']:disabled {
   align-items: center;
   border-top: var(--ag-footer-row-border);
   display: flex;
-  gap: calc(var(--ag-grid-size) * 4);
+  gap: calc(var(--ag-grid-size) * 3);
   height: max(var(--ag-row-height), 22px);
   justify-content: flex-end;
+  margin-top: calc(var(--ag-grid-size) * 2);
   padding: 0 var(--ag-cell-horizontal-padding);
 }
 .ag-paging-page-size .ag-wrapper {

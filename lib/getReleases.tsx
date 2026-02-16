@@ -2,6 +2,8 @@
 
 type Assets = {
   '12111': null | React.ReactElement;
+  '12110': null | React.ReactElement;
+  '1219': null | React.ReactElement;
   '1218': null | React.ReactElement;
   '1217': null | React.ReactElement;
   '1216': null | React.ReactElement;
@@ -90,6 +92,8 @@ export async function getParsedReleases() {
       let downloads = 0;
       let assetsData: Assets = {
         '12111': null,
+        '12110': null,
+        '1219': null,
         '1218': null,
         '1217': null,
         '1216': null,
@@ -113,6 +117,10 @@ export async function getParsedReleases() {
 
         if (assetName.includes('1.21.11')) {
           assetsData['12111'] = assetURL;
+        } else if (assetName.includes('1.21.10')) {
+          assetsData['12110'] = assetURL;
+        } else if (assetName.includes('1.21.9')) {
+          assetsData['1219'] = assetURL;
         } else if (assetName.includes('1.21.8')) {
           assetsData['1218'] = assetURL;
         } else if (assetName.includes('1.21.7')) {

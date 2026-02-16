@@ -11,7 +11,7 @@ export default function GetStarted() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_60%)]" />
 
       <div className="relative max-w-7xl mx-auto px-8 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
           Ready to Get Started?
         </h2>
         <p className="text-base md:text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
