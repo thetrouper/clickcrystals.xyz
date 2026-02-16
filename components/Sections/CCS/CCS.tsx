@@ -30,21 +30,15 @@ export default function CCS() {
           <ul className="space-y-2 text-slate-200 mb-8 max-w-xl mx-auto text-left md:inline-block md:text-left">
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
-              <span>
-                Built-in IDE with syntax highlighting
-              </span>
+              <span>Built-in IDE with syntax highlighting</span>
             </li>
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
-              <span>
-                Hot reload—test scripts without restarting
-              </span>
+              <span>Hot reload—test scripts without restarting</span>
             </li>
             <li className="flex gap-3 items-start">
               <span className="text-blue-400 mt-0.5">•</span>
-              <span>
-                Community script library included
-              </span>
+              <span>Community script library included</span>
             </li>
           </ul>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">

@@ -68,10 +68,7 @@
   --ag-header-font-family: var(--ag-inherited-header-font-family, inherit);
   --ag-header-font-weight: var(--ag-inherited-header-font-weight, 500);
   --ag-header-font-size: var(--ag-inherited-header-font-size, 14px);
-  --ag-header-text-color: var(
-    --ag-inherited-header-text-color,
-    #f8fafc
-  );
+  --ag-header-text-color: var(--ag-inherited-header-text-color, #f8fafc);
   --ag-header-cell-hover-background-color: var(
     --ag-inherited-header-cell-hover-background-color,
     transparent
