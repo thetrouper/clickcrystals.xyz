@@ -97,6 +97,7 @@ on module_disable {
   };
 
   const [loading, setLoading] = useState(true);
+  const [mobileTab, setMobileTab] = useState<'input' | 'output'>('input');
 
   const editorsDidMount = (editor: any) => {
     setLoading(false);
@@ -104,30 +105,71 @@ on module_disable {
 
   return (
     <div>
-      <div className="flex flex-row bg-gradient-to-b from-slate-900 to-slate-950 gap-2 md:gap-4 pt-4 px-8 justify-between border-b border-slate-800">
-        <div className="block md:flex md:flex-row md:gap-3">
+      <div className="flex flex-wrap bg-gradient-to-b from-slate-900 to-slate-950 gap-2 md:gap-3 pt-4 px-4 md:px-8 pb-4 items-center justify-between border-b border-slate-800/50">
+        <div className="flex items-center gap-2">
+          <span className="text-white font-semibold text-sm md:text-base">ClickScript Editor</span>
+        </div>
+        <div className="flex flex-wrap gap-2 md:gap-3">
           <button
             disabled={false}
             onClick={deCompressCode}
-            className="bg-slate-800 hover:bg-slate-700 font-semibold px-4 py-2 text-white text-sm rounded transition-colors w-full mb-4 lg:w-auto"
+            className="bg-slate-800/30 hover:bg-slate-800/50 font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]"
           >
             Format
           </button>
           <button
             disabled={false}
             onClick={compressCode}
-            className="bg-slate-800 hover:bg-slate-700 font-semibold px-4 py-2 text-white text-sm rounded transition-colors w-full mb-4 lg:w-auto"
+            className="bg-slate-800/30 hover:bg-slate-800/50 font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]"
           >
             Minify
           </button>
-        </div>
-        <div className="block md:flex md:flex-row md:gap-3">
           <Publish onOpen={updateCodeState} code={code} disabled={false} />
           <Save receiveCode={updateCodeState} disabled={false} />
         </div>
       </div>
+      <div className="lg:hidden flex border-b border-slate-800/50 bg-slate-900">
+        <button
+          onClick={() => setMobileTab('input')}
+          className={`flex-1 py-3 text-sm font-semibold transition-colors ${
+            mobileTab === 'input'
+              ? 'text-white border-b-2 border-blue-500 bg-slate-800/30'
+              : 'text-slate-400 hover:text-slate-300'
+          }`}
+        >
+          Input
+        </button>
+        <button
+          onClick={() => setMobileTab('output')}
+          className={`flex-1 py-3 text-sm font-semibold transition-colors ${
+            mobileTab === 'output'
+              ? 'text-white border-b-2 border-blue-500 bg-slate-800/30'
+              : 'text-slate-400 hover:text-slate-300'
+          }`}
+        >
+          Output
+        </button>
+        {mobileTab === 'output' && (
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(result);
+              toast({
+                title: 'Copied to clipboard',
+                description: 'Output code copied successfully',
+                variant: 'passive',
+              });
+            }}
+            className="px-4 py-3 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            Copy
+          </button>
+        )}
+      </div>
       <div className="flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
-        <div className="flex-1 h-full">
+        <div className={`flex-1 h-full ${mobileTab === 'input' ? 'block' : 'hidden'} lg:block`}>
           <Editor
             language={'ccs'}
             editorWillMount={editorWillMount}
@@ -150,7 +192,7 @@ on module_disable {
           />
         </div>
 
-        <div className="flex-1 h-full">
+        <div className={`flex-1 h-full ${mobileTab === 'output' ? 'block' : 'hidden'} lg:block`}>
           <Editor
             language="ccs"
             className="h-screen"

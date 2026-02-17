@@ -197,7 +197,7 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
         <DialogTrigger asChild>
           <button
             disabled={disabled}
-            className="bg-emerald-700 hover:bg-emerald-600 font-semibold px-4 py-2 text-white text-sm rounded transition-colors w-full mb-4 lg:w-auto"
+            className="bg-emerald-600 hover:bg-emerald-500 font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-emerald-700 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.3)]"
           >
             Publish
           </button>
@@ -222,22 +222,22 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
       <DrawerTrigger asChild>
         <button
           disabled={disabled}
-          className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+          className="bg-emerald-600 hover:bg-emerald-500 font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-emerald-700 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.3)]"
         >
           Publish
         </button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="bg-slate-900 border-slate-800">
         <DrawerHeader className="text-left">
-          <DrawerTitle>Publish script to archive</DrawerTitle>
-          <DrawerDescription>
+          <DrawerTitle className="text-white">Publish script to archive</DrawerTitle>
+          <DrawerDescription className="text-slate-400">
             Give your script a title and set your author name to publish!
           </DrawerDescription>
         </DrawerHeader>
         <PublishForm closeState={setOpen} code={code} className="px-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline" className="bg-slate-800 border-slate-700 text-white hover:bg-slate-700 hover:text-white">Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
