@@ -45,17 +45,17 @@ const Save = ({ receiveCode, disabled }: SaveProps) => {
 
   return (
     <button
-      className="btn border-transparent disabled:bg-[#4f7575] focus:ring-[#34adad] shadow-none bg-[#34adad] hover:bg-[#1e7e7e] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+      className="bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:cursor-not-allowed font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)] flex items-center justify-center"
       disabled={saveDisabled || disabled}
       onClick={handleSave}
     >
       {saveDisabled && (
         <FontAwesomeIcon
           icon={faSpinner}
-          className="mr-2 size-4 animate-spin"
+          className="mr-2 size-3 animate-spin"
         />
       )}
-      <div className="flex flex-row justify-center inset-0">Save</div>
+      Save
     </button>
   );
 };
