@@ -135,20 +135,20 @@ const projects = [
 
 export default function Projects() {
   return (
-    <>
+    <div className="overflow-x-auto">
       <Table className="border border-slate-800">
         <TableHeader>
           <TableRow className="border-slate-800 hover:bg-slate-900">
-            <TableHead className="w-[200px] text-white font-semibold">
+            <TableHead className="text-white font-semibold">
               Project
             </TableHead>
             <TableHead className="text-white font-semibold">
               Description
             </TableHead>
-            <TableHead className="w-[200px] text-white font-semibold">
+            <TableHead className="text-white font-semibold">
               Link
             </TableHead>
-            <TableHead className="w-[150px] text-white font-semibold">
+            <TableHead className="text-white font-semibold">
               Author
             </TableHead>
           </TableRow>
@@ -199,6 +199,6 @@ export default function Projects() {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }

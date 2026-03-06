@@ -15,47 +15,68 @@ type SaveProps = {
 const Save = ({ receiveCode, disabled }: SaveProps) => {
   const router = useRouter();
   const [saveDisabled, setSaveDisabled] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [failed, setFailed] = useState(false);
   const { toast } = useToast();
 
   const handleSave = async () => {
-    setSaveDisabled(!saveDisabled);
+    setSaveDisabled(true);
+    setFailed(false);
     const code = receiveCode();
     const query = await saveCode(code);
 
     if (query.success) {
-      navigator.clipboard.writeText(
-        `${window.location.hostname}/editor/${query.id}`,
-      );
+      try {
+        await navigator.clipboard.writeText(
+          `${window.location.hostname}/editor/${query.id}`,
+        );
+      } catch (err) {
+        // Clipboard requires HTTPS or localhost
+      }
       router.push(`/editor/${query.id}`);
-      toast({
-        title: 'Successfully saved snippet',
-        description: 'The link to share it has been copied to clipboard',
-        variant: 'passive',
-      });
+      setSaved(true);
+      setTimeout(() => {
+        setSaved(false);
+        setSaveDisabled(false);
+      }, 1000);
     } else {
-      toast({
-        title: 'Failed to save snippet',
-        description: query.error,
-        variant: 'destructive',
-      });
+      setFailed(true);
+      setTimeout(() => {
+        setFailed(false);
+        setSaveDisabled(false);
+      }, 3000);
     }
-
-    setSaveDisabled(false);
   };
 
   return (
     <button
-      className="bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:cursor-not-allowed font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)] flex items-center justify-center"
+      className={`font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border flex items-center justify-center gap-2 min-w-[80px] ${
+        saved
+          ? 'bg-green-600 hover:bg-green-500 border-green-700'
+          : failed
+          ? 'bg-red-600 hover:bg-red-500 border-red-700'
+          : 'bg-blue-600 hover:bg-blue-500 border-blue-700'
+      } disabled:bg-slate-700 disabled:cursor-not-allowed disabled:border-slate-600 disabled:opacity-50`}
       disabled={saveDisabled || disabled}
       onClick={handleSave}
     >
-      {saveDisabled && (
-        <FontAwesomeIcon
-          icon={faSpinner}
-          className="mr-2 size-3 animate-spin"
-        />
+      {saved ? (
+        <>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Saved</span>
+        </>
+      ) : failed ? (
+        <>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          <span>Failed</span>
+        </>
+      ) : (
+        <span>Save</span>
       )}
-      Save
     </button>
   );
 };

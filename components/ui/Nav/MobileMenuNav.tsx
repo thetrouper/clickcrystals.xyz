@@ -14,7 +14,7 @@ export default function MobileMenuNav({ handler, state, onOpen }: any) {
   return (
     <div className="md:hidden">
       <button
-        className="inline-flex items-center p-2.5 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 focus:ring-2 focus:ring-slate-600 transition-all"
+        className="text-slate-400 hover:text-white transition-colors p-1"
         onClick={toggle}
         aria-label="Toggle menu"
       >

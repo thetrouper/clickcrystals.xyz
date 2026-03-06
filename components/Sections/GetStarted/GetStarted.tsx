@@ -7,7 +7,7 @@ import {
 
 export default function GetStarted() {
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-b from-slate-950 to-slate-900 border-t border-slate-800/50 overflow-hidden">
+    <section className="relative py-12 md:py-24 bg-gradient-to-b from-slate-950 to-slate-900 border-t border-slate-800/50 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_60%)]" />
 
       <div className="relative max-w-7xl mx-auto px-8 text-center">

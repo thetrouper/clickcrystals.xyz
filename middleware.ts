@@ -5,7 +5,18 @@ export async function middleware(request: Request) {
   const url = new URL(request.url);
 
   if (url.pathname === '/get') {
-    return NextResponse.redirect(await getLatestLink());
+    const link = await getLatestLink();
+    if (link) {
+      try {
+        const redirectUrl = new URL(link);
+        if (redirectUrl.hostname === 'github.com') {
+          return NextResponse.redirect(link);
+        }
+      } catch {
+        // Invalid URL, fall through to home redirect
+      }
+    }
+    return NextResponse.redirect(new URL('/', request.url));
   }
 
   return NextResponse.next();

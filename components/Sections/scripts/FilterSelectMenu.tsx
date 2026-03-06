@@ -9,7 +9,7 @@ import {
 const FilterSelectMenu = ({ value, onChange }: any) => {
   return (
     <Select onValueChange={onChange} value={value}>
-      <SelectTrigger className="w-[200px] md:w-[280px] bg-slate-900 border-slate-700 text-white hover:border-slate-600">
+      <SelectTrigger className="w-full sm:w-[200px] md:w-[280px] bg-slate-900 border-slate-700 text-white hover:border-slate-600">
         <SelectValue placeholder="All" />
       </SelectTrigger>
       <SelectContent className="bg-slate-900 border-slate-700">

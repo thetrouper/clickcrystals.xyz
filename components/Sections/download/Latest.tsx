@@ -10,6 +10,7 @@ const Latest = ({ version = '1.2.7' }) => {
         height={50}
         width={50}
         src={clickcrystalsLogo}
+        priority
       />
       <div className="flex flex-col ml-4">
         <h1 className="text-white text-3xl font-bold mb-2">

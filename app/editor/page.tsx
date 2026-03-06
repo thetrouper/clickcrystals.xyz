@@ -1,10 +1,8 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import Loading from './loading';
 
 const CCSEditor = dynamic(() => import('@/components/Sections/editor/Editor'), {
   ssr: false,
-  loading: () => <Loading />,
 });
 
 export const metadata: Metadata = {
