@@ -12,6 +12,7 @@ export const Title = () => {
           height={50}
           width={50}
           src={clickcrystalsLogo}
+          priority
         />
         ClickCrystals
       </span>

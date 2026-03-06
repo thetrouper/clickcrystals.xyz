@@ -10,7 +10,7 @@ import {
 
 export default function Ingame() {
   return (
-    <section className="py-16 md:py-24 bg-slate-950 border-t border-slate-800/50 relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-slate-950 border-t border-slate-800/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export default function Ingame() {
           <p className="text-sm uppercase tracking-widest text-blue-400/70 font-semibold mb-3">
             Interface
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
             In-Game Interface
           </h2>
           <p className="text-base md:text-lg text-slate-200 max-w-2xl mx-auto">

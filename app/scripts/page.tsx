@@ -54,26 +54,6 @@ export default function ScriptsArchive() {
               might like. If you want your script to be added here, please
               contact a moderator on our Discord Guild.
             </p>
-            <div className="border-l-4 border-emerald-500 bg-emerald-900/20 p-5 my-6 rounded">
-              <p className="text-base text-emerald-400 font-semibold mb-3">
-                Did you know?
-              </p>
-              <p className="text-sm text-slate-300 mb-3 leading-relaxed">
-                The scripts you&apos;re currently seeing on this page are the
-                same scripts as you can see in the ClickCrystals in-game Online
-                Script Browser! Get ClickCrystals and instantly test these
-                scripts in less than 3 clicks!
-              </p>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                <span className="text-white font-semibold">
-                  ClickCrystals Script (ClickScript/CCS)
-                </span>{' '}
-                can do a lot of tasks. From simple swaps and hotbar changing,
-                through automatic complete farms, to blatent auto-totem,
-                kill-aura, auto-pot, jump-reset, anchor-switch, obsidian-switch,
-                etc.
-              </p>
-            </div>
           </div>
         </div>
         <Scripts />

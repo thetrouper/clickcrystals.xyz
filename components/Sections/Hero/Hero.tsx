@@ -8,21 +8,24 @@ import {
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center py-16 md:py-24 px-8 relative overflow-hidden">
+    <section className="min-h-screen flex items-center py-12 md:py-24 px-4 md:px-8 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black -z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)] -z-10" />
 
       <motion.div
         className="hidden lg:block absolute right-0 top-1/2 -translate-y-[60%]"
-        initial={{ opacity: 0, x: 100 }}
+        initial={{ opacity: 0, x: 200 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_60%)] blur-3xl" />
-        <img
+        <motion.img
           src="/textures/custom/player.png"
           alt="Crystal PvP"
           className="h-[450px] w-auto relative z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
         />
       </motion.div>
 
@@ -30,7 +33,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <div className="lg:pr-64">
             <motion.h1
-              className="text-5xl md:text-7xl font-bold text-white mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -46,7 +49,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              80+ modules, custom scripting engine, and precision hotkeys —
+              100+ modules, custom scripting engine, and precision hotkeys —
               everything you need to dominate Crystal PvP.
             </motion.p>
 

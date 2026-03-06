@@ -16,8 +16,8 @@ const DownloadTable = dynamic(() => import('./DownloadTable'), {
 
 export default function Download() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 py-20 md:py-32">
-      <div className="max-w-5xl mx-auto px-4 md:px-6">
+    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 py-12 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 md:mb-4 tracking-tight">
             Download <span className="text-blue-400">ClickCrystals</span>
@@ -30,13 +30,13 @@ export default function Download() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 pt-4 md:pt-6">
           <DownloadLink
-            link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
-            label="CurseForge"
-            primary={true}
-            icon={
-              <Image src={curseforge} width={24} height={24} alt="CurseForge" />
-            }
-          />
+              link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
+              label="CurseForge"
+              primary={true}
+              icon={
+                <Image src={curseforge} width={24} height={24} alt="CurseForge" />
+              }
+            />
           <DownloadLink
             link="https://github.com/clickcrystals-development/ClickCrystals/releases"
             label="GitHub"

@@ -75,7 +75,7 @@ const MenuOverlay = () => {
       <AnimatePresence>
         {active && (
           <div
-            className="fixed left-0 right-0 bg-slate-950/95 backdrop-blur-xl z-[99998] overflow-y-auto"
+            className="fixed left-0 right-0 bg-gradient-to-b from-slate-900 via-slate-950 to-black backdrop-blur-xl z-[99998] overflow-y-auto border-t border-slate-800/50"
             style={{ top: '72px', height: 'calc(100vh - 72px)' }}
           >
             <ul className="flex flex-col items-center px-4 py-8">

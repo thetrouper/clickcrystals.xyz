@@ -7,7 +7,7 @@ import { getParsedScripts } from '@/lib/getScripts';
 import FilterSelectMenu from './FilterSelectMenu';
 import { Input } from '@/components/ui/input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import { faXmarkCircle, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function Scripts() {
   const [scripts, setScripts] = useState<any>(null);
@@ -15,6 +15,20 @@ export default function Scripts() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState<string | boolean>(false);
+  const [showInfo, setShowInfo] = useState(true);
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem('hideScriptsInfo') === 'true';
+    if (dismissed) {
+      setShowInfo(false);
+    }
+  }, []);
+
+  const handleDismissInfo = () => {
+    setShowInfo(false);
+    localStorage.setItem('hideScriptsInfo', 'true');
+  };
 
   useEffect(() => {
     const fetchScripts = async () => {
@@ -61,18 +75,66 @@ export default function Scripts() {
 
   return (
     <div>
-      <div className="flex gap-4 mb-4">
+      {showInfo && (
+        <div className="relative border-l-4 border-emerald-500 bg-emerald-900/20 p-4 md:p-5 mb-4 md:mb-6 rounded">
+          <button
+            onClick={handleDismissInfo}
+            className="absolute top-2 right-2 md:top-3 md:right-3 text-slate-400 hover:text-slate-300 transition-colors"
+          >
+            <FontAwesomeIcon icon={faXmark} className="size-4" />
+          </button>
+          <p className="text-sm md:text-base text-emerald-400 font-semibold mb-2 md:mb-3">
+            Did you know?
+          </p>
+          <p className="text-sm text-slate-300 mb-2 md:mb-3 leading-relaxed">
+            The scripts you&apos;re currently seeing on this page are the
+            same scripts as you can see in the ClickCrystals in-game Online
+            Script Browser! Get ClickCrystals and instantly test these
+            scripts in less than 3 clicks!
+          </p>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            <span className="text-white font-semibold">
+              ClickCrystals Script (ClickScript/CCS)
+            </span>{' '}
+            can do a lot of tasks. From simple swaps and hotbar changing,
+            through automatic complete farms, to blatent auto-totem,
+            kill-aura, auto-pot, jump-reset, anchor-switch, obsidian-switch,
+            etc.
+          </p>
+        </div>
+      )}
+
+      <div className="sticky top-0 z-10 backdrop-blur-sm pb-4 -mt-4 pt-4 flex flex-col sm:flex-row gap-4 mb-4">
         <FilterSelectMenu
           value={selectedCategory}
           onChange={handleCategoryChange}
         />
-        <Input
-          type="text"
-          placeholder="Search scripts..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
+        <div className="relative flex-1">
+          <Input
+            type="text"
+            placeholder="Search scripts..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 focus:border-blue-500 pr-10"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-300"
+            >
+              <FontAwesomeIcon icon={faXmark} className="size-4" />
+            </button>
+          )}
+        </div>
       </div>
+
+      {loading ? (
+        <div className="h-5 w-32 bg-slate-800/50 rounded mb-3 animate-pulse" />
+      ) : !error && (
+        <p className="text-slate-400 text-sm mb-3">
+          {filteredScripts.length} script{filteredScripts.length !== 1 ? 's' : ''} found
+        </p>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {loading ? (
@@ -110,24 +172,27 @@ export default function Scripts() {
                 author={scriptData.author}
                 description={scriptData.description}
                 script={scriptData.script}
+                category={scriptData.category}
+                isExpanded={expandedCard === title}
+                onToggle={() => setExpandedCard(expandedCard === title ? null : title)}
               />
             ))}
           </Suspense>
         ) : (
-          <div className="flex flex-col col-span-full text-center py-10 gap-2">
-            <FontAwesomeIcon
-              icon={faXmarkCircle}
-              className="size-8 text-black left-0 right-0 mx-auto"
-            />
-            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+          <div className="flex flex-col col-span-full text-center py-16 gap-3">
+            <div className="size-16 mx-auto bg-slate-800/50 rounded-full flex items-center justify-center">
+              <FontAwesomeIcon
+                icon={faXmarkCircle}
+                className="size-8 text-slate-600"
+              />
+            </div>
+            <h2 className="text-xl font-semibold text-slate-500">
               No scripts found
             </h2>
-            <div className="flex justify-center">
-              <p className="text-gray-500 text-center max-w-4xl">
-                Try adjusting your search or filters to find what you&apos;re
-                looking for.
-              </p>
-            </div>
+            <p className="text-slate-600 text-sm max-w-md mx-auto">
+              Try adjusting your search or filters to find what you&apos;re
+              looking for.
+            </p>
           </div>
         )}
       </div>
