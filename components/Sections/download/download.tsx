@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import modrinth from '@/public/icons/modrinth.svg';
 import curseforge from '@/public/icons/curseforge.svg';
 import planetmc from '@/public/icons/planetmc.svg';
-import crown from '@/public/icons/crown.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { DownloadLink } from './DownloadLink';
