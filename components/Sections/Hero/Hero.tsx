@@ -24,7 +24,6 @@ export default function Hero() {
           alt="Crystal PvP"
           className="h-[450px] w-auto relative z-10"
           loading="eager"
-          style={{ transform: 'rotate(-15deg)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.2 }}
