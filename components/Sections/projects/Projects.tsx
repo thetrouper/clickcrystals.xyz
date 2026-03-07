@@ -139,18 +139,12 @@ export default function Projects() {
       <Table className="border border-slate-800">
         <TableHeader>
           <TableRow className="border-slate-800 hover:bg-slate-900">
-            <TableHead className="text-white font-semibold">
-              Project
-            </TableHead>
+            <TableHead className="text-white font-semibold">Project</TableHead>
             <TableHead className="text-white font-semibold">
               Description
             </TableHead>
-            <TableHead className="text-white font-semibold">
-              Link
-            </TableHead>
-            <TableHead className="text-white font-semibold">
-              Author
-            </TableHead>
+            <TableHead className="text-white font-semibold">Link</TableHead>
+            <TableHead className="text-white font-semibold">Author</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

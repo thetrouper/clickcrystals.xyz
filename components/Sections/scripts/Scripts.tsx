@@ -87,19 +87,18 @@ export default function Scripts() {
             Did you know?
           </p>
           <p className="text-sm text-slate-300 mb-2 md:mb-3 leading-relaxed">
-            The scripts you&apos;re currently seeing on this page are the
-            same scripts as you can see in the ClickCrystals in-game Online
-            Script Browser! Get ClickCrystals and instantly test these
-            scripts in less than 3 clicks!
+            The scripts you&apos;re currently seeing on this page are the same
+            scripts as you can see in the ClickCrystals in-game Online Script
+            Browser! Get ClickCrystals and instantly test these scripts in less
+            than 3 clicks!
           </p>
           <p className="text-sm text-slate-300 leading-relaxed">
             <span className="text-white font-semibold">
               ClickCrystals Script (ClickScript/CCS)
             </span>{' '}
             can do a lot of tasks. From simple swaps and hotbar changing,
-            through automatic complete farms, to blatent auto-totem,
-            kill-aura, auto-pot, jump-reset, anchor-switch, obsidian-switch,
-            etc.
+            through automatic complete farms, to blatent auto-totem, kill-aura,
+            auto-pot, jump-reset, anchor-switch, obsidian-switch, etc.
           </p>
         </div>
       )}
@@ -130,10 +129,13 @@ export default function Scripts() {
 
       {loading ? (
         <div className="h-5 w-32 bg-slate-800/50 rounded mb-3 animate-pulse" />
-      ) : !error && (
-        <p className="text-slate-400 text-sm mb-3">
-          {filteredScripts.length} script{filteredScripts.length !== 1 ? 's' : ''} found
-        </p>
+      ) : (
+        !error && (
+          <p className="text-slate-400 text-sm mb-3">
+            {filteredScripts.length} script
+            {filteredScripts.length !== 1 ? 's' : ''} found
+          </p>
+        )
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -174,7 +176,9 @@ export default function Scripts() {
                 script={scriptData.script}
                 category={scriptData.category}
                 isExpanded={expandedCard === title}
-                onToggle={() => setExpandedCard(expandedCard === title ? null : title)}
+                onToggle={() =>
+                  setExpandedCard(expandedCard === title ? null : title)
+                }
               />
             ))}
           </Suspense>

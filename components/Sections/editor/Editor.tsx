@@ -24,23 +24,23 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
 
   const deCompressCode = () => {
     if (editorRef.current) {
-        setResult(compressor.decompress(editorRef.current.getValue()));
+      setResult(compressor.decompress(editorRef.current.getValue()));
     }
   };
 
   const compressCode = () => {
     if (editorRef.current) {
-        setResult(compressor.compress(editorRef.current.getValue()));
+      setResult(compressor.compress(editorRef.current.getValue()));
     }
   };
 
   const getEditorValue = () => {
-      if(editorRef.current) {
-        return editorRef.current.getValue();
-      }
-      return code;
+    if (editorRef.current) {
+      return editorRef.current.getValue();
+    }
+    return code;
   };
-  
+
   useEffect(() => {
     const error = searchParams.get('error');
 
@@ -80,10 +80,10 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
       monaco.editor.setModelLanguage(model, 'ccs');
     }
   }
-  
+
   function handleEditorChange(value: string | undefined) {
     if (value) {
-        setCode(value);
+      setCode(value);
     }
   }
 
@@ -113,9 +113,7 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
           <Save receiveCode={getEditorValue} disabled={false} />
         </div>
       </div>
-      <div
-        className="flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white"
-      >
+      <div className="flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
         <div className="flex-1 h-1/2 lg:h-full">
           <Editor
             height="100%"
