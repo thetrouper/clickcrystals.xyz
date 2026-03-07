@@ -122,9 +122,9 @@ export const languageDef = {
 export const configuration = {
   comments: {},
   brackets: [
-    ['{', '}'],
-    ['[', ']'],
-    ['(', ')'],
+    ['{', '}'] as [string, string],
+    ['[', ']'] as [string, string],
+    ['(', ')'] as [string, string],
   ],
 };
 
@@ -144,5 +144,7 @@ export const theme = {
     { token: 'number', foreground: 'B5CEA8' },
     { token: 'brackets', foreground: 'D4D4D4' },
   ],
-  colors: {},
+  colors: {
+    'editor.background': '#020617',
+  },
 };
