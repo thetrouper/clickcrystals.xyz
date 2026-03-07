@@ -16,7 +16,7 @@ export default function Hero() {
         className="hidden lg:block absolute right-0 top-1/2 -translate-y-[60%]"
         initial={{ opacity: 0, x: 200 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_60%)] blur-3xl" />
         <motion.img

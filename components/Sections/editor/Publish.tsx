@@ -134,7 +134,9 @@ function PublishForm({ className, code, closeState }: any) {
               e.currentTarget.blur();
               const form = e.currentTarget.form;
               if (form) {
-                const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+                const submitButton = form.querySelector(
+                  'button[type="submit"]',
+                ) as HTMLButtonElement;
                 submitButton?.click();
               }
             }
@@ -160,22 +162,44 @@ function PublishForm({ className, code, closeState }: any) {
           published
             ? 'bg-green-600 hover:bg-green-500'
             : failed
-            ? 'bg-red-600 hover:bg-red-500'
-            : 'bg-emerald-700 hover:bg-emerald-600'
+              ? 'bg-red-600 hover:bg-red-500'
+              : 'bg-emerald-700 hover:bg-emerald-600'
         }`}
       >
-        {submitDisabled && !published && !failed && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+        {submitDisabled && !published && !failed && (
+          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+        )}
         {published ? (
           <>
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
             Published
           </>
         ) : failed ? (
           <>
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
             Failed
           </>
@@ -230,7 +254,10 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
             Publish
           </button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] bg-slate-900 border-slate-800" onOpenAutoFocus={(e) => e.preventDefault()}>
+        <DialogContent
+          className="sm:max-w-[425px] bg-slate-900 border-slate-800"
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
           <DialogHeader>
             <DialogTitle className="text-white">
               Publish script to archive
@@ -257,7 +284,9 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
       </DrawerTrigger>
       <DrawerContent className="bg-slate-900 border-slate-800">
         <DrawerHeader className="text-left">
-          <DrawerTitle className="text-white">Publish script to archive</DrawerTitle>
+          <DrawerTitle className="text-white">
+            Publish script to archive
+          </DrawerTitle>
           <DrawerDescription className="text-slate-400">
             Give your script a title and set your author name to publish!
           </DrawerDescription>
@@ -265,7 +294,12 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
         <PublishForm closeState={setOpen} code={code} className="px-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline" className="bg-slate-800 border-slate-700 text-white hover:bg-slate-700 hover:text-white">Cancel</Button>
+            <Button
+              variant="outline"
+              className="bg-slate-800 border-slate-700 text-white hover:bg-slate-700 hover:text-white"
+            >
+              Cancel
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

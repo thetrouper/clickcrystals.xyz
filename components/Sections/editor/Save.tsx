@@ -54,23 +54,43 @@ const Save = ({ receiveCode, disabled }: SaveProps) => {
         saved
           ? 'bg-green-600 hover:bg-green-500 border-green-700'
           : failed
-          ? 'bg-red-600 hover:bg-red-500 border-red-700'
-          : 'bg-blue-600 hover:bg-blue-500 border-blue-700'
+            ? 'bg-red-600 hover:bg-red-500 border-red-700'
+            : 'bg-blue-600 hover:bg-blue-500 border-blue-700'
       } disabled:bg-slate-700 disabled:cursor-not-allowed disabled:border-slate-600 disabled:opacity-50`}
       disabled={saveDisabled || disabled}
       onClick={handleSave}
     >
       {saved ? (
         <>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
           <span>Saved</span>
         </>
       ) : failed ? (
         <>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
           <span>Failed</span>
         </>
