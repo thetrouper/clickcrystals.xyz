@@ -30,13 +30,13 @@ export default function Download() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 pt-4 md:pt-6">
           <DownloadLink
-              link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
-              label="CurseForge"
-              primary={true}
-              icon={
-                <Image src={curseforge} width={24} height={24} alt="CurseForge" />
-              }
-            />
+            link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
+            label="CurseForge"
+            primary={true}
+            icon={
+              <Image src={curseforge} width={24} height={24} alt="CurseForge" />
+            }
+          />
           <DownloadLink
             link="https://github.com/clickcrystals-development/ClickCrystals/releases"
             label="GitHub"
