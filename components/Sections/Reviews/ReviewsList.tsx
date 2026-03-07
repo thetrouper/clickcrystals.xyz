@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const reviews = [
   {
-    picture: '/staff/yuri.png',
+    picture: '/reviews/yuri.png',
     name: 'yuri',
     url: '#',
     message:
