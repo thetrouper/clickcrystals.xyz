@@ -38,7 +38,7 @@ const reviews = [
     username: '@tutlamc',
   },
   {
-    picture: '/reviews/practice.png',
+    picture: '/staff/practice.png',
     name: 'Practice',
     url: 'https://discordapp.com/users/1250828225161068674',
     message:
