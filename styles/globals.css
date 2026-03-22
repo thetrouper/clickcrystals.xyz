@@ -10,6 +10,12 @@ body {
   overflow-x: hidden;
 }
 
+img,
+a {
+  outline: none !important;
+  user-select: none;
+}
+
 .font-heading {
   font-family: var(--font-heading);
   font-style: bold;

@@ -1,10 +1,12 @@
 'use server';
 
 type Assets = {
+  '12111': null | React.ReactElement;
   '1218': null | React.ReactElement;
   '1217': null | React.ReactElement;
   '1216': null | React.ReactElement;
   '1215': null | React.ReactElement;
+  '1214': null | React.ReactElement;
   '1211': null | React.ReactElement;
   '121': null | React.ReactElement;
   '1206': null | React.ReactElement;
@@ -87,10 +89,12 @@ export async function getParsedReleases() {
 
       let downloads = 0;
       let assetsData: Assets = {
+        '12111': null,
         '1218': null,
         '1217': null,
         '1216': null,
         '1215': null,
+        '1214': null,
         '1211': null,
         '121': null,
         '1206': null,
@@ -107,10 +111,18 @@ export async function getParsedReleases() {
         let assetName = asset.name;
         let assetURL = asset.browser_download_url;
 
-        if (assetName.includes('1.21.6')) {
+        if (assetName.includes('1.21.11')) {
+          assetsData['12111'] = assetURL;
+        } else if (assetName.includes('1.21.8')) {
+          assetsData['1218'] = assetURL;
+        } else if (assetName.includes('1.21.7')) {
+          assetsData['1217'] = assetURL;
+        } else if (assetName.includes('1.21.6')) {
           assetsData['1216'] = assetURL;
         } else if (assetName.includes('1.21.5')) {
           assetsData['1215'] = assetURL;
+        } else if (assetName.includes('1.21.4')) {
+          assetsData['1214'] = assetURL;
         } else if (assetName.includes('1.21.1')) {
           assetsData['1211'] = assetURL;
         } else if (assetName.includes('1.21')) {
