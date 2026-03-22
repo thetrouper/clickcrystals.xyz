@@ -13,6 +13,7 @@ body {
 img,
 a {
   outline: none !important;
+  user-select: none;
 }
 
 .font-heading {
