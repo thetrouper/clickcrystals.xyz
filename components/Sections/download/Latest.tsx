@@ -1,7 +1,7 @@
 import clickcrystalsLogo from '@/public/icon.png';
 import Image from 'next/image';
 
-const Latest = ({ version = '1.2.7' }) => {
+const Latest = ({ version = '1.3.8' }) => {
   return (
     <div className="bg-slate-800 py-4 my-8 px-4 rounded-[4px] flex flex-row items-center">
       <Image

@@ -16,10 +16,12 @@ export default function DownloadTable() {
 
   useEffect(() => {
     const versionColumns = [
+      { field: '12111', headerName: '1.21.11' },
       { field: '1218', headerName: '1.21.8' },
       { field: '1217', headerName: '1.21.7' },
       { field: '1216', headerName: '1.21.6' },
       { field: '1215', headerName: '1.21.5' },
+      { field: '1214', headerName: '1.21.4' },
       { field: '1211', headerName: '1.21.1' },
       { field: '121', headerName: '1.21' },
       { field: '1206', headerName: '1.20.6' },
