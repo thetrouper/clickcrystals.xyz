@@ -8,6 +8,7 @@ type Assets = {
   '1217': null | React.ReactElement;
   '1216': null | React.ReactElement;
   '1215': null | React.ReactElement;
+  '1214': null | React.ReactElement;
   '1211': null | React.ReactElement;
   '121': null | React.ReactElement;
   '1206': null | React.ReactElement;
@@ -97,6 +98,7 @@ export async function getParsedReleases() {
         '1217': null,
         '1216': null,
         '1215': null,
+        '1214': null,
         '1211': null,
         '121': null,
         '1206': null,
@@ -127,6 +129,8 @@ export async function getParsedReleases() {
           assetsData['1216'] = assetURL;
         } else if (assetName.includes('1.21.5')) {
           assetsData['1215'] = assetURL;
+        } else if (assetName.includes('1.21.4')) {
+          assetsData['1214'] = assetURL;
         } else if (assetName.includes('1.21.1')) {
           assetsData['1211'] = assetURL;
         } else if (assetName.includes('1.21')) {
@@ -167,8 +171,8 @@ export async function getParsedReleases() {
         if (mappedKey && release[mappedKey] && !release[key]) {
           // Copy the download URL from the mapped version
           release[key] = release[mappedKey];
-        } else if (!mappedKey) {
-          // If not mapped (null), ensure it's explicitly set to null
+        } else if (!mappedKey && !release[key]) {
+          // If not mapped (null), ensure it's explicitly set to null only if not already parsed
           release[key] = null;
         }
       });
