@@ -9,17 +9,21 @@ import Downloads from './downloads';
 // import Latest from './Latest';
 
 export default function DownloadTable() {
-  const [rowData, setRowData] = useState([]);
+  const [rowData, setRowData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [colDefs, setColDefs]: any[] = useState();
 
   const formatVersion = (ver: string) => {
     const versionMap: Record<string, string> = {
+      '12111': '1.21.11',
+      '12110': '1.21.10',
+      '1219': '1.21.9',
       '1218': '1.21.8',
       '1217': '1.21.7',
       '1216': '1.21.6',
       '1215': '1.21.5',
+      '1214': '1.21.4',
       '1211': '1.21.1',
       '121': '1.21',
       '1206': '1.20.6',
@@ -28,16 +32,34 @@ export default function DownloadTable() {
       '1201': '1.20.1',
       '120': '1.20',
       '1194': '1.19.4',
-      '12111': '1.21.11',
-      '12110': '1.21.10',
-      '1219': '1.21.9',
     };
     return versionMap[ver] || ver;
   };
 
+  const mobileVersions = [
+    '12111',
+    '12110',
+    '1219',
+    '1218',
+    '1217',
+    '1216',
+    '1215',
+    '1214',
+    '1211',
+    '121',
+    '1206',
+    '1204',
+    '1202',
+    '1201',
+    '120',
+    '1194',
+  ];
+
   useEffect(() => {
     const versionColumns = [
       { field: '12111', headerName: '1.21.11' },
+      { field: '12110', headerName: '1.21.10' },
+      { field: '1219', headerName: '1.21.9' },
       { field: '1218', headerName: '1.21.8' },
       { field: '1217', headerName: '1.21.7' },
       { field: '1216', headerName: '1.21.6' },
@@ -106,6 +128,7 @@ export default function DownloadTable() {
         width: 150,
       })),
     ]);
+
     const loadReleases = async () => {
       try {
         const releases = await getParsedReleases();
@@ -133,7 +156,7 @@ export default function DownloadTable() {
       <Downloads />
 
       <div className="mt-8 mb-8">
-        <p className="text-sm text-slate-300 max-w-2xl mb-4 md:mb-8 leading-relaxed md:leading-loose space-y-4 md:space-y-6">
+        <p className="text-sm text-slate-300 mb-4 md:mb-8 leading-relaxed md:leading-loose space-y-4 md:space-y-6">
           <span className="block">
             The table below shows recent releases of ClickCrystals. For all 90+
             releases, visit our{' '}
@@ -153,7 +176,7 @@ export default function DownloadTable() {
           </span>
           <span className="hidden md:block">
             <span className="font-semibold text-slate-300">Note:</span> Scroll
-            right in the grid to see downloads for other versions.
+            right for more versions and down for older releases.
           </span>
         </p>
         <div className="mt-8 border-l-4 border-yellow-600/60 bg-yellow-500/10 p-4 md:p-5 rounded-r-lg">
@@ -176,7 +199,7 @@ export default function DownloadTable() {
         </div>
       </div>
       <div className="mt-8 mb-8">
-        {/* Mobile: Simple list */}
+        {/* Mobile: API-driven list */}
         <div className="block md:hidden rounded-lg overflow-hidden border border-slate-800/50 divide-y divide-slate-800/50">
           {loading ? (
             Array.from({ length: 6 }).map((_, i) => (
@@ -196,191 +219,57 @@ export default function DownloadTable() {
               Failed to load releases. Please try again later.
             </div>
           ) : (
-            <>
-              {rowData.slice(0, 1).map((release: any) => {
-                const versions = [
-                  '12111',
-                  '12110',
-                  '1219',
-                  '1218',
-                  '1217',
-                  '1216',
-                ];
-                return versions.map((ver) =>
-                  release[ver] ? (
-                    <a
-                      key={ver}
-                      href={release[ver]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-                    >
-                      <div>
-                        <span className="text-white font-semibold text-base">
-                          {formatVersion(ver)}
-                        </span>
-                        <span className="text-slate-400 text-xs ml-2">
-                          v{release.version}
-                        </span>
-                      </div>
-                      <svg
-                        className="w-4 h-4 text-blue-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                        />
-                      </svg>
-                    </a>
-                  ) : null,
-                );
-              })}
-              <a
-                href="https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.3.2/ClickCrystals-1.21.5-1.3.2.jar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-              >
-                <div>
-                  <span className="text-white font-semibold text-base">
-                    1.21.5
-                  </span>
-                  <span className="text-slate-400 text-xs ml-2">v1.3.2</span>
-                </div>
-                <svg
-                  className="w-4 h-4 text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            mobileVersions.map((ver, i) => {
+              const release = rowData.find((r: any) => r[ver]);
+              const href =
+                ver === '1214'
+                  ? 'https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.2.9/ClickCrystals-1.21.4-1.2.9.jar'
+                  : release?.[ver];
+              const version =
+                ver === '1214'
+                  ? '1.2.9'
+                  : ver === '1211' || ver === '121'
+                    ? '1.2.9-1.3.7'
+                    : release?.version;
+              if (!href) return null;
+              return (
+                <a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.2.9/ClickCrystals-1.21.4-1.2.9.jar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-              >
-                <div>
-                  <span className="text-white font-semibold text-base">
-                    1.21.4
-                  </span>
-                  <span className="text-slate-400 text-xs ml-2">v1.2.9</span>
-                </div>
-                <svg
-                  className="w-4 h-4 text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.3.7/ClickCrystals-1.21.1-1.2.9x1.3.7-experimental.jar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-              >
-                <div>
-                  <span className="text-white font-semibold text-base">
-                    1.21.1{' '}
-                    <span className="text-yellow-500 text-[10px] uppercase font-semibold px-1.5 py-0.5">
-                      exp
+                  <div>
+                    <span className="text-white font-semibold text-base">
+                      {formatVersion(ver)}
                     </span>
-                  </span>
-                  <span className="text-slate-400 text-xs ml-2">
-                    v1.2.9-1.3.7
-                  </span>
-                </div>
-                <svg
-                  className="w-4 h-4 text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.3.7/ClickCrystals-1.21-1.2.9x1.3.7-experimental.jar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-              >
-                <div>
-                  <span className="text-white font-semibold text-base">
-                    1.21{' '}
-                    <span className="text-yellow-500 text-[10px] uppercase font-semibold px-1.5 py-0.5">
-                      exp
+                    <span className="text-slate-400 text-xs ml-2">
+                      v{version}
+                      {(ver === '1211' || ver === '121') && (
+                        <span className="text-yellow-500 text-[10px] uppercase font-semibold px-1.5 py-0.5">
+                          {' '}
+                          exp
+                        </span>
+                      )}
                     </span>
-                  </span>
-                  <span className="text-slate-400 text-xs ml-2">
-                    v1.2.9-1.3.7
-                  </span>
-                </div>
-                <svg
-                  className="w-4 h-4 text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.2.9/ClickCrystals-1.21-1.2.9.jar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-              >
-                <div>
-                  <span className="text-white font-semibold text-base">
-                    1.21
-                  </span>
-                  <span className="text-slate-400 text-xs ml-2">v1.2.9</span>
-                </div>
-                <svg
-                  className="w-4 h-4 text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-              </a>
-            </>
+                  </div>
+                  <svg
+                    className="w-4 h-4 text-blue-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                </a>
+              );
+            })
           )}
         </div>
         <a
@@ -409,10 +298,6 @@ export default function DownloadTable() {
               rowData={rowData}
               loading={loading}
               suppressTouch={false}
-              pagination={true}
-              paginationPageSize={10}
-              paginationPageSizeSelector={[10, 20, 30, 50, 100]}
-              paginationAutoPageSize={true}
               suppressMenuHide={true}
             />
           )}

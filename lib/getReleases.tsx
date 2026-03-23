@@ -171,8 +171,8 @@ export async function getParsedReleases() {
         if (mappedKey && release[mappedKey] && !release[key]) {
           // Copy the download URL from the mapped version
           release[key] = release[mappedKey];
-        } else if (!mappedKey) {
-          // If not mapped (null), ensure it's explicitly set to null
+        } else if (!mappedKey && !release[key]) {
+          // If not mapped (null), ensure it's explicitly set to null only if not already parsed
           release[key] = null;
         }
       });

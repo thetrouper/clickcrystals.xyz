@@ -71,9 +71,9 @@ export default function Downloads() {
   }, []);
 
   return (
-    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 md:p-6 mb-8 max-w-4xl transition-colors duration-300">
-      <div className="mb-8">
-        <div className="font-extrabold text-2xl md:text-3xl text-blue-400 mb-2">
+    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 md:p-6 mb-8 transition-colors duration-300">
+      <div className="mb-8 flex items-baseline gap-3">
+        <div className="font-extrabold text-2xl md:text-3xl text-blue-400">
           {total}
         </div>
         <p className="text-base text-slate-300">
