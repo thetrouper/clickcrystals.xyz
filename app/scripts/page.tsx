@@ -15,9 +15,7 @@ const Scripts = dynamic(() => import('@/components/Sections/scripts/Scripts'), {
           .fill(null)
           .map((_, i) => (
             <div key={i} className="bg-slate-800/40 rounded-lg p-4">
-              <div className="flex items-start justify-between mb-3">
-                <div className="h-4 bg-slate-700/50 rounded w-2/3 animate-pulse" />
-              </div>
+              <div className="h-4 bg-slate-700/50 rounded w-2/3 animate-pulse mb-3" />
               <div className="flex gap-2 mb-3">
                 <div className="h-3 bg-slate-800/50 rounded w-16 animate-pulse" />
                 <div className="h-3 bg-slate-800/50 rounded w-12 animate-pulse" />

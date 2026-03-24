@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import ConfigsGrid from './ConfigsGrid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import SkeletonCard from './SkeletonCard';
 
 export default function Configs() {
   const [configs, setConfigs] = useState([]);
@@ -23,7 +24,22 @@ export default function Configs() {
       });
   }, []);
 
-  if (loading) return <ConfigsGrid configs={[]} />;
+  if (loading)
+    return (
+      <div className="mt-8">
+        <div className="flex gap-4 mb-4 animate-pulse">
+          <div className="h-10 bg-slate-800/50 rounded w-[200px] md:w-[280px]" />
+          <div className="h-10 bg-slate-800/50 rounded flex-1" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {Array(6)
+            .fill(null)
+            .map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+        </div>
+      </div>
+    );
   if (error)
     return (
       <div className="flex flex-col text-center py-16 gap-3">

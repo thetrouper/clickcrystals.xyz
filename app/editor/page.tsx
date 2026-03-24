@@ -12,9 +12,7 @@ export const metadata: Metadata = {
 export default function EditorPage() {
   return (
     <div className="dark">
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 text-white">
-        <CCSEditor defaultCode={null} />
-      </div>
+      <CCSEditor defaultCode={null} />
     </div>
   );
 }

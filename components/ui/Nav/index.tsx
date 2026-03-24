@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <ScrollWrapper>
       <header className="w-full">
-        <div className="w-full flex max-w-7xl justify-between md:items-center md:mx-auto md:px-4 md:py-4">
+        <div className="w-full flex max-w-7xl justify-between md:items-center md:mx-auto md:px-4 md:h-[72px]">
           <div className="hidden md:flex justify-between">
             <Title />
           </div>

@@ -2,57 +2,73 @@
 
 import { DropLink } from './DropLink';
 import { NavLink } from './NavLink';
+import {
+  Download,
+  History,
+  BookOpen,
+  HelpCircle,
+  MonitorPlay,
+  Layers,
+  Github,
+} from 'lucide-react';
 
 const downloadDropdown = [
   {
-    label: 'Official',
-    url: '/download',
-  },
-  {
-    label: 'Instant Download',
+    label: 'Download Latest',
     url: '/get',
+    description: 'Download the latest version now',
+    icon: Download,
+    primary: true,
   },
   {
-    label: 'PlanetMinecraft',
-    url: 'https://www.planetminecraft.com/mod/clickcrystal/',
-    separate: true,
+    label: 'Browse Versions',
+    url: '/download',
+    description: 'Pick from all past releases',
+    icon: History,
   },
   {
     label: 'CurseForge',
     url: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
+    description: 'Install via CurseForge',
+    iconImg: '/icons/curseforge.svg',
+    separate: true,
   },
   {
-    label: 'GitHub Releases',
+    label: 'GitHub',
     url: 'https://github.com/clickcrystals-development/ClickCrystals/releases',
+    description: 'View all releases on GitHub',
+    icon: Github,
   },
   {
     label: 'Modrinth',
     url: 'https://modrinth.com/mod/clickcrystals',
-    separate: true,
+    description: 'Install via Modrinth',
+    iconImg: '/icons/modrinth.svg',
   },
 ];
 
 const moreDropdown = [
   {
-    label: 'Configs Library',
-    url: '/configs',
-  },
-  {
     label: 'Help',
     url: '/help',
+    icon: HelpCircle,
+    description: 'Guides & troubleshooting',
   },
   {
-    label: 'Gallery',
+    label: 'Config Library',
+    url: '/configs',
+    icon: BookOpen,
+  },
+  {
+    label: 'Preview',
     url: '/gallery',
-  },
-  // {
-  //   "label": "Tools",
-  //   "url": "#"
-  // },
-  {
-    label: 'Other Projects',
-    url: '/projects',
+    icon: MonitorPlay,
     separate: true,
+  },
+  {
+    label: 'Projects',
+    url: '/projects',
+    icon: Layers,
   },
 ];
 

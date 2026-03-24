@@ -48,7 +48,7 @@ const MenuOverlay = () => {
 
   return (
     <div className="md:hidden w-full">
-      <div className="flex flex-row justify-between items-center px-4 py-3">
+      <div className="flex flex-row justify-between items-center px-4 h-[72px]">
         <Title />
         <div className="flex items-center gap-3">
           <Link
@@ -75,7 +75,7 @@ const MenuOverlay = () => {
       <AnimatePresence>
         {active && (
           <div
-            className="fixed left-0 right-0 bg-gradient-to-b from-slate-900 via-slate-950 to-black backdrop-blur-xl z-[99998] overflow-y-auto border-t border-slate-800/50"
+            className="fixed left-0 right-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black z-[99998] overflow-y-auto border-t border-slate-800/30"
             style={{ top: '72px', height: 'calc(100vh - 72px)' }}
           >
             <ul className="flex flex-col items-center px-4 py-8">

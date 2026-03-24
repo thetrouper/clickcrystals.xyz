@@ -39,57 +39,49 @@ export default function Gallery() {
   }, [api]);
 
   return (
-    <main className="py-12 md:py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
-            ClickCrystals <span className="text-blue-500">Gallery</span>
-          </h1>
-        </div>
-
-        <Carousel
-          opts={{ align: 'start', loop: true }}
-          setApi={setApi}
-          plugins={[Autoplay({ delay: 4000 })]}
-          className="max-w-5xl mx-auto mb-4"
-        >
-          <CarouselContent>
-            {slides.map((slide, i) => (
-              <CarouselItem key={i}>
-                <Image
-                  src={`/gallery/${slide.file}.png`}
-                  alt={slide.label}
-                  width={900}
-                  height={300}
-                  className="w-full rounded-xl border border-slate-700/50 shadow-2xl"
-                  style={{ imageRendering: 'pixelated' }}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-
-        <div className="flex justify-center gap-1.5 mb-10">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => api?.scrollTo(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                current === i + 1
-                  ? 'w-6 bg-blue-500'
-                  : 'w-1.5 bg-slate-600 hover:bg-slate-500'
-              }`}
-            />
+    <>
+      <Carousel
+        opts={{ align: 'start', loop: true }}
+        setApi={setApi}
+        plugins={[Autoplay({ delay: 4000 })]}
+        className="max-w-5xl mx-auto mb-4"
+      >
+        <CarouselContent>
+          {slides.map((slide, i) => (
+            <CarouselItem key={i}>
+              <Image
+                src={`/gallery/${slide.file}.png`}
+                alt={slide.label}
+                width={900}
+                height={300}
+                className="w-full rounded-xl border border-slate-700/50 shadow-2xl"
+                style={{ imageRendering: 'pixelated' }}
+              />
+            </CarouselItem>
           ))}
-        </div>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <GetClickCrystalsButton />
-          <JoinDiscordButton />
-        </div>
+      <div className="flex justify-center gap-1.5 mb-10">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => api?.scrollTo(i)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              current === i + 1
+                ? 'w-6 bg-blue-500'
+                : 'w-1.5 bg-slate-600 hover:bg-slate-500'
+            }`}
+          />
+        ))}
       </div>
-    </main>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <GetClickCrystalsButton />
+        <JoinDiscordButton />
+      </div>
+    </>
   );
 }
