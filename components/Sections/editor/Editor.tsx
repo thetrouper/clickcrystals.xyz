@@ -80,7 +80,7 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
       monaco.editor.setModelLanguage(model, 'ccs');
       monaco.editor.setTheme('ccs');
     }
-    setMounted(true);
+    setTimeout(() => setMounted(true), 100);
   }
 
   function handleEditorChange(value: string | undefined) {

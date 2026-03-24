@@ -11,7 +11,7 @@ export default function Loading() {
           <div className="h-9 w-20 bg-slate-800/50 rounded-lg animate-pulse" />
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row h-screen bg-[#1e1e1e]">
+      <div className="flex flex-col lg:flex-row h-screen bg-slate-950">
         <div className="flex-1 h-1/2 lg:h-full p-4 space-y-3">
           {Array(12)
             .fill(null)
