@@ -1,7 +1,5 @@
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Container } from '@/components/ui/Container';
 import { useRef, useState } from 'react';
 
 interface ScriptCardProps {
@@ -47,14 +45,14 @@ export default function ScriptCard({
 
   return (
     <div
-      className="relative border border-slate-700/50 bg-slate-900/50 hover:bg-slate-800/50 hover:border-slate-600 rounded-lg p-4 transition-all duration-200 group cursor-pointer"
+      className="relative bg-slate-900/50 hover:bg-slate-800/50 rounded-lg p-4 transition-all duration-200 group cursor-pointer shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
       onClick={onToggle}
     >
       <div className="flex items-start justify-between mb-3 gap-3">
         <h3 className="text-base font-semibold text-white group-hover:text-blue-400 transition-colors leading-tight">
           {title}
         </h3>
-        <div className="flex gap-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex-shrink-0">
+        <div className="flex gap-3 flex-shrink-0">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -115,9 +113,14 @@ export default function ScriptCard({
         </div>
       </div>
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs text-slate-500">by {author}</span>
+        <span className="flex items-center gap-1 text-xs text-slate-400">
+          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+          </svg>
+          {author}
+        </span>
         <span className="w-1 h-1 rounded-full bg-slate-600"></span>
-        <span className="text-xs text-slate-500 capitalize">{category}</span>
+        <span className="text-xs text-blue-400/60 capitalize">{category}</span>
       </div>
       <p className="text-sm text-slate-400 line-clamp-2 leading-relaxed">
         {description}

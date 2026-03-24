@@ -41,7 +41,7 @@ const FilterSelectMenu = ({ value, onChange }: any) => {
           value="macros"
           className="text-white hover:bg-slate-800 focus:bg-slate-800 focus:text-white"
         >
-          Macro
+          Macros
         </SelectItem>
         <SelectItem
           value="totem"

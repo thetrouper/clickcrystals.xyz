@@ -89,8 +89,7 @@ export default function Scripts() {
           <p className="text-sm text-slate-300 mb-2 md:mb-3 leading-relaxed">
             The scripts you&apos;re currently seeing on this page are the same
             scripts as you can see in the ClickCrystals in-game Online Script
-            Browser! Get ClickCrystals and instantly test these scripts in less
-            than 3 clicks!
+            Browser!
           </p>
           <p className="text-sm text-slate-300 leading-relaxed">
             <span className="text-white font-semibold">
