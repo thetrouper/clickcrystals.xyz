@@ -11,7 +11,7 @@ const Scripts = dynamic(() => import('@/components/Sections/scripts/Scripts'), {
       </div>
       <div className="h-5 w-32 bg-slate-800/50 rounded mb-3 animate-pulse" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {Array(15)
+        {Array(34)
           .fill(null)
           .map((_, i) => (
             <div key={i} className="bg-slate-800/40 rounded-lg p-4">
