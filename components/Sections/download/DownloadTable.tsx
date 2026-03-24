@@ -276,16 +276,13 @@ export default function DownloadTable() {
           href="https://github.com/clickcrystals-development/ClickCrystals/releases"
           target="_blank"
           rel="noopener noreferrer"
-          className="block md:hidden text-center py-3 text-slate-400 hover:text-blue-400 text-sm transition-colors underline-offset-4 hover:underline"
+          className="block md:hidden text-center py-3 text-blue-400 hover:text-blue-300 text-sm transition-colors"
         >
-          All releases →
+          View all releases on GitHub
         </a>
 
         {/* Desktop: Full table */}
         <div className="hidden md:block ag-theme-quartz-dark h-[467px] rounded-lg overflow-hidden border border-slate-800/50 shadow-lg relative">
-          <div className="absolute top-4 right-4 bg-slate-800/90 backdrop-blur-sm text-slate-400 text-xs px-3 py-1.5 rounded-full border border-slate-700/50 pointer-events-none md:hidden">
-            ← Scroll for more →
-          </div>
           {loading ? (
             <div className="w-full h-full rounded bg-slate-800/30 animate-pulse"></div>
           ) : error ? (

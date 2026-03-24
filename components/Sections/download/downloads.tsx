@@ -45,26 +45,37 @@ export default function Downloads() {
           getPlanetMCDownloads(),
         ]);
 
-      setGithub(parseNumber(githubDls));
-      setModrinth(parseNumber(modrinthDls));
-      setPlanetMC(parseNumber(planetMcDls));
-      setCurseforge(parseNumber(curseforgeDls));
+      setGithub(
+        githubDls === 0 ? (
+          <i className="text-red-500">failed to fetch</i>
+        ) : (
+          parseNumber(githubDls)
+        ),
+      );
+      setModrinth(
+        modrinthDls === 0 ? (
+          <i className="text-red-500">failed to fetch</i>
+        ) : (
+          parseNumber(modrinthDls)
+        ),
+      );
+      setPlanetMC(
+        planetMcDls === 0 ? (
+          <i className="text-red-500">failed to fetch</i>
+        ) : (
+          parseNumber(planetMcDls)
+        ),
+      );
+      setCurseforge(
+        curseforgeDls === 0 ? (
+          <i className="text-red-500">failed to fetch</i>
+        ) : (
+          parseNumber(curseforgeDls)
+        ),
+      );
       setTotal(
         parseNumber(githubDls + modrinthDls + curseforgeDls + planetMcDls),
       );
-
-      if (githubDls === 0) {
-        setGithub(<i className="text-red-500">failed to fetch</i>);
-      }
-      if (modrinthDls === 0) {
-        setModrinth(<i className="text-red-500">failed to fetch</i>);
-      }
-      if (planetMcDls === 0) {
-        setPlanetMC(<i className="text-red-500">failed to fetch</i>);
-      }
-      if (curseforgeDls === 0) {
-        setCurseforge(<i className="text-red-500">failed to fetch</i>);
-      }
     };
 
     fetchData();
