@@ -45,7 +45,7 @@ export default function ScriptCard({
 
   return (
     <div
-      className="relative bg-slate-900/50 hover:bg-slate-800/50 rounded-lg p-4 transition-all duration-200 group cursor-pointer shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
+      className="relative bg-slate-800/40 hover:bg-slate-800/60 rounded-lg p-4 transition-all duration-200 group cursor-pointer shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
       onClick={onToggle}
     >
       <div className="flex items-start justify-between mb-3 gap-3">
