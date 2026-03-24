@@ -10,7 +10,7 @@ import { Toaster } from '@/components/ui/toaster';
 export const metadata: Metadata = {
   title: 'ClickCrystals',
   description:
-    'Your ultimate crystal PvP assistance, ClickCrystals at your service',
+    'ClickCrystals is a Fabric mod for Minecraft with 100+ modules, a custom scripting engine, and precision hotkeys for Crystal PvP.',
   authors: [{ name: 'ItziSpyder', url: 'https://github.com/ItziSpyder' }],
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };

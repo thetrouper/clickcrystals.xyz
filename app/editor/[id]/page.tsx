@@ -18,7 +18,7 @@ const EditorPage = async ({ params }: { params: { id: string } }) => {
     if (query.success) {
       return (
         <div className="dark">
-          <div className="min-h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
+          <div className="min-h-screen bg-slate-950">
             <CCSEditor defaultCode={query.code} />
           </div>
         </div>

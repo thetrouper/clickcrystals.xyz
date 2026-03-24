@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 
 type DropLinkProps = {
   label: string;
-  links: Array<{ label: string; url: string; seperate?: boolean }>;
+  links: Array<{ label: string; url: string; separate?: boolean }>;
   url: string | undefined;
   onLinkClick?: () => void;
 };
@@ -86,7 +86,7 @@ export const DropLink = ({
             const isExternal = link.url.startsWith('http');
             return (
               <div key={index}>
-                {link.seperate && (
+                {link.separate && (
                   <div className="border-t border-slate-700 my-1"></div>
                 )}
                 {isExternal ? (

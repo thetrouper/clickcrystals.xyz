@@ -15,7 +15,7 @@ const downloadDropdown = [
   {
     label: 'PlanetMinecraft',
     url: 'https://www.planetminecraft.com/mod/clickcrystal/',
-    seperate: true,
+    separate: true,
   },
   {
     label: 'CurseForge',
@@ -28,7 +28,7 @@ const downloadDropdown = [
   {
     label: 'Modrinth',
     url: 'https://modrinth.com/mod/clickcrystals',
-    seperate: true,
+    separate: true,
   },
 ];
 
@@ -52,7 +52,7 @@ const moreDropdown = [
   {
     label: 'Other Projects',
     url: '/projects',
-    seperate: true,
+    separate: true,
   },
 ];
 
