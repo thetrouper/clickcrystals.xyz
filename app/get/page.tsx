@@ -2,6 +2,11 @@ import { redirect } from 'next/navigation';
 import { getLatestLink } from '@/lib/getLatest';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'ClickCrystals - Download',
+};
 
 export default async function Get() {
   const link = await getLatestLink();

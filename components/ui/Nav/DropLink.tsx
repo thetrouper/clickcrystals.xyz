@@ -92,6 +92,8 @@ export const DropLink = ({
                 {isExternal ? (
                   <a
                     href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full text-left block px-4 py-2.5 text-sm text-slate-200 hover:text-white hover:bg-slate-700 rounded-md"
                   >
                     {link.label}

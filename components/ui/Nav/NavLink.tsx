@@ -21,7 +21,7 @@ export const NavLink = ({
       <Link
         href={url}
         target={target}
-        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 transiion-nav"
+        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3"
         onClick={onLinkClick}
       >
         {label}
