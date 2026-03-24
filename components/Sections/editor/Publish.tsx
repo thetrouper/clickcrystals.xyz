@@ -228,19 +228,11 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
 
   useEffect(() => {
     const desktopQuery = window.matchMedia('(min-width: 768px)');
-    if (desktopQuery.matches) {
-      setIsDesktop(true);
-    } else {
-      setIsDesktop(false);
-    }
+    setIsDesktop(desktopQuery.matches);
 
-    desktopQuery.addEventListener('change', (e: any) => {
-      if (e.matches) {
-        setIsDesktop(true);
-      } else {
-        setIsDesktop(false);
-      }
-    });
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    desktopQuery.addEventListener('change', handler);
+    return () => desktopQuery.removeEventListener('change', handler);
   }, []);
 
   if (isDesktop) {

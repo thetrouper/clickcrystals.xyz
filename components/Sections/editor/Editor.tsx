@@ -10,7 +10,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 
 const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
-  const defaultSnippet = `// @anonymous\ndef module custom-module\ndef desc "Custom Scripted Module"\n\non module_enable {\n\n}\n\non module_disable {\n\n}`;
+  const defaultSnippet = `// @your-name\ndef module custom-module\ndef desc "Custom Scripted Module"\n\non module_enable {\n\n}\n\non module_disable {\n\n}`;
 
   const compressor = new Compressor();
   const [code, setCode] = useState(
@@ -63,8 +63,6 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
     }
   }, [searchParams, router, toast]);
 
-  const [dark, setDark] = useState(true);
-
   function handleEditorWillMount(monaco: Monaco) {
     monaco.languages.register({ id: 'ccs' });
     monaco.languages.setMonarchTokensProvider('ccs', languageDef as any);
@@ -73,12 +71,16 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
     monaco.editor.setTheme('ccs');
   }
 
+  const [mounted, setMounted] = useState(false);
+
   function handleEditorDidMount(editor: any, monaco: Monaco) {
     editorRef.current = editor;
     const model = editor.getModel();
     if (model) {
       monaco.editor.setModelLanguage(model, 'ccs');
+      monaco.editor.setTheme('ccs');
     }
+    setMounted(true);
   }
 
   function handleEditorChange(value: string | undefined) {
@@ -86,8 +88,6 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
       setCode(value);
     }
   }
-
-  const [loading, setLoading] = useState(true);
 
   return (
     <div>
@@ -113,8 +113,17 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
           <Save receiveCode={getEditorValue} disabled={false} />
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
-        <div className="flex-1 h-1/2 lg:h-full">
+      <div className="flex flex-col lg:flex-row h-screen bg-[#1e1e1e] text-white">
+        <div className="flex-1 h-1/2 lg:h-full relative">
+          {!mounted && (
+            <div className="absolute inset-0 bg-slate-950 z-10 p-4 space-y-3">
+              <div className="h-4 bg-slate-800/50 rounded w-3/4 animate-pulse" />
+              <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
+              <div className="h-4 bg-slate-800/50 rounded w-5/6 animate-pulse" />
+              <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
+              <div className="h-4 bg-slate-800/50 rounded w-2/3 animate-pulse" />
+            </div>
+          )}
           <Editor
             height="100%"
             defaultLanguage="ccs"
@@ -124,15 +133,7 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
             value={code}
             onChange={handleEditorChange}
             theme="ccs"
-            loading={
-              <div className="h-full bg-[#1e1e1e] p-4 space-y-3">
-                <div className="h-4 bg-slate-800/50 rounded w-3/4 animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-5/6 animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-2/3 animate-pulse" />
-              </div>
-            }
+            loading={<div className="h-full bg-[#1e1e1e]" />}
             options={{
               wordWrap: 'on',
               autoClosingBrackets: 'always',
@@ -148,23 +149,16 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
           />
         </div>
 
-        <div className="flex-1 h-1/2 lg:h-full border-t lg:border-t-0 lg:border-l border-slate-800/50">
+        <div className="flex-1 h-1/2 lg:h-full border-t lg:border-t-0 lg:border-l border-slate-800/50 relative">
+          {!mounted && <div className="absolute inset-0 bg-slate-950 z-10" />}
           <Editor
             height="100%"
             defaultLanguage="ccs"
             language="ccs"
             theme="ccs"
             value={result}
-            onMount={() => setLoading(false)}
-            loading={
-              <div className="h-full bg-[#1e1e1e] p-4 space-y-3">
-                <div className="h-4 bg-slate-800/50 rounded w-3/4 animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-5/6 animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-2/3 animate-pulse" />
-              </div>
-            }
+            onMount={() => {}}
+            loading={<div className="h-full bg-[#1e1e1e]" />}
             options={{
               readOnly: true,
               wordWrap: 'on',
