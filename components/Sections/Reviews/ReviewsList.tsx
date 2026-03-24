@@ -16,7 +16,7 @@ const reviews = [
   {
     picture: '/staff/improperissues.png',
     name: 'ImproperIssues',
-    url: 'https://github.com/Improperissues',
+    url: 'https://github.com/itzispyder',
     message:
       'I highly recommend ClickCrystals. Vanilla Minecraft has noticeable delays that affect performance. ClickCrystals eliminates these delays without cheating—every action requires a click or key press.',
     username: '@itzispyder',
@@ -40,7 +40,7 @@ const reviews = [
   {
     picture: '/staff/practice.png',
     name: 'Practice',
-    url: 'https://discordapp.com/users/1250828225161068674',
+    url: 'https://github.com/letmepractice',
     message:
       'ClickCrystals improved my crystal timing and consistency immediately. I can fine-tune setups per server without rebuilding configs. It stays stable under pressure.',
     username: '@letmepractice',
@@ -48,7 +48,7 @@ const reviews = [
   {
     picture: '/staff/josh.png',
     name: 'Josh',
-    url: 'https://discordapp.com/users/1250828225161068674',
+    url: '#',
     message:
       "ClickCrystals works across every game mode—BedWars, Sumo, SkyWars, and more. The ClickScript feature is genuinely useful, and it doesn't flag on servers.",
     username: '@josh',

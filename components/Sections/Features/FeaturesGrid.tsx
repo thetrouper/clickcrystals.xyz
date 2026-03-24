@@ -3,7 +3,7 @@ import Feature from './Feature';
 const features = [
   {
     icon: '/textures/totem.png',
-    title: 'Safe & Discrete',
+    title: 'Safe & Discreet',
     desc: 'All modules are rigorously tested to ensure they are safe and compliant with server rules. No unfair advantages, just smart gameplay.',
     linkTitle: 'Server compatibility',
     linkUrl:

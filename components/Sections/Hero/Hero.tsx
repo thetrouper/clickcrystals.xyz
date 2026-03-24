@@ -31,7 +31,7 @@ export default function Hero() {
       </motion.div>
 
       <div className="relative w-full max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-1 gap-12 items-center">
+        <div className="flex items-center">
           <div className="lg:pr-64">
             <motion.h1
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"

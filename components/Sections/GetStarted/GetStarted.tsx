@@ -10,7 +10,7 @@ export default function GetStarted() {
     <section className="relative py-12 md:py-24 bg-gradient-to-b from-slate-950 to-slate-900 border-t border-slate-800/50 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_60%)]" />
 
-      <div className="relative max-w-7xl mx-auto px-8 text-center">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
           Ready to Get Started?
         </h2>

@@ -6,7 +6,7 @@ import { getTotalDownloads } from '@/lib/getDownloads';
 import { useEffect, useState } from 'react';
 
 export default function Progress() {
-  const [downloads, setDownloads] = useState(0);
+  const [downloads, setDownloads] = useState<number | null>(null);
 
   const progress = [
     {
@@ -46,13 +46,19 @@ export default function Progress() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="text-3xl md:text-5xl font-bold text-white mb-2">
-                <CountUp
-                  start={0}
-                  end={item.value}
-                  duration={2.5}
-                  separator=","
-                />
-                <span className="text-blue-400">+</span>
+                {item.value === null ? (
+                  <span className="text-slate-600">—</span>
+                ) : (
+                  <>
+                    <CountUp
+                      start={0}
+                      end={item.value}
+                      duration={2.5}
+                      separator=","
+                    />
+                    <span className="text-blue-400">+</span>
+                  </>
+                )}
               </div>
               <p className="text-slate-300 text-base uppercase tracking-wider">
                 {item.metric}

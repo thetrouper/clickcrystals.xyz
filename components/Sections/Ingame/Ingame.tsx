@@ -11,7 +11,7 @@ import {
 export default function Ingame() {
   return (
     <section className="py-12 md:py-24 bg-slate-950 border-t border-slate-800/50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,6 +56,7 @@ export default function Ingame() {
           className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center max-w-7xl mx-auto"
         >
           <MoreScreenshotsButton />
+          <GetClickCrystalsButton variant="secondary" />
         </motion.div>
       </div>
     </section>
