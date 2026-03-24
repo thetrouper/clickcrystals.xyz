@@ -65,19 +65,21 @@ export default function Projects() {
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [projects, setProjects] = useState<Record<string, Project[]>>({});
   const [loading, setLoading] = useState(true);
-  const [skeletonCounts, setSkeletonCounts] =
-    useState<Record<string, number>>(DEFAULT_COUNTS);
+  const [skeletonCounts, setSkeletonCounts] = useState<Record<string, number>>(
+    () => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) return JSON.parse(stored);
+      } catch {}
+      return DEFAULT_COUNTS;
+    },
+  );
 
   const toggleCollapse = (author: string) => {
     setCollapsed((prev) => ({ ...prev, [author]: !prev[author] }));
   };
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setSkeletonCounts(JSON.parse(stored));
-    } catch {}
-
     const fetchAll = async () => {
       const results: Record<string, Project[]> = {};
 
