@@ -53,17 +53,31 @@ type Project = {
   modrinthUrl: string | null;
 };
 
+const STORAGE_KEY = 'projects_counts';
+const DEFAULT_COUNTS: Record<string, number> = {
+  ImproperIssues: 6,
+  TheTrouper: 6,
+  'I-No-oNe': 6,
+};
+
 export default function Projects() {
   const [authorFilter, setAuthorFilter] = useState('all');
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [projects, setProjects] = useState<Record<string, Project[]>>({});
   const [loading, setLoading] = useState(true);
+  const [skeletonCounts, setSkeletonCounts] =
+    useState<Record<string, number>>(DEFAULT_COUNTS);
 
   const toggleCollapse = (author: string) => {
     setCollapsed((prev) => ({ ...prev, [author]: !prev[author] }));
   };
 
   useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) setSkeletonCounts(JSON.parse(stored));
+    } catch {}
+
     const fetchAll = async () => {
       const results: Record<string, Project[]> = {};
 
@@ -134,6 +148,12 @@ export default function Projects() {
 
       setProjects(results);
       setLoading(false);
+      try {
+        const counts: Record<string, number> = {};
+        for (const [author, list] of Object.entries(results))
+          counts[author] = list.length;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(counts));
+      } catch {}
     };
     fetchAll();
   }, []);
@@ -169,32 +189,30 @@ export default function Projects() {
 
       {loading ? (
         <div className="space-y-12">
-          {Array(3)
-            .fill(null)
-            .map((_, i) => (
-              <div key={i}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-7 h-7 rounded-full bg-slate-800/50 animate-pulse" />
-                  <div className="h-5 bg-slate-800/50 rounded w-32 animate-pulse" />
-                  <div className="h-4 bg-slate-800/50 rounded w-16 animate-pulse" />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {Array(6)
-                    .fill(null)
-                    .map((_, j) => (
-                      <div
-                        key={j}
-                        className="bg-slate-800/40 rounded-lg p-4 animate-pulse shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
-                      >
-                        <div className="h-4 bg-slate-700/50 rounded w-2/3 mb-2" />
-                        <div className="h-3 bg-slate-800/50 rounded w-full mb-1" />
-                        <div className="h-3 bg-slate-800/50 rounded w-4/5 mb-3" />
-                        <div className="h-3 bg-slate-700/50 rounded w-12" />
-                      </div>
-                    ))}
-                </div>
+          {Object.keys(authors).map((author, i) => (
+            <div key={i}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-7 h-7 rounded-full bg-slate-800/50 animate-pulse" />
+                <div className="h-5 bg-slate-800/50 rounded w-32 animate-pulse" />
+                <div className="h-4 bg-slate-800/50 rounded w-16 animate-pulse" />
               </div>
-            ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {Array(skeletonCounts[author] ?? 6)
+                  .fill(null)
+                  .map((_, j) => (
+                    <div
+                      key={j}
+                      className="bg-slate-800/40 rounded-lg p-4 animate-pulse shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
+                    >
+                      <div className="h-4 bg-slate-700/50 rounded w-2/3 mb-2" />
+                      <div className="h-3 bg-slate-800/50 rounded w-full mb-1" />
+                      <div className="h-3 bg-slate-800/50 rounded w-4/5 mb-3" />
+                      <div className="h-3 bg-slate-700/50 rounded w-12" />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         grouped.map(({ author, username, projects }) => (
