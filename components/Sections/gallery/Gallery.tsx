@@ -51,7 +51,7 @@ export default function Gallery() {
           opts={{ align: 'start', loop: true }}
           setApi={setApi}
           plugins={[Autoplay({ delay: 4000 })]}
-          className="max-w-5xl mx-auto mb-10"
+          className="max-w-5xl mx-auto mb-4"
         >
           <CarouselContent>
             {slides.map((slide, i) => (
@@ -70,6 +70,20 @@ export default function Gallery() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+
+        <div className="flex justify-center gap-1.5 mb-10">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                current === i + 1
+                  ? 'w-6 bg-blue-500'
+                  : 'w-1.5 bg-slate-600 hover:bg-slate-500'
+              }`}
+            />
+          ))}
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <GetClickCrystalsButton />

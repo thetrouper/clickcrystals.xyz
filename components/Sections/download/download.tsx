@@ -19,7 +19,7 @@ export default function Download() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 md:mb-4 tracking-tight">
-            Download <span className="text-blue-400">ClickCrystals</span>
+            Download <span className="text-blue-500">ClickCrystals</span>
           </h1>
           <p className="text-sm md:text-base text-slate-200 max-w-3xl mx-auto leading-relaxed">
             Official downloads are available on CurseForge, PlanetMC, Modrinth,
