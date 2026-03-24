@@ -53,11 +53,10 @@ type Project = {
   modrinthUrl: string | null;
 };
 
-const STORAGE_KEY = 'projects_counts';
-const DEFAULT_COUNTS: Record<string, number> = {
-  ImproperIssues: 6,
-  TheTrouper: 6,
-  'I-No-oNe': 6,
+const SKELETON_COUNTS: Record<string, number> = {
+  ImproperIssues: 20,
+  TheTrouper: 20,
+  'I-No-oNe': 20,
 };
 
 export default function Projects() {
@@ -65,15 +64,6 @@ export default function Projects() {
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [projects, setProjects] = useState<Record<string, Project[]>>({});
   const [loading, setLoading] = useState(true);
-  const [skeletonCounts, setSkeletonCounts] = useState<Record<string, number>>(
-    () => {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) return JSON.parse(stored);
-      } catch {}
-      return DEFAULT_COUNTS;
-    },
-  );
 
   const toggleCollapse = (author: string) => {
     setCollapsed((prev) => ({ ...prev, [author]: !prev[author] }));
@@ -150,12 +140,6 @@ export default function Projects() {
 
       setProjects(results);
       setLoading(false);
-      try {
-        const counts: Record<string, number> = {};
-        for (const [author, list] of Object.entries(results))
-          counts[author] = list.length;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(counts));
-      } catch {}
     };
     fetchAll();
   }, []);
@@ -199,7 +183,7 @@ export default function Projects() {
                 <div className="h-4 bg-slate-800/50 rounded w-16 animate-pulse" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {Array(skeletonCounts[author] ?? 6)
+                {Array(SKELETON_COUNTS[author] ?? 6)
                   .fill(null)
                   .map((_, j) => (
                     <div
