@@ -9,6 +9,53 @@ import Link from 'next/link';
 
 const faqs = [
   {
+    question: 'How do I install ClickCrystals?',
+    answer: (
+      <>
+        ClickCrystals requires the{' '}
+        <b className="text-white">Fabric mod loader</b>. Follow these steps:
+        <br />
+        <br />
+        1. Install{' '}
+        <Link
+          href="https://fabricmc.net/use/installer/"
+          target="_blank"
+          className="text-blue-400 hover:text-blue-300"
+        >
+          Fabric Loader
+        </Link>{' '}
+        for your Minecraft version.
+        <br />
+        2. Download{' '}
+        <Link
+          href="https://modrinth.com/mod/fabric-api"
+          target="_blank"
+          className="text-blue-400 hover:text-blue-300"
+        >
+          Fabric API
+        </Link>{' '}
+        and place it in your mods folder.
+        <br />
+        3. Download ClickCrystals from the{' '}
+        <Link href="/download" className="text-blue-400 hover:text-blue-300">
+          download page
+        </Link>{' '}
+        and place the <b className="text-white">.jar</b> file in your mods
+        folder.
+        <br />
+        <br />
+        Your mods folder is located at:
+        <br />
+        <b className="text-white">Windows:</b> %appdata%\.minecraft\mods
+        <br />
+        <b className="text-white">macOS:</b> ~/Library/Application
+        Support/minecraft/mods
+        <br />
+        <b className="text-white">Linux:</b> ~/.minecraft/mods
+      </>
+    ),
+  },
+  {
     question: 'Why is ClickCrystals banned on Modrinth?',
     answer: (
       <>
