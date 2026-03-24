@@ -43,7 +43,7 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
-            ClickCrystals <span className="text-blue-400">Gallery</span>
+            ClickCrystals <span className="text-blue-500">Gallery</span>
           </h1>
         </div>
 

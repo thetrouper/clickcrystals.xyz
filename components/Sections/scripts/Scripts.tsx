@@ -97,7 +97,7 @@ export default function Scripts() {
               ClickCrystals Script (ClickScript/CCS)
             </span>{' '}
             can do a lot of tasks. From simple swaps and hotbar changing,
-            through automatic complete farms, to blatent auto-totem, kill-aura,
+            through automatic complete farms, to blatant auto-totem, kill-aura,
             auto-pot, jump-reset, anchor-switch, obsidian-switch, etc.
           </p>
         </div>
@@ -150,11 +150,11 @@ export default function Scripts() {
               className="size-8 text-red-500 left-0 right-0 mx-auto"
             />
             <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
-              Sorry, a error occured!
+              Sorry, an error occurred!
             </h2>
             <div className="flex justify-center">
               <p className="text-gray-500 text-center max-w-4xl md:max-w-2xl">
-                Some error occured while we tried to load the scripts. Please
+                Some error occurred while we tried to load the scripts. Please
                 contact us through Discord if you need assistance.
                 <br />
                 <br />

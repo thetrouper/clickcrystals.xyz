@@ -7,12 +7,8 @@ const Configs = dynamic(() => import('@/components/Sections/configs/Configs'), {
   loading: () => (
     <div className="mt-8">
       <div className="flex gap-4 mb-4">
-        <div className="h-10 bg-slate-800/50 rounded w-[200px] md:w-[280px] animate-pulse">
-          <div className="h-full bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 animate-shimmer" />
-        </div>
-        <div className="h-10 bg-slate-800/50 rounded flex-1 animate-pulse">
-          <div className="h-full bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 animate-shimmer" />
-        </div>
+        <div className="h-10 bg-slate-800/50 rounded w-[200px] md:w-[280px] animate-pulse" />
+        <div className="h-10 bg-slate-800/50 rounded flex-1 animate-pulse" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {Array(6)
@@ -20,15 +16,15 @@ const Configs = dynamic(() => import('@/components/Sections/configs/Configs'), {
           .map((_, i) => (
             <div
               key={i}
-              className="h-[200px] bg-slate-800/50 rounded p-4 space-y-3"
+              className="border border-slate-700/50 bg-slate-900/50 rounded-lg p-4"
             >
-              <div className="h-6 bg-slate-700/50 rounded w-3/4 animate-pulse" />
-              <div className="h-4 bg-slate-700/50 rounded w-full animate-pulse" />
-              <div className="h-4 bg-slate-700/50 rounded w-5/6 animate-pulse" />
-              <div className="flex gap-2 mt-4">
-                <div className="h-6 bg-slate-700/50 rounded w-16 animate-pulse" />
-                <div className="h-6 bg-slate-700/50 rounded w-20 animate-pulse" />
+              <div className="h-4 bg-slate-700/50 rounded w-2/3 animate-pulse mb-3" />
+              <div className="flex gap-2 mb-3">
+                <div className="h-3 bg-slate-800/50 rounded w-16 animate-pulse" />
+                <div className="h-3 bg-slate-800/50 rounded w-12 animate-pulse" />
               </div>
+              <div className="h-3 bg-slate-800/50 rounded w-full animate-pulse mb-2" />
+              <div className="h-3 bg-slate-800/50 rounded w-4/5 animate-pulse" />
             </div>
           ))}
       </div>

@@ -18,7 +18,7 @@ const SearchCategoryMenu = ({ value, onChange }: any) => {
         <SelectItem value="bypasses">Bypasses</SelectItem>
         <SelectItem value="ghost">Ghost</SelectItem>
         <SelectItem value="legit">Legit</SelectItem>
-        <SelectItem value="blatent">Blatent</SelectItem>
+        <SelectItem value="blatant">Blatant</SelectItem>
       </SelectContent>
     </Select>
   );
