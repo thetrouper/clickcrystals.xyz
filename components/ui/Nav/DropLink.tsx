@@ -1,18 +1,24 @@
 'use client';
 
-import { ChevronDown, LucideIcon } from 'lucide-react';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-type DropLinkItem = {
+type IconType = 'lucide' | 'fa' | 'img';
+
+export type DropLinkItem = {
   label: string;
   url: string;
-  description?: string;
-  icon?: LucideIcon;
-  iconImg?: string;
   separate?: boolean;
   primary?: boolean;
+  sectionLabel?: string;
+  iconType?: IconType;
+  icon?: any;
+  iconSrc?: string;
+  external?: boolean;
 };
 
 type DropLinkProps = {
@@ -25,8 +31,7 @@ type DropLinkProps = {
 export const DropLink = ({ label, links, onLinkClick }: DropLinkProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLLIElement>(null);
 
   const isVisible = isHovered || isOpen;
 
@@ -41,131 +46,113 @@ export const DropLink = ({ label, links, onLinkClick }: DropLinkProps) => {
     }
   };
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsOpen((prev) => !prev);
-  };
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current?.contains(event.target as Node) === false &&
-        buttonRef.current?.contains(event.target as Node) === false
-      ) {
+      if (ref.current && !ref.current.contains(event.target as Node))
         setIsOpen(false);
-      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const renderItem = (link: DropLinkItem, index: number) => {
-    const isExternal = link.url.startsWith('http');
-    const Icon = link.icon;
-
-    const itemClass = link.primary
-      ? 'group flex items-center gap-3 px-3 py-2 rounded-lg border border-blue-500/[0.15] bg-blue-500/[0.08] hover:bg-blue-500/[0.15] hover:border-blue-500/30 hover:-translate-y-px hover:shadow-lg hover:shadow-blue-500/10 active:scale-[0.98] transition-all duration-150 cursor-pointer'
-      : 'group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-white/[0.07] transition-colors duration-150 cursor-pointer';
-
-    const content = (
-      <>
-        {(Icon || link.iconImg) && (
-          <span className="flex w-5 shrink-0 items-center justify-center">
-            {link.iconImg ? (
-              <Image
-                src={link.iconImg}
-                alt={link.label}
-                width={16}
-                height={16}
-                className="size-4 opacity-70 group-hover:opacity-100 transition-opacity grayscale"
-              />
-            ) : Icon ? (
-              <Icon
-                className={`size-4 transition-colors ${
-                  link.primary
-                    ? 'text-blue-400 group-hover:text-blue-300'
-                    : 'text-slate-400 group-hover:text-slate-200'
-                }`}
-              />
-            ) : null}
-          </span>
-        )}
-        <span className="flex flex-col min-w-0">
-          <span
-            className={`text-sm leading-tight transition-colors ${
-              link.primary
-                ? 'font-semibold text-blue-300 group-hover:text-blue-200'
-                : 'font-medium text-slate-200 group-hover:text-white'
-            }`}
-          >
-            {link.label}
-          </span>
-          {link.description && (
-            <span className="text-xs text-slate-500 group-hover:text-slate-400 mt-0.5 leading-tight transition-colors">
-              {link.description}
-            </span>
-          )}
-        </span>
-      </>
-    );
-
-    return (
-      <div key={index}>
-        {link.separate && <div className="mt-2.5" />}
-        {isExternal ? (
-          <a
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={itemClass}
-          >
-            {content}
-          </a>
-        ) : (
-          <Link
-            href={link.url}
-            onClick={() => {
-              setIsOpen(false);
-              onLinkClick?.();
-            }}
-            className={itemClass}
-          >
-            {content}
-          </Link>
-        )}
-      </div>
-    );
+  const renderIcon = (link: DropLinkItem) => {
+    if (!link.iconType) return null;
+    const cls = `size-3.5 shrink-0 ${link.primary ? 'text-blue-400' : 'text-slate-500'}`;
+    if (link.iconType === 'lucide' && link.icon) {
+      const Icon = link.icon;
+      return <Icon className={cls} />;
+    }
+    if (link.iconType === 'fa' && link.icon) {
+      return <FontAwesomeIcon icon={link.icon} className={cls} />;
+    }
+    if (link.iconType === 'img' && link.iconSrc) {
+      return (
+        <Image
+          src={link.iconSrc}
+          alt={link.label}
+          width={14}
+          height={14}
+          className="size-3.5 shrink-0 opacity-80"
+        />
+      );
+    }
+    return null;
   };
 
   return (
-    <li className="relative">
+    <li
+      ref={ref}
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div
-        ref={buttonRef}
-        className={`flex cursor-pointer select-none items-center gap-1.5 px-4 py-3 font-medium transition-colors duration-150 ease-in-out hover:text-white ${isVisible ? 'text-white' : ''}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleClick}
+        className={`flex cursor-pointer select-none items-center gap-1.5 px-4 py-3 font-medium transition-colors duration-150 hover:text-white ${isVisible ? 'text-white' : ''}`}
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen((p) => !p);
+        }}
       >
         {label}
-        <ChevronDown
-          className={`size-3.5 transition-all duration-200 ${isVisible ? 'rotate-180 text-slate-300' : 'text-slate-500'}`}
+        <FontAwesomeIcon
+          icon={faAngleDown}
+          className={`transition-transform duration-200 size-3 text-slate-500 ${isVisible ? 'rotate-180 text-slate-400' : ''}`}
         />
       </div>
 
-      <div
-        ref={dropdownRef}
-        className={`absolute right-0 z-[999999] mt-1 w-60 origin-top-right rounded-xl border border-slate-700/60 bg-slate-900 p-1.5 shadow-2xl shadow-black/50 backdrop-blur-sm transition-all duration-200 ${
-          isVisible
-            ? 'opacity-100 visible translate-y-0 scale-100'
-            : 'opacity-0 invisible -translate-y-1 scale-[0.98]'
-        }`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="absolute -top-1.5 right-4 h-3 w-3 rotate-45 rounded-tl border-l border-t border-slate-700/60 bg-slate-900" />
-        <div className="relative">{links.map(renderItem)}</div>
-      </div>
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+            className="absolute left-1/2 -translate-x-1/2 z-[99998] overflow-visible"
+          >
+            <div className="px-2 py-2 flex items-center gap-0.5">
+              {links.map((link, index) => {
+                const isExternal = link.url.startsWith('http') || link.external;
+                const cls = `flex items-center justify-center gap-1.5 min-w-[110px] px-3 py-1.5 text-sm rounded-full border transition-colors duration-100 ${
+                  link.primary
+                    ? 'text-blue-400 font-medium border-blue-500/20 bg-blue-500/10 hover:bg-blue-500/20 hover:border-blue-500/40'
+                    : 'text-slate-400 border-slate-700/50 bg-slate-800/60 hover:text-white hover:bg-slate-700/80 hover:border-slate-600'
+                }`;
+
+                return (
+                  <div key={index} className="flex items-center">
+                    {link.separate && (
+                      <div className="w-px h-4 bg-slate-700/60 mx-1" />
+                    )}
+                    {isExternal ? (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cls}
+                      >
+                        {renderIcon(link)}
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.url}
+                        onClick={() => {
+                          setIsOpen(false);
+                          onLinkClick?.();
+                        }}
+                        className={cls}
+                      >
+                        {renderIcon(link)}
+                        {link.label}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </li>
   );
 };

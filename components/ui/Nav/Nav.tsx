@@ -2,48 +2,51 @@
 
 import { DropLink } from './DropLink';
 import { NavLink } from './NavLink';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   Download,
   History,
-  BookOpen,
-  HelpCircle,
+  CircleHelp,
+  Sliders,
   MonitorPlay,
-  Layers,
-  Github,
+  Code2,
 } from 'lucide-react';
 
 const downloadDropdown = [
   {
-    label: 'Download Latest',
+    label: 'Latest',
     url: '/get',
-    description: 'Download the latest version now',
-    icon: Download,
     primary: true,
+    iconType: 'lucide' as const,
+    icon: Download,
   },
   {
-    label: 'Browse Versions',
+    label: 'Versions',
     url: '/download',
-    description: 'Pick from all past releases',
+    iconType: 'lucide' as const,
     icon: History,
   },
   {
     label: 'CurseForge',
     url: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
-    description: 'Install via CurseForge',
-    iconImg: '/icons/curseforge.svg',
+    external: true,
     separate: true,
+    iconType: 'img' as const,
+    iconSrc: '/icons/curseforge.svg',
   },
   {
     label: 'GitHub',
     url: 'https://github.com/clickcrystals-development/ClickCrystals/releases',
-    description: 'View all releases on GitHub',
-    icon: Github,
+    external: true,
+    iconType: 'fa' as const,
+    icon: faGithub,
   },
   {
     label: 'Modrinth',
     url: 'https://modrinth.com/mod/clickcrystals',
-    description: 'Install via Modrinth',
-    iconImg: '/icons/modrinth.svg',
+    external: true,
+    iconType: 'img' as const,
+    iconSrc: '/icons/modrinth.svg',
   },
 ];
 
@@ -51,24 +54,26 @@ const moreDropdown = [
   {
     label: 'Help',
     url: '/help',
-    icon: HelpCircle,
-    description: 'Guides & troubleshooting',
+    iconType: 'lucide' as const,
+    icon: CircleHelp,
   },
   {
-    label: 'Config Library',
+    label: 'Configs',
     url: '/configs',
-    icon: BookOpen,
+    iconType: 'lucide' as const,
+    icon: Sliders,
   },
   {
     label: 'Preview',
     url: '/gallery',
+    iconType: 'lucide' as const,
     icon: MonitorPlay,
-    separate: true,
   },
   {
     label: 'Projects',
     url: '/projects',
-    icon: Layers,
+    iconType: 'lucide' as const,
+    icon: Code2,
   },
 ];
 
