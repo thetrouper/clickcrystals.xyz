@@ -100,6 +100,7 @@ export const getLinks = (onLinkClick?: () => void) => [
     links={moreDropdown}
     url="#"
     key={5}
+    align="right"
     onLinkClick={onLinkClick}
   />,
 ];

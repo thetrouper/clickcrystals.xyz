@@ -195,13 +195,18 @@ const MenuOverlay = () => {
             className="fixed left-0 right-0 z-[99998] overflow-hidden border-t border-slate-800/30 bg-slate-950"
             style={{ top: '72px', height: 'calc(100vh - 72px)' }}
           >
-            <motion.div
-              className="flex h-full"
-              animate={{ x: subMenu ? '-100%' : '0%' }}
-              transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
-            >
+            <div className="relative h-full overflow-hidden">
               {/* Main menu */}
-              <div className="w-full shrink-0 flex flex-col px-3 py-4 overflow-y-auto gap-0.5">
+              <motion.div
+                key="main"
+                className="absolute inset-0 flex flex-col px-3 py-4 overflow-y-auto gap-0.5"
+                initial={false}
+                animate={{
+                  x: subMenu ? '-100%' : '0%',
+                  opacity: subMenu ? 0 : 1,
+                }}
+                transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
+              >
                 {menuItems.map((item, i) =>
                   item.children ? (
                     <button
@@ -237,43 +242,59 @@ const MenuOverlay = () => {
                     </Link>
                   ),
                 )}
-              </div>
+              </motion.div>
 
               {/* Sub menu */}
-              <div className="w-full shrink-0 flex flex-col px-4 py-3 overflow-y-auto">
-                <button
-                  className="flex items-center py-2.5 px-4 text-slate-500 hover:text-white transition-colors"
-                  onClick={() => setSubMenu(null)}
-                >
-                  <FontAwesomeIcon icon={faChevronLeft} className="size-3" />
-                </button>
-                {subMenu?.children?.map((child, i) =>
-                  child.external ? (
-                    <a
-                      key={i}
-                      href={child.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={close}
-                      className={`flex items-center gap-3 text-lg font-medium py-3.5 px-4 rounded-xl hover:bg-slate-800/40 transition-all duration-150 ${child.primary ? 'text-blue-400 hover:text-blue-300' : 'text-slate-400 hover:text-white'}`}
+              <motion.div
+                key="sub"
+                className="absolute inset-0 flex flex-col px-4 py-3 overflow-y-auto"
+                initial={{ x: '100%', opacity: 0 }}
+                animate={{
+                  x: subMenu ? '0%' : '100%',
+                  opacity: subMenu ? 1 : 0,
+                }}
+                transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
+              >
+                {subMenu && (
+                  <>
+                    <button
+                      className="flex items-center py-2.5 px-4 text-slate-500 hover:text-white transition-colors"
+                      onClick={() => setSubMenu(null)}
                     >
-                      {renderIcon(child)}
-                      {child.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={i}
-                      href={child.url}
-                      onClick={close}
-                      className={`flex items-center gap-3 text-lg font-medium py-3.5 px-4 rounded-xl hover:bg-slate-800/40 transition-all duration-150 ${child.primary ? 'text-blue-400 hover:text-blue-300' : 'text-slate-400 hover:text-white'}`}
-                    >
-                      {renderIcon(child)}
-                      {child.label}
-                    </Link>
-                  ),
+                      <FontAwesomeIcon
+                        icon={faChevronLeft}
+                        className="size-3"
+                      />
+                    </button>
+                    {subMenu.children?.map((child, i) =>
+                      child.external ? (
+                        <a
+                          key={i}
+                          href={child.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={close}
+                          className={`flex items-center gap-3 text-lg font-medium py-3.5 px-4 rounded-xl hover:bg-slate-800/40 transition-all duration-150 ${child.primary ? 'text-blue-400 hover:text-blue-300' : 'text-slate-400 hover:text-white'}`}
+                        >
+                          {renderIcon(child)}
+                          {child.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={i}
+                          href={child.url}
+                          onClick={close}
+                          className={`flex items-center gap-3 text-lg font-medium py-3.5 px-4 rounded-xl hover:bg-slate-800/40 transition-all duration-150 ${child.primary ? 'text-blue-400 hover:text-blue-300' : 'text-slate-400 hover:text-white'}`}
+                        >
+                          {renderIcon(child)}
+                          {child.label}
+                        </Link>
+                      ),
+                    )}
+                  </>
                 )}
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>

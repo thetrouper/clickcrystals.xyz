@@ -26,9 +26,15 @@ type DropLinkProps = {
   links: DropLinkItem[];
   url: string | undefined;
   onLinkClick?: () => void;
+  align?: 'center' | 'right';
 };
 
-export const DropLink = ({ label, links, onLinkClick }: DropLinkProps) => {
+export const DropLink = ({
+  label,
+  links,
+  onLinkClick,
+  align = 'center',
+}: DropLinkProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLLIElement>(null);
@@ -107,22 +113,20 @@ export const DropLink = ({ label, links, onLinkClick }: DropLinkProps) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="absolute left-1/2 -translate-x-1/2 z-[99998] overflow-visible"
+            className={`absolute z-[99998] overflow-visible ${align === 'right' ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}
           >
-            <div className="px-2 py-2 flex items-center gap-0.5">
+            <div className="px-2 py-2 flex items-center gap-1.5 flex-nowrap">
               {links.map((link, index) => {
                 const isExternal = link.url.startsWith('http') || link.external;
-                const cls = `flex items-center justify-center gap-1.5 min-w-[110px] px-3 py-1.5 text-sm rounded-full border transition-colors duration-100 ${
+                const cls = `flex items-center justify-center gap-1.5 min-w-[110px] px-3 py-1.5 text-sm rounded-full border transition-all duration-100 hover:scale-[1.02] ${
                   link.primary
                     ? 'text-blue-400 font-medium border-blue-500/20 bg-blue-500/10 hover:bg-blue-500/20 hover:border-blue-500/40'
-                    : 'text-slate-400 border-slate-700/50 bg-slate-800/60 hover:text-white hover:bg-slate-700/80 hover:border-slate-600'
+                    : 'text-slate-300 border-slate-700/50 bg-slate-800/60 hover:text-white hover:bg-slate-700/80 hover:border-slate-600'
                 }`;
 
                 return (
                   <div key={index} className="flex items-center">
-                    {link.separate && (
-                      <div className="w-px h-4 bg-slate-700/60 mx-1" />
-                    )}
+                    {link.separate && <div className="w-4" />}
                     {isExternal ? (
                       <a
                         href={link.url}
