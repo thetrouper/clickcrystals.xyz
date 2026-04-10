@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import {
   Select,
@@ -207,7 +208,7 @@ export default function Projects() {
               className="flex items-center gap-3 mb-4 cursor-pointer"
               onClick={() => toggleCollapse(author)}
             >
-              <img
+              <Image
                 src={`https://github.com/${username}.png`}
                 alt={author}
                 width={28}

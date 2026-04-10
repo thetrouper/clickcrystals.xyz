@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import Image from 'next/image';
+
 export const metadata: Metadata = {
   title: 'ClickCrystals - Other Projects',
 };
@@ -20,21 +22,21 @@ export default function OtherProjects() {
         <div className="flex items-center gap-3 mt-2">
           <p className="text-slate-500 text-sm">3 authors</p>
           <div className="flex -space-x-2">
-            <img
+            <Image
               src="https://github.com/itzispyder.png"
               alt="ImproperIssues"
               width={24}
               height={24}
               className="rounded-full ring-2 ring-slate-900 bg-slate-800"
             />
-            <img
+            <Image
               src="https://github.com/thetrouper.png"
               alt="TheTrouper"
               width={24}
               height={24}
               className="rounded-full ring-2 ring-slate-900 bg-slate-800"
             />
-            <img
+            <Image
               src="https://github.com/I-No-oNe.png"
               alt="I-No-oNe"
               width={24}
