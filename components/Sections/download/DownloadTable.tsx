@@ -4,78 +4,155 @@ import { AgGridReact } from 'ag-grid-react';
 import '@/styles/ag-grid-theme.css';
 import { useEffect, useState } from 'react';
 import { getParsedReleases } from '@/lib/getReleases.tsx';
+import { getModrinthParsedReleases } from '@/lib/getModrinthReleases';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
-// import Latest from './Latest';
+import Image from 'next/image';
+import modrinthIcon from '@/public/icons/modrinth.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-export default function DownloadTable() {
-  const [rowData, setRowData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [colDefs, setColDefs]: any[] = useState();
+type Source = 'modrinth' | 'github';
 
-  useEffect(() => {
-    const versionColumns = [
-      { field: '12111', headerName: '1.21.11' },
-      { field: '1218', headerName: '1.21.8' },
-      { field: '1217', headerName: '1.21.7' },
-      { field: '1216', headerName: '1.21.6' },
-      { field: '1215', headerName: '1.21.5' },
-      { field: '1214', headerName: '1.21.4' },
-      { field: '1211', headerName: '1.21.1' },
-      { field: '121', headerName: '1.21' },
-      { field: '1206', headerName: '1.20.6' },
-      { field: '1204', headerName: '1.20.4' },
-      { field: '1202', headerName: '1.20.2' },
-      { field: '1201', headerName: '1.20.1' },
-      { field: '120', headerName: '1.20' },
-      { field: '1194', headerName: '1.19.4' },
-    ];
+interface SourceData {
+  rows: any[];
+  mcVersions: { field: string; headerName: string }[];
+}
 
-    setColDefs([
-      { field: 'version', pinned: true, movable: false, width: 126 },
-      {
-        field: 'code',
-        headerName: 'Source Code',
-        cellRenderer: (params: any) => (
+const GITHUB_MC_VERSIONS = [
+  { field: '12111', headerName: '1.21.11' },
+  { field: '1218', headerName: '1.21.8' },
+  { field: '1217', headerName: '1.21.7' },
+  { field: '1216', headerName: '1.21.6' },
+  { field: '1215', headerName: '1.21.5' },
+  { field: '1214', headerName: '1.21.4' },
+  { field: '1211', headerName: '1.21.1' },
+  { field: '121', headerName: '1.21' },
+  { field: '1206', headerName: '1.20.6' },
+  { field: '1204', headerName: '1.20.4' },
+  { field: '1202', headerName: '1.20.2' },
+  { field: '1201', headerName: '1.20.1' },
+  { field: '120', headerName: '1.20' },
+  { field: '1194', headerName: '1.19.4' },
+];
+
+function buildColDefs(
+  mcVersions: { field: string; headerName: string }[],
+  sourceType: Source,
+) {
+  return [
+    { field: 'version', pinned: true, movable: false, width: 126 },
+    {
+      field: 'code',
+      headerName: sourceType === 'modrinth' ? 'Release' : 'Source Code',
+      cellRenderer: (params: any) => (
+        <Link href={params.value} className="text-blue-500">
+          Open
+        </Link>
+      ),
+      width: 115,
+    },
+    {
+      field: 'downloads',
+      cellRenderer: (params: any) => parseNumber(params.value),
+      width: 115,
+    },
+    ...mcVersions.map((col) => ({
+      field: col.field,
+      headerName: col.headerName,
+      cellRenderer: (params: any) =>
+        params.value === null ? (
+          'Not available'
+        ) : (
           <Link href={params.value} className="text-blue-500">
-            Open
+            Download
           </Link>
         ),
-        width: 115,
-      },
-      {
-        field: 'downloads',
-        cellRenderer: (params: any) => parseNumber(params.value),
-        width: 115,
-      },
-      ...versionColumns.map((col) => ({
-        field: col.field,
-        headerName: col.headerName,
-        cellRenderer: (params: any) =>
-          params.value === null ? (
-            'Not available'
-          ) : (
-            <Link href={params.value} className="text-blue-500">
-              Download
-            </Link>
-          ),
-        width: 160,
-      })),
-    ]);
-    const loadReleases = async () => {
-      try {
+      width: 160,
+    })),
+  ];
+}
+
+export default function DownloadTable() {
+  const [source, setSource] = useState<Source>('modrinth');
+  const [loading, setLoading] = useState(true);
+  const [dataCache, setDataCache] = useState<Record<Source, SourceData | null>>({
+    modrinth: null,
+    github: null,
+  });
+  const [availableSources, setAvailableSources] = useState<Record<Source, boolean>>({
+    modrinth: true,
+    github: true,
+  });
+
+  const currentData = dataCache[source];
+  const rowData = currentData?.rows ?? [];
+  const colDefs = currentData
+    ? buildColDefs(currentData.mcVersions, source)
+    : [];
+
+  // Load data for a specific source
+  const loadSource = async (src: Source): Promise<boolean> => {
+    if (dataCache[src]) return true; // Already loaded
+    
+    try {
+      if (src === 'modrinth') {
+        const result = await getModrinthParsedReleases();
+        setDataCache((prev) => ({
+          ...prev,
+          modrinth: {
+            rows: result.releases,
+            mcVersions: result.mcVersions,
+          },
+        }));
+        setAvailableSources((prev) => ({ ...prev, modrinth: true }));
+        return true;
+      } else {
         const releases = await getParsedReleases();
-        setRowData(releases);
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        console.error('Loading releases failed!');
+        setDataCache((prev) => ({
+          ...prev,
+          github: {
+            rows: releases,
+            mcVersions: GITHUB_MC_VERSIONS,
+          },
+        }));
+        setAvailableSources((prev) => ({ ...prev, github: true }));
+        return true;
       }
+    } catch (error) {
+      setAvailableSources((prev) => ({ ...prev, [src]: false }));
+      return false;
+    }
+  };
+
+  // Initial load: try Modrinth first, fallback to GitHub
+  useEffect(() => {
+    const init = async () => {
+      setLoading(true);
+      const modrinthSuccess = await loadSource('modrinth');
+      
+      // If Modrinth failed, load GitHub and set as active source
+      if (!modrinthSuccess) {
+        await loadSource('github');
+        setSource('github');
+      }
+      setLoading(false);
     };
 
-    loadReleases();
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleSourceChange = async (newSource: Source) => {
+    if (newSource === source || loading) return;
+    if (!availableSources[newSource]) return;
+
+    setLoading(true);
+    await loadSource(newSource);
+    setSource(newSource);
+    setLoading(false);
+  };
 
   return (
     <div className="my-4">
@@ -127,14 +204,56 @@ export default function DownloadTable() {
           </p>
         </div>
       </div>
+
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-xs text-gray-500 font-medium select-none">
+          Showing releases from:
+        </span>
+        <button
+          onClick={() => handleSourceChange('modrinth')}
+          disabled={!availableSources.modrinth || loading}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
+            source === 'modrinth'
+              ? 'bg-[#1bd96a] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          } ${!availableSources.modrinth ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+        >
+          <Image
+            src={modrinthIcon}
+            width={14}
+            height={14}
+            alt=""
+            className="size-3.5"
+          />
+          Modrinth
+        </button>
+        <button
+          onClick={() => handleSourceChange('github')}
+          disabled={!availableSources.github || loading}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
+            source === 'github'
+              ? 'bg-[#24292f] text-white shadow-sm'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          } ${!availableSources.github ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+        >
+          <FontAwesomeIcon icon={faGithub} className="size-3.5" />
+          GitHub
+        </button>
+        {!availableSources.modrinth && source === 'github' && (
+          <span className="text-xs text-amber-600 italic ml-1">
+            Modrinth unavailable — showing GitHub releases
+          </span>
+        )}
+      </div>
+
       <div className="ag-theme-custom h-[467px]">
         {loading ? (
           <div className="w-full h-full rounded bg-gray-200 animate-pulse"></div>
         ) : (
           <AgGridReact
+            key={source}
             columnDefs={colDefs}
             rowData={rowData}
-            loading={loading}
             suppressTouch={false}
             pagination={true}
             paginationPageSize={10}

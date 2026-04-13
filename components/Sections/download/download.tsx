@@ -17,10 +17,9 @@ export default function Download() {
             Download <span className="text-blue-600">ClickCrystals</span>
           </h1>
           <p className="text-gray-500 font-normal max-w-4xl my-3">
-            Our official downloads are available on CurseForge, PlanetMC and
-            GitHub. ClickCrystals has been discontinued on Modrinth. Please
-            refrain from downloading ClickCrystals from any other website other
-            than listed here.
+            Our official downloads are available on CurseForge, PlanetMC,
+            Modrinth and GitHub. Please refrain from downloading ClickCrystals
+            from any other website other than listed here.
           </p>
           <div className="flex flex-row gap-2">
             <DownloadLink
