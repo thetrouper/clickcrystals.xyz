@@ -77,11 +77,15 @@ function buildColDefs(
 export default function DownloadTable() {
   const [source, setSource] = useState<Source>('modrinth');
   const [loading, setLoading] = useState(true);
-  const [dataCache, setDataCache] = useState<Record<Source, SourceData | null>>({
-    modrinth: null,
-    github: null,
-  });
-  const [availableSources, setAvailableSources] = useState<Record<Source, boolean>>({
+  const [dataCache, setDataCache] = useState<Record<Source, SourceData | null>>(
+    {
+      modrinth: null,
+      github: null,
+    },
+  );
+  const [availableSources, setAvailableSources] = useState<
+    Record<Source, boolean>
+  >({
     modrinth: true,
     github: true,
   });
@@ -95,7 +99,7 @@ export default function DownloadTable() {
   // Load data for a specific source
   const loadSource = async (src: Source): Promise<boolean> => {
     if (dataCache[src]) return true; // Already loaded
-    
+
     try {
       if (src === 'modrinth') {
         const result = await getModrinthParsedReleases();
@@ -131,7 +135,7 @@ export default function DownloadTable() {
     const init = async () => {
       setLoading(true);
       const modrinthSuccess = await loadSource('modrinth');
-      
+
       // If Modrinth failed, load GitHub and set as active source
       if (!modrinthSuccess) {
         await loadSource('github');
