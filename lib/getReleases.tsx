@@ -1,6 +1,7 @@
 'use server';
 
 type Assets = {
+  '2612': null | React.ReactElement;
   '12111': null | React.ReactElement;
   '1218': null | React.ReactElement;
   '1217': null | React.ReactElement;
@@ -89,6 +90,7 @@ export async function getParsedReleases() {
 
       let downloads = 0;
       let assetsData: Assets = {
+        '2612': null,
         '12111': null,
         '1218': null,
         '1217': null,
@@ -111,7 +113,9 @@ export async function getParsedReleases() {
         let assetName = asset.name;
         let assetURL = asset.browser_download_url;
 
-        if (assetName.includes('1.21.11')) {
+        if (assetName.includes('26.1.2')) {
+          assetsData['2612'] = assetURL;
+        } else if (assetName.includes('1.21.11')) {
           assetsData['12111'] = assetURL;
         } else if (assetName.includes('1.21.8')) {
           assetsData['1218'] = assetURL;
