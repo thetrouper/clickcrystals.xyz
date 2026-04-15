@@ -10,7 +10,7 @@ export default function ScrollWrapper({
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > window.innerHeight);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -18,7 +18,7 @@ export default function ScrollWrapper({
   return (
     <div
       className={`tracking-tight text-white sticky top-0 z-[99999] transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-md bg-black/50 shadow-lg' : 'bg-transparent'
+        scrolled ? 'backdrop-blur-md bg-black/50 shadow-lg' : 'bg-[rgb(5,5,5)]'
       }`}
     >
       {children}
