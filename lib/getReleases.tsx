@@ -55,7 +55,8 @@ async function getModrinthVersionMap(): Promise<Record<string, string>> {
     const versions = await response.json();
     const map: Record<string, string> = {};
     for (const version of versions) {
-      const file = version.files?.find((f: any) => f.primary) ?? version.files?.[0];
+      const file =
+        version.files?.find((f: any) => f.primary) ?? version.files?.[0];
       if (!file) continue;
       for (const mcVersion of version.game_versions ?? []) {
         const key = mcVersion.replaceAll('.', '');
@@ -80,10 +81,22 @@ export async function getParsedReleases() {
       let releaseName = release.name.replace('Release ', '');
       let downloads = 0;
       let assetsData: Assets = {
-        '12111': null, '12110': null, '1219': null, '1218': null,
-        '1217': null, '1216': null, '1215': null, '1214': null,
-        '1211': null, '121': null, '1206': null, '1204': null,
-        '1202': null, '1201': null, '120': null, '1194': null,
+        '12111': null,
+        '12110': null,
+        '1219': null,
+        '1218': null,
+        '1217': null,
+        '1216': null,
+        '1215': null,
+        '1214': null,
+        '1211': null,
+        '121': null,
+        '1206': null,
+        '1204': null,
+        '1202': null,
+        '1201': null,
+        '120': null,
+        '1194': null,
       };
 
       release.assets.forEach((asset: any) => {
@@ -92,11 +105,21 @@ export async function getParsedReleases() {
         const githubURL = asset.browser_download_url;
 
         const versionKeys: [string, string][] = [
-          ['1.21.11', '12111'], ['1.21.10', '12110'], ['1.21.9', '1219'],
-          ['1.21.8', '1218'], ['1.21.7', '1217'], ['1.21.6', '1216'],
-          ['1.21.5', '1215'], ['1.21.4', '1214'], ['1.21.1', '1211'],
-          ['1.21', '121'], ['1.20.6', '1206'], ['1.20.4', '1204'],
-          ['1.20.2', '1202'], ['1.20.1', '1201'], ['1.20', '120'],
+          ['1.21.11', '12111'],
+          ['1.21.10', '12110'],
+          ['1.21.9', '1219'],
+          ['1.21.8', '1218'],
+          ['1.21.7', '1217'],
+          ['1.21.6', '1216'],
+          ['1.21.5', '1215'],
+          ['1.21.4', '1214'],
+          ['1.21.1', '1211'],
+          ['1.21', '121'],
+          ['1.20.6', '1206'],
+          ['1.20.4', '1204'],
+          ['1.20.2', '1202'],
+          ['1.20.1', '1201'],
+          ['1.20', '120'],
           ['1.19.4', '1194'],
         ];
 
