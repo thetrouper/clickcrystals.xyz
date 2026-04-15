@@ -1,28 +1,24 @@
 'use server';
 
 type Assets = {
-  '12111': null | React.ReactElement;
-  '12110': null | React.ReactElement;
-  '1219': null | React.ReactElement;
-  '1218': null | React.ReactElement;
-  '1217': null | React.ReactElement;
-  '1216': null | React.ReactElement;
-  '1215': null | React.ReactElement;
-  '1214': null | React.ReactElement;
-  '1211': null | React.ReactElement;
-  '121': null | React.ReactElement;
-  '1206': null | React.ReactElement;
-  '1204': null | React.ReactElement;
-  '1202': null | React.ReactElement;
-  '1201': null | React.ReactElement;
-  '120': null | React.ReactElement;
-  '1194': null | React.ReactElement;
+  '12111': null | string;
+  '12110': null | string;
+  '1219': null | string;
+  '1218': null | string;
+  '1217': null | string;
+  '1216': null | string;
+  '1215': null | string;
+  '1214': null | string;
+  '1211': null | string;
+  '121': null | string;
+  '1206': null | string;
+  '1204': null | string;
+  '1202': null | string;
+  '1201': null | string;
+  '120': null | string;
+  '1194': null | string;
 };
 
-// Releases are fetched and stripped to nearly the first 15 releases because
-// the first few releases meet our format requirements so can be
-// easy to parse.
-// these versions, overall, only support these versions: 1.19.4, 1.20, 1.20.1, 1.20.2, 1.20.4, 1.20.6, 1.21, 1.21.5
 export async function getReleases(total: number = 30) {
   try {
     const headers = process.env.GITHUB_PAT
@@ -33,132 +29,92 @@ export async function getReleases(total: number = 30) {
       { method: 'GET', headers, next: { revalidate: 300 } },
     );
     const releases = await response.json();
-    const fixedReleases = releases.map((r: any) =>
+    return releases.map((r: any) =>
       r.name === 'Release 1.2' ? { ...r, name: 'Release 1.2.0' } : r,
     );
-    return fixedReleases;
-    // return fixedReleases.slice(
-    //   0,
-    //   fixedReleases.findIndex((r: any) => r.name === 'Release 1.20.2-1.1.4'),
-    // );
   } catch {
     throw new Error('Failed to fetch from API');
   }
 }
 
-/* 
-Last updated: 2025-07-06
-  {'1.21.5': '1.21.5', 
-  '1.21.4': null, 
-  '1.21.3': null, 
-  '1.21.2': null, 
-  '1.21.1': '1.21', 
-  '1.21': '1.21', 
-  '1.20.6': '1.20.6', 
-  '1.20.5': null, 
-  '1.20.4': '1.20.4', 
-  '1.20.3': '1.20.4', 
-  '1.20.2': '1.20.2', 
-  '1.20.1': '1.20', 
-  '1.20': '1.20'} 
-
-  This means that builds of the mod for 1.20 are also intended to be used for 1.20.1.
-  x: x means the x mod's build for minecraft versions x is intended to be used for the x version
-  x: y means the y version's build is intended to be used for the x version of the game
-  x: null means that the x version of minecraft is not supported by the mod
-  This is used to map the mod's builds to the minecraft versions without duplicating the builds.
-  e.g. 1.20 builds are intended to be used in 1.20 itself as well as 1.20.1 (1.20: 1.20 and 1.20.1: 1.20)
-*/
 async function getCCMappings() {
   const response = await fetch(
     'https://itzispyder.github.io/clickcrystals/info.json',
-    {
-      method: 'GET',
-      next: { revalidate: 200 },
-    },
+    { method: 'GET', next: { revalidate: 200 } },
   );
-
   const info = await response.json();
-
   return info['versionMappings'];
+}
+
+async function getModrinthVersionMap(): Promise<Record<string, string>> {
+  try {
+    const response = await fetch(
+      'https://api.modrinth.com/v2/project/clickcrystals/version',
+      { method: 'GET', next: { revalidate: 300 } },
+    );
+    const versions = await response.json();
+    const map: Record<string, string> = {};
+    for (const version of versions) {
+      const file = version.files?.find((f: any) => f.primary) ?? version.files?.[0];
+      if (!file) continue;
+      for (const mcVersion of version.game_versions ?? []) {
+        const key = mcVersion.replaceAll('.', '');
+        if (!map[key]) map[key] = file.url;
+      }
+    }
+    return map;
+  } catch {
+    return {};
+  }
 }
 
 export async function getParsedReleases() {
   try {
-    const releases = await getReleases(100);
+    const [releases, modrinthMap, mappings] = await Promise.all([
+      getReleases(100),
+      getModrinthVersionMap(),
+      getCCMappings(),
+    ]);
+
     const parsedReleases = releases.map((release: any) => {
       let releaseName = release.name.replace('Release ', '');
-
       let downloads = 0;
       let assetsData: Assets = {
-        '12111': null,
-        '12110': null,
-        '1219': null,
-        '1218': null,
-        '1217': null,
-        '1216': null,
-        '1215': null,
-        '1214': null,
-        '1211': null,
-        '121': null,
-        '1206': null,
-        '1204': null,
-        '1202': null,
-        '1201': null,
-        '120': null,
-        '1194': null,
+        '12111': null, '12110': null, '1219': null, '1218': null,
+        '1217': null, '1216': null, '1215': null, '1214': null,
+        '1211': null, '121': null, '1206': null, '1204': null,
+        '1202': null, '1201': null, '120': null, '1194': null,
       };
 
       release.assets.forEach((asset: any) => {
         downloads += asset.download_count;
+        const assetName = asset.name;
+        const githubURL = asset.browser_download_url;
 
-        let assetName = asset.name;
-        let assetURL = asset.browser_download_url;
+        const versionKeys: [string, string][] = [
+          ['1.21.11', '12111'], ['1.21.10', '12110'], ['1.21.9', '1219'],
+          ['1.21.8', '1218'], ['1.21.7', '1217'], ['1.21.6', '1216'],
+          ['1.21.5', '1215'], ['1.21.4', '1214'], ['1.21.1', '1211'],
+          ['1.21', '121'], ['1.20.6', '1206'], ['1.20.4', '1204'],
+          ['1.20.2', '1202'], ['1.20.1', '1201'], ['1.20', '120'],
+          ['1.19.4', '1194'],
+        ];
 
-        if (assetName.includes('1.21.11')) {
-          assetsData['12111'] = assetURL;
-        } else if (assetName.includes('1.21.10')) {
-          assetsData['12110'] = assetURL;
-        } else if (assetName.includes('1.21.9')) {
-          assetsData['1219'] = assetURL;
-        } else if (assetName.includes('1.21.8')) {
-          assetsData['1218'] = assetURL;
-        } else if (assetName.includes('1.21.7')) {
-          assetsData['1217'] = assetURL;
-        } else if (assetName.includes('1.21.6')) {
-          assetsData['1216'] = assetURL;
-        } else if (assetName.includes('1.21.5')) {
-          assetsData['1215'] = assetURL;
-        } else if (assetName.includes('1.21.4')) {
-          assetsData['1214'] = assetURL;
-        } else if (assetName.includes('1.21.1')) {
-          assetsData['1211'] = assetURL;
-        } else if (assetName.includes('1.21')) {
-          assetsData['121'] = assetURL;
-        } else if (assetName.includes('1.20.6')) {
-          assetsData['1206'] = assetURL;
-        } else if (assetName.includes('1.20.4')) {
-          assetsData['1204'] = assetURL;
-        } else if (assetName.includes('1.20.2')) {
-          assetsData['1202'] = assetURL;
-        } else if (assetName.includes('1.20.1')) {
-          assetsData['1201'] = assetURL;
-        } else if (assetName.includes('1.20')) {
-          assetsData['120'] = assetURL;
-        } else if (assetName.includes('1.19.4')) {
-          assetsData['1194'] = assetURL;
+        for (const [mcVer, key] of versionKeys) {
+          if (assetName.includes(mcVer)) {
+            assetsData[key as keyof Assets] = modrinthMap[key] ?? githubURL;
+            break;
+          }
         }
       });
 
       return {
         version: releaseName,
         code: release.html_url,
-        downloads: downloads,
+        downloads,
         ...assetsData,
       };
     });
-
-    const mappings = await getCCMappings();
 
     Object.entries(mappings).forEach(([versionKey, mappedVersion]) => {
       const key = versionKey.replaceAll('.', '');
@@ -169,10 +125,8 @@ export async function getParsedReleases() {
 
       parsedReleases.forEach((release: any) => {
         if (mappedKey && release[mappedKey] && !release[key]) {
-          // Copy the download URL from the mapped version
-          release[key] = release[mappedKey];
+          release[key] = modrinthMap[key] ?? release[mappedKey];
         } else if (!mappedKey && !release[key]) {
-          // If not mapped (null), ensure it's explicitly set to null only if not already parsed
           release[key] = null;
         }
       });
