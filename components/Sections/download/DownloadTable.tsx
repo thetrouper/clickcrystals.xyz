@@ -116,8 +116,6 @@ export default function DownloadTable() {
           params.value ? (
             <a
               href={params.value}
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 hover:underline focus:outline-none"
             >
               Download
@@ -236,8 +234,6 @@ export default function DownloadTable() {
                 <a
                   key={i}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
                 >
                   <div>

@@ -12,7 +12,10 @@
   --ag-background-color: var(--ag-inherited-background-color, #1a1a1a);
   --ag-foreground-color: var(--ag-inherited-foreground-color, #e0e0e0);
   --ag-text-color: var(--ag-inherited-text-color, #cbd5e1);
-  --ag-accent-color: var(--ag-inherited-accent-color, #3b82f6);
+  --ag-accent-color: var(--ag-inherited-accent-color, transparent);
+  --ag-range-selection-border-color: var(--ag-inherited-range-selection-border-color, transparent);
+  --ag-range-selection-background-color: var(--ag-inherited-range-selection-background-color, transparent);
+  --ag-focus-shadow: var(--ag-inherited-focus-shadow, none);
   --ag-invalid-color: var(--ag-inherited-invalid-color, #e02525);
   --ag-border-color: var(
     --ag-inherited-border-color,
