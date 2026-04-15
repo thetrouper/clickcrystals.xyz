@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getParsedReleases } from '@/lib/getReleases.tsx';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
+import Link from 'next/link';
 // import Latest from './Latest';
 
 export default function DownloadTable() {
@@ -114,13 +115,12 @@ export default function DownloadTable() {
         headerName: col.headerName,
         cellRenderer: (params: any) =>
           params.value ? (
-            <a
+            <Link
               href={params.value}
-              download
               className="text-blue-400 hover:text-blue-300 hover:underline focus:outline-none"
             >
               Download
-            </a>
+            </Link>
           ) : (
             <span className="text-slate-600">—</span>
           ),
@@ -232,10 +232,9 @@ export default function DownloadTable() {
                     : release?.version;
               if (!href) return null;
               return (
-                <a
+                <Link
                   key={i}
                   href={href}
-                  download
                   className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
                 >
                   <div>
@@ -265,7 +264,7 @@ export default function DownloadTable() {
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                     />
                   </svg>
-                </a>
+                </Link>
               );
             })
           )}
