@@ -2,10 +2,7 @@
 
 import { AgGridReact } from 'ag-grid-react';
 import '@/styles/ag-grid-theme.css';
-import { useEffect, useState, useMemo } from 'react';
-import { getParsedReleases } from '@/lib/getReleases.tsx';
-import { getModrinthParsedReleases } from '@/lib/getModrinthReleases';
-import { getCurseForgeParsedReleases } from '@/lib/getCurseForgeReleases';
+import { useState, useMemo } from 'react';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
@@ -20,6 +17,10 @@ type Source = 'all' | 'modrinth' | 'curseforge' | 'github';
 interface SourceData {
   rows: any[];
   mcVersions: { field: string; headerName: string }[];
+}
+
+interface DownloadTableProps {
+  initialData: Record<Exclude<Source, 'all'>, SourceData | null>;
 }
 
 function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
@@ -160,103 +161,30 @@ function buildAllData(
   return { rows: releases, mcVersions };
 }
 
-export default function DownloadTable() {
+export default function DownloadTable({ initialData }: DownloadTableProps) {
   const [source, setSource] = useState<Source>('all');
-  const [loading, setLoading] = useState(true);
-  const [dataCache, setDataCache] = useState<
-    Record<Exclude<Source, 'all'>, SourceData | null>
-  >({
-    modrinth: null,
-    curseforge: null,
-    github: null,
-  });
-  const [availableSources, setAvailableSources] = useState<
-    Record<Exclude<Source, 'all'>, boolean>
-  >({
-    modrinth: true,
-    curseforge: true,
-    github: true,
-  });
+  const dataCache = initialData;
 
-  // Compute "all" merged data whenever cache changes
+  const availableSources = useMemo(
+    () => ({
+      modrinth: dataCache.modrinth !== null,
+      curseforge: dataCache.curseforge !== null,
+      github: dataCache.github !== null,
+    }),
+    [dataCache],
+  );
+
+  // Compute "all" merged data
   const allData = useMemo(() => buildAllData(dataCache), [dataCache]);
 
   const currentData = source === 'all' ? allData : dataCache[source];
   const rowData = currentData?.rows ?? [];
   const colDefs = currentData ? buildColDefs(currentData.mcVersions) : [];
 
-  // Load data for a specific source
-  const loadSource = async (src: Exclude<Source, 'all'>): Promise<boolean> => {
-    if (dataCache[src]) return true; // Already loaded
-
-    try {
-      if (src === 'modrinth') {
-        const result = await getModrinthParsedReleases();
-        setDataCache((prev) => ({
-          ...prev,
-          modrinth: {
-            rows: result.releases,
-            mcVersions: result.mcVersions,
-          },
-        }));
-        setAvailableSources((prev) => ({ ...prev, modrinth: true }));
-        return true;
-      } else if (src === 'curseforge') {
-        const result = await getCurseForgeParsedReleases();
-        setDataCache((prev) => ({
-          ...prev,
-          curseforge: {
-            rows: result.releases,
-            mcVersions: result.mcVersions,
-          },
-        }));
-        setAvailableSources((prev) => ({ ...prev, curseforge: true }));
-        return true;
-      } else {
-        const result = await getParsedReleases();
-        setDataCache((prev) => ({
-          ...prev,
-          github: {
-            rows: result.releases,
-            mcVersions: result.mcVersions,
-          },
-        }));
-        setAvailableSources((prev) => ({ ...prev, github: true }));
-        return true;
-      }
-    } catch (error) {
-      setAvailableSources((prev) => ({ ...prev, [src]: false }));
-      return false;
-    }
-  };
-
-  // Initial load: load all three sources in parallel
-  useEffect(() => {
-    const init = async () => {
-      setLoading(true);
-      await Promise.all([
-        loadSource('modrinth'),
-        loadSource('curseforge'),
-        loadSource('github'),
-      ]);
-      setLoading(false);
-    };
-
-    init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleSourceChange = async (newSource: Source) => {
-    if (newSource === source || loading) return;
-
+  const handleSourceChange = (newSource: Source) => {
+    if (newSource === source) return;
     if (newSource !== 'all' && !availableSources[newSource]) return;
-
-    setLoading(true);
-    if (newSource !== 'all') {
-      await loadSource(newSource);
-    }
     setSource(newSource);
-    setLoading(false);
   };
 
   return (
@@ -316,7 +244,6 @@ export default function DownloadTable() {
         </span>
         <button
           onClick={() => handleSourceChange('all')}
-          disabled={loading}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'all'
               ? 'bg-[#6366f1] text-white shadow-sm'
@@ -340,7 +267,7 @@ export default function DownloadTable() {
         </button>
         <button
           onClick={() => handleSourceChange('modrinth')}
-          disabled={!availableSources.modrinth || loading}
+          disabled={!availableSources.modrinth}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'modrinth'
               ? 'bg-[#1bd96a] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
@@ -358,7 +285,7 @@ export default function DownloadTable() {
         </button>
         <button
           onClick={() => handleSourceChange('curseforge')}
-          disabled={!availableSources.curseforge || loading}
+          disabled={!availableSources.curseforge}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'curseforge'
               ? 'bg-[#f16436] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
@@ -376,7 +303,7 @@ export default function DownloadTable() {
         </button>
         <button
           onClick={() => handleSourceChange('github')}
-          disabled={!availableSources.github || loading}
+          disabled={!availableSources.github}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'github'
               ? 'bg-[#24292f] text-white shadow-sm'
@@ -389,21 +316,17 @@ export default function DownloadTable() {
       </div>
 
       <div className="ag-theme-custom h-[467px]">
-        {loading ? (
-          <div className="w-full h-full rounded bg-gray-200 animate-pulse"></div>
-        ) : (
-          <AgGridReact
-            key={source}
-            columnDefs={colDefs}
-            rowData={rowData}
-            suppressTouch={false}
-            pagination={true}
-            paginationPageSize={10}
-            paginationPageSizeSelector={[10, 20, 30, 50, 100]}
-            paginationAutoPageSize={true}
-            suppressMenuHide={true}
-          />
-        )}
+        <AgGridReact
+          key={source}
+          columnDefs={colDefs}
+          rowData={rowData}
+          suppressTouch={false}
+          pagination={true}
+          paginationPageSize={10}
+          paginationPageSizeSelector={[10, 20, 30, 50, 100]}
+          paginationAutoPageSize={true}
+          suppressMenuHide={true}
+        />
       </div>
     </div>
   );

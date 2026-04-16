@@ -1,16 +1,7 @@
 import { NextResponse } from 'next/server';
-import { getLatestLink } from './lib/getLatest';
 
-export async function middleware(request: Request) {
-  const url = new URL(request.url);
+// /get route is now handled by app/get/route.ts
 
-  if (url.pathname === '/get') {
-    return NextResponse.redirect(await getLatestLink());
-  }
-
+export async function middleware() {
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: ['/get'],
-};
