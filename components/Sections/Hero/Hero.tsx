@@ -25,21 +25,22 @@ export default function Hero() {
 
   const { scrollYProgress } = useScroll();
 
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -40]);
+  const textOpacity = useTransform(scrollYProgress, [0.05, 0.2], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0.05, 0.2], [0, -40]);
 
   useEffect(() => {
     const update = () => {
       const count = Math.floor(window.innerWidth / 120);
       // keep it odd so arch is symmetric
-      setVisibleBars(count % 2 === 0 ? count - 1 : count);
+      setVisibleBars(Math.max(5, count % 2 === 0 ? count - 1 : count));
     };
     update();
     window.addEventListener('resize', update);
     setReady(true);
     const unsub = scrollYProgress.on('change', (v: number) => {
       if (collapseRef.current) {
-        const scale = Math.max(0, 1 - v / 0.4);
+        const divisor = window.innerWidth < 640 ? 0.25 : 0.4;
+        const scale = Math.max(0, 1 - v / divisor);
         collapseRef.current.style.transform = `scaleY(${scale})`;
         // pause animation while scrolling to prevent set behaviour
         collapseRef.current
@@ -64,7 +65,7 @@ export default function Hero() {
   }, [scrollYProgress]);
 
   return (
-    <div className="relative h-[200vh]">
+    <div className="relative h-[160vh] md:h-[200vh]">
       <div
         className="relative sticky top-0 h-screen overflow-hidden"
         style={{ backgroundColor: 'rgb(5,5,5)' }}
@@ -74,6 +75,12 @@ export default function Hero() {
             0% { transform: scaleY(var(--initial-scale)); }
             100% { transform: scaleY(calc(var(--initial-scale) * 0.75)); }
           }
+          .hero-bar {
+            transition: filter 0.2s ease;
+          }
+          .hero-bar:hover {
+            filter: brightness(2);
+          }
         `}</style>
 
         {/* Collapse wrapper */}
@@ -82,8 +89,10 @@ export default function Hero() {
           className="absolute inset-0 z-0 overflow-hidden"
           style={{
             transformOrigin: 'bottom',
+            transform: 'scaleY(1)',
             opacity: ready ? 1 : 0,
             transition: 'opacity 0.3s',
+            willChange: 'transform',
           }}
         >
           <div

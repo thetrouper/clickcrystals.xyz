@@ -4,7 +4,6 @@ import CCS from '@/components/Sections/CCS/CCS';
 import Features from '@/components/Sections/Features/Features';
 import Ingame from '@/components/Sections/Ingame/Ingame';
 import Reviews from '@/components/Sections/Reviews/Reviews';
-import GetStarted from '@/components/Sections/GetStarted/GetStarted';
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <Features />
       <Ingame />
       <Reviews />
-      <GetStarted />
     </>
   );
 }
