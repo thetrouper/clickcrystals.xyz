@@ -3,7 +3,6 @@ import { inter, interHeading } from './fonts';
 import type { Metadata } from 'next';
 
 import Header from '@/components/ui/Nav';
-import Footer from '@/components/ui/Footer';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -30,7 +29,6 @@ export default function RootLayout({
       >
         <Header />
         <div className="min-h-screen">{children}</div>
-        <Footer />
         <div className="dark">
           <Toaster />
         </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -63,7 +63,6 @@ export default function Footer() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000, moving: false });
   const moveTimerRef = useRef<any>(null);
-  const [shattered, setShattered] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;

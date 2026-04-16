@@ -28,7 +28,7 @@ export const DownloadLink = ({
           primary
             ? 'bg-blue-600 hover:bg-blue-500 border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)] active:scale-95'
             : 'bg-slate-800/30 hover:bg-slate-800/60 border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)] active:scale-95'
-        } text-white font-semibold rounded-lg transition-all duration-150 ${className}`}
+        } text-white font-semibold rounded-full transition-all duration-150 ${className}`}
       >
         <div className="flex items-center gap-3">
           <span className="w-6 flex items-center justify-center">{icon}</span>

@@ -37,7 +37,7 @@ export default async function Get() {
           href="https://github.com/clickcrystals-development/ClickCrystals/releases/latest"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all text-base border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)]"
+          className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all text-base border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)]"
         >
           Download Latest
         </Link>

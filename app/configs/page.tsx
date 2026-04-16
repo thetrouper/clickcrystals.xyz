@@ -69,8 +69,7 @@ export default function ScriptsArchive() {
       <div className="py-0">
         <div className="text-left">
           <h1 className="text-white tracking-tight font-bold text-3xl md:text-4xl lg:text-5xl">
-            ClickCrystals{' '}
-            <span className="text-blue-500">Configs Explorer</span>
+            ClickCrystals <span className="text-blue-500">Configs</span>
           </h1>
           <p className="text-slate-400 text-base md:text-lg max-w-3xl my-4">
             ClickCrystals Configs are used to import/export and share your
