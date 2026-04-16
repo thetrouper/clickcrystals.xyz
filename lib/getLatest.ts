@@ -6,8 +6,8 @@ import { getParsedReleases } from '@/lib/getReleases';
 
 export async function getLatestLink() {
   try {
-    const resp = await getParsedReleases();
-    const link = resp[0][latestMc];
+    const { releases } = await getParsedReleases();
+    const link = releases[0][latestMc];
 
     return link;
   } catch (err) {

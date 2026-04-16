@@ -22,23 +22,6 @@ interface SourceData {
   mcVersions: { field: string; headerName: string }[];
 }
 
-const GITHUB_MC_VERSIONS = [
-  { field: '12111', headerName: '1.21.11' },
-  { field: '1218', headerName: '1.21.8' },
-  { field: '1217', headerName: '1.21.7' },
-  { field: '1216', headerName: '1.21.6' },
-  { field: '1215', headerName: '1.21.5' },
-  { field: '1214', headerName: '1.21.4' },
-  { field: '1211', headerName: '1.21.1' },
-  { field: '121', headerName: '1.21' },
-  { field: '1206', headerName: '1.20.6' },
-  { field: '1204', headerName: '1.20.4' },
-  { field: '1202', headerName: '1.20.2' },
-  { field: '1201', headerName: '1.20.1' },
-  { field: '120', headerName: '1.20' },
-  { field: '1194', headerName: '1.19.4' },
-];
-
 function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
   return [
     { field: 'version', pinned: true, movable: false, width: 126 },
@@ -230,12 +213,12 @@ export default function DownloadTable() {
         setAvailableSources((prev) => ({ ...prev, curseforge: true }));
         return true;
       } else {
-        const releases = await getParsedReleases();
+        const result = await getParsedReleases();
         setDataCache((prev) => ({
           ...prev,
           github: {
-            rows: releases,
-            mcVersions: GITHUB_MC_VERSIONS,
+            rows: result.releases,
+            mcVersions: result.mcVersions,
           },
         }));
         setAvailableSources((prev) => ({ ...prev, github: true }));
@@ -327,8 +310,8 @@ export default function DownloadTable() {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs text-gray-500 font-medium select-none">
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <span className="text-xs text-gray-500 font-medium select-none w-full sm:w-auto">
           Showing releases from:
         </span>
         <button
