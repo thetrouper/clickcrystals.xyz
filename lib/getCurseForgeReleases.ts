@@ -73,10 +73,7 @@ function extractModVersion(displayName: string): string {
  */
 function extractMcVersions(gameVersions: string[]): string[] {
   return gameVersions.filter(
-    (v) =>
-      v !== 'Client' &&
-      v !== 'Fabric' &&
-      !v.includes('Snapshot'),
+    (v) => v !== 'Client' && v !== 'Fabric' && !v.includes('Snapshot'),
   );
 }
 

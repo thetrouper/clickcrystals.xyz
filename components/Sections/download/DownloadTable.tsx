@@ -39,9 +39,7 @@ const GITHUB_MC_VERSIONS = [
   { field: '1194', headerName: '1.19.4' },
 ];
 
-function buildColDefs(
-  mcVersions: { field: string; headerName: string }[],
-) {
+function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
   return [
     { field: 'version', pinned: true, movable: false, width: 126 },
     {
@@ -202,14 +200,10 @@ export default function DownloadTable() {
 
   const currentData = source === 'all' ? allData : dataCache[source];
   const rowData = currentData?.rows ?? [];
-  const colDefs = currentData
-    ? buildColDefs(currentData.mcVersions)
-    : [];
+  const colDefs = currentData ? buildColDefs(currentData.mcVersions) : [];
 
   // Load data for a specific source
-  const loadSource = async (
-    src: Exclude<Source, 'all'>,
-  ): Promise<boolean> => {
+  const loadSource = async (src: Exclude<Source, 'all'>): Promise<boolean> => {
     if (dataCache[src]) return true; // Already loaded
 
     try {
