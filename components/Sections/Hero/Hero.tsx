@@ -127,7 +127,8 @@ export default function Hero() {
                     // Entry animation runs once, then pulse takes over
                     animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out ${index * 0.06 + 0.8}s infinite alternate`,
                     // @ts-ignore
-                    '--initial-scale': height / 100,
+                    '--initial-scale':
+                      Math.round((height / 100) * 10000) / 10000,
                   }}
                 />
               );
