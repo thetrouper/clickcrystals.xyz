@@ -102,17 +102,18 @@ export default function Footer() {
     canvas.parentElement?.addEventListener('mousemove', handleMouseMove);
     canvas.parentElement?.addEventListener('mouseleave', handleMouseLeave);
 
-    const particles = Array.from({ length: 40 }, () => ({
+    const isMobile = window.innerWidth < 640;
+    const particles = Array.from({ length: isMobile ? 20 : 80 }, () => ({
       x: Math.random() * (canvas.width || 800),
       y: Math.random() * (canvas.height || 400),
-      size: Math.random() * 1.2 + 0.2,
-      baseSpeedY: -(Math.random() * 0.3 + 0.06),
-      baseSpeedX: (Math.random() - 0.5) * 0.1,
+      size: Math.random() * 1.8 + 0.4,
+      baseSpeedY: -(Math.random() * 0.4 + 0.08),
+      baseSpeedX: (Math.random() - 0.5) * 0.15,
       vx: 0,
       vy: 0,
-      opacity: Math.random() * 0.2 + 0.05,
+      opacity: Math.random() * 0.35 + 0.15,
       pulse: Math.random() * Math.PI * 2,
-      hue: 210 + Math.random() * 20,
+      hue: 210 + Math.random() * 30,
     }));
 
     const draw = () => {
@@ -123,8 +124,8 @@ export default function Footer() {
       trail.forEach((t) => {
         t.age++;
         if (t.age >= 40) return;
-        const a = Math.max(0, (1 - t.age / 40) * 0.12);
-        const r = Math.max(0.1, 28 * (1 - t.age / 40));
+        const a = Math.max(0, (1 - t.age / 40) * 0.35);
+        const r = Math.max(0.1, 48 * (1 - t.age / 40));
         const g = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, r);
         g.addColorStop(0, `rgba(96,165,250,${a})`);
         g.addColorStop(1, 'rgba(96,165,250,0)');
@@ -135,11 +136,11 @@ export default function Footer() {
       });
 
       if (mx > 0) {
-        const g = ctx.createRadialGradient(mx, my, 0, mx, my, 100);
-        g.addColorStop(0, 'rgba(96,165,250,0.1)');
+        const g = ctx.createRadialGradient(mx, my, 0, mx, my, 160);
+        g.addColorStop(0, 'rgba(96,165,250,0.18)');
         g.addColorStop(1, 'rgba(96,165,250,0)');
         ctx.beginPath();
-        ctx.arc(mx, my, 100, 0, Math.PI * 2);
+        ctx.arc(mx, my, 160, 0, Math.PI * 2);
         ctx.fillStyle = g;
         ctx.fill();
       }
@@ -212,31 +213,6 @@ export default function Footer() {
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-10" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70vw] h-48 bg-blue-600/10 blur-[80px] pointer-events-none" />
 
-      {/* Two crossing lines across the whole footer */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        preserveAspectRatio="none"
-      >
-        <line
-          x1="10%"
-          y1="32%"
-          x2="80%"
-          y2="91%"
-          stroke="rgba(255,255,255,0.09)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <line
-          x1="88%"
-          y1="28%"
-          x2="35%"
-          y2="88%"
-          stroke="rgba(96,165,250,0.11)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-
       {/* Giant barely-visible background text */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none whitespace-nowrap font-black"
@@ -303,47 +279,39 @@ export default function Footer() {
         </div>
 
         {/* Platforms */}
-        <div className="relative flex justify-center w-full h-16">
-          {platforms.map(({ label, href, icon }, i) => {
-            const transforms = [
-              'rotate(-4deg) translate(-120px, -8px)',
-              'rotate(2deg) translate(0px, 12px)',
-              'rotate(-2deg) translate(110px, -4px)',
-            ];
-            return (
-              <Link
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute flex items-center gap-2 px-5 py-2.5 text-slate-300 hover:text-white text-sm font-medium rounded-full border border-white/10 hover:border-white/20 transition-all duration-200 hover:scale-105"
-                style={{
-                  background:
-                    'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(96,165,250,0.05) 50%, rgba(255,255,255,0.03) 100%)',
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08)',
-                  transform: transforms[i],
-                }}
-              >
-                {icon ? (
-                  <Image
-                    src={icon}
-                    alt={label}
-                    width={14}
-                    height={14}
-                    className="opacity-70"
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faGithub}
-                    className="w-3.5 h-3.5 opacity-70"
-                  />
-                )}
-                {label}
-              </Link>
-            );
-          })}
+        <div className="flex flex-row items-center justify-center gap-3 flex-wrap">
+          {platforms.map(({ label, href, icon }) => (
+            <Link
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-2.5 text-slate-300 hover:text-white text-sm font-medium rounded-full border border-white/10 hover:border-white/20 transition-all duration-200 hover:scale-105"
+              style={{
+                background:
+                  'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(96,165,250,0.05) 50%, rgba(255,255,255,0.03) 100%)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              {icon ? (
+                <Image
+                  src={icon}
+                  alt={label}
+                  width={14}
+                  height={14}
+                  className="opacity-70"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="w-3.5 h-3.5 opacity-70"
+                />
+              )}
+              {label}
+            </Link>
+          ))}
         </div>
 
         {/* Bottom */}

@@ -7,60 +7,63 @@ import {
   JoinDiscordButton,
 } from '@/components/ui/buttons/all';
 
-const numBars = 13;
-
-const calculateHeight = (index: number, total: number) => {
-  const position = index / (total - 1);
-  const distanceFromCenter = Math.abs(position - 0.5);
-  return (
-    Math.round((30 + 70 * Math.pow(distanceFromCenter * 2, 1.2)) * 10000) /
-    10000
-  );
-};
-
 export default function Hero() {
   const collapseRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
-  const [visibleBars, setVisibleBars] = useState(numBars);
+  const [visibleBars, setVisibleBars] = useState(7);
 
   const { scrollYProgress } = useScroll();
 
-  const textOpacity = useTransform(scrollYProgress, [0.05, 0.2], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0.05, 0.2], [0, -40]);
+  // Text fades later — more reading time
+  const textOpacity = useTransform(scrollYProgress, [0.12, 0.25], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0.12, 0.25], [0, -40]);
+
+  const calculateHeight = (index: number, total: number) => {
+    const position = index / (total - 1);
+    const maxHeight = 100;
+    const minHeight = 30;
+    const center = 0.5;
+    const distanceFromCenter = Math.abs(position - center);
+    const heightPercentage = Math.pow(distanceFromCenter * 2, 1.2);
+    return minHeight + (maxHeight - minHeight) * heightPercentage;
+  };
 
   useEffect(() => {
     const update = () => {
       const count = Math.floor(window.innerWidth / 120);
-      // keep it odd so arch is symmetric
       setVisibleBars(Math.max(5, count % 2 === 0 ? count - 1 : count));
     };
     update();
     window.addEventListener('resize', update);
     setReady(true);
-    const unsub = scrollYProgress.on('change', (v: number) => {
+
+    // Lerped collapse with opacity fade
+    let currentScale = 1;
+    let currentOpacity = 1;
+    let rafId: number;
+
+    const tick = () => {
+      const v = scrollYProgress.get();
+      const divisor = window.innerWidth < 640 ? 0.25 : 0.4;
+      const targetScale = Math.max(0, 1 - v / divisor);
+      const targetOpacity = Math.max(0, 1 - (v / divisor) * 1.4);
+
+      // Lerp both scale and opacity
+      currentScale += (targetScale - currentScale) * 0.08;
+      currentOpacity += (targetOpacity - currentOpacity) * 0.08;
+
       if (collapseRef.current) {
-        const divisor = window.innerWidth < 640 ? 0.25 : 0.4;
-        const scale = Math.max(0, 1 - v / divisor);
-        collapseRef.current.style.transform = `scaleY(${scale})`;
-        // pause animation while scrolling to prevent set behaviour
-        collapseRef.current
-          .querySelectorAll<HTMLElement>('.hero-bar')
-          .forEach((el) => {
-            el.style.animationPlayState = 'paused';
-          });
-        clearTimeout((collapseRef.current as any)._resumeTimer);
-        (collapseRef.current as any)._resumeTimer = setTimeout(() => {
-          collapseRef.current
-            ?.querySelectorAll<HTMLElement>('.hero-bar')
-            .forEach((el) => {
-              el.style.animationPlayState = 'running';
-            });
-        }, 150);
+        collapseRef.current.style.transform = `scaleY(${currentScale})`;
+        collapseRef.current.style.opacity = String(currentOpacity);
       }
-    });
+
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
     return () => {
       window.removeEventListener('resize', update);
-      unsub();
+      cancelAnimationFrame(rafId);
     };
   }, [scrollYProgress]);
 
@@ -73,7 +76,11 @@ export default function Hero() {
         <style>{`
           @keyframes pulseBar {
             0% { transform: scaleY(var(--initial-scale)); }
-            100% { transform: scaleY(calc(var(--initial-scale) * 0.75)); }
+            100% { transform: scaleY(calc(var(--initial-scale) * 0.82)); }
+          }
+          @keyframes barEntry {
+            from { transform: scaleY(0); opacity: 0; }
+            to   { transform: scaleY(var(--initial-scale)); opacity: 1; }
           }
           .hero-bar {
             transition: filter 0.2s ease;
@@ -83,7 +90,6 @@ export default function Hero() {
           }
         `}</style>
 
-        {/* Collapse wrapper */}
         <div
           ref={collapseRef}
           className="absolute inset-0 z-0 overflow-hidden"
@@ -98,9 +104,9 @@ export default function Hero() {
           <div
             className="flex h-full"
             style={{
+              width: '100%',
               transform: 'translateZ(0)',
               backfaceVisibility: 'hidden',
-              width: '100%',
             }}
           >
             {Array.from({ length: visibleBars }).map((_, index) => {
@@ -115,12 +121,11 @@ export default function Hero() {
                     height: '100%',
                     background:
                       'linear-gradient(to top, rgb(37,99,235), rgb(5,5,5))',
-                    transform: `scaleY(${height / 100})`,
                     transformOrigin: 'bottom',
-                    transition: 'none',
-                    animation: `pulseBar 2s ease-in-out infinite alternate`,
-                    animationDelay: `${(index / visibleBars) * 2}s`,
+                    outline: '1px solid rgba(0, 0, 0, 0)',
                     boxSizing: 'border-box',
+                    // Entry animation runs once, then pulse takes over
+                    animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out ${index * 0.06 + 0.8}s infinite alternate`,
                     // @ts-ignore
                     '--initial-scale': height / 100,
                   }}
@@ -130,7 +135,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Content */}
         <motion.div
           className="relative z-[2] h-full flex flex-col items-center justify-center text-center px-4"
           style={{ opacity: textOpacity, y: textY }}
