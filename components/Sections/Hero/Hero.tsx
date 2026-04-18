@@ -8,24 +8,26 @@ import {
 } from '@/components/ui/buttons/all';
 
 export default function Hero() {
-  const collapseRef = useRef<HTMLDivElement>(null);
-  const [ready, setReady] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [visibleBars, setVisibleBars] = useState(7);
+  const [ready, setReady] = useState(false);
 
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
 
-  // Text fades later — more reading time
-  const textOpacity = useTransform(scrollYProgress, [0.05, 0.2], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0.05, 0.2], [0, -40]);
+  // Text fades out early
+  const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.35], [0, -20]);
+
+  // Bars scale down from top (collapse downward)
+  const barsScaleY = useTransform(scrollYProgress, [0.2, 1], [1, 0]);
 
   const calculateHeight = (index: number, total: number) => {
     const position = index / (total - 1);
-    const maxHeight = 100;
-    const minHeight = 30;
-    const center = 0.5;
-    const distanceFromCenter = Math.abs(position - center);
-    const heightPercentage = Math.pow(distanceFromCenter * 2, 1.2);
-    return minHeight + (maxHeight - minHeight) * heightPercentage;
+    const distanceFromCenter = Math.abs(position - 0.5);
+    return 30 + 70 * Math.pow(distanceFromCenter * 2, 1.2);
   };
 
   useEffect(() => {
@@ -34,108 +36,63 @@ export default function Hero() {
       setVisibleBars(Math.max(5, count % 2 === 0 ? count - 1 : count));
     };
     update();
-    window.addEventListener('resize', update);
     setReady(true);
-
-    // Lerped collapse with opacity fade
-    let currentScale = 1;
-    let currentOpacity = 1;
-    let rafId: number;
-
-    const tick = () => {
-      const v = scrollYProgress.get();
-      const divisor = window.innerWidth < 640 ? 0.4 : 0.4;
-      const targetScale = Math.max(0, 1 - v / divisor);
-      const targetOpacity = Math.max(0, 1 - (v / divisor) * 1.4);
-
-      // Lerp both scale and opacity
-      currentScale += (targetScale - currentScale) * 0.08;
-      currentOpacity += (targetOpacity - currentOpacity) * 0.08;
-
-      if (collapseRef.current) {
-        collapseRef.current.style.transform = `scaleY(${currentScale})`;
-        collapseRef.current.style.opacity = String(currentOpacity);
-      }
-
-      rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-
-    return () => {
-      window.removeEventListener('resize', update);
-      cancelAnimationFrame(rafId);
-    };
-  }, [scrollYProgress]);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   return (
-    <div className="relative h-[250vh] md:h-[200vh]">
+    <div ref={containerRef} className="relative h-[300vh]">
       <div
-        className="relative sticky top-0 h-screen overflow-hidden"
+        className="sticky top-0 h-screen overflow-hidden"
         style={{ backgroundColor: 'rgb(5,5,5)' }}
       >
         <style>{`
           @keyframes pulseBar {
-            0% { transform: scaleY(var(--initial-scale)); }
+            0%   { transform: scaleY(var(--initial-scale)); }
             100% { transform: scaleY(calc(var(--initial-scale) * 0.82)); }
           }
           @keyframes barEntry {
             from { transform: scaleY(0); opacity: 0; }
             to   { transform: scaleY(var(--initial-scale)); opacity: 1; }
           }
-          .hero-bar {
-            transition: filter 0.2s ease;
-          }
-          .hero-bar:hover {
-            filter: brightness(2);
-          }
+          .hero-bar { transition: filter 0.2s ease; }
+          .hero-bar:hover { filter: brightness(2); }
         `}</style>
 
-        <div
-          ref={collapseRef}
-          className="absolute inset-0 z-0 overflow-hidden"
+        {/* Bars — collapse downward on scroll */}
+        <motion.div
+          className="absolute inset-0 z-0 overflow-hidden flex"
           style={{
             transformOrigin: 'bottom',
-            transform: 'scaleY(1)',
+            scaleY: barsScaleY,
             opacity: ready ? 1 : 0,
             transition: 'opacity 0.3s',
-            willChange: 'transform',
           }}
         >
-          <div
-            className="flex h-full"
-            style={{
-              width: '100%',
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-            }}
-          >
-            {Array.from({ length: visibleBars }).map((_, index) => {
-              const height = calculateHeight(index, visibleBars);
-              return (
-                <div
-                  key={index}
-                  className="hero-bar"
-                  style={{
-                    flex: `1 0 calc(100% / ${visibleBars})`,
-                    maxWidth: `calc(100% / ${visibleBars})`,
-                    height: '100%',
-                    background:
-                      'linear-gradient(to top, rgb(37,99,235), rgb(5,5,5))',
-                    transformOrigin: 'bottom',
-                    outline: '1px solid rgba(0, 0, 0, 0)',
-                    boxSizing: 'border-box',
-                    // Entry animation runs once, then pulse takes over
-                    animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
-                    // @ts-ignore
-                    '--initial-scale':
-                      Math.round((height / 100) * 10000) / 10000,
-                  }}
-                />
-              );
-            })}
-          </div>
-        </div>
+          {Array.from({ length: visibleBars }).map((_, index) => {
+            const height = calculateHeight(index, visibleBars);
+            return (
+              <div
+                key={index}
+                className="hero-bar"
+                style={{
+                  flex: `1 0 calc(100% / ${visibleBars})`,
+                  maxWidth: `calc(100% / ${visibleBars})`,
+                  height: '100%',
+                  background:
+                    'linear-gradient(to top, rgb(37,99,235), rgb(5,5,5))',
+                  transformOrigin: 'bottom',
+                  animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
+                  // @ts-ignore
+                  '--initial-scale': Math.round((height / 100) * 10000) / 10000,
+                }}
+              />
+            );
+          })}
+        </motion.div>
 
+        {/* Text — fades out */}
         <motion.div
           className="relative z-[2] h-full flex flex-col items-center justify-center text-center px-4"
           style={{ opacity: textOpacity, y: textY }}
