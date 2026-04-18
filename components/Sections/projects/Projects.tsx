@@ -166,7 +166,7 @@ export default function Projects() {
             <SelectItem
               key={a}
               value={a}
-              className="text-white hover:bg-slate-800 focus:bg-slate-800 focus:text-white capitalize"
+              className="text-white hover:bg-slate-800 focus:bg-slate-800 focus:text-white"
             >
               {a === 'all' ? 'All' : a}
             </SelectItem>
