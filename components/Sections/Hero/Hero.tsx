@@ -15,8 +15,8 @@ export default function Hero() {
   const { scrollYProgress } = useScroll();
 
   // Text fades later — more reading time
-  const textOpacity = useTransform(scrollYProgress, [0.12, 0.25], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0.12, 0.25], [0, -40]);
+  const textOpacity = useTransform(scrollYProgress, [0.05, 0.2], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0.05, 0.2], [0, -40]);
 
   const calculateHeight = (index: number, total: number) => {
     const position = index / (total - 1);
