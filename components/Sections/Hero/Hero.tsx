@@ -44,7 +44,7 @@ export default function Hero() {
 
     const tick = () => {
       const v = scrollYProgress.get();
-      const divisor = window.innerWidth < 640 ? 0.25 : 0.4;
+      const divisor = window.innerWidth < 640 ? 0.4 : 0.4;
       const targetScale = Math.max(0, 1 - v / divisor);
       const targetOpacity = Math.max(0, 1 - (v / divisor) * 1.4);
 
@@ -68,7 +68,7 @@ export default function Hero() {
   }, [scrollYProgress]);
 
   return (
-    <div className="relative h-[160vh] md:h-[200vh]">
+    <div className="relative h-[250vh] md:h-[200vh]">
       <div
         className="relative sticky top-0 h-screen overflow-hidden"
         style={{ backgroundColor: 'rgb(5,5,5)' }}
@@ -125,7 +125,7 @@ export default function Hero() {
                     outline: '1px solid rgba(0, 0, 0, 0)',
                     boxSizing: 'border-box',
                     // Entry animation runs once, then pulse takes over
-                    animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out 0.8s infinite alternate`,
+                    animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
                     // @ts-ignore
                     '--initial-scale':
                       Math.round((height / 100) * 10000) / 10000,
