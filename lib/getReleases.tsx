@@ -1,27 +1,5 @@
 'use server';
 
-type Assets = {
-  '2612': null | React.ReactElement;
-  '12111': null | React.ReactElement;
-  '1218': null | React.ReactElement;
-  '1217': null | React.ReactElement;
-  '1216': null | React.ReactElement;
-  '1215': null | React.ReactElement;
-  '1214': null | React.ReactElement;
-  '1211': null | React.ReactElement;
-  '121': null | React.ReactElement;
-  '1206': null | React.ReactElement;
-  '1204': null | React.ReactElement;
-  '1202': null | React.ReactElement;
-  '1201': null | React.ReactElement;
-  '120': null | React.ReactElement;
-  '1194': null | React.ReactElement;
-};
-
-// Releases are fetched and stripped to nearly the first 15 releases because
-// the first few releases meet our format requirements so can be
-// easy to parse.
-// these versions, overall, only support these versions: 1.19.4, 1.20, 1.20.1, 1.20.2, 1.20.4, 1.20.6, 1.21, 1.21.5
 export async function getReleases(total: number = 30) {
   try {
     const headers = process.env.GITHUB_PAT
@@ -82,80 +60,81 @@ async function getCCMappings() {
   return info['versionMappings'];
 }
 
-export async function getParsedReleases() {
+export async function getParsedReleases(): Promise<{
+  releases: Record<string, any>[];
+  mcVersions: { field: string; headerName: string }[];
+}> {
   try {
     const releases = await getReleases(100);
+
+    // Track all discovered MC versions dynamically
+    const versionFieldMap = new Map<string, string>(); // mcVersion -> field key
+
     const parsedReleases = releases.map((release: any) => {
-      let releaseName = release.name.replace('Release ', '');
+      const releaseName = release.name.replace('Release ', '');
 
       let downloads = 0;
-      let assetsData: Assets = {
-        '2612': null,
-        '12111': null,
-        '1218': null,
-        '1217': null,
-        '1216': null,
-        '1215': null,
-        '1214': null,
-        '1211': null,
-        '121': null,
-        '1206': null,
-        '1204': null,
-        '1202': null,
-        '1201': null,
-        '120': null,
-        '1194': null,
-      };
+      const assets: Record<string, string | null> = {};
 
       release.assets.forEach((asset: any) => {
         downloads += asset.download_count;
 
-        let assetName = asset.name;
-        let assetURL = asset.browser_download_url;
+        const assetName: string = asset.name;
+        const assetURL: string = asset.browser_download_url;
 
-        if (assetName.includes('26.1.2')) {
-          assetsData['2612'] = assetURL;
-        } else if (assetName.includes('1.21.11')) {
-          assetsData['12111'] = assetURL;
-        } else if (assetName.includes('1.21.8')) {
-          assetsData['1218'] = assetURL;
-        } else if (assetName.includes('1.21.7')) {
-          assetsData['1217'] = assetURL;
-        } else if (assetName.includes('1.21.6')) {
-          assetsData['1216'] = assetURL;
-        } else if (assetName.includes('1.21.5')) {
-          assetsData['1215'] = assetURL;
-        } else if (assetName.includes('1.21.4')) {
-          assetsData['1214'] = assetURL;
-        } else if (assetName.includes('1.21.1')) {
-          assetsData['1211'] = assetURL;
-        } else if (assetName.includes('1.21')) {
-          assetsData['121'] = assetURL;
-        } else if (assetName.includes('1.20.6')) {
-          assetsData['1206'] = assetURL;
-        } else if (assetName.includes('1.20.4')) {
-          assetsData['1204'] = assetURL;
-        } else if (assetName.includes('1.20.2')) {
-          assetsData['1202'] = assetURL;
-        } else if (assetName.includes('1.20.1')) {
-          assetsData['1201'] = assetURL;
-        } else if (assetName.includes('1.20')) {
-          assetsData['120'] = assetURL;
-        } else if (assetName.includes('1.19.4')) {
-          assetsData['1194'] = assetURL;
+        // Only process .jar files
+        if (!assetName.toLowerCase().endsWith('.jar')) return;
+
+        // Extract MC version from asset name
+        // Pattern: ClickCrystals-{mcVersion}-{modVersion}.jar
+        const base = assetName.replace(/\.jar$/i, '');
+        const prefix = 'ClickCrystals-';
+        if (!base.startsWith(prefix)) return;
+
+        const rest = base.slice(prefix.length);
+        // The suffix is "-{modVersion}" where modVersion = releaseName
+        const suffix = `-${releaseName}`;
+        if (!rest.endsWith(suffix)) return;
+
+        const mcVersion = rest.slice(0, -suffix.length);
+        if (!mcVersion) return;
+
+        const field = mcVersion.replaceAll('.', '');
+        versionFieldMap.set(mcVersion, field);
+
+        if (!assets[field]) {
+          assets[field] = assetURL;
         }
       });
 
       return {
         version: releaseName,
         code: release.html_url,
-        downloads: downloads,
-        ...assetsData,
+        downloads,
+        ...assets,
       };
     });
 
     const mappings = await getCCMappings();
 
+    // Register mapping versions in field map
+    for (const vk of Object.keys(mappings)) {
+      if (!versionFieldMap.has(vk)) {
+        versionFieldMap.set(vk, vk.replaceAll('.', ''));
+      }
+    }
+
+    // Ensure all releases have all discovered fields
+    const allFields = Array.from(versionFieldMap.values());
+    for (const release of parsedReleases) {
+      for (const field of allFields) {
+        if (!(field in release)) {
+          release[field] = null;
+        }
+      }
+    }
+
+    // Apply version mappings
     Object.entries(mappings).forEach(([versionKey, mappedVersion]) => {
       const key = versionKey.replaceAll('.', '');
       const mappedKey =
@@ -165,16 +144,44 @@ export async function getParsedReleases() {
 
       parsedReleases.forEach((release: any) => {
         if (mappedKey && release[mappedKey] && !release[key]) {
-          // Copy the download URL from the mapped version
           release[key] = release[mappedKey];
         } else if (!mappedKey) {
-          // If not mapped (null), ensure it's explicitly set to null
           release[key] = null;
         }
       });
     });
 
-    return parsedReleases;
+    // Build column defs from fields that have data in at least one release
+    const fieldsWithData = new Set<string>();
+    for (const release of parsedReleases) {
+      for (const [key, val] of Object.entries(release)) {
+        if (!['version', 'code', 'downloads'].includes(key) && val != null) {
+          fieldsWithData.add(key);
+        }
+      }
+    }
+
+    const fieldToDisplay = new Map<string, string>();
+    versionFieldMap.forEach((field, ver) => {
+      if (!fieldToDisplay.has(field)) {
+        fieldToDisplay.set(field, ver);
+      }
+    });
+
+    const mcVersions = Array.from(fieldsWithData)
+      .filter((field) => fieldToDisplay.has(field))
+      .map((field) => ({ field, headerName: fieldToDisplay.get(field)! }))
+      .sort((a, b) => {
+        const pA = a.headerName.split('.').map(Number);
+        const pB = b.headerName.split('.').map(Number);
+        for (let i = 0; i < Math.max(pA.length, pB.length); i++) {
+          const diff = (pB[i] ?? 0) - (pA[i] ?? 0);
+          if (diff !== 0) return diff;
+        }
+        return 0;
+      });
+
+    return { releases: parsedReleases, mcVersions };
   } catch (err) {
     throw new Error('Failed to fetch from API' + err);
   }

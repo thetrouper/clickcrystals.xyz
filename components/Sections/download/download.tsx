@@ -8,7 +8,16 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { DownloadLink } from './DownloadLink';
 import DownloadTable from './DownloadTable';
 
-export default function Download() {
+interface SourceData {
+  rows: any[];
+  mcVersions: { field: string; headerName: string }[];
+}
+
+interface DownloadProps {
+  initialData: Record<'modrinth' | 'curseforge' | 'github', SourceData | null>;
+}
+
+export default function Download({ initialData }: DownloadProps) {
   return (
     <main className="my-12 mx-6 md:mx-24">
       <div className="py-0 ">
@@ -73,7 +82,7 @@ export default function Download() {
               }
             />
           </div>
-          <DownloadTable />
+          <DownloadTable initialData={initialData} />
         </div>
       </div>
     </main>
