@@ -7,10 +7,7 @@ export async function GET() {
   const link = await getLatestLink();
 
   if (!link) {
-    return NextResponse.redirect(
-      'https://modrinth.com/mod/clickcrystals',
-      302,
-    );
+    return NextResponse.redirect('https://modrinth.com/mod/clickcrystals', 302);
   }
 
   return new NextResponse(null, {
