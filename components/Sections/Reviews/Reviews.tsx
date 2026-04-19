@@ -71,11 +71,10 @@ export default function Reviews() {
                 alt="staff"
                 width={32}
                 height={32}
-                className="w-8 h-8 rounded-full ring-2 bg-slate-800"
+                className="w-8 h-8 rounded-full ring-2 ring-[rgb(7,10,20)] bg-slate-800"
                 style={{
                   zIndex: staffAvatars.length - i,
                   marginLeft: i === 0 ? 0 : '-8px',
-                  ringColor: 'rgb(7,10,20)',
                 }}
               />
             ))}
