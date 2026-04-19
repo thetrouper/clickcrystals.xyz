@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const reviews = [
@@ -117,12 +116,10 @@ export default function ReviewsList() {
           />
 
           <div className="absolute -bottom-10 -right-10 w-40 h-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden rounded-full blur-3xl">
-            <Image
+            <img
               src={r.picture}
               alt=""
-              fill
-              sizes="160px"
-              className="object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -139,11 +136,9 @@ export default function ReviewsList() {
           <div className="h-px w-full" />
 
           <div className="flex items-center gap-4">
-            <Image
+            <img
               src={r.picture}
               alt={r.name}
-              width={48}
-              height={48}
               className="w-12 h-12 rounded-full bg-slate-800 transition-transform duration-300 group-hover:scale-110 shrink-0"
               style={{
                 boxShadow:
