@@ -9,31 +9,27 @@ export default function Progress() {
   const [downloads, setDownloads] = useState<number | null>(null);
 
   const progress = [
-    {
-      metric: 'Downloads',
-      value: downloads,
-    },
-    {
-      metric: 'Staff Members',
-      value: 20,
-    },
-    {
-      metric: 'Years Active',
-      value: 2,
-    },
+    { metric: 'Downloads', value: downloads },
+    { metric: 'Staff Members', value: 20 },
+    { metric: 'Years Active', value: 2 },
   ];
 
   useEffect(() => {
-    const fetchData = async () => {
-      const totalDownloads = await getTotalDownloads();
-      setDownloads(totalDownloads);
-    };
-
-    fetchData();
+    getTotalDownloads().then(setDownloads);
   }, []);
 
   return (
-    <section className="py-12 md:py-24 border-t border-white/5">
+    <section
+      className="relative py-16 md:py-28"
+      style={{ background: 'rgb(7,10,20)' }}
+    >
+      <div
+        className="absolute top-0 inset-x-0 h-px"
+        style={{
+          background:
+            'linear-gradient(to right, transparent, rgba(99,102,241,0.5), transparent)',
+        }}
+      />
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {progress.map((item, index) => (

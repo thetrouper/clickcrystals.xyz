@@ -103,7 +103,7 @@ export default function Footer() {
     canvas.parentElement?.addEventListener('mouseleave', handleMouseLeave);
 
     const isMobile = window.innerWidth < 640;
-    const particles = Array.from({ length: isMobile ? 20 : 80 }, () => ({
+    const particles = Array.from({ length: isMobile ? 10 : 40 }, () => ({
       x: Math.random() * (canvas.width || 800),
       y: Math.random() * (canvas.height || 400),
       size: Math.random() * 1.8 + 0.4,
@@ -123,26 +123,9 @@ export default function Footer() {
 
       trail.forEach((t) => {
         t.age++;
-        if (t.age >= 40) return;
-        const a = Math.max(0, (1 - t.age / 40) * 0.35);
-        const r = Math.max(0.1, 48 * (1 - t.age / 40));
-        const g = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, r);
-        g.addColorStop(0, `rgba(96,165,250,${a})`);
-        g.addColorStop(1, 'rgba(96,165,250,0)');
-        ctx.beginPath();
-        ctx.arc(t.x, t.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = g;
-        ctx.fill();
       });
 
       if (mx > 0) {
-        const g = ctx.createRadialGradient(mx, my, 0, mx, my, 160);
-        g.addColorStop(0, 'rgba(96,165,250,0.18)');
-        g.addColorStop(1, 'rgba(96,165,250,0)');
-        ctx.beginPath();
-        ctx.arc(mx, my, 160, 0, Math.PI * 2);
-        ctx.fillStyle = g;
-        ctx.fill();
       }
 
       particles.forEach((p) => {
@@ -205,15 +188,24 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="relative w-full bg-black overflow-hidden">
+    <footer
+      className="relative w-full overflow-hidden"
+      style={{ background: 'rgb(3,4,10)' }}
+    >
+      <div
+        className="absolute top-0 inset-x-0 h-px"
+        style={{
+          background:
+            'linear-gradient(to right, transparent, rgba(99,102,241,0.5), transparent)',
+        }}
+      />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
       />
-      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-10" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70vw] h-48 bg-blue-600/10 blur-[80px] pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[rgb(3,4,10)] to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70vw] h-48 bg-blue-600/[0.02] blur-[80px] pointer-events-none" />
 
-      {/* Giant barely-visible background text */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none whitespace-nowrap font-black"
         style={{
@@ -229,8 +221,7 @@ export default function Footer() {
         CLICKCRYSTALS
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 py-16 flex flex-col items-center gap-10">
-        {/* CTA heading */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 py-16 flex flex-col items-center gap-10 select-none">
         <div className="text-center leading-none">
           <div
             className="font-light tracking-[0.3em] uppercase text-white/60"
@@ -255,7 +246,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="flex flex-row gap-3">
           <Link
             href="/get"
@@ -278,7 +268,6 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* Platforms */}
         <div className="flex flex-row items-center justify-center gap-3 flex-wrap">
           {platforms.map(({ label, href, icon }) => (
             <Link
@@ -314,7 +303,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 -mt-4">
           <span className="text-slate-400 text-xs">
             © {new Date().getFullYear()} ClickCrystals. Not affiliated with

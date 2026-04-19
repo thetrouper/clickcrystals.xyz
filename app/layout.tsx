@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `${inter.className} ${interHeading.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950`,
+          `${inter.className} ${interHeading.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 select-none`,
           'selection:text-white selection:bg-blue-800',
         )}
       >

@@ -2,128 +2,177 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 const reviews = [
   {
-    picture: '/reviews/yuri.png',
-    name: 'yuri',
-    url: '#',
+    picture:
+      'https://cdn.discordapp.com/avatars/1374958535183569072/1d132cffb3edffc5cab7eb9b534e2996.png?size=512',
+    name: 'flowwy_',
+    rating: 4,
     message:
-      'ClickCrystals resolved many client-side crystal delay issues, significantly improving my crystal speed. The modules are fantastic and I highly recommend it.',
-    username: '@yuridev2024',
+      'ClickCrystals makes small actions smoother and easier, improving overall gameplay. A more intuitive scripting system would make it even better.',
+    username: '@warm_icee_38233',
   },
   {
-    picture: '/staff/improperissues.png',
-    name: 'ImproperIssues',
-    url: 'https://github.com/itzispyder',
+    picture:
+      'https://cdn.discordapp.com/avatars/1138908835843678331/23656293fdcadbef03dddcaa612403c1.png?size=512',
+    name: 'Riser__',
+    rating: 3,
     message:
-      'I highly recommend ClickCrystals. Vanilla Minecraft has noticeable delays that affect performance. ClickCrystals eliminates these delays without cheating—every action requires a click or key press.',
-    username: '@itzispyder',
+      'I use ClickCrystals for crystal and obsidian switching, and it works well. Adding features like hover totem and auto-retotem would make it even better.',
+    username: '@Riser__',
   },
   {
-    picture: '/staff/inoam.png',
-    name: 'I-No-oNe',
-    url: 'https://github.com/I-No-oNe',
+    picture:
+      'https://cdn.discordapp.com/avatars/1349660545267273748/68214260a1f4d8446cd754523f995125.png?size=512',
+    name: 'ArjunFrags',
+    rating: 4,
     message:
-      'ClickCrystals provides utility modules that genuinely improve gameplay. The community is active and helpful for anyone getting started.',
-    username: '@i-no-one',
+      'ClickCrystals is an amazing mod with lots of features and a clean interface. Expanding the scripting system with a built-in editor would make it even better, especially for users without scripting experience.',
+    username: '@flybeast0574',
   },
   {
-    picture: '/staff/ayaantutla.png',
-    name: 'Ayaan Tutla',
-    url: '#',
+    picture:
+      'https://cdn.discordapp.com/avatars/1153023901203447940/a7ea31cebe5b62ccb3cf5b7a6a0fb22d.png?size=512',
+    name: 'VortexPrime',
+    rating: 4,
     message:
-      'After switching, going back felt unplayable. The responsiveness difference is immediate. The scripting system makes it essential for serious PvP.',
-    username: '@tutlamc',
+      'I use ClickCrystals for 1.8.9 Bedwars, and it works well even on a basic setup with an office mouse and membrane keyboard.',
+    username: '@v0rtexdev',
   },
   {
-    picture: '/staff/practice.png',
-    name: 'Practice',
-    url: 'https://github.com/letmepractice',
+    picture:
+      'https://cdn.discordapp.com/avatars/780063235352821841/68087115b584208ca5d7718537f477d5.png?size=512',
+    name: 'Max',
+    rating: 5,
     message:
-      'ClickCrystals improved my crystal timing and consistency immediately. I can fine-tune setups per server without rebuilding configs. It stays stable under pressure.',
-    username: '@letmepractice',
+      'I use ClickCrystals for PvP, and it performs really well. I also like the available configs—they make everything easier to use.',
+    username: '@einfach_mx',
   },
   {
-    picture: '/staff/josh.png',
-    name: 'Josh',
-    url: '#',
+    picture: 'https://cdn.discordapp.com/embed/avatars/2.png',
+    name: 'king3655555555',
+    rating: 4,
     message:
-      "ClickCrystals works across every game mode—BedWars, Sumo, SkyWars, and more. The ClickScript feature is genuinely useful, and it doesn't flag on servers.",
-    username: '@josh',
+      'ClickCrystals gives me faster crystal usage and improves overall speed during gameplay.',
+    username: '@king365555555553371',
+  },
+  {
+    picture: 'https://cdn.discordapp.com/embed/avatars/0.png',
+    name: 'Coolmanpog',
+    rating: 4,
+    message:
+      'I enjoy scripting with ClickCrystals, but having more advanced options—like cooldown systems and better control over targeting—would make it much more powerful and flexible.',
+    username: '@coolmanpog',
+  },
+  {
+    picture:
+      'https://cdn.discordapp.com/avatars/946579435933560862/4c6559dacd14c6c4af38812e17c4df45.png?size=512',
+    name: 'MH',
+    rating: 5,
+    message:
+      'ClickCrystals is great all-around and makes Minecraft PvP genuinely fun again.',
+    username: '@MH1877',
+  },
+  {
+    picture:
+      'https://cdn.discordapp.com/avatars/1297646973591228487/116381f5755632a58999e7f8fefb17d4.png?size=512',
+    name: 'Lyzal',
+    rating: 4,
+    message:
+      'I mainly use ClickCrystals for shield disabling, and it works reliably. The cart features are also useful in certain situations.',
+    username: '@_ra5e',
   },
 ];
 
-const container = {
-  hidden: { opacity: 1 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export default function ReviewsList() {
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-      className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
-    >
-      {reviews.map((review, index) => {
-        // Show only ImproperIssues, I-No-oNe, and Practice on mobile
-        const isMobileVisible = [
-          'ImproperIssues',
-          'I-No-oNe',
-          'Practice',
-        ].includes(review.name);
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {reviews.map((r, i) => (
+        <motion.div
+          key={i}
+          initial={{
+            opacity: 0,
+            y: 20,
+            x: i % 3 === 0 ? -10 : i % 3 === 2 ? 10 : 0,
+          }}
+          whileInView={{ opacity: 1, y: 0, x: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.5,
+            delay: i * 0.06,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="group relative flex flex-col gap-5 p-6 rounded-2xl overflow-hidden cursor-default"
+          style={{
+            background: 'rgba(255,255,255,0.02)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            boxShadow: '0 4px 32px rgba(0,0,0,0.3)',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
+          }}
+        >
+          <div
+            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{ boxShadow: 'inset 0 0 0 1px rgba(99,102,241,0.2)' }}
+          />
 
-        return (
-          <motion.div
-            key={index}
-            variants={item}
-            className={`p-6 md:p-8 bg-slate-800/30 rounded-xl backdrop-blur-sm border border-slate-700/50 flex flex-col ${
-              isMobileVisible ? '' : 'hidden md:flex'
-            }`}
-          >
-            <div className="text-slate-300 leading-relaxed mb-6 md:mb-8 flex-1 text-base">
-              <span className="text-slate-500 text-xl leading-none">"</span>
-              {review.message}
-              <span className="text-slate-500 text-xl leading-none">"</span>
+          <div className="absolute -bottom-10 -right-10 w-40 h-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden rounded-full blur-3xl">
+            <Image
+              src={r.picture}
+              alt=""
+              fill
+              sizes="160px"
+              className="object-cover"
+            />
+          </div>
+
+          <p className="text-slate-400 group-hover:text-slate-100 text-sm leading-7 transition-colors duration-500 flex-1 select-none">
+            <span className="text-indigo-400/50 font-serif text-2xl leading-none align-top mr-0.5">
+              "
+            </span>
+            {r.message}
+            <span className="text-indigo-400/30 font-serif text-2xl leading-none align-bottom ml-0.5">
+              "
+            </span>
+          </p>
+
+          <div className="h-px w-full" />
+
+          <div className="flex items-center gap-4">
+            <Image
+              src={r.picture}
+              alt={r.name}
+              width={48}
+              height={48}
+              className="w-12 h-12 rounded-full bg-slate-800 transition-transform duration-300 group-hover:scale-110 shrink-0"
+              style={{
+                boxShadow:
+                  '0 0 0 2px rgba(255,255,255,0.06), 0 4px 16px rgba(0,0,0,0.5)',
+              }}
+            />
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-bold text-sm tracking-wide">
+                {r.name}
+              </p>
+              <p className="text-slate-600 text-xs mt-0.5">{r.username}</p>
             </div>
-            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-700/30">
-              <Image
-                src={review.picture}
-                alt={review.name}
-                className="w-12 h-12 rounded-full ring-2 ring-slate-700/50"
-                width={48}
-                height={48}
-              />
-              <div className="flex flex-col">
-                <div className="font-bold text-white text-base">
-                  {review.name}
-                </div>
-                <Link
-                  target="_blank"
-                  href={review.url}
-                  className="text-slate-400 text-xs"
+            <div className="flex gap-0.5 shrink-0">
+              {[1, 2, 3, 4, 5].map((s) => (
+                <span
+                  key={s}
+                  className={
+                    s <= r.rating
+                      ? 'text-yellow-400 text-xs'
+                      : 'text-slate-800 text-xs'
+                  }
                 >
-                  {review.username}
-                </Link>
-              </div>
+                  ★
+                </span>
+              ))}
             </div>
-          </motion.div>
-        );
-      })}
-    </motion.div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
   );
 }

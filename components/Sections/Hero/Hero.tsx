@@ -9,7 +9,7 @@ import {
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [visibleBars, setVisibleBars] = useState(7);
+  const [visibleBars, setVisibleBars] = useState(0);
   const [ready, setReady] = useState(false);
 
   const { scrollYProgress } = useScroll({
@@ -17,11 +17,8 @@ export default function Hero() {
     offset: ['start start', 'end end'],
   });
 
-  // Text fades out early
   const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
   const textY = useTransform(scrollYProgress, [0, 0.35], [0, -20]);
-
-  // Bars scale down from top (collapse downward)
   const barsScaleY = useTransform(scrollYProgress, [0.2, 1], [1, 0]);
 
   const calculateHeight = (index: number, total: number) => {
@@ -45,7 +42,7 @@ export default function Hero() {
     <div ref={containerRef} className="relative h-[300vh]">
       <div
         className="sticky top-0 h-screen overflow-hidden"
-        style={{ backgroundColor: 'rgb(5,5,5)' }}
+        style={{ backgroundColor: 'rgb(7,10,20)' }}
       >
         <style>{`
           @keyframes pulseBar {
@@ -60,7 +57,6 @@ export default function Hero() {
           .hero-bar:hover { filter: brightness(2); }
         `}</style>
 
-        {/* Bars — collapse downward on scroll */}
         <motion.div
           className="absolute inset-0 z-0 overflow-hidden flex"
           style={{
@@ -78,10 +74,10 @@ export default function Hero() {
                 className="hero-bar"
                 style={{
                   flex: `1 0 calc(100% / ${visibleBars})`,
-                  maxWidth: `calc(100% / ${visibleBars})`,
-                  height: '100%',
+                  maxWidth: `calc(100% / ${visibleBars} + 1px)`,
+                  height: '102%',
                   background:
-                    'linear-gradient(to top, rgb(37,99,235), rgb(5,5,5))',
+                    'linear-gradient(to top, rgb(37,99,235), rgb(7,10,20))',
                   transformOrigin: 'bottom',
                   animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
                   // @ts-ignore
@@ -92,7 +88,6 @@ export default function Hero() {
           })}
         </motion.div>
 
-        {/* Text — fades out */}
         <motion.div
           className="relative z-[2] h-full flex flex-col items-center justify-center text-center px-4"
           style={{ opacity: textOpacity, y: textY }}

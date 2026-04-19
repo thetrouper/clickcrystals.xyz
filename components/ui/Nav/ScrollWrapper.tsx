@@ -20,9 +20,9 @@ export default function ScrollWrapper({
 
   const bg = isHome
     ? scrolled
-      ? 'backdrop-blur-md bg-black/50 shadow-lg'
-      : 'bg-[rgb(5,5,5)]'
-    : 'backdrop-blur-md bg-black/60 shadow-lg border-b border-white/5';
+      ? 'backdrop-blur-md bg-[rgb(7,10,20)]/80 shadow-lg'
+      : 'bg-[rgb(7,10,20)]'
+    : 'backdrop-blur-md bg-[rgb(7,10,20)]/80 shadow-lg border-b border-white/5';
 
   return (
     <div
