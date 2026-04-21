@@ -1,4 +1,5 @@
-import Image from 'next/image';
+'use client';
+
 import ReviewsList from './ReviewsList';
 
 const staffAvatars = [
@@ -23,7 +24,6 @@ export default function Reviews() {
         }}
       />
 
-      {/* Ambient background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-[0.06]"
@@ -46,7 +46,6 @@ export default function Reviews() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">
             Testimonials
@@ -61,16 +60,14 @@ export default function Reviews() {
 
         <ReviewsList />
 
-        {/* Footer social proof */}
-        <div className="flex items-center justify-center gap-4 mt-14">
+        {/* Footer social proof — desktop only */}
+        <div className="hidden sm:flex items-center justify-center gap-4 mt-14">
           <div className="flex">
             {staffAvatars.map((src, i) => (
-              <Image
+              <img
                 key={i}
                 src={src}
-                alt="staff"
-                width={32}
-                height={32}
+                alt=""
                 className="w-8 h-8 rounded-full ring-2 ring-[rgb(7,10,20)] bg-slate-800"
                 style={{
                   zIndex: staffAvatars.length - i,
