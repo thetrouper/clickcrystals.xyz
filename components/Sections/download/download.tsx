@@ -1,19 +1,22 @@
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 
 import modrinth from '@/public/icons/modrinth.svg';
 import curseforge from '@/public/icons/curseforge.svg';
-import planetmc from '@/public/icons/planetmc.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { DownloadLink } from './DownloadLink';
+import DownloadTable from './DownloadTable';
 
-const DownloadTable = dynamic(() => import('./DownloadTable'), {
-  ssr: false,
-  loading: () => <div className="h-64 bg-slate-800/50 rounded animate-pulse" />,
-});
+interface SourceData {
+  rows: any[];
+  mcVersions: { field: string; headerName: string }[];
+}
 
-export default function Download() {
+interface DownloadProps {
+  initialData: Record<'modrinth' | 'curseforge' | 'github', SourceData | null>;
+}
+
+export default function Download({ initialData }: DownloadProps) {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 py-12 md:py-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -22,8 +25,8 @@ export default function Download() {
             Download <span className="text-blue-500">ClickCrystals</span>
           </h1>
           <p className="text-sm md:text-base text-slate-200 max-w-3xl mx-auto leading-relaxed">
-            Official downloads are available on CurseForge, PlanetMC, Modrinth,
-            and GitHub. Only download from these trusted sources.
+            Official downloads are available on CurseForge, Modrinth, and
+            GitHub. Only download from these trusted sources.
           </p>
         </div>
 
@@ -50,7 +53,7 @@ export default function Download() {
           />
         </div>
 
-        <DownloadTable />
+        <DownloadTable initialData={initialData} />
       </div>
     </main>
   );

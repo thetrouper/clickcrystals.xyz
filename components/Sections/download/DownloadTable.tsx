@@ -2,146 +2,183 @@
 
 import { AgGridReact } from 'ag-grid-react';
 import '@/styles/ag-grid-theme.css';
-import { useEffect, useState } from 'react';
-import { getParsedReleases } from '@/lib/getReleases.tsx';
+import { useState, useMemo } from 'react';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
 import Link from 'next/link';
-// import Latest from './Latest';
+import Image from 'next/image';
+import modrinthIcon from '@/public/icons/modrinth.svg';
+import curseforgeIcon from '@/public/icons/curseforge.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-export default function DownloadTable() {
-  const [rowData, setRowData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [colDefs, setColDefs]: any[] = useState();
+type Source = 'all' | 'modrinth' | 'curseforge' | 'github';
 
-  const formatVersion = (ver: string) => {
-    const versionMap: Record<string, string> = {
-      '12111': '1.21.11',
-      '12110': '1.21.10',
-      '1219': '1.21.9',
-      '1218': '1.21.8',
-      '1217': '1.21.7',
-      '1216': '1.21.6',
-      '1215': '1.21.5',
-      '1214': '1.21.4',
-      '1211': '1.21.1',
-      '121': '1.21',
-      '1206': '1.20.6',
-      '1204': '1.20.4',
-      '1202': '1.20.2',
-      '1201': '1.20.1',
-      '120': '1.20',
-      '1194': '1.19.4',
-    };
-    return versionMap[ver] || ver;
-  };
+interface SourceData {
+  rows: any[];
+  mcVersions: { field: string; headerName: string }[];
+}
 
-  const mobileVersions = [
-    '12111',
-    '12110',
-    '1219',
-    '1218',
-    '1217',
-    '1216',
-    '1215',
-    '1214',
-    '1211',
-    '121',
-    '1206',
-    '1204',
-    '1202',
-    '1201',
-    '120',
-    '1194',
-  ];
+interface DownloadTableProps {
+  initialData: Record<Exclude<Source, 'all'>, SourceData | null>;
+}
 
-  useEffect(() => {
-    const versionColumns = [
-      { field: '12111', headerName: '1.21.11' },
-      { field: '12110', headerName: '1.21.10' },
-      { field: '1219', headerName: '1.21.9' },
-      { field: '1218', headerName: '1.21.8' },
-      { field: '1217', headerName: '1.21.7' },
-      { field: '1216', headerName: '1.21.6' },
-      { field: '1215', headerName: '1.21.5' },
-      { field: '1214', headerName: '1.21.4' },
-      { field: '1211', headerName: '1.21.1' },
-      { field: '121', headerName: '1.21' },
-      { field: '1206', headerName: '1.20.6' },
-      { field: '1204', headerName: '1.20.4' },
-      { field: '1202', headerName: '1.20.2' },
-      { field: '1201', headerName: '1.20.1' },
-      { field: '120', headerName: '1.20' },
-      { field: '1194', headerName: '1.19.4' },
-    ];
-
-    setColDefs([
-      {
-        field: 'version',
-        headerName: 'Version',
-        pinned: 'left',
-        lockPosition: true,
-        width: 150,
-        cellStyle: { fontWeight: '900', color: '#f8fafc' },
-      },
-      {
-        field: 'code',
-        headerName: 'Source',
-        cellRenderer: (params: any) => (
-          <a
+function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
+  return [
+    {
+      field: 'version',
+      pinned: 'left' as const,
+      lockPosition: true,
+      width: 150,
+      cellStyle: { fontWeight: '900', color: '#f8fafc' },
+    },
+    {
+      field: 'code',
+      headerName: 'Source',
+      cellRenderer: (params: any) => (
+        <a
+          href={params.value}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-300 hover:text-slate-200 hover:underline focus:outline-none"
+        >
+          View Code
+        </a>
+      ),
+      width: 130,
+    },
+    {
+      field: 'downloads',
+      headerName: 'Downloads',
+      cellRenderer: (params: any) => (
+        <span className="font-mono text-slate-300">
+          {parseNumber(params.value)}
+        </span>
+      ),
+      width: 130,
+    },
+    ...mcVersions.map((col) => ({
+      field: col.field,
+      headerName: col.headerName,
+      cellRenderer: (params: any) =>
+        params.value ? (
+          <Link
             href={params.value}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-300 hover:text-slate-200 hover:underline focus:outline-none"
+            className="text-blue-400 hover:text-blue-300 hover:underline focus:outline-none"
           >
-            View Code
-          </a>
+            Download
+          </Link>
+        ) : (
+          <span className="text-slate-600">—</span>
         ),
-        width: 130,
-      },
-      {
-        field: 'downloads',
-        headerName: 'Downloads',
-        cellRenderer: (params: any) => (
-          <span className="font-mono text-slate-300">
-            {parseNumber(params.value)}
-          </span>
-        ),
-        width: 130,
-      },
-      ...versionColumns.map((col) => ({
-        field: col.field,
-        headerName: col.headerName,
-        cellRenderer: (params: any) =>
-          params.value ? (
-            <Link
-              href={params.value}
-              className="text-blue-400 hover:text-blue-300 hover:underline focus:outline-none"
-            >
-              Download
-            </Link>
-          ) : (
-            <span className="text-slate-600">—</span>
-          ),
-        width: 150,
-      })),
-    ]);
+      width: 150,
+    })),
+  ];
+}
 
-    const loadReleases = async () => {
-      try {
-        const releases = await getParsedReleases();
-        setRowData(releases);
-      } catch (err) {
-        console.error('Loading releases failed:', err);
-        setError(true);
-      } finally {
-        setLoading(false);
+function buildAllData(
+  dataCache: Record<Exclude<Source, 'all'>, SourceData | null>,
+): SourceData {
+  const sources: Exclude<Source, 'all'>[] = [
+    'modrinth',
+    'curseforge',
+    'github',
+  ];
+  const allFieldMap = new Map<string, string>();
+
+  for (const src of sources) {
+    const data = dataCache[src];
+    if (!data) continue;
+    for (const col of data.mcVersions) {
+      if (!allFieldMap.has(col.field))
+        allFieldMap.set(col.field, col.headerName);
+    }
+  }
+
+  const merged = new Map<
+    string,
+    { code: string; downloads: number; assets: Record<string, string | null> }
+  >();
+
+  for (const src of sources) {
+    const data = dataCache[src];
+    if (!data) continue;
+    for (const row of data.rows) {
+      const version: string = row.version;
+      if (!merged.has(version)) {
+        merged.set(version, { code: row.code, downloads: 0, assets: {} });
+        for (const field of Array.from(allFieldMap.keys())) {
+          merged.get(version)!.assets[field] = null;
+        }
       }
-    };
+      const entry = merged.get(version)!;
+      entry.downloads += row.downloads ?? 0;
+      for (const field of Array.from(allFieldMap.keys())) {
+        if (entry.assets[field] === null && row[field] != null) {
+          entry.assets[field] = row[field];
+        }
+      }
+    }
+  }
 
-    loadReleases();
-  }, []);
+  const releases: Record<string, any>[] = [];
+  merged.forEach((entry, version) => {
+    releases.push({
+      version,
+      code: entry.code,
+      downloads: entry.downloads,
+      ...entry.assets,
+    });
+  });
+
+  const fieldsWithData = new Set<string>();
+  for (const release of releases) {
+    for (const [key, val] of Object.entries(release)) {
+      if (!['version', 'code', 'downloads'].includes(key) && val != null) {
+        fieldsWithData.add(key);
+      }
+    }
+  }
+
+  const mcVersions = Array.from(fieldsWithData)
+    .filter((field) => allFieldMap.has(field))
+    .map((field) => ({ field, headerName: allFieldMap.get(field)! }))
+    .sort((a, b) => {
+      const pA = a.headerName.split('.').map(Number);
+      const pB = b.headerName.split('.').map(Number);
+      for (let i = 0; i < Math.max(pA.length, pB.length); i++) {
+        const diff = (pB[i] ?? 0) - (pA[i] ?? 0);
+        if (diff !== 0) return diff;
+      }
+      return 0;
+    });
+
+  return { rows: releases, mcVersions };
+}
+
+export default function DownloadTable({ initialData }: DownloadTableProps) {
+  const [source, setSource] = useState<Source>('all');
+  const dataCache = initialData;
+
+  const availableSources = useMemo(
+    () => ({
+      modrinth: dataCache.modrinth !== null,
+      curseforge: dataCache.curseforge !== null,
+      github: dataCache.github !== null,
+    }),
+    [dataCache],
+  );
+
+  const allData = useMemo(() => buildAllData(dataCache), [dataCache]);
+  const currentData = source === 'all' ? allData : dataCache[source];
+  const rowData = currentData?.rows ?? [];
+  const colDefs = currentData ? buildColDefs(currentData.mcVersions) : [];
+
+  const handleSourceChange = (newSource: Source) => {
+    if (newSource === source) return;
+    if (newSource !== 'all' && !availableSources[newSource]) return;
+    setSource(newSource);
+  };
 
   return (
     <div className="mt-8">
@@ -197,58 +234,77 @@ export default function DownloadTable() {
           </p>
         </div>
       </div>
+
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        {(
+          [
+            { key: 'all', label: 'All', icon: null },
+            { key: 'modrinth', label: 'Modrinth', icon: 'modrinth' },
+            { key: 'curseforge', label: 'CurseForge', icon: 'curseforge' },
+            { key: 'github', label: 'GitHub', icon: 'github' },
+          ] as const
+        ).map(({ key, label, icon }) => {
+          const disabled = key !== 'all' && !availableSources[key];
+          const active = source === key;
+          return (
+            <button
+              key={key}
+              onClick={() => handleSourceChange(key)}
+              disabled={disabled}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 border ${
+                active
+                  ? 'bg-blue-600 border-blue-700 text-white'
+                  : 'bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-white hover:border-slate-500'
+              } ${disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
+            >
+              {icon === 'modrinth' && (
+                <Image src={modrinthIcon} width={12} height={12} alt="" />
+              )}
+              {icon === 'curseforge' && (
+                <Image src={curseforgeIcon} width={12} height={12} alt="" />
+              )}
+              {icon === 'github' && (
+                <FontAwesomeIcon icon={faGithub} className="w-3 h-3" />
+              )}
+              {label}
+            </button>
+          );
+        })}
+      </div>
+
       <div className="mt-8 mb-8">
-        {/* Mobile: API-driven list */}
+        <div className="hidden md:block ag-theme-quartz-dark h-[467px] rounded-lg overflow-hidden border border-slate-800/50 shadow-lg relative">
+          <AgGridReact
+            key={source}
+            columnDefs={colDefs}
+            rowData={rowData}
+            suppressTouch={false}
+            suppressMenuHide={true}
+          />
+        </div>
+
         <div className="block md:hidden rounded-lg overflow-hidden border border-slate-800/50 divide-y divide-slate-800/50">
-          {loading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between py-4 px-5"
-              >
-                <div className="flex-1">
-                  <div className="h-4 w-20 bg-slate-700/50 rounded animate-pulse mb-2"></div>
-                  <div className="h-3 w-16 bg-slate-700/30 rounded animate-pulse"></div>
-                </div>
-                <div className="w-5 h-5 bg-slate-700/50 rounded animate-pulse"></div>
-              </div>
-            ))
-          ) : error ? (
+          {rowData.length === 0 ? (
             <div className="py-8 px-5 text-center text-slate-400">
               Failed to load releases. Please try again later.
             </div>
           ) : (
-            mobileVersions.map((ver, i) => {
-              const release = rowData.find((r: any) => r[ver]);
-              const href =
-                ver === '1214'
-                  ? 'https://github.com/clickcrystals-development/ClickCrystals/releases/download/v1.2.9/ClickCrystals-1.21.4-1.2.9.jar'
-                  : release?.[ver];
-              const version =
-                ver === '1214'
-                  ? '1.2.9'
-                  : ver === '1211' || ver === '121'
-                    ? '1.2.9-1.3.7'
-                    : release?.version;
+            (currentData?.mcVersions ?? []).map((col, i) => {
+              const release = rowData.find((r: any) => r[col.field]);
+              const href = release?.[col.field];
               if (!href) return null;
               return (
-                <Link
+                <a
                   key={i}
                   href={href}
                   className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
                 >
                   <div>
                     <span className="text-white font-semibold text-base">
-                      {formatVersion(ver)}
+                      {col.headerName}
                     </span>
                     <span className="text-slate-400 text-xs ml-2">
-                      v{version}
-                      {(ver === '1211' || ver === '121') && (
-                        <span className="text-yellow-500 text-[10px] uppercase font-semibold px-1.5 py-0.5">
-                          {' '}
-                          exp
-                        </span>
-                      )}
+                      v{release?.version}
                     </span>
                   </div>
                   <svg
@@ -264,7 +320,7 @@ export default function DownloadTable() {
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                     />
                   </svg>
-                </Link>
+                </a>
               );
             })
           )}
@@ -277,25 +333,6 @@ export default function DownloadTable() {
         >
           View all releases on GitHub
         </a>
-
-        {/* Desktop: Full table */}
-        <div className="hidden md:block ag-theme-quartz-dark h-[467px] rounded-lg overflow-hidden border border-slate-800/50 shadow-lg relative">
-          {loading ? (
-            <div className="w-full h-full rounded bg-slate-800/30 animate-pulse"></div>
-          ) : error ? (
-            <div className="w-full h-full flex items-center justify-center text-slate-400">
-              Failed to load releases. Please try again later.
-            </div>
-          ) : (
-            <AgGridReact
-              columnDefs={colDefs}
-              rowData={rowData}
-              loading={loading}
-              suppressTouch={false}
-              suppressMenuHide={true}
-            />
-          )}
-        </div>
       </div>
     </div>
   );

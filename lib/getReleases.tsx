@@ -1,24 +1,5 @@
 'use server';
 
-type Assets = {
-  '12111': null | string;
-  '12110': null | string;
-  '1219': null | string;
-  '1218': null | string;
-  '1217': null | string;
-  '1216': null | string;
-  '1215': null | string;
-  '1214': null | string;
-  '1211': null | string;
-  '121': null | string;
-  '1206': null | string;
-  '1204': null | string;
-  '1202': null | string;
-  '1201': null | string;
-  '120': null | string;
-  '1194': null | string;
-};
-
 export async function getReleases(total: number = 30) {
   try {
     const headers = process.env.GITHUB_PAT
@@ -29,9 +10,10 @@ export async function getReleases(total: number = 30) {
       { method: 'GET', headers, next: { revalidate: 300 } },
     );
     const releases = await response.json();
-    return releases.map((r: any) =>
+    const fixedReleases = releases.map((r: any) =>
       r.name === 'Release 1.2' ? { ...r, name: 'Release 1.2.0' } : r,
     );
+    return fixedReleases;
   } catch {
     throw new Error('Failed to fetch from API');
   }
@@ -40,94 +22,56 @@ export async function getReleases(total: number = 30) {
 async function getCCMappings() {
   const response = await fetch(
     'https://itzispyder.github.io/clickcrystals/info.json',
-    { method: 'GET', next: { revalidate: 200 } },
+    {
+      method: 'GET',
+      next: { revalidate: 200 },
+    },
   );
+
   const info = await response.json();
+
   return info['versionMappings'];
 }
 
-async function getModrinthVersionMap(): Promise<Record<string, string>> {
+export async function getParsedReleases(): Promise<{
+  releases: Record<string, any>[];
+  mcVersions: { field: string; headerName: string }[];
+}> {
   try {
-    const response = await fetch(
-      'https://api.modrinth.com/v2/project/clickcrystals/version',
-      { method: 'GET', next: { revalidate: 300 } },
-    );
-    const versions = await response.json();
-    const map: Record<string, string> = {};
-    for (const version of versions) {
-      const file =
-        version.files?.find((f: any) => f.primary) ?? version.files?.[0];
-      if (!file) continue;
-      for (const mcVersion of version.game_versions ?? []) {
-        const key = mcVersion.replaceAll('.', '');
-        if (!map[key]) map[key] = file.url;
-      }
-    }
-    return map;
-  } catch {
-    return {};
-  }
-}
+    const releases = await getReleases(100);
 
-export async function getParsedReleases() {
-  try {
-    const [releases, modrinthMap, mappings] = await Promise.all([
-      getReleases(100),
-      getModrinthVersionMap(),
-      getCCMappings(),
-    ]);
+    const versionFieldMap = new Map<string, string>();
 
     const parsedReleases = releases.map((release: any) => {
-      let releaseName = release.name.replace('Release ', '');
+      const releaseName = release.name.replace('Release ', '');
+
       let downloads = 0;
-      let assetsData: Assets = {
-        '12111': null,
-        '12110': null,
-        '1219': null,
-        '1218': null,
-        '1217': null,
-        '1216': null,
-        '1215': null,
-        '1214': null,
-        '1211': null,
-        '121': null,
-        '1206': null,
-        '1204': null,
-        '1202': null,
-        '1201': null,
-        '120': null,
-        '1194': null,
-      };
+      const assets: Record<string, string | null> = {};
 
       release.assets.forEach((asset: any) => {
         downloads += asset.download_count;
-        const assetName = asset.name;
-        const githubURL = asset.browser_download_url;
 
-        const versionKeys: [string, string][] = [
-          ['1.21.11', '12111'],
-          ['1.21.10', '12110'],
-          ['1.21.9', '1219'],
-          ['1.21.8', '1218'],
-          ['1.21.7', '1217'],
-          ['1.21.6', '1216'],
-          ['1.21.5', '1215'],
-          ['1.21.4', '1214'],
-          ['1.21.1', '1211'],
-          ['1.21', '121'],
-          ['1.20.6', '1206'],
-          ['1.20.4', '1204'],
-          ['1.20.2', '1202'],
-          ['1.20.1', '1201'],
-          ['1.20', '120'],
-          ['1.19.4', '1194'],
-        ];
+        const assetName: string = asset.name;
+        const assetURL: string = asset.browser_download_url;
 
-        for (const [mcVer, key] of versionKeys) {
-          if (assetName.includes(mcVer)) {
-            assetsData[key as keyof Assets] = modrinthMap[key] ?? githubURL;
-            break;
-          }
+        if (!assetName.toLowerCase().endsWith('.jar')) return;
+
+        const base = assetName.replace(/\.jar$/i, '');
+        const prefix = 'ClickCrystals-';
+        if (!base.startsWith(prefix)) return;
+
+        const rest = base.slice(prefix.length);
+        const suffix = `-${releaseName}`;
+        if (!rest.endsWith(suffix)) return;
+
+        const mcVersion = rest.slice(0, -suffix.length);
+        if (!mcVersion) return;
+
+        const field = mcVersion.replaceAll('.', '');
+        versionFieldMap.set(mcVersion, field);
+
+        if (!assets[field]) {
+          assets[field] = assetURL;
         }
       });
 
@@ -135,9 +79,26 @@ export async function getParsedReleases() {
         version: releaseName,
         code: release.html_url,
         downloads,
-        ...assetsData,
+        ...assets,
       };
     });
+
+    const mappings = await getCCMappings();
+
+    for (const vk of Object.keys(mappings)) {
+      if (!versionFieldMap.has(vk)) {
+        versionFieldMap.set(vk, vk.replaceAll('.', ''));
+      }
+    }
+
+    const allFields = Array.from(versionFieldMap.values());
+    for (const release of parsedReleases) {
+      for (const field of allFields) {
+        if (!(field in release)) {
+          release[field] = null;
+        }
+      }
+    }
 
     Object.entries(mappings).forEach(([versionKey, mappedVersion]) => {
       const key = versionKey.replaceAll('.', '');
@@ -148,14 +109,43 @@ export async function getParsedReleases() {
 
       parsedReleases.forEach((release: any) => {
         if (mappedKey && release[mappedKey] && !release[key]) {
-          release[key] = modrinthMap[key] ?? release[mappedKey];
-        } else if (!mappedKey && !release[key]) {
+          release[key] = release[mappedKey];
+        } else if (!mappedKey) {
           release[key] = null;
         }
       });
     });
 
-    return parsedReleases;
+    const fieldsWithData = new Set<string>();
+    for (const release of parsedReleases) {
+      for (const [key, val] of Object.entries(release)) {
+        if (!['version', 'code', 'downloads'].includes(key) && val != null) {
+          fieldsWithData.add(key);
+        }
+      }
+    }
+
+    const fieldToDisplay = new Map<string, string>();
+    versionFieldMap.forEach((field, ver) => {
+      if (!fieldToDisplay.has(field)) {
+        fieldToDisplay.set(field, ver);
+      }
+    });
+
+    const mcVersions = Array.from(fieldsWithData)
+      .filter((field) => fieldToDisplay.has(field))
+      .map((field) => ({ field, headerName: fieldToDisplay.get(field)! }))
+      .sort((a, b) => {
+        const pA = a.headerName.split('.').map(Number);
+        const pB = b.headerName.split('.').map(Number);
+        for (let i = 0; i < Math.max(pA.length, pB.length); i++) {
+          const diff = (pB[i] ?? 0) - (pA[i] ?? 0);
+          if (diff !== 0) return diff;
+        }
+        return 0;
+      });
+
+    return { releases: parsedReleases, mcVersions };
   } catch (err) {
     throw new Error('Failed to fetch from API' + err);
   }
