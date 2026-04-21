@@ -11,7 +11,7 @@ const reviews = [
   {
     picture:
       'https://cdn.discordapp.com/avatars/1374958535183569072/1d132cffb3edffc5cab7eb9b534e2996.png?size=512',
-    name: 'flowwy_',
+    name: 'Flowwy_',
     rating: 4,
     message:
       'ClickCrystals makes small actions smoother and easier, improving overall gameplay. A more intuitive scripting system would make it even better.',
@@ -24,12 +24,12 @@ const reviews = [
     rating: 3,
     message:
       'I use ClickCrystals for crystal and obsidian switching, and it works well. Adding features like hover totem and auto-retotem would make it even better.',
-    username: '@Riser__',
+    username: '@tgriser',
   },
   {
     picture:
       'https://cdn.discordapp.com/avatars/1349660545267273748/68214260a1f4d8446cd754523f995125.png?size=512',
-    name: 'ArjunFrags',
+    name: '𝙰𝚛𝚓𝚞𝚗𝙵r𝚊𝚐𝚜',
     rating: 4,
     message:
       'ClickCrystals is an amazing mod with lots of features and a clean interface. Expanding the scripting system with a built-in editor would make it even better, especially for users without scripting experience.',
@@ -42,24 +42,25 @@ const reviews = [
     rating: 4,
     message:
       'I use ClickCrystals for 1.8.9 Bedwars, and it works well even on a basic setup with an office mouse and membrane keyboard.',
-    username: '@v0rtexdev',
+    username: '@v0rtexdev.',
   },
   {
     picture:
       'https://cdn.discordapp.com/avatars/780063235352821841/68087115b584208ca5d7718537f477d5.png?size=512',
-    name: 'Max',
+    name: 'ℳ𝒶𝓍',
     rating: 5,
     message:
       'I use ClickCrystals for PvP, and it performs really well. I also like the available configs—they make everything easier to use.',
     username: '@einfach_mx',
   },
   {
-    picture: 'https://cdn.discordapp.com/embed/avatars/2.png',
-    name: 'king3655555555',
-    rating: 4,
+    picture:
+      'https://cdn.discordapp.com/avatars/1425149753905385552/c02cfb603bb1ff08fd705003e6f17c6d.png?size=512',
+    name: '25f4 • mizo',
+    rating: 5,
     message:
-      'ClickCrystals gives me faster crystal usage and improves overall speed during gameplay.',
-    username: '@king365555555553371',
+      'ClickCrystals has strong scripting and customizable features, with community support that helps across multiple playstyles and improves overall gameplay.',
+    username: '@25f4',
   },
   {
     picture: 'https://cdn.discordapp.com/embed/avatars/0.png',
@@ -76,7 +77,7 @@ const reviews = [
     rating: 5,
     message:
       'ClickCrystals is great all-around and makes Minecraft PvP genuinely fun again.',
-    username: '@MH1877',
+    username: '@mh1877',
   },
   {
     picture:
