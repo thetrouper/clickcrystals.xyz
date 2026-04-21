@@ -51,16 +51,15 @@ export default function Reviews() {
             Testimonials
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-6">
-            Trusted by Competitive PvP Players
+            What Players Are Saying
           </h2>
           <p className="text-slate-400 text-base max-w-md mx-auto">
-            Real feedback from real players who use ClickCrystals every day.
+            From players who use ClickCrystals every day.
           </p>
         </div>
 
         <ReviewsList />
 
-        {/* Footer social proof — desktop only */}
         <div className="hidden sm:flex items-center justify-center gap-4 mt-14">
           <div className="flex">
             {staffAvatars.map((src, i) => (

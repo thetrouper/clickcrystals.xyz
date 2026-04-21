@@ -160,9 +160,7 @@ export default function ReviewsList() {
 
   return (
     <div>
-      {/* ── Mobile ── */}
       <div className="sm:hidden select-none">
-        {/* Card */}
         <div
           className="relative rounded-2xl overflow-hidden mb-5"
           style={{
@@ -172,7 +170,6 @@ export default function ReviewsList() {
               '0 0 0 1px rgba(99,102,241,0.08), 0 24px 64px rgba(0,0,0,0.6)',
           }}
         >
-          {/* Noise texture */}
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.03]"
             style={{
@@ -180,7 +177,6 @@ export default function ReviewsList() {
             }}
           />
 
-          {/* Blurred avatar glow */}
           <AnimatePresence mode="wait">
             <motion.img
               key={active + '-glow'}
@@ -195,7 +191,6 @@ export default function ReviewsList() {
             />
           </AnimatePresence>
 
-          {/* Top bar — stars only */}
           <div className="relative flex items-center justify-end px-5 pt-5 pb-3">
             <div className="flex gap-0.5">
               {[1, 2, 3, 4, 5].map((s) => (
@@ -213,7 +208,6 @@ export default function ReviewsList() {
             </div>
           </div>
 
-          {/* Quote */}
           <div
             className="relative px-5 py-5"
             style={{ height: 180, overflow: 'hidden' }}
@@ -238,7 +232,6 @@ export default function ReviewsList() {
             </AnimatePresence>
           </div>
 
-          {/* Author row */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active + '-author'}
@@ -268,7 +261,6 @@ export default function ReviewsList() {
           </AnimatePresence>
         </div>
 
-        {/* Avatar selector */}
         <div className="flex justify-center gap-2 flex-wrap px-1">
           {reviews.map((rev, i) => (
             <motion.button
@@ -296,7 +288,6 @@ export default function ReviewsList() {
         </div>
       </div>
 
-      {/* ── Desktop grid ── */}
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {reviews.map((r, i) => (
           <DesktopCard key={i} r={r} i={i} />
