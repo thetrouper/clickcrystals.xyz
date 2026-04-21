@@ -59,20 +59,16 @@ export default function Ingame() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative max-w-7xl mx-auto mb-10"
         >
-          <div
-            className="absolute inset-0 blur-3xl opacity-10 rounded-full"
-            style={{
-              background: 'radial-gradient(ellipse, #3b82f6, transparent)',
-            }}
-          />
           <Image
             src={cc}
             alt="ClickCrystals Client Menu"
             className="rounded-2xl w-full relative z-10"
+            priority
             style={{
               imageRendering: 'pixelated',
               border: '1px solid rgba(255,255,255,0.06)',
-              boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
+              boxShadow:
+                '0 32px 80px rgba(0,0,0,0.6), 0 0 80px 10px rgba(59,130,246,0.1)',
             }}
           />
         </motion.div>

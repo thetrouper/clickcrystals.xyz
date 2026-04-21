@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import ReviewsList from './ReviewsList';
 
 const staffAvatars = [
@@ -63,10 +64,12 @@ export default function Reviews() {
         <div className="hidden sm:flex items-center justify-center gap-4 mt-14">
           <div className="flex">
             {staffAvatars.map((src, i) => (
-              <img
+              <Image
                 key={i}
                 src={src}
                 alt=""
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full ring-2 ring-[rgb(7,10,20)] bg-slate-800"
                 style={{
                   zIndex: staffAvatars.length - i,

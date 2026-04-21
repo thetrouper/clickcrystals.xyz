@@ -1,7 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+
+const noiseLg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`;
+const noiseSm = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
 const reviews = [
   {
@@ -101,7 +105,7 @@ function DesktopCard({ r, i }: { r: (typeof reviews)[0]; i: number }) {
         background: 'rgba(255,255,255,0.02)',
         border: '1px solid rgba(255,255,255,0.06)',
         boxShadow: '0 4px 32px rgba(0,0,0,0.3)',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
+        backgroundImage: noiseLg,
       }}
     >
       <div
@@ -109,7 +113,13 @@ function DesktopCard({ r, i }: { r: (typeof reviews)[0]; i: number }) {
         style={{ boxShadow: 'inset 0 0 0 1px rgba(99,102,241,0.2)' }}
       />
       <div className="absolute -bottom-10 -right-10 w-40 h-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden rounded-full blur-3xl">
-        <img src={r.picture} alt="" className="w-full h-full object-cover" />
+        <Image
+          src={r.picture}
+          alt=""
+          width={160}
+          height={160}
+          className="w-full h-full object-cover"
+        />
       </div>
       <p className="text-slate-400 group-hover:text-slate-100 text-sm leading-7 transition-colors duration-500 flex-1 select-none">
         <span className="text-indigo-400/50 font-serif text-2xl leading-none align-top mr-0.5">
@@ -122,9 +132,11 @@ function DesktopCard({ r, i }: { r: (typeof reviews)[0]; i: number }) {
       </p>
       <div className="h-px w-full" />
       <div className="flex items-center gap-4">
-        <img
+        <Image
           src={r.picture}
           alt={r.name}
+          width={48}
+          height={48}
           className="w-12 h-12 rounded-full bg-slate-800 transition-transform duration-300 group-hover:scale-110 shrink-0"
           style={{
             boxShadow:
@@ -173,22 +185,32 @@ export default function ReviewsList() {
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.03]"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`,
+              backgroundImage: noiseSm,
             }}
           />
 
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={active + '-glow'}
-              src={r.picture}
-              alt=""
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute -bottom-12 -right-12 w-56 h-56 object-cover rounded-full pointer-events-none"
-              style={{ filter: 'blur(60px)', opacity: 0.07 }}
-            />
+              className="absolute -bottom-12 -right-12 w-56 h-56 rounded-full pointer-events-none"
+              style={{
+                filter: 'blur(60px)',
+                opacity: 0.07,
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={r.picture}
+                alt=""
+                width={224}
+                height={224}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
           </AnimatePresence>
 
           <div className="relative flex items-center justify-end px-5 pt-5 pb-3">
@@ -242,9 +264,11 @@ export default function ReviewsList() {
               className="relative flex items-center gap-3 px-5 pb-5"
             >
               <div className="relative">
-                <img
+                <Image
                   src={r.picture}
                   alt={r.name}
+                  width={40}
+                  height={40}
                   className="w-10 h-10 rounded-full"
                   style={{ boxShadow: '0 0 0 1.5px rgba(99,102,241,0.5)' }}
                 />
@@ -269,9 +293,11 @@ export default function ReviewsList() {
               whileTap={{ scale: 0.88 }}
               className="relative"
             >
-              <img
+              <Image
                 src={rev.picture}
                 alt={rev.name}
+                width={36}
+                height={36}
                 className="w-9 h-9 rounded-full object-cover"
                 style={{
                   opacity: i === active ? 1 : 0.35,

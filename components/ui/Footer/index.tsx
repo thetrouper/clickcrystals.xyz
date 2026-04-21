@@ -10,6 +10,8 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 
+const YEAR = new Date().getFullYear();
+
 const socials = [
   {
     icon: faDiscord,
@@ -29,16 +31,6 @@ const socials = [
     label: 'YouTube',
     color: 'hover:text-[#FF0000]',
   },
-];
-
-const navLinks = [
-  { label: 'Download', href: '/get' },
-  { label: 'Scripts', href: '/scripts' },
-  { label: 'Editor', href: '/editor' },
-  { label: 'Configs', href: '/configs' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Help', href: '/help' },
-  { label: 'Wiki', href: 'https://bit.ly/ccs-wiki' },
 ];
 
 const platforms: { label: string; href: string; icon: string | null }[] = [
@@ -70,6 +62,7 @@ export default function Footer() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     let animId: number;
+    let visible = false;
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -117,6 +110,7 @@ export default function Footer() {
     }));
 
     const draw = () => {
+      if (!visible) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
@@ -124,9 +118,6 @@ export default function Footer() {
       trail.forEach((t) => {
         t.age++;
       });
-
-      if (mx > 0) {
-      }
 
       particles.forEach((p) => {
         p.pulse += 0.005;
@@ -177,10 +168,19 @@ export default function Footer() {
       animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) animId = requestAnimationFrame(draw);
+        else cancelAnimationFrame(animId);
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(canvas);
 
     return () => {
       cancelAnimationFrame(animId);
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       canvas.parentElement?.removeEventListener('mousemove', handleMouseMove);
       canvas.parentElement?.removeEventListener('mouseleave', handleMouseLeave);
@@ -305,8 +305,7 @@ export default function Footer() {
 
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 -mt-4">
           <span className="text-slate-400 text-xs">
-            © {new Date().getFullYear()} ClickCrystals. Not affiliated with
-            Mojang or Microsoft.
+            © {YEAR} ClickCrystals. Not affiliated with Mojang or Microsoft.
           </span>
           <div className="flex items-center gap-5">
             {socials.map(({ icon, href, label, color }) => (
