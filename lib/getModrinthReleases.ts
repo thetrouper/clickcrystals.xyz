@@ -30,12 +30,14 @@ export async function getModrinthParsedReleases(): Promise<{
 
   const versions: ModrinthVersion[] = await response.json();
 
+  // Map: MC version string -> field key (e.g. "1.21.11" -> "12111")
   const versionFieldMap = new Map<string, string>();
 
+  // Group Modrinth versions by mod version
   const groups = new Map<
     string,
     {
-      assets: Map<string, string>;
+      assets: Map<string, string>; // field key -> download URL
       totalDownloads: number;
       versionId: string;
     }
@@ -69,6 +71,7 @@ export async function getModrinthParsedReleases(): Promise<{
     }
   }
 
+  // Fetch CC version mappings (same as GitHub side)
   let mappings: Record<string, string | null> = {};
   try {
     const resp = await fetch(
@@ -77,14 +80,18 @@ export async function getModrinthParsedReleases(): Promise<{
     );
     const info = await resp.json();
     mappings = info['versionMappings'] ?? {};
-  } catch {}
+  } catch {
+    // Optional — continue without mappings
+  }
 
+  // Register mapping versions in our field map
   for (const vk of Object.keys(mappings)) {
     if (!versionFieldMap.has(vk)) {
       versionFieldMap.set(vk, vk.replaceAll('.', ''));
     }
   }
 
+  // Build releases
   const allFields = Array.from(versionFieldMap.values());
   const releases: Record<string, any>[] = [];
 
@@ -95,10 +102,12 @@ export async function getModrinthParsedReleases(): Promise<{
       downloads: group.totalDownloads,
     };
 
+    // Initialize all MC version fields to null
     allFields.forEach((field) => {
       release[field] = null;
     });
 
+    // Set available assets
     group.assets.forEach((url, field) => {
       release[field] = url;
     });
@@ -106,6 +115,7 @@ export async function getModrinthParsedReleases(): Promise<{
     releases.push(release);
   });
 
+  // Apply version mappings
   for (const [versionKey, mappedVersion] of Object.entries(mappings)) {
     const key = versionKey.replaceAll('.', '');
     const mappedKey =
@@ -122,6 +132,7 @@ export async function getModrinthParsedReleases(): Promise<{
     }
   }
 
+  // Build column defs from fields that have data in at least one release
   const fieldsWithData = new Set<string>();
   for (const release of releases) {
     for (const [key, val] of Object.entries(release)) {
@@ -131,6 +142,7 @@ export async function getModrinthParsedReleases(): Promise<{
     }
   }
 
+  // Reverse map: field key -> display name (prefer first registered)
   const fieldToDisplay = new Map<string, string>();
   versionFieldMap.forEach((field, ver) => {
     if (!fieldToDisplay.has(field)) {

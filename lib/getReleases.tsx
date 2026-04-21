@@ -40,7 +40,8 @@ export async function getParsedReleases(): Promise<{
   try {
     const releases = await getReleases(100);
 
-    const versionFieldMap = new Map<string, string>();
+    // Track all discovered MC versions dynamically
+    const versionFieldMap = new Map<string, string>(); // mcVersion -> field key
 
     const parsedReleases = releases.map((release: any) => {
       const releaseName = release.name.replace('Release ', '');
@@ -54,13 +55,17 @@ export async function getParsedReleases(): Promise<{
         const assetName: string = asset.name;
         const assetURL: string = asset.browser_download_url;
 
+        // Only process .jar files
         if (!assetName.toLowerCase().endsWith('.jar')) return;
 
+        // Extract MC version from asset name
+        // Pattern: ClickCrystals-{mcVersion}-{modVersion}.jar
         const base = assetName.replace(/\.jar$/i, '');
         const prefix = 'ClickCrystals-';
         if (!base.startsWith(prefix)) return;
 
         const rest = base.slice(prefix.length);
+        // The suffix is "-{modVersion}" where modVersion = releaseName
         const suffix = `-${releaseName}`;
         if (!rest.endsWith(suffix)) return;
 
@@ -85,12 +90,14 @@ export async function getParsedReleases(): Promise<{
 
     const mappings = await getCCMappings();
 
+    // Register mapping versions in field map
     for (const vk of Object.keys(mappings)) {
       if (!versionFieldMap.has(vk)) {
         versionFieldMap.set(vk, vk.replaceAll('.', ''));
       }
     }
 
+    // Ensure all releases have all discovered fields
     const allFields = Array.from(versionFieldMap.values());
     for (const release of parsedReleases) {
       for (const field of allFields) {
@@ -100,6 +107,7 @@ export async function getParsedReleases(): Promise<{
       }
     }
 
+    // Apply version mappings
     Object.entries(mappings).forEach(([versionKey, mappedVersion]) => {
       const key = versionKey.replaceAll('.', '');
       const mappedKey =
@@ -116,6 +124,7 @@ export async function getParsedReleases(): Promise<{
       });
     });
 
+    // Build column defs from fields that have data in at least one release
     const fieldsWithData = new Set<string>();
     for (const release of parsedReleases) {
       for (const [key, val] of Object.entries(release)) {

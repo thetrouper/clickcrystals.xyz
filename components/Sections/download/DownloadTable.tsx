@@ -25,76 +25,69 @@ interface DownloadTableProps {
 
 function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
   return [
-    {
-      field: 'version',
-      pinned: 'left' as const,
-      lockPosition: true,
-      width: 150,
-      cellStyle: { fontWeight: '900', color: '#f8fafc' },
-    },
+    { field: 'version', pinned: true, movable: false, width: 126 },
     {
       field: 'code',
-      headerName: 'Source',
+      headerName: 'Release',
       cellRenderer: (params: any) => (
-        <a
-          href={params.value}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-slate-300 hover:text-slate-200 hover:underline focus:outline-none"
-        >
-          View Code
-        </a>
+        <Link href={params.value} className="text-blue-500">
+          Open
+        </Link>
       ),
-      width: 130,
+      width: 115,
     },
     {
       field: 'downloads',
-      headerName: 'Downloads',
-      cellRenderer: (params: any) => (
-        <span className="font-mono text-slate-300">
-          {parseNumber(params.value)}
-        </span>
-      ),
-      width: 130,
+      cellRenderer: (params: any) => parseNumber(params.value),
+      width: 115,
     },
     ...mcVersions.map((col) => ({
       field: col.field,
       headerName: col.headerName,
       cellRenderer: (params: any) =>
-        params.value ? (
-          <Link
-            href={params.value}
-            className="text-blue-400 hover:text-blue-300 hover:underline focus:outline-none"
-          >
+        params.value === null ? (
+          'Not available'
+        ) : (
+          <Link href={params.value} className="text-blue-500">
             Download
           </Link>
         ) : (
           <span className="text-slate-600">—</span>
         ),
-      width: 150,
+      width: 160,
     })),
   ];
 }
 
+/**
+ * Merge releases from Modrinth, CurseForge, and GitHub into a single "All" view.
+ * Priority: Modrinth > CurseForge > GitHub.
+ * For each mod version, pick the best release link and merge asset URLs by priority.
+ * No duplicate MC version assets per mod version.
+ */
 function buildAllData(
   dataCache: Record<Exclude<Source, 'all'>, SourceData | null>,
 ): SourceData {
+  // Priority order: modrinth first, curseforge second, github last
   const sources: Exclude<Source, 'all'>[] = [
     'modrinth',
     'curseforge',
     'github',
   ];
-  const allFieldMap = new Map<string, string>();
 
+  // Collect all mc version columns across all sources
+  const allFieldMap = new Map<string, string>(); // field -> headerName
   for (const src of sources) {
     const data = dataCache[src];
     if (!data) continue;
     for (const col of data.mcVersions) {
-      if (!allFieldMap.has(col.field))
+      if (!allFieldMap.has(col.field)) {
         allFieldMap.set(col.field, col.headerName);
+      }
     }
   }
 
+  // Merge rows by mod version
   const merged = new Map<
     string,
     { code: string; downloads: number; assets: Record<string, string | null> }
@@ -103,16 +96,28 @@ function buildAllData(
   for (const src of sources) {
     const data = dataCache[src];
     if (!data) continue;
+
     for (const row of data.rows) {
       const version: string = row.version;
+
       if (!merged.has(version)) {
-        merged.set(version, { code: row.code, downloads: 0, assets: {} });
+        merged.set(version, {
+          code: row.code,
+          downloads: 0,
+          assets: {},
+        });
+        // Initialize all fields to null
         for (const field of Array.from(allFieldMap.keys())) {
           merged.get(version)!.assets[field] = null;
         }
       }
+
       const entry = merged.get(version)!;
+      // Sum downloads across all sources
       entry.downloads += row.downloads ?? 0;
+
+      // For each MC version field, fill in the asset URL only if not already set
+      // (higher priority sources are processed first)
       for (const field of Array.from(allFieldMap.keys())) {
         if (entry.assets[field] === null && row[field] != null) {
           entry.assets[field] = row[field];
@@ -121,6 +126,7 @@ function buildAllData(
     }
   }
 
+  // Build release rows
   const releases: Record<string, any>[] = [];
   merged.forEach((entry, version) => {
     releases.push({
@@ -131,6 +137,7 @@ function buildAllData(
     });
   });
 
+  // Build mc version columns (only those with at least one non-null value)
   const fieldsWithData = new Set<string>();
   for (const release of releases) {
     for (const [key, val] of Object.entries(release)) {
@@ -169,7 +176,9 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
     [dataCache],
   );
 
+  // Compute "all" merged data
   const allData = useMemo(() => buildAllData(dataCache), [dataCache]);
+
   const currentData = source === 'all' ? allData : dataCache[source];
   const rowData = currentData?.rows ?? [];
   const colDefs = currentData ? buildColDefs(currentData.mcVersions) : [];
@@ -235,104 +244,95 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 mb-4">
-        {(
-          [
-            { key: 'all', label: 'All', icon: null },
-            { key: 'modrinth', label: 'Modrinth', icon: 'modrinth' },
-            { key: 'curseforge', label: 'CurseForge', icon: 'curseforge' },
-            { key: 'github', label: 'GitHub', icon: 'github' },
-          ] as const
-        ).map(({ key, label, icon }) => {
-          const disabled = key !== 'all' && !availableSources[key];
-          const active = source === key;
-          return (
-            <button
-              key={key}
-              onClick={() => handleSourceChange(key)}
-              disabled={disabled}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 border ${
-                active
-                  ? 'bg-blue-600 border-blue-700 text-white'
-                  : 'bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-white hover:border-slate-500'
-              } ${disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
-            >
-              {icon === 'modrinth' && (
-                <Image src={modrinthIcon} width={12} height={12} alt="" />
-              )}
-              {icon === 'curseforge' && (
-                <Image src={curseforgeIcon} width={12} height={12} alt="" />
-              )}
-              {icon === 'github' && (
-                <FontAwesomeIcon icon={faGithub} className="w-3 h-3" />
-              )}
-              {label}
-            </button>
-          );
-        })}
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <span className="text-xs text-gray-500 font-medium select-none w-full sm:w-auto">
+          Showing releases from:
+        </span>
+        <button
+          onClick={() => handleSourceChange('all')}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
+            source === 'all'
+              ? 'bg-[#6366f1] text-white shadow-sm'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          } cursor-pointer`}
+        >
+          <svg
+            className="size-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
+            />
+          </svg>
+          All
+        </button>
+        <button
+          onClick={() => handleSourceChange('modrinth')}
+          disabled={!availableSources.modrinth}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
+            source === 'modrinth'
+              ? 'bg-[#1bd96a] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          } ${!availableSources.modrinth ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+        >
+          <Image
+            src={modrinthIcon}
+            width={14}
+            height={14}
+            alt=""
+            className="size-3.5"
+          />
+          Modrinth
+        </button>
+        <button
+          onClick={() => handleSourceChange('curseforge')}
+          disabled={!availableSources.curseforge}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
+            source === 'curseforge'
+              ? 'bg-[#f16436] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          } ${!availableSources.curseforge ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+        >
+          <Image
+            src={curseforgeIcon}
+            width={14}
+            height={14}
+            alt=""
+            className="size-3.5"
+          />
+          CurseForge
+        </button>
+        <button
+          onClick={() => handleSourceChange('github')}
+          disabled={!availableSources.github}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
+            source === 'github'
+              ? 'bg-[#24292f] text-white shadow-sm'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          } ${!availableSources.github ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+        >
+          <FontAwesomeIcon icon={faGithub} className="size-3.5" />
+          GitHub
+        </button>
       </div>
 
-      <div className="mt-8 mb-8">
-        <div className="hidden md:block ag-theme-quartz-dark h-[467px] rounded-lg overflow-hidden border border-slate-800/50 shadow-lg relative">
-          <AgGridReact
-            key={source}
-            columnDefs={colDefs}
-            rowData={rowData}
-            suppressTouch={false}
-            suppressMenuHide={true}
-          />
-        </div>
-
-        <div className="block md:hidden rounded-lg overflow-hidden border border-slate-800/50 divide-y divide-slate-800/50">
-          {rowData.length === 0 ? (
-            <div className="py-8 px-5 text-center text-slate-400">
-              Failed to load releases. Please try again later.
-            </div>
-          ) : (
-            (currentData?.mcVersions ?? []).map((col, i) => {
-              const release = rowData.find((r: any) => r[col.field]);
-              const href = release?.[col.field];
-              if (!href) return null;
-              return (
-                <a
-                  key={i}
-                  href={href}
-                  className="flex items-center justify-between py-4 px-5 hover:bg-slate-800/60 active:bg-slate-800/80 active:scale-[0.98] transition-all"
-                >
-                  <div>
-                    <span className="text-white font-semibold text-base">
-                      {col.headerName}
-                    </span>
-                    <span className="text-slate-400 text-xs ml-2">
-                      v{release?.version}
-                    </span>
-                  </div>
-                  <svg
-                    className="w-4 h-4 text-blue-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                    />
-                  </svg>
-                </a>
-              );
-            })
-          )}
-        </div>
-        <a
-          href="https://github.com/clickcrystals-development/ClickCrystals/releases"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block md:hidden text-center py-3 text-blue-400 hover:text-blue-300 text-sm transition-colors"
-        >
-          View all releases on GitHub
-        </a>
+      <div className="ag-theme-custom h-[467px]">
+        <AgGridReact
+          key={source}
+          columnDefs={colDefs}
+          rowData={rowData}
+          suppressTouch={false}
+          pagination={true}
+          paginationPageSize={10}
+          paginationPageSizeSelector={[10, 20, 30, 50, 100]}
+          paginationAutoPageSize={true}
+          suppressMenuHide={true}
+        />
       </div>
     </div>
   );
