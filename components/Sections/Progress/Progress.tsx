@@ -27,7 +27,7 @@ export default function Progress() {
         className="absolute top-0 inset-x-0 h-px"
         style={{
           background:
-            'linear-gradient(to right, transparent, rgba(99,102,241,0.5), transparent)',
+            'linear-gradient(to right, transparent, rgba(59,130,246,0.5), transparent)',
         }}
       />
       <div className="max-w-7xl mx-auto px-8">
