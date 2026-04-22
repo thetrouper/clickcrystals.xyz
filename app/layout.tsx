@@ -20,10 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ backgroundColor: 'rgb(7,10,20)' }}>
       <body
         className={cn(
-          `${inter.className} ${interHeading.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 select-none`,
+          `${inter.className} ${interHeading.variable} antialiased select-none`,
           'selection:text-white selection:bg-blue-800',
         )}
       >
