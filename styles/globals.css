@@ -240,3 +240,14 @@ b {
     0 20px 40px -10px rgba(0, 0, 0, 0.6),
     inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
+
+.monaco-editor,
+.monaco-editor-background,
+.monaco-editor .margin,
+.monaco-editor .inputarea.ime-input,
+.monaco-editor .overflow-guard,
+.monaco-editor .minimap,
+.monaco-editor .scrollbar,
+.monaco-editor .monaco-scrollable-element > .scrollbar {
+  background-color: rgb(7, 10, 20) !important;
+}

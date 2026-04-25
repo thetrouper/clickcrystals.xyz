@@ -1,4 +1,3 @@
-import { CardFooter } from '@/components/ui/card';
 import { useSession } from 'next-auth/react';
 import UpdateAction from './UpdateActionButton';
 import { Config } from './ConfigCard';
@@ -18,11 +17,11 @@ export default function ConfigCardControls({
     (session?.user?.image ?? '').match(/avatars\/(\d+)\//)?.[1] ?? '0';
 
   return (
-    <CardFooter className="p-0">
+    <div className="flex gap-2">
       <DownloadButton downloadAction={downloadAction} />
       {(process.env.NODE_ENV === 'development' || userId === sessionUserId) && (
         <UpdateAction config={config} />
       )}
-    </CardFooter>
+    </div>
   );
 }

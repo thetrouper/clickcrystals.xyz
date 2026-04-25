@@ -28,10 +28,16 @@ export default function Configs() {
     return (
       <div className="mt-8">
         <div className="flex gap-4 mb-4 animate-pulse">
-          <div className="h-10 bg-slate-800/50 rounded w-[200px] md:w-[280px]" />
-          <div className="h-10 bg-slate-800/50 rounded flex-1" />
+          <div
+            className="h-10 rounded w-[200px] md:w-[280px]"
+            style={{ background: 'rgba(255,255,255,0.12)' }}
+          />
+          <div
+            className="h-10 rounded flex-1"
+            style={{ background: 'rgba(255,255,255,0.12)' }}
+          />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 animate-pulse">
           {Array(6)
             .fill(null)
             .map((_, i) => (

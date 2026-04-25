@@ -18,7 +18,10 @@ interface DownloadProps {
 
 export default function Download({ initialData }: DownloadProps) {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 py-12 md:py-24">
+    <main
+      className="min-h-screen py-12 md:py-24"
+      style={{ background: 'rgb(7,10,20)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 md:mb-4 tracking-tight">
@@ -30,7 +33,7 @@ export default function Download({ initialData }: DownloadProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 pt-4 md:pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 pt-4 md:pt-6">
           <DownloadLink
             link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
             label="CurseForge"

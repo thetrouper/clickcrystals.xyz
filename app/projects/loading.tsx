@@ -1,40 +1,71 @@
+'use client';
+
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 export default function Loading() {
   return (
-    <main className="my-12 mx-6 md:mx-24">
-      <div className="mb-10">
-        <div className="h-9 bg-slate-800/50 rounded w-48 animate-pulse mb-3" />
-        <div className="h-4 bg-slate-800/50 rounded w-96 animate-pulse" />
-      </div>
-      <div className="space-y-12">
-        {Array(3)
-          .fill(null)
-          .map((_, i) => (
-            <div key={i}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-5 bg-slate-800/50 rounded w-32 animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-16 animate-pulse" />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {Array(20)
-                  .fill(null)
-                  .map((_, j) => (
-                    <div
-                      key={j}
-                      className="bg-slate-800/40 rounded-lg p-4 animate-pulse shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
-                    >
-                      <div className="h-4 bg-slate-700/50 rounded w-2/3 mb-2" />
-                      <div className="h-3 bg-slate-800/50 rounded w-full mb-1" />
-                      <div className="h-3 bg-slate-800/50 rounded w-4/5 mb-3" />
-                      <div className="flex gap-3">
-                        <div className="h-3 bg-slate-700/50 rounded w-12" />
-                        <div className="h-3 bg-slate-700/50 rounded w-16" />
+    <SkeletonTheme
+      baseColor="rgba(255,255,255,0.03)"
+      highlightColor="rgba(255,255,255,0.07)"
+      duration={1.4}
+    >
+      <main
+        className="my-12 mx-6 md:mx-24"
+        style={{ background: 'rgb(7,10,20)' }}
+      >
+        <div className="mb-10">
+          <div className="mb-3">
+            <Skeleton height={36} width="40%" borderRadius={8} />
+          </div>
+          <Skeleton height={16} width="60%" borderRadius={4} />
+        </div>
+        <div className="mb-4">
+          <Skeleton height={40} width={280} borderRadius={8} />
+        </div>
+        <div className="space-y-12">
+          {Array(3)
+            .fill(null)
+            .map((_, i) => (
+              <div key={i}>
+                <div className="flex items-center gap-3 mb-4">
+                  <Skeleton width={28} height={28} borderRadius={999} />
+                  <Skeleton width={120} height={18} borderRadius={4} />
+                  <Skeleton width={56} height={14} borderRadius={4} />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {Array(6)
+                    .fill(null)
+                    .map((_, j) => (
+                      <div
+                        key={j}
+                        className="rounded-xl p-4"
+                        style={{
+                          background: 'rgba(255,255,255,0.05)',
+                          boxShadow:
+                            'inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.5)',
+                        }}
+                      >
+                        <div className="mb-2">
+                          <Skeleton height={14} width="66%" borderRadius={4} />
+                        </div>
+                        <div className="mb-1">
+                          <Skeleton height={11} borderRadius={4} />
+                        </div>
+                        <div className="mb-3">
+                          <Skeleton height={11} width="80%" borderRadius={4} />
+                        </div>
+                        <div className="flex gap-3">
+                          <Skeleton height={11} width={48} borderRadius={4} />
+                          <Skeleton height={11} width={64} borderRadius={4} />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
-    </main>
+            ))}
+        </div>
+      </main>
+    </SkeletonTheme>
   );
 }

@@ -158,10 +158,22 @@ export default function Projects() {
   return (
     <div className="space-y-12">
       <Select onValueChange={setAuthorFilter} value={authorFilter}>
-        <SelectTrigger className="w-full sm:w-[200px] md:w-[280px] bg-slate-900 border-slate-700 text-white hover:border-slate-600">
+        <SelectTrigger
+          className="w-full sm:w-[200px] md:w-[280px] text-white"
+          style={{
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.1)',
+          }}
+        >
           <SelectValue placeholder="All" />
         </SelectTrigger>
-        <SelectContent className="bg-slate-900 border-slate-700">
+        <SelectContent
+          className="text-white"
+          style={{
+            background: 'rgb(10,13,24)',
+            border: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
           {authorNames.map((a) => (
             <SelectItem
               key={a}
@@ -179,9 +191,18 @@ export default function Projects() {
           {Object.keys(authors).map((author, i) => (
             <div key={i}>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-7 h-7 rounded-full bg-slate-800/50 animate-pulse" />
-                <div className="h-5 bg-slate-800/50 rounded w-32 animate-pulse" />
-                <div className="h-4 bg-slate-800/50 rounded w-16 animate-pulse" />
+                <div
+                  className="w-7 h-7 rounded-full animate-pulse"
+                  style={{ background: 'rgba(255,255,255,0.06)' }}
+                />
+                <div
+                  className="h-5 rounded w-32 animate-pulse"
+                  style={{ background: 'rgba(255,255,255,0.06)' }}
+                />
+                <div
+                  className="h-4 rounded w-16 animate-pulse"
+                  style={{ background: 'rgba(255,255,255,0.04)' }}
+                />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {Array(SKELETON_COUNTS[author] ?? 6)
@@ -189,12 +210,29 @@ export default function Projects() {
                   .map((_, j) => (
                     <div
                       key={j}
-                      className="bg-slate-800/40 rounded-lg p-4 animate-pulse shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
+                      className="rounded-xl p-4 animate-pulse"
+                      style={{
+                        background: 'rgba(255,255,255,0.05)',
+                        boxShadow:
+                          'inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.5)',
+                      }}
                     >
-                      <div className="h-4 bg-slate-700/50 rounded w-2/3 mb-2" />
-                      <div className="h-3 bg-slate-800/50 rounded w-full mb-1" />
-                      <div className="h-3 bg-slate-800/50 rounded w-4/5 mb-3" />
-                      <div className="h-3 bg-slate-700/50 rounded w-12" />
+                      <div
+                        className="h-4 rounded w-2/3 mb-2"
+                        style={{ background: 'rgba(255,255,255,0.06)' }}
+                      />
+                      <div
+                        className="h-3 rounded w-full mb-1"
+                        style={{ background: 'rgba(255,255,255,0.04)' }}
+                      />
+                      <div
+                        className="h-3 rounded w-4/5 mb-3"
+                        style={{ background: 'rgba(255,255,255,0.04)' }}
+                      />
+                      <div
+                        className="h-3 rounded w-12"
+                        style={{ background: 'rgba(255,255,255,0.06)' }}
+                      />
                     </div>
                   ))}
               </div>
@@ -224,7 +262,10 @@ export default function Projects() {
               >
                 {author}
               </Link>
-              <span className="text-xs text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded-full">
+              <span
+                className="text-xs text-slate-500 px-2 py-0.5 rounded-full"
+                style={{ background: 'rgba(255,255,255,0.04)' }}
+              >
                 {projects.length} project{projects.length !== 1 ? 's' : ''}
               </span>
               <button className="ml-auto text-slate-500 hover:text-slate-300 transition-colors">
@@ -248,7 +289,22 @@ export default function Projects() {
                 {projects.map((project, i) => (
                   <div
                     key={i}
-                    className="bg-slate-800/40 hover:bg-slate-800/60 rounded-lg p-4 transition-all duration-200 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
+                    className="rounded-xl p-4 transition-all duration-200 cursor-default"
+                    style={{
+                      background: 'rgba(255,255,255,0.05)',
+                      boxShadow:
+                        'inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.5)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.background =
+                        'rgba(255,255,255,0.07)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.background =
+                        'rgba(255,255,255,0.05)';
+                    }}
                   >
                     <h3 className="text-sm font-semibold text-white mb-1">
                       {project.name}

@@ -231,10 +231,7 @@ export default function ReviewsList() {
             </div>
           </div>
 
-          <div
-            className="relative px-5 py-5"
-            style={{ height: 180, overflow: 'hidden' }}
-          >
+          <div className="relative px-5 py-5">
             <AnimatePresence mode="wait">
               <motion.p
                 key={active + '-msg'}
@@ -275,7 +272,7 @@ export default function ReviewsList() {
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white font-semibold text-sm leading-none mb-1">
+                <p className="text-white font-semibold text-sm leading-none mb-1 truncate">
                   {r.name}
                 </p>
                 <p className="font-mono text-[10px] text-slate-500 tracking-wide">

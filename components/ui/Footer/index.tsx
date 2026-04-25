@@ -246,7 +246,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row gap-3 flex-wrap justify-center">
           <Link
             href="/get"
             className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-full text-sm transition-colors duration-150 text-center"

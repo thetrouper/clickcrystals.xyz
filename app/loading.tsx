@@ -1,20 +1,25 @@
 export default function Loading() {
   return (
-    <div className="animate-pulse">
-      {/* Hero */}
-      <div className="min-h-screen bg-slate-900/30" />
-      {/* Progress */}
-      <div className="h-32 bg-slate-950/30" />
-      {/* CCS */}
-      <div className="h-96 bg-slate-900/30" />
-      {/* Features */}
-      <div className="h-[500px] bg-slate-950/30" />
-      {/* Ingame */}
-      <div className="h-[600px] bg-slate-900/30" />
-      {/* Reviews */}
-      <div className="h-96 bg-slate-950/30" />
-      {/* GetStarted */}
-      <div className="h-64 bg-slate-900/30" />
+    <div
+      className="animate-pulse"
+      style={{ background: 'rgb(7,10,20)', minHeight: '100vh' }}
+    >
+      <div
+        className="min-h-screen"
+        style={{ background: 'rgba(255,255,255,0.01)' }}
+      />
+      <div className="h-32" style={{ background: 'rgba(255,255,255,0.01)' }} />
+      <div className="h-96" style={{ background: 'rgba(255,255,255,0.01)' }} />
+      <div
+        className="h-[500px]"
+        style={{ background: 'rgba(255,255,255,0.01)' }}
+      />
+      <div
+        className="h-[600px]"
+        style={{ background: 'rgba(255,255,255,0.01)' }}
+      />
+      <div className="h-96" style={{ background: 'rgba(255,255,255,0.01)' }} />
+      <div className="h-64" style={{ background: 'rgba(255,255,255,0.01)' }} />
     </div>
   );
 }

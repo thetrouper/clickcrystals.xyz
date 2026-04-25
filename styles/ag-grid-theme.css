@@ -9,9 +9,12 @@
 .ag-root-wrapper,
 .ag-measurement-container,
 .ag-apply-theme-variables {
-  --ag-background-color: var(--ag-inherited-background-color, #1a1a1a);
-  --ag-foreground-color: var(--ag-inherited-foreground-color, #e0e0e0);
-  --ag-text-color: var(--ag-inherited-text-color, #cbd5e1);
+  --ag-background-color: var(--ag-inherited-background-color, rgb(7, 10, 20));
+  --ag-foreground-color: var(
+    --ag-inherited-foreground-color,
+    rgba(255, 255, 255, 0.9)
+  );
+  --ag-text-color: var(--ag-inherited-text-color, rgba(148, 163, 184, 1));
   --ag-accent-color: var(--ag-inherited-accent-color, transparent);
   --ag-range-selection-border-color: var(
     --ag-inherited-range-selection-border-color,
@@ -21,76 +24,47 @@
     --ag-inherited-range-selection-background-color,
     transparent
   );
-  --ag-focus-shadow: var(--ag-inherited-focus-shadow, none);
-  --ag-invalid-color: var(--ag-inherited-invalid-color, #e02525);
+  --ag-row-hover-color: var(
+    --ag-inherited-row-hover-color,
+    rgba(255, 255, 255, 0.03)
+  );
+  --ag-selected-row-background-color: var(
+    --ag-inherited-selected-row-background-color,
+    transparent
+  );
   --ag-border-color: var(
     --ag-inherited-border-color,
-    color-mix(in srgb, transparent, var(--ag-foreground-color) 8%)
+    rgba(255, 255, 255, 0.06)
   );
-  --ag-wrapper-border: var(
-    --ag-inherited-wrapper-border,
-    solid 1px var(--ag-border-color)
-  );
+  --ag-wrapper-border: var(--ag-inherited-wrapper-border, none);
   --ag-row-border: var(
     --ag-inherited-row-border,
-    solid 1px color-mix(in srgb, transparent, var(--ag-border-color) 40%)
-  );
-  --ag-color-scheme: var(--ag-inherited-color-scheme, light);
-  --ag-header-row-border: var(
-    --ag-inherited-header-row-border,
-    var(--ag-row-border)
-  );
-  --ag-footer-row-border: var(
-    --ag-inherited-footer-row-border,
-    var(--ag-row-border)
-  );
-  --ag-column-border: var(
-    --ag-inherited-column-border,
-    solid 1px var(--ag-border-color)
-  );
-  --ag-header-column-border: var(--ag-inherited-header-column-border, none);
-  --ag-header-column-border-height: var(
-    --ag-inherited-header-column-border-height,
-    100%
-  );
-  --ag-pinned-column-border: var(
-    --ag-inherited-pinned-column-border,
-    solid 1px var(--ag-border-color)
-  );
-  --ag-pinned-row-border: var(
-    --ag-inherited-pinned-row-border,
-    solid 1px var(--ag-border-color)
-  );
-  --ag-side-panel-border: var(
-    --ag-inherited-side-panel-border,
-    solid 1px var(--ag-border-color)
-  );
-  --ag-font-family: var(--ag-inherited-font-family, 'IBM Plex Sans');
-  --ag-chrome-background-color: var(
-    --ag-inherited-chrome-background-color,
-    color-mix(in srgb, transparent, var(--ag-foreground-color) 2%)
+    solid 1px rgba(255, 255, 255, 0.04)
   );
   --ag-header-background-color: var(
     --ag-inherited-header-background-color,
-    #f8fdff05
+    rgba(255, 255, 255, 0.03)
   );
-  --ag-header-font-family: var(--ag-inherited-header-font-family, inherit);
-  --ag-header-font-weight: var(--ag-inherited-header-font-weight, 500);
-  --ag-header-font-size: var(--ag-inherited-header-font-size, 14px);
-  --ag-header-text-color: var(--ag-inherited-header-text-color, #f8fafc);
-  --ag-header-cell-hover-background-color: var(
-    --ag-inherited-header-cell-hover-background-color,
+  --ag-header-text-color: var(
+    --ag-inherited-header-text-color,
+    rgba(255, 255, 255, 0.5)
+  );
+  --ag-header-font-size: var(--ag-inherited-header-font-size, 11px);
+  --ag-header-font-weight: var(--ag-inherited-header-font-weight, 600);
+  --ag-odd-row-background-color: var(
+    --ag-inherited-odd-row-background-color,
     transparent
   );
-  --ag-header-cell-hover-background-transition-duration: var(
-    --ag-inherited-header-cell-hover-background-transition-duration,
-    0.2s
+  --ag-row-hover-color: var(
+    --ag-inherited-row-hover-color,
+    rgba(255, 255, 255, 0.03)
   );
-  --ag-cell-text-color: var(--ag-inherited-cell-text-color, #012f41);
-  --ag-subtle-text-color: var(
-    --ag-inherited-subtle-text-color,
-    color-mix(in srgb, transparent, var(--ag-text-color) 50%)
+  --ag-selected-row-background-color: var(
+    --ag-inherited-selected-row-background-color,
+    rgba(37, 99, 235, 0.08)
   );
+  --ag-font-size: var(--ag-inherited-font-size, 13px);
+  --ag-color-scheme: var(--ag-inherited-color-scheme, dark);
   --ag-range-selection-border-style: var(
     --ag-inherited-range-selection-border-style,
     solid
@@ -133,7 +107,7 @@
   );
   --ag-odd-row-background-color: var(
     --ag-inherited-odd-row-background-color,
-    #ffffff
+    rgba(255, 255, 255, 0.02)
   );
   --ag-border-radius: var(--ag-inherited-border-radius, 4px);
   --ag-wrapper-border-radius: var(--ag-inherited-wrapper-border-radius, 4px);
@@ -5627,4 +5601,82 @@ input[class^='ag-'][type='range']:disabled {
   background-color: var(--ag-input-invalid-background-color);
   border: var(--ag-input-invalid-border);
   color: var(--ag-input-invalid-text-color);
+}
+
+/* Site theme overrides */
+.ag-root-wrapper {
+  background-color: rgb(7, 10, 20) !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+.ag-header {
+  background-color: rgba(255, 255, 255, 0.025) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+.ag-header-cell-text {
+  color: rgba(255, 255, 255, 0.35) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+}
+.ag-header-cell {
+  border-right: none !important;
+}
+.ag-row {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+.ag-row-odd {
+  background-color: rgba(255, 255, 255, 0.012) !important;
+}
+.ag-row-hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-left: 2px solid rgba(37, 99, 235, 0.6) !important;
+}
+.ag-row-selected::before,
+.ag-row.ag-row-selected::before {
+  display: none !important;
+}
+.ag-row-selected {
+  border-left: 2px solid rgba(37, 99, 235, 1) !important;
+}
+.ag-cell {
+  color: rgba(148, 163, 184, 1) !important;
+  border-right: none !important;
+  font-size: 13px !important;
+}
+.ag-pinned-left-cols-container .ag-cell,
+.ag-pinned-left-header .ag-header-cell {
+  background-color: rgba(7, 10, 20, 0.98) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+.ag-pinned-left-cols-container .ag-cell {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: -0.01em !important;
+}
+.ag-body-viewport,
+.ag-center-cols-viewport,
+.ag-body-horizontal-scroll-viewport,
+.ag-horizontal-left-spacer,
+.ag-horizontal-right-spacer {
+  background-color: rgb(7, 10, 20) !important;
+}
+.ag-cell-range-selected,
+.ag-cell-range-selected-1,
+.ag-cell-range-selected-2,
+.ag-cell-range-selected-3,
+.ag-cell-range-selected-4,
+.ag-cell.ag-cell-range-selected,
+.ag-body-viewport .ag-cell-range-single-cell {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.ag-ltr .ag-cell-focus:not(.ag-cell-range-selected):focus-within,
+.ag-rtl .ag-cell-focus:not(.ag-cell-range-selected):focus-within {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+  border: 1px solid transparent !important;
 }

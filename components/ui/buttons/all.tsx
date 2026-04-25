@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { Container } from '../Container';
 
@@ -12,7 +11,9 @@ type GetClickCrystalsProps = {
 };
 
 const secondaryClass =
-  'inline-block w-full sm:w-auto px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-full transition-all text-sm text-center duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)]';
+  'inline-block w-full sm:w-auto px-8 py-3.5 text-white font-semibold rounded-full transition-all text-sm text-center duration-200 active:scale-95 bg-slate-800/30 hover:bg-slate-800/60 border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]';
+
+const secondaryStyle = undefined;
 
 export function GetClickCrystalsButton({
   name = 'Get ClickCrystals',
@@ -28,6 +29,7 @@ export function GetClickCrystalsButton({
             ? 'bg-blue-600 hover:bg-blue-500 text-white border border-blue-700 shadow-[inset_0_1px_0_0_rgba(96,165,250,0.3)]'
             : secondaryClass
         }`}
+        style={variant === 'secondary' ? secondaryStyle : undefined}
       >
         {name}
       </Link>
@@ -38,7 +40,11 @@ export function GetClickCrystalsButton({
 export function JoinDiscordButton() {
   return (
     <Container tapScale={0.97}>
-      <Link href="https://discord.gg/n9hfHNJVe6" className={secondaryClass}>
+      <Link
+        href="https://discord.gg/n9hfHNJVe6"
+        className={secondaryClass}
+        style={secondaryStyle}
+      >
         Join Discord
       </Link>
     </Container>
@@ -48,7 +54,7 @@ export function JoinDiscordButton() {
 export function ExploreScriptsButton() {
   return (
     <Container tapScale={0.97}>
-      <Link href="/scripts" className={secondaryClass}>
+      <Link href="/scripts" className={secondaryClass} style={secondaryStyle}>
         Explore Scripts
       </Link>
     </Container>

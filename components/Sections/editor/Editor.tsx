@@ -91,19 +91,47 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
 
   return (
     <div>
-      <div className="flex flex-wrap bg-gradient-to-b from-slate-900 to-slate-950 gap-2 md:gap-3 pt-4 px-4 md:px-8 pb-4 items-center justify-between border-b border-slate-800/50">
+      <div
+        className="flex flex-wrap gap-2 md:gap-3 pt-4 px-4 md:px-8 pb-4 items-center justify-between"
+        style={{
+          background: 'rgb(7,10,20)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
         <div className="flex flex-wrap gap-2 md:gap-3">
           <button
             disabled={false}
             onClick={deCompressCode}
-            className="bg-slate-800/30 hover:bg-slate-800/50 font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]"
+            className="font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-all duration-200"
+            style={{
+              background: 'rgba(255,255,255,0.02)',
+              border: '1px solid rgba(255,255,255,0.06)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = 'rgba(255,255,255,0.05)')
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = 'rgba(255,255,255,0.02)')
+            }
           >
             Format
           </button>
           <button
             disabled={false}
             onClick={compressCode}
-            className="bg-slate-800/30 hover:bg-slate-800/50 font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-colors border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]"
+            className="font-semibold px-3 md:px-4 py-2 text-white text-xs md:text-sm rounded-lg transition-all duration-200"
+            style={{
+              background: 'rgba(255,255,255,0.02)',
+              border: '1px solid rgba(255,255,255,0.06)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = 'rgba(255,255,255,0.05)')
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = 'rgba(255,255,255,0.02)')
+            }
           >
             Minify
           </button>
@@ -113,10 +141,13 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
           <Save receiveCode={getEditorValue} disabled={false} />
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row h-screen bg-[#1e1e1e] text-white">
+      <div
+        className="flex flex-col lg:flex-row h-screen text-white"
+        style={{ background: 'rgb(7,10,20)' }}
+      >
         <div className="flex-1 h-1/2 lg:h-full relative">
           {!mounted && (
-            <div className="absolute inset-0 bg-slate-950 z-10 p-4 space-y-3">
+            <div className="absolute inset-0  z-10 p-4 space-y-3">
               <div className="h-4 bg-slate-800/50 rounded w-3/4 animate-pulse" />
               <div className="h-4 bg-slate-800/50 rounded w-full animate-pulse" />
               <div className="h-4 bg-slate-800/50 rounded w-5/6 animate-pulse" />
@@ -133,7 +164,7 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
             value={code}
             onChange={handleEditorChange}
             theme="ccs"
-            loading={<div className="h-full bg-[#1e1e1e]" />}
+            loading={<div className="h-full " />}
             options={{
               wordWrap: 'on',
               autoClosingBrackets: 'always',
@@ -145,12 +176,16 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
               acceptSuggestionOnCommitCharacter: true,
               tabSize: 2,
               readOnly: false,
+              minimap: { enabled: false },
             }}
           />
         </div>
 
-        <div className="flex-1 h-1/2 lg:h-full border-t lg:border-t-0 lg:border-l border-slate-800/50 relative">
-          {!mounted && <div className="absolute inset-0 bg-slate-950 z-10" />}
+        <div
+          className="flex-1 h-1/2 lg:h-full border-t lg:border-t-0 lg:border-l relative"
+          style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+        >
+          {!mounted && <div className="absolute inset-0  z-10" />}
           <Editor
             height="100%"
             defaultLanguage="ccs"
@@ -158,10 +193,11 @@ const CCSEditor = ({ defaultCode }: { defaultCode: string | null }) => {
             theme="ccs"
             value={result}
             onMount={() => {}}
-            loading={<div className="h-full bg-[#1e1e1e]" />}
+            loading={<div className="h-full " />}
             options={{
               readOnly: true,
               wordWrap: 'on',
+              minimap: { enabled: false },
             }}
           />
         </div>

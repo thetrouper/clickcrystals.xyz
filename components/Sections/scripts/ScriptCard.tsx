@@ -45,11 +45,28 @@ export default function ScriptCard({
 
   return (
     <div
-      className="relative bg-slate-800/40 hover:bg-slate-800/60 rounded-lg p-4 transition-all duration-200 group cursor-pointer shadow-[inset_0_1px_0_0_rgba(148,163,184,0.15)]"
+      className="relative rounded-xl p-4 transition-all duration-200 group cursor-pointer"
+      style={{
+        background: 'rgba(255,255,255,0.05)',
+        boxShadow:
+          'inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.5)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-2px)';
+        e.currentTarget.style.boxShadow =
+          'inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -2px 0 rgba(0,0,0,0.5)';
+        e.currentTarget.style.background = 'rgba(255,255,255,0.07)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow =
+          'inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.5)';
+        e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+      }}
       onClick={onToggle}
     >
       <div className="flex items-start justify-between mb-3 gap-3">
-        <h3 className="text-base font-semibold text-white group-hover:text-blue-400 transition-colors leading-tight">
+        <h3 className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors leading-tight">
           {title}
         </h3>
         <div className="flex gap-3 flex-shrink-0">
@@ -120,18 +137,26 @@ export default function ScriptCard({
           {author}
         </span>
         <span className="w-1 h-1 rounded-full bg-slate-600"></span>
-        <span className="text-xs text-blue-400/60 capitalize">{category}</span>
+        <span className="text-xs text-slate-500 capitalize">{category}</span>
       </div>
       <p className="text-sm text-slate-400 line-clamp-2 leading-relaxed">
         {description}
       </p>
-      <div
-        className={`${isExpanded ? 'block' : 'hidden'} mt-3 bg-slate-950/80 border border-slate-700/50 rounded p-3 max-h-32 overflow-y-auto`}
-      >
-        <pre ref={preRef} className="text-xs leading-relaxed">
-          <code className="text-slate-300 font-mono">{script}</code>
-        </pre>
-      </div>
+      {isExpanded && (
+        <div
+          className="mt-3 rounded-lg p-3 overflow-y-auto"
+          style={{
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
+          <pre ref={preRef} className="text-xs leading-relaxed">
+            <code className="text-slate-300 font-mono whitespace-pre-wrap">
+              {script}
+            </code>
+          </pre>
+        </div>
+      )}
     </div>
   );
 }

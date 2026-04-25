@@ -102,7 +102,10 @@ export default function Scripts() {
         </div>
       )}
 
-      <div className="sticky top-0 z-10 backdrop-blur-sm pb-4 -mt-4 pt-4 flex flex-col sm:flex-row gap-4 mb-4">
+      <div
+        className="sticky top-0 z-10 pb-4 -mt-4 pt-4 flex flex-col sm:flex-row gap-4 mb-4"
+        style={{ background: 'rgb(7,10,20)', backdropFilter: 'blur(12px)' }}
+      >
         <FilterSelectMenu
           value={selectedCategory}
           onChange={handleCategoryChange}
@@ -113,7 +116,13 @@ export default function Scripts() {
             placeholder="Search scripts..."
             value={searchQuery}
             onChange={handleSearchChange}
-            className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 focus:border-blue-500 pr-10"
+            className="pr-10 placeholder:text-slate-500"
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '10px',
+              color: 'white',
+            }}
           />
           {searchQuery && (
             <button
@@ -127,7 +136,10 @@ export default function Scripts() {
       </div>
 
       {loading ? (
-        <div className="h-5 w-32 bg-slate-800/50 rounded mb-3 animate-pulse" />
+        <div
+          className="h-5 w-32 rounded mb-3 animate-pulse"
+          style={{ background: 'rgba(255,255,255,0.12)' }}
+        />
       ) : (
         !error && (
           <p className="text-slate-400 text-sm mb-3">
@@ -137,10 +149,12 @@ export default function Scripts() {
         )
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-x-4">
         {loading ? (
           Array.from({ length: 34 }).map((_, index) => (
-            <SkeletonCard key={index} />
+            <div key={index} className="break-inside-avoid mb-4">
+              <SkeletonCard />
+            </div>
           ))
         ) : error ? (
           <div className="flex flex-col col-span-full text-center py-10 gap-2">
@@ -167,18 +181,19 @@ export default function Scripts() {
         ) : filteredScripts.length > 0 ? (
           <Suspense fallback={<SkeletonCard />}>
             {filteredScripts.map(([title, scriptData]: any) => (
-              <ScriptCard
-                key={title}
-                title={title}
-                author={scriptData.author}
-                description={scriptData.description}
-                script={scriptData.script}
-                category={scriptData.category}
-                isExpanded={expandedCard === title}
-                onToggle={() =>
-                  setExpandedCard(expandedCard === title ? null : title)
-                }
-              />
+              <div key={title} className="break-inside-avoid mb-4">
+                <ScriptCard
+                  title={title}
+                  author={scriptData.author}
+                  description={scriptData.description}
+                  script={scriptData.script}
+                  category={scriptData.category}
+                  isExpanded={expandedCard === title}
+                  onToggle={() =>
+                    setExpandedCard(expandedCard === title ? null : title)
+                  }
+                />
+              </div>
             ))}
           </Suspense>
         ) : (

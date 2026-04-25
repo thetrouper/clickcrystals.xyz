@@ -13,7 +13,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const NewConfigCard = dynamic(() => import('./NewConfig'), {
   ssr: false,
   loading: () => (
-    <div className="h-[200px] bg-slate-800/50 rounded animate-pulse" />
+    <div
+      className="h-[200px] rounded-xl"
+      style={{
+        background: 'rgba(255,255,255,0.02)',
+        border: '1px solid rgba(255,255,255,0.06)',
+      }}
+    />
   ),
 });
 
@@ -55,7 +61,13 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
           placeholder="Search configs..."
           value={filter}
           onChange={updateFilter}
-          className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 focus:border-blue-500"
+          className="placeholder:text-slate-600"
+          style={{
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '10px',
+            color: 'white',
+          }}
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
