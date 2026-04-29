@@ -11,9 +11,15 @@ type GetClickCrystalsProps = {
 };
 
 const secondaryClass =
-  'inline-block w-full sm:w-auto px-8 py-3.5 text-white font-semibold rounded-full transition-all text-sm text-center duration-200 active:scale-95 bg-slate-800/30 hover:bg-slate-800/60 border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]';
+  'inline-block w-full sm:w-auto px-8 py-3.5 text-white font-semibold rounded-full transition-all text-sm text-center duration-200 active:scale-95 border border-slate-900/50 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.2)]';
 
-const secondaryStyle = undefined;
+const secondaryStyle = {
+  backgroundColor: 'rgb(22,30,48)',
+} as React.CSSProperties;
+
+const secondaryHoverStyle = {
+  backgroundColor: 'rgb(30,41,59)',
+} as React.CSSProperties;
 
 export function GetClickCrystalsButton({
   name = 'Get ClickCrystals',
@@ -30,6 +36,16 @@ export function GetClickCrystalsButton({
             : secondaryClass
         }`}
         style={variant === 'secondary' ? secondaryStyle : undefined}
+        onMouseEnter={
+          variant === 'secondary'
+            ? (e) => (e.currentTarget.style.backgroundColor = 'rgb(30,41,59)')
+            : undefined
+        }
+        onMouseLeave={
+          variant === 'secondary'
+            ? (e) => (e.currentTarget.style.backgroundColor = 'rgb(22,30,48)')
+            : undefined
+        }
       >
         {name}
       </Link>
@@ -44,6 +60,12 @@ export function JoinDiscordButton() {
         href="https://discord.gg/n9hfHNJVe6"
         className={secondaryClass}
         style={secondaryStyle}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.backgroundColor = 'rgb(30,41,59)')
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.backgroundColor = 'rgb(22,30,48)')
+        }
       >
         Join Discord
       </Link>
@@ -54,7 +76,17 @@ export function JoinDiscordButton() {
 export function ExploreScriptsButton() {
   return (
     <Container tapScale={0.97}>
-      <Link href="/scripts" className={secondaryClass} style={secondaryStyle}>
+      <Link
+        href="/scripts"
+        className={secondaryClass}
+        style={secondaryStyle}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.backgroundColor = 'rgb(30,41,59)')
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.backgroundColor = 'rgb(22,30,48)')
+        }
+      >
         Explore Scripts
       </Link>
     </Container>
