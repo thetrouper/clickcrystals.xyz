@@ -27,7 +27,7 @@ export default function CCS() {
           transition={{ duration: 0.4 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
             Scripting
           </p>
           <h2

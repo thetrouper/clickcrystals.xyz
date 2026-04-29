@@ -170,6 +170,7 @@ const MenuOverlay = () => {
           <Link
             href="https://github.com/clickcrystals-development/ClickCrystals"
             target="_blank"
+            aria-label="GitHub"
             className="text-slate-400 hover:text-white transition-colors"
           >
             <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
@@ -177,6 +178,7 @@ const MenuOverlay = () => {
           <Link
             href="https://discord.gg/n9hfHNJVe6"
             target="_blank"
+            aria-label="Discord"
             className="text-slate-400 hover:text-white transition-colors"
           >
             <FontAwesomeIcon icon={faDiscord} className="w-5 h-5" />

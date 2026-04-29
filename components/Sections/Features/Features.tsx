@@ -16,7 +16,7 @@ export default function Features() {
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         <div className="mb-14">
-          <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
             Features
           </p>
           <h2

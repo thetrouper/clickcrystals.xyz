@@ -48,7 +48,7 @@ export default function Reviews() {
 
       <div className="relative max-w-7xl mx-auto px-8">
         <div className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
             Testimonials
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-6">

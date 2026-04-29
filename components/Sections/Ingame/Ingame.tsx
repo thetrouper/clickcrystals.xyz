@@ -37,7 +37,7 @@ export default function Ingame() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.4 }}
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
             Interface
           </p>
           <h2
