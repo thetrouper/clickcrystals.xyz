@@ -1,7 +1,11 @@
 'use client';
 
-import { AgGridReact } from 'ag-grid-react';
+import dynamic from 'next/dynamic';
 import '@/styles/ag-grid-theme.css';
+const AgGridReact = dynamic(
+  () => import('ag-grid-react').then((m) => ({ default: m.AgGridReact })),
+  { ssr: false },
+);
 import { useState, useMemo, useEffect } from 'react';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';

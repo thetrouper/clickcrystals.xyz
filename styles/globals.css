@@ -123,6 +123,12 @@ b {
   }
 }
 
+@media (max-width: 640px) {
+  .hero-bar {
+    animation-duration: 5s !important;
+  }
+}
+
 @keyframes barEntry {
   from {
     transform: scaleY(0);
@@ -136,6 +142,7 @@ b {
 
 .hero-bar {
   transition: filter 0.2s ease;
+  will-change: transform;
 }
 .hero-bar:hover {
   filter: brightness(2);
@@ -250,4 +257,17 @@ b {
 .monaco-editor .scrollbar,
 .monaco-editor .monaco-scrollable-element > .scrollbar {
   background-color: rgb(7, 10, 20) !important;
+}
+
+.hero-section {
+  contain: layout style;
+}
+
+.section-contain {
+  contain: layout style paint;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
 }

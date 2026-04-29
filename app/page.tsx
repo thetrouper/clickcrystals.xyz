@@ -1,20 +1,36 @@
 import Hero from '@/components/Sections/Hero/Hero';
-import Progress from '@/components/Sections/Progress/Progress';
-import CCS from '@/components/Sections/CCS/CCS';
-import Features from '@/components/Sections/Features/Features';
-import Ingame from '@/components/Sections/Ingame/Ingame';
-import Reviews from '@/components/Sections/Reviews/Reviews';
-import Footer from '@/components/ui/Footer';
+import dynamic from 'next/dynamic';
+
+const Progress = dynamic(
+  () => import('@/components/Sections/Progress/Progress'),
+);
+const CCS = dynamic(() => import('@/components/Sections/CCS/CCS'));
+const Features = dynamic(
+  () => import('@/components/Sections/Features/Features'),
+);
+const Ingame = dynamic(() => import('@/components/Sections/Ingame/Ingame'));
+const Reviews = dynamic(() => import('@/components/Sections/Reviews/Reviews'));
+const Footer = dynamic(() => import('@/components/ui/Footer'));
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Progress />
-      <CCS />
-      <Features />
-      <Ingame />
-      <Reviews />
+      <div className="content-auto">
+        <Progress />
+      </div>
+      <div className="content-auto">
+        <CCS />
+      </div>
+      <div className="content-auto">
+        <Features />
+      </div>
+      <div className="content-auto">
+        <Ingame />
+      </div>
+      <div className="content-auto">
+        <Reviews />
+      </div>
       <Footer />
     </>
   );

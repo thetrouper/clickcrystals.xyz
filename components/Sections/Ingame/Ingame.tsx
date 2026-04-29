@@ -35,8 +35,7 @@ export default function Ingame() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.4 }}
         >
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">
             Interface
@@ -56,14 +55,15 @@ export default function Ingame() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="relative max-w-7xl mx-auto mb-10"
         >
           <Image
             src={cc}
             alt="ClickCrystals Client Menu"
             className="rounded-2xl w-full relative z-10"
-            priority
+            priority={false}
+            loading="lazy"
             style={{
               imageRendering: 'pixelated',
               border: '1px solid rgba(255,255,255,0.06)',

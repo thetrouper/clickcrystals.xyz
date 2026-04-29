@@ -92,11 +92,15 @@ export default function Footer() {
       trail.length = 0;
     };
 
-    canvas.parentElement?.addEventListener('mousemove', handleMouseMove);
-    canvas.parentElement?.addEventListener('mouseleave', handleMouseLeave);
+    canvas.parentElement?.addEventListener('mousemove', handleMouseMove, {
+      passive: true,
+    });
+    canvas.parentElement?.addEventListener('mouseleave', handleMouseLeave, {
+      passive: true,
+    });
 
     const isMobile = window.innerWidth < 640;
-    const particles = Array.from({ length: isMobile ? 10 : 40 }, () => ({
+    const particles = Array.from({ length: isMobile ? 6 : 25 }, () => ({
       x: Math.random() * (canvas.width || 800),
       y: Math.random() * (canvas.height || 400),
       size: Math.random() * 1.8 + 0.4,
@@ -119,6 +123,7 @@ export default function Footer() {
         t.age++;
       });
 
+      let needsRedraw = false;
       particles.forEach((p) => {
         p.pulse += 0.005;
         const dx = mx - p.x;
@@ -126,6 +131,7 @@ export default function Footer() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (mx > 0 && dist < 180) {
+          needsRedraw = true;
           if (mouseRef.current.moving) {
             const f = (180 - dist) / 180;
             p.vx += dx * f * 0.02;
@@ -142,6 +148,8 @@ export default function Footer() {
           p.vx += (p.baseSpeedX - p.vx) * 0.04;
           p.vy += (p.baseSpeedY - p.vy) * 0.04;
         }
+
+        if (Math.abs(p.vx) > 0.01 || Math.abs(p.vy) > 0.01) needsRedraw = true;
 
         p.vx *= 0.93;
         p.vy *= 0.93;

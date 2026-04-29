@@ -2,13 +2,11 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import HeroBars from './HeroBars';
 import {
   GetClickCrystalsButton,
   JoinDiscordButton,
 } from '@/components/ui/buttons/all';
-
-const HeroBars = dynamic(() => import('./HeroBars'), { ssr: false });
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +20,7 @@ export default function Hero() {
   const textY = useTransform(scrollYProgress, [0, 0.35], [0, -20]);
 
   return (
-    <div ref={containerRef} className="relative h-[300vh]">
+    <div ref={containerRef} className="relative h-[250vh]">
       <div
         className="sticky top-0 h-screen overflow-hidden"
         style={{ backgroundColor: 'rgb(7,10,20)' }}
@@ -31,7 +29,11 @@ export default function Hero() {
 
         <motion.div
           className="relative z-[2] h-full flex flex-col items-center justify-center text-center px-4"
-          style={{ opacity: textOpacity, y: textY }}
+          style={{
+            opacity: textOpacity,
+            y: textY,
+            willChange: 'opacity, transform',
+          }}
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Crystal PvP Mod

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { useScroll, useTransform, motion } from 'framer-motion';
 
 export default function HeroBars({
   containerRef,
@@ -14,6 +14,7 @@ export default function HeroBars({
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
+    layoutEffect: false,
   });
 
   const barsScaleY = useTransform(scrollYProgress, [0.2, 1], [1, 0]);
@@ -26,7 +27,9 @@ export default function HeroBars({
 
   useEffect(() => {
     const update = () => {
-      const count = Math.floor(window.innerWidth / 120);
+      const isMobile = window.innerWidth < 640;
+      const divisor = isMobile ? 80 : 120;
+      const count = Math.floor(window.innerWidth / divisor);
       setVisibleBars(Math.max(5, count % 2 === 0 ? count - 1 : count));
     };
     update();
@@ -34,7 +37,7 @@ export default function HeroBars({
     let timer: ReturnType<typeof setTimeout>;
     const debounced = () => {
       clearTimeout(timer);
-      timer = setTimeout(update, 150);
+      timer = setTimeout(update, 200);
     };
     window.addEventListener('resize', debounced);
     return () => {
@@ -51,6 +54,7 @@ export default function HeroBars({
         scaleY: barsScaleY,
         opacity: ready ? 1 : 0,
         transition: 'opacity 0.3s',
+        willChange: 'transform',
       }}
     >
       {Array.from({ length: visibleBars }).map((_, index) => {
@@ -62,11 +66,12 @@ export default function HeroBars({
             style={{
               flex: `1 0 calc(100% / ${visibleBars})`,
               maxWidth: `calc(100% / ${visibleBars} + 1px)`,
-              height: '102%',
+              height: '100%',
               background:
                 'linear-gradient(to top, rgb(37,99,235), rgb(7,10,20))',
               transformOrigin: 'bottom',
-              animation: `barEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.06}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
+              willChange: 'transform',
+              animation: `barEntry 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.04}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
               // @ts-ignore
               '--initial-scale': Math.round((height / 100) * 10000) / 10000,
             }}

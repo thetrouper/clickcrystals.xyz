@@ -24,7 +24,7 @@ export default function CCS() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           className="max-w-3xl mx-auto text-center"
         >
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400/60 font-semibold mb-4">

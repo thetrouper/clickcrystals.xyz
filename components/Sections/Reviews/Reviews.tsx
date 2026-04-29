@@ -25,7 +25,7 @@ export default function Reviews() {
         }}
       />
 
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-[0.06]"
           style={{
@@ -70,6 +70,7 @@ export default function Reviews() {
                 alt=""
                 width={32}
                 height={32}
+                loading="lazy"
                 className="w-8 h-8 rounded-full ring-2 ring-[rgb(7,10,20)] bg-slate-800"
                 style={{
                   zIndex: staffAvatars.length - i,

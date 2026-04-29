@@ -28,7 +28,7 @@ const Feature = ({
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.35, delay: index * 0.06 }}
       className="group relative flex flex-col h-full p-7 rounded-2xl transition-colors duration-300"
       style={{
         background: 'rgba(255,255,255,0.02)',
