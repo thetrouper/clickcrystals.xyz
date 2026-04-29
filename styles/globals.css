@@ -125,7 +125,7 @@ b {
 
 @media (max-width: 640px) {
   .hero-bar {
-    animation-duration: 0.01s, 5s !important;
+    animation-duration: 5s !important;
   }
 }
 
