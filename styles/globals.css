@@ -126,6 +126,7 @@ b {
 @media (max-width: 640px) {
   .hero-bar {
     animation-duration: 5s !important;
+    animation-name: pulseBar !important;
   }
 }
 
@@ -265,9 +266,4 @@ b {
 
 .section-contain {
   contain: layout style paint;
-}
-
-.content-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
 }
