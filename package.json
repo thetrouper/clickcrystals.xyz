@@ -40,7 +40,7 @@
     "framer-motion": "^11.3.17",
     "lucide-react": "^0.577.0",
     "monaco-editor": "^0.52.0",
-    "next": "14.2.5",
+    "next": "^14.2.29",
     "next-auth": "^4.24.7",
     "nprogress": "^0.2.0",
     "react": "^18",
