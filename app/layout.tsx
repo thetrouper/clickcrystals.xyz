@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { inter, interHeading } from './fonts';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import Header from '@/components/ui/Nav';
 import { cn } from '@/lib/utils';
@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     'ClickCrystals is a Fabric mod for Minecraft with 100+ modules, a custom scripting engine, and precision hotkeys for Crystal PvP.',
   authors: [{ name: 'ItziSpyder', url: 'https://github.com/ItziSpyder' }],
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
+};
+
+export const viewport = {
+  themeColor: 'rgb(7,10,20)',
 };
 
 export default function RootLayout({
