@@ -9,12 +9,60 @@ import Link from 'next/link';
 
 const faqs = [
   {
+    question: 'How do I install ClickCrystals?',
+    answer: (
+      <>
+        ClickCrystals requires the{' '}
+        <b className="text-white">Fabric mod loader</b>. Follow these steps:
+        <br />
+        <br />
+        1. Install{' '}
+        <Link
+          href="https://fabricmc.net/use/installer/"
+          target="_blank"
+          className="text-blue-400 hover:text-blue-300"
+        >
+          Fabric Loader
+        </Link>{' '}
+        for your Minecraft version.
+        <br />
+        2. Download{' '}
+        <Link
+          href="https://modrinth.com/mod/fabric-api"
+          target="_blank"
+          className="text-blue-400 hover:text-blue-300"
+        >
+          Fabric API
+        </Link>{' '}
+        and place it in your mods folder.
+        <br />
+        3. Download ClickCrystals from the{' '}
+        <Link href="/download" className="text-blue-400 hover:text-blue-300">
+          download page
+        </Link>{' '}
+        and place the <b className="text-white">.jar</b> file in your mods
+        folder.
+        <br />
+        <br />
+        Your mods folder is located at:
+        <br />
+        <b className="text-white">Windows:</b> %appdata%\.minecraft\mods
+        <br />
+        <b className="text-white">macOS:</b> ~/Library/Application
+        Support/minecraft/mods
+        <br />
+        <b className="text-white">Linux:</b> ~/.minecraft/mods
+      </>
+    ),
+  },
+  {
     question: 'Why is ClickCrystals banned on Modrinth?',
     answer: (
       <>
-        The ClickCrystals project is <b>withheld, not banned</b> on Modrinth due
-        to concerns regarding potential unfair advantages it may provide. This
-        is not a ban, but a precautionary measure.
+        The ClickCrystals project is{' '}
+        <b className="text-white">withheld, not banned</b> on Modrinth due to
+        concerns regarding potential unfair advantages it may provide. This is
+        not a ban, but a precautionary measure.
         <Image
           src={'/img/banned.png'}
           width={900}
@@ -29,11 +77,12 @@ const faqs = [
     question: 'Why is my game crashing?',
     answer: (
       <>
-        Crashes may occur due to <b>incompatibility issues</b>. Previous
-        versions of ClickCrystals included a feature called Discord RPC, which
-        displayed your activities on Discord. This feature, however, was only
-        supported on Linux and Windows, leading to incompatibility with macOS
-        and PojavLauncher
+        Crashes may occur due to{' '}
+        <b className="text-white">incompatibility issues</b>. Previous versions
+        of ClickCrystals included a feature called Discord RPC, which displayed
+        your activities on Discord. This feature, however, was only supported on
+        Linux and Windows, leading to incompatibility with macOS and
+        PojavLauncher
         <br />
         <br />
         To fix this, either get the new version of ClickCrystals, where we
@@ -46,12 +95,12 @@ const faqs = [
     answer: (
       <>
         In May 2023, a counterfeit version of ClickCrystals was created and
-        distributed by an individual using the alias <b>L0rax</b> (also known as
-        Niksa_). This version contained malicious code designed to steal your
-        Microsoft account details, Skyblock information, and IP address via a
-        Discord webhook. After a concerted effort of months, the malicious
-        version was removed, the webhook was destroyed and the issue was
-        resolved.
+        distributed by an individual using the alias{' '}
+        <b className="text-white">L0rax</b> (also known as Niksa_). This version
+        contained malicious code designed to steal your Microsoft account
+        details, Skyblock information, and IP address via a Discord webhook.
+        After a concerted effort of months, the malicious version was removed,
+        the webhook was destroyed and the issue was resolved.
         <br />
         <br />
         Only download ClickCrystals from official links provided on our website.
@@ -73,16 +122,16 @@ const faqs = [
         <Link
           href="https://bit.ly/ccs-wiki"
           target="_blank"
-          className="text-blue-600"
+          className="text-blue-400 hover:text-blue-300"
         >
           CCS Docs
         </Link>
         ,{' '}
-        <Link href="/editor" className="text-blue-600">
+        <Link href="/editor" className="text-blue-400 hover:text-blue-300">
           CCS Editor
         </Link>
         ,{' '}
-        <Link href="/scripts" className="text-blue-600">
+        <Link href="/scripts" className="text-blue-400 hover:text-blue-300">
           CCS Scripts Archive
         </Link>{' '}
       </>
@@ -150,7 +199,7 @@ export default function FAQ() {
   const rightColumnFAQs = faqs.filter((_, i) => i % 2 !== 0);
 
   return (
-    <Accordion type="single">
+    <Accordion type="single" collapsible>
       <div className="flex flex-col lg:flex-row lg:justify-between mx-0 lg:mx-4">
         <div className="w-full lg:w-1/2 lg:mx-4">
           {leftColumnFAQs.map((faq, i) => (

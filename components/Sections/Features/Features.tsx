@@ -2,19 +2,31 @@ import FeaturesGrid from './FeaturesGrid';
 
 export default function Features() {
   return (
-    <section className="p-6 lg:p-8 bg-gray-800 text-white">
-      <div className="py-8 text-center px-4 items-center">
-        <h1 className="text-center text-white tracking-tight leading-[1.3] font-extrabold text-3xl lg:text-4xl mb-2">
-          We care about your needs. Participate in a{' '}
-          <span className="text-blue-500">leveled</span>, playing field
-        </h1>
-        <div className="w-full flex flex-row justify-center">
-          <p className="text-gray-400 font-normal m-0 text-center max-w-4xl">
-            We believe in equity. Clickcrystals can be adapated to fit the needs
-            of anyone who uses it. Want to press less buttons when PvPing? Then
-            clickcrystals is for you. Want something custom tailored to your
-            prefernces? Script it to your liking. ClickCrystals comes
-            hassle-free.
+    <section
+      className="relative py-16 md:py-28 overflow-hidden"
+      style={{ background: 'rgb(7,10,20)' }}
+    >
+      <div
+        className="absolute top-0 inset-x-0 h-px"
+        style={{
+          background:
+            'linear-gradient(to right, transparent, rgba(59,130,246,0.5), transparent)',
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+        <div className="mb-14">
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+            Features
+          </p>
+          <h2
+            className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            What's Included
+          </h2>
+          <p className="text-base md:text-lg text-slate-400 max-w-xl">
+            Core systems designed for competitive Crystal PvP.
           </p>
         </div>
         <FeaturesGrid />

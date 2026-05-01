@@ -1,9 +1,30 @@
-import { Card, CardContent } from '@/components/ui/card';
+'use client';
+
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function SkeletonCard() {
   return (
-    <Card className="cursor-pointer transition-colors flex flex-col animate-pulse">
-      <CardContent className="h-[200px] flex items-center justify-center text-muted-foreground/20 p-3"></CardContent>
-    </Card>
+    <SkeletonTheme
+      baseColor="rgba(255,255,255,0.03)"
+      highlightColor="rgba(255,255,255,0.07)"
+      duration={1.4}
+    >
+      <div
+        className="rounded-xl p-4"
+        style={{
+          background: 'rgba(255,255,255,0.02)',
+          border: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
+        <div className="mb-3">
+          <Skeleton height={14} width="66%" borderRadius={4} />
+        </div>
+        <div className="mb-3">
+          <Skeleton height={11} width="33%" borderRadius={4} />
+        </div>
+        <Skeleton height={11} borderRadius={4} />
+      </div>
+    </SkeletonTheme>
   );
 }

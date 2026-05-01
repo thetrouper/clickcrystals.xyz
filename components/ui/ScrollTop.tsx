@@ -37,7 +37,7 @@ export const ScrollTop = () => {
       }`}
       onClick={handleScrollTop}
     >
-      <button className="text-primary-400 ml-auto aspect-square cursor-pointer rounded-full bg-blue-600 px-1 hover:bg-blue-800 sm:px-2 transition-colors">
+      <button className="text-primary-400 ml-auto aspect-square cursor-pointer rounded-full bg-blue-600 px-1 hover:bg-blue-500 sm:px-2 transition-colors">
         <Image
           src={scrollIcon}
           className="w-6 h-6"

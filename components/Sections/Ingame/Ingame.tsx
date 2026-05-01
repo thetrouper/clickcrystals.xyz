@@ -1,87 +1,88 @@
 'use client';
 
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import cc from '@/public/cc-home.png';
 import {
   GetClickCrystalsButton,
   MoreScreenshotsButton,
 } from '@/components/ui/buttons/all';
-import { useScroll, useTransform, motion } from 'framer-motion';
-import { useRef } from 'react';
 
 export default function Ingame() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const translateY = useTransform(scrollYProgress, [0, 1], [180, -180]);
-
   return (
-    <section className="py-4" ref={sectionRef}>
-      <div className="py-6 px-4 flex flex-row justify-center">
-        <div className="px-0 md:px-6">
-          <div className="w-full flex flex-row justify-center">
-            <Image
-              src={cc}
-              alt="ClickCrystals Client Menu"
-              className="px-6 rounded-lg [mask-image:linear-gradient(to_bottom,black_25%,black_50%,black_75%,transparent)]"
-              style={{
-                imageRendering: 'pixelated',
-              }}
-            />
-          </div>
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
-            <span className="text-xl md:text-2xl lg:text-3xl">
-              Ultimate utilities are inside!
-            </span>
-            <br />
-            That <span className="text-blue-600">enhance</span> your experience!
-          </h1>
-          <div className="w-full flex flex-row justify-center">
-            <p className="text-gray-500 font-normal my-4 text-center max-w-4xl">
-              We have so many things which we haven't listed out here! Built-in
-              modules, ClickScript IDE, Configs, Renders, Capes & much... much
-              more. Just give us a try and then tell us how you lived without
-              CC?
-            </p>
-          </div>
-          <div className="flex flex-row gap-4 justify-center">
-            <GetClickCrystalsButton />
-            <MoreScreenshotsButton />
-          </div>
-        </div>
+    <section
+      className="relative py-16 md:py-28 overflow-hidden"
+      style={{ background: 'rgb(7,10,20)' }}
+    >
+      <div
+        className="absolute top-0 inset-x-0 h-px"
+        style={{
+          background:
+            'linear-gradient(to right, transparent, rgba(59,130,246,0.5), transparent)',
+        }}
+      />
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] opacity-[0.04]"
+          style={{
+            background: 'radial-gradient(ellipse, #3b82f6, transparent 70%)',
+          }}
+        />
       </div>
-      <div className="hidden lg:block">
-        <motion.img
-          src={'/img/clickscript.png'}
-          alt=""
-          className="left-[20px] top-[2480px] absolute size-[150px]"
-          style={{
-            imageRendering: 'pixelated',
-            translateY,
-          }}
-        />
-        <motion.img
-          src={'/textures/totem.png'}
-          alt=""
-          className="right-[20px] top-[2153px] absolute size-[120px]"
-          style={{
-            imageRendering: 'pixelated',
-            rotate: '-9deg',
-            translateY,
-          }}
-        />
-        <motion.img
-          src={'/icon.png'}
-          alt=""
-          className="right-[80px] top-[2580px] absolute size-[50px]"
-          style={{
-            rotate: '-19deg',
-            translateY,
-          }}
-        />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+        >
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+            Interface
+          </p>
+          <h2
+            className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            In-Game Interface
+          </h2>
+          <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
+            Everything you need, accessible without leaving the game
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="relative max-w-7xl mx-auto mb-10"
+        >
+          <Image
+            src={cc}
+            alt="ClickCrystals Client Menu"
+            className="rounded-2xl w-full relative z-10"
+            priority={false}
+            loading="lazy"
+            style={{
+              imageRendering: 'pixelated',
+              border: '1px solid rgba(255,255,255,0.06)',
+              boxShadow:
+                '0 32px 80px rgba(0,0,0,0.6), 0 0 80px 10px rgba(59,130,246,0.1)',
+            }}
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center"
+        >
+          <MoreScreenshotsButton />
+          <GetClickCrystalsButton variant="secondary" />
+        </motion.div>
       </div>
     </section>
   );

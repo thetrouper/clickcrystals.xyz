@@ -2,15 +2,16 @@
 
 import { AgGridReact } from 'ag-grid-react';
 import '@/styles/ag-grid-theme.css';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { parseNumber } from '@/lib/utils';
 import Downloads from './downloads';
-import Link from 'next/link';
 import Image from 'next/image';
 import modrinthIcon from '@/public/icons/modrinth.svg';
 import curseforgeIcon from '@/public/icons/curseforge.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 type Source = 'all' | 'modrinth' | 'curseforge' | 'github';
 
@@ -25,126 +26,119 @@ interface DownloadTableProps {
 
 function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
   return [
-    { field: 'version', pinned: true, movable: false, width: 126 },
+    {
+      field: 'version',
+      pinned: 'left' as const,
+      lockPosition: true,
+      width: 140,
+      cellStyle: {
+        fontWeight: '700',
+        color: '#ffffff',
+        letterSpacing: '-0.01em',
+      },
+    },
     {
       field: 'code',
-      headerName: 'Release',
+      headerName: 'Source',
       cellRenderer: (params: any) => (
-        <Link href={params.value} className="text-blue-500">
-          Open
-        </Link>
+        <a
+          href={params.value}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs transition-colors focus:outline-none"
+          style={{ color: 'rgba(147,197,253,0.7)' }}
+        >
+          GitHub ↗
+        </a>
       ),
-      width: 115,
+      width: 110,
     },
     {
       field: 'downloads',
-      cellRenderer: (params: any) => parseNumber(params.value),
-      width: 115,
+      headerName: 'Downloads',
+      cellRenderer: (params: any) => (
+        <span className="font-mono text-slate-400 text-xs">
+          {parseNumber(params.value)}
+        </span>
+      ),
+      width: 120,
     },
     ...mcVersions.map((col) => ({
       field: col.field,
       headerName: col.headerName,
       cellRenderer: (params: any) =>
-        params.value === null ? (
-          'Not available'
-        ) : (
-          <Link href={params.value} className="text-blue-500">
+        params.value ? (
+          <a
+            href={params.value}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 text-xs font-medium transition-colors focus:outline-none"
+          >
             Download
-          </Link>
+          </a>
+        ) : (
+          <span className="text-slate-800 text-xs">—</span>
         ),
-      width: 160,
+      width: 130,
     })),
   ];
 }
 
-/**
- * Merge releases from Modrinth, CurseForge, and GitHub into a single "All" view.
- * Priority: Modrinth > CurseForge > GitHub.
- * For each mod version, pick the best release link and merge asset URLs by priority.
- * No duplicate MC version assets per mod version.
- */
 function buildAllData(
   dataCache: Record<Exclude<Source, 'all'>, SourceData | null>,
 ): SourceData {
-  // Priority order: modrinth first, curseforge second, github last
   const sources: Exclude<Source, 'all'>[] = [
     'modrinth',
     'curseforge',
     'github',
   ];
-
-  // Collect all mc version columns across all sources
-  const allFieldMap = new Map<string, string>(); // field -> headerName
+  const allFieldMap = new Map<string, string>();
   for (const src of sources) {
     const data = dataCache[src];
     if (!data) continue;
     for (const col of data.mcVersions) {
-      if (!allFieldMap.has(col.field)) {
+      if (!allFieldMap.has(col.field))
         allFieldMap.set(col.field, col.headerName);
-      }
     }
   }
-
-  // Merge rows by mod version
   const merged = new Map<
     string,
     { code: string; downloads: number; assets: Record<string, string | null> }
   >();
-
   for (const src of sources) {
     const data = dataCache[src];
     if (!data) continue;
-
     for (const row of data.rows) {
       const version: string = row.version;
-
       if (!merged.has(version)) {
-        merged.set(version, {
-          code: row.code,
-          downloads: 0,
-          assets: {},
-        });
-        // Initialize all fields to null
-        for (const field of Array.from(allFieldMap.keys())) {
+        merged.set(version, { code: row.code, downloads: 0, assets: {} });
+        for (const field of Array.from(allFieldMap.keys()))
           merged.get(version)!.assets[field] = null;
-        }
       }
-
       const entry = merged.get(version)!;
-      // Sum downloads across all sources
       entry.downloads += row.downloads ?? 0;
-
-      // For each MC version field, fill in the asset URL only if not already set
-      // (higher priority sources are processed first)
       for (const field of Array.from(allFieldMap.keys())) {
-        if (entry.assets[field] === null && row[field] != null) {
+        if (entry.assets[field] === null && row[field] != null)
           entry.assets[field] = row[field];
-        }
       }
     }
   }
-
-  // Build release rows
   const releases: Record<string, any>[] = [];
-  merged.forEach((entry, version) => {
+  merged.forEach((entry, version) =>
     releases.push({
       version,
       code: entry.code,
       downloads: entry.downloads,
       ...entry.assets,
-    });
-  });
-
-  // Build mc version columns (only those with at least one non-null value)
+    }),
+  );
   const fieldsWithData = new Set<string>();
   for (const release of releases) {
     for (const [key, val] of Object.entries(release)) {
-      if (!['version', 'code', 'downloads'].includes(key) && val != null) {
+      if (!['version', 'code', 'downloads'].includes(key) && val != null)
         fieldsWithData.add(key);
-      }
     }
   }
-
   const mcVersions = Array.from(fieldsWithData)
     .filter((field) => allFieldMap.has(field))
     .map((field) => ({ field, headerName: allFieldMap.get(field)! }))
@@ -157,177 +151,246 @@ function buildAllData(
       }
       return 0;
     });
-
   return { rows: releases, mcVersions };
 }
 
+const filterSources = [
+  { key: 'all' as const, label: 'All', icon: null },
+  { key: 'modrinth' as const, label: 'Modrinth', icon: 'modrinth' },
+  { key: 'curseforge' as const, label: 'CurseForge', icon: 'curseforge' },
+  { key: 'github' as const, label: 'GitHub', icon: 'github' },
+];
+
 export default function DownloadTable({ initialData }: DownloadTableProps) {
   const [source, setSource] = useState<Source>('all');
-  const dataCache = initialData;
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   const availableSources = useMemo(
     () => ({
-      modrinth: dataCache.modrinth !== null,
-      curseforge: dataCache.curseforge !== null,
-      github: dataCache.github !== null,
+      modrinth: initialData.modrinth !== null,
+      curseforge: initialData.curseforge !== null,
+      github: initialData.github !== null,
     }),
-    [dataCache],
+    [initialData],
   );
 
-  // Compute "all" merged data
-  const allData = useMemo(() => buildAllData(dataCache), [dataCache]);
-
-  const currentData = source === 'all' ? allData : dataCache[source];
+  const allData = useMemo(() => buildAllData(initialData), [initialData]);
+  const currentData = source === 'all' ? allData : initialData[source];
   const rowData = currentData?.rows ?? [];
   const colDefs = currentData ? buildColDefs(currentData.mcVersions) : [];
 
-  const handleSourceChange = (newSource: Source) => {
-    if (newSource === source) return;
-    if (newSource !== 'all' && !availableSources[newSource]) return;
-    setSource(newSource);
-  };
-
   return (
-    <div className="my-4">
-      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-700">
-        Download Statistics
-      </h2>
-      <p className="text-gray-600 mb-4 max-w-4xl">
-        Here you can see the exact total download count of ClickCrystals from
-        its all official sources. You can download any release for the available
-        minecraft versions from the table below as well.
-      </p>
+    <div>
       <Downloads />
 
-      <div className="my-4">
-        <p className="text-xs text-black max-w-2xl select-none mt-2">
-          The table below shows several of the recent releases of ClickCrystals.
-          If you want to see all our 90+ releases, please visit our GitHub
-          releases page.
-          <br />
-          <br />
-          Many of the minecraft versions are not supported by the mod, so if
-          there isn't a specific column for your version, it may not be
-          supported.
-          <br />
-          <br />
-          <span className="font-semibold">Note:</span> you might have to scroll
-          right in the grid to see downloads for other versions.
-        </p>
-        <div className="border-l-4 border-yellow-500 bg-yellow-100 p-4 my-4">
-          <p className="md:max-w-3xl text-sm text-yellow-800 font-semibold mb-2">
-            Important Safety Warning:
-          </p>
-          <p className="md:max-w-3xl text-xs">
-            ClickCrystals is only available for the Fabric modloader and there
-            are no current or future plans to port the mod to other modloaders.
-          </p>
-          <p className="md:max-w-3xl text-xs text-yellow-900 mt-2">
-            If you see any downloads for ClickCrystals on other modloaders, they
-            are not official and may contain malicious code. Please only
-            download ClickCrystals from the official sources listed below.
-            <br />
-            <br />
-            <span className="font-semibold">
-              This is not rare, we have seen several websites publishing
-              unofficial malware versions of ClickCrystals.
-            </span>{' '}
-            Therefore, please be careful and only download from the official
-            sources listed on our website.
-          </p>
-        </div>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-2 mb-3">
-        <span className="text-xs text-gray-500 font-medium select-none w-full sm:w-auto">
-          Showing releases from:
-        </span>
-        <button
-          onClick={() => handleSourceChange('all')}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
-            source === 'all'
-              ? 'bg-[#6366f1] text-white shadow-sm'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-          } cursor-pointer`}
-        >
+      <div
+        className="mt-16 mb-10 rounded-xl p-6 relative overflow-hidden"
+        style={{
+          background: 'rgba(255,255,255,0.02)',
+          border: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
+        <div
+          className="absolute top-0 left-0 right-0 h-[2px]"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(234,179,8,0.9), rgba(234,179,8,0.2), transparent)',
+          }}
+        />
+        <div
+          className="absolute top-0 left-0 w-48 h-16 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse at 0% 0%, rgba(234,179,8,0.07), transparent 70%)',
+          }}
+        />
+        <div className="relative flex items-center gap-2.5 mb-3">
           <svg
-            className="size-3.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5}
+            className="w-4 h-4 text-yellow-400 shrink-0"
+            fill="currentColor"
+            viewBox="0 0 20 20"
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
+              fillRule="evenodd"
+              d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z"
+              clipRule="evenodd"
             />
           </svg>
-          All
-        </button>
-        <button
-          onClick={() => handleSourceChange('modrinth')}
-          disabled={!availableSources.modrinth}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
-            source === 'modrinth'
-              ? 'bg-[#1bd96a] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-          } ${!availableSources.modrinth ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-        >
-          <Image
-            src={modrinthIcon}
-            width={14}
-            height={14}
-            alt=""
-            className="size-3.5"
-          />
-          Modrinth
-        </button>
-        <button
-          onClick={() => handleSourceChange('curseforge')}
-          disabled={!availableSources.curseforge}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
-            source === 'curseforge'
-              ? 'bg-[#f16436] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-          } ${!availableSources.curseforge ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-        >
-          <Image
-            src={curseforgeIcon}
-            width={14}
-            height={14}
-            alt=""
-            className="size-3.5"
-          />
-          CurseForge
-        </button>
-        <button
-          onClick={() => handleSourceChange('github')}
-          disabled={!availableSources.github}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
-            source === 'github'
-              ? 'bg-[#24292f] text-white shadow-sm'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-          } ${!availableSources.github ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-        >
-          <FontAwesomeIcon icon={faGithub} className="size-3.5" />
-          GitHub
-        </button>
+          <p className="text-yellow-400 font-semibold text-sm">
+            Safety Warning
+          </p>
+        </div>
+        <p className="relative text-slate-300 text-sm leading-relaxed mb-1.5">
+          ClickCrystals is only available for the{' '}
+          <span className="text-white font-semibold">Fabric modloader</span>.
+          Downloads for other modloaders are not official and may contain
+          malicious code.
+        </p>
+        <p className="relative text-slate-500 text-sm leading-relaxed">
+          We have seen several websites publishing unofficial malware versions.
+          Only download from the official sources listed above.
+        </p>
       </div>
 
-      <div className="ag-theme-custom h-[467px]">
-        <AgGridReact
-          key={source}
-          columnDefs={colDefs}
-          rowData={rowData}
-          suppressTouch={false}
-          pagination={true}
-          paginationPageSize={10}
-          paginationPageSizeSelector={[10, 20, 30, 50, 100]}
-          paginationAutoPageSize={true}
-          suppressMenuHide={true}
-        />
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-1.5">
+          {filterSources.map(({ key, label, icon }) => {
+            const disabled =
+              key !== 'all' && !availableSources[key as Exclude<Source, 'all'>];
+            const active = source === key;
+            return (
+              <button
+                key={key}
+                onClick={() => {
+                  if (!disabled) setSource(key);
+                }}
+                disabled={disabled}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                  active
+                    ? 'bg-blue-600 text-white border border-blue-700'
+                    : 'text-slate-400 hover:text-white'
+                } ${disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
+                style={
+                  active
+                    ? {
+                        boxShadow: 'inset 0 1px 0 rgba(96,165,250,0.3)',
+                      }
+                    : {
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(255,255,255,0.07)',
+                      }
+                }
+              >
+                {icon === 'modrinth' && (
+                  <Image src={modrinthIcon} width={10} height={10} alt="" />
+                )}
+                {icon === 'curseforge' && (
+                  <Image src={curseforgeIcon} width={10} height={10} alt="" />
+                )}
+                {icon === 'github' && (
+                  <FontAwesomeIcon icon={faGithub} className="w-2.5 h-2.5" />
+                )}
+                {label}
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-slate-700 text-xs hidden md:block">
+          Scroll right for more · down for older releases
+        </p>
       </div>
+
+      <SkeletonTheme
+        baseColor="rgba(255,255,255,0.04)"
+        highlightColor="rgba(255,255,255,0.08)"
+      >
+        <div
+          className="hidden md:block rounded-2xl overflow-hidden"
+          style={{
+            border: '1px solid rgba(255,255,255,0.06)',
+            boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
+          }}
+        >
+          {!ready ? (
+            <div
+              className="h-[467px] p-0"
+              style={{ background: 'rgba(255,255,255,0.02)' }}
+            >
+              <Skeleton height={44} borderRadius={0} />
+              <div className="p-3 space-y-1.5">
+                {Array(14)
+                  .fill(null)
+                  .map((_, i) => (
+                    <Skeleton key={i} height={32} borderRadius={6} />
+                  ))}
+              </div>
+            </div>
+          ) : (
+            <div className="ag-theme-quartz-dark h-[467px]">
+              <AgGridReact
+                key={source}
+                columnDefs={colDefs}
+                rowData={rowData}
+                suppressTouch={false}
+                suppressMenuHide={true}
+                suppressRowClickSelection={true}
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="block md:hidden space-y-2">
+          {!ready ? (
+            <div className="space-y-2">
+              {Array(8)
+                .fill(null)
+                .map((_, i) => (
+                  <Skeleton key={i} height={64} borderRadius={12} />
+                ))}
+            </div>
+          ) : (
+            (currentData?.mcVersions ?? []).map((col, i) => {
+              const release = rowData.find((r: any) => r[col.field]);
+              const href = release?.[col.field];
+              if (!href) return null;
+              return (
+                <a
+                  key={i}
+                  href={href}
+                  className="flex items-center justify-between py-4 px-5 rounded-xl transition-all active:scale-[0.98]"
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background =
+                      'rgba(255,255,255,0.05)')
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background =
+                      'rgba(255,255,255,0.03)')
+                  }
+                >
+                  <div>
+                    <p className="text-white font-semibold text-sm">
+                      {col.headerName}
+                    </p>
+                    <p className="text-slate-500 text-[11px] font-mono mt-0.5">
+                      v{release?.version}
+                    </p>
+                  </div>
+                  <svg
+                    className="w-4 h-4 text-blue-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                </a>
+              );
+            })
+          )}
+        </div>
+
+        <a
+          href="https://github.com/clickcrystals-development/ClickCrystals/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block md:hidden text-center py-4 text-slate-600 hover:text-slate-400 text-xs transition-colors mt-2"
+        >
+          View all 90+ releases on GitHub →
+        </a>
+      </SkeletonTheme>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import NewConfigCard from './NewConfig';
-import prisma from '@/lib/db';
+import dynamic from 'next/dynamic';
+import { NextAuthProvider } from '@/lib/provider';
 import ConfigCard from './ConfigCard';
 import { Input } from '@/components/ui/input';
 import SearchCategoryMenu from './SearchCategoryMenu';
@@ -9,6 +9,19 @@ import SkeletonCard from './SkeletonCard';
 import { Suspense, useState } from 'react';
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const NewConfigCard = dynamic(() => import('./NewConfig'), {
+  ssr: false,
+  loading: () => (
+    <div
+      className="h-[200px] rounded-xl"
+      style={{
+        background: 'rgba(255,255,255,0.02)',
+        border: '1px solid rgba(255,255,255,0.06)',
+      }}
+    />
+  ),
+});
 
 export default function ConfigsGrid({ configs }: { configs: any }) {
   const [category, setCategory] = useState('All');
@@ -41,28 +54,35 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
 
   return (
     <div>
-      <div className="flex mb-4 gap-4">
+      <div className="flex gap-4 mb-4">
         <SearchCategoryMenu value={category} onChange={updateCategory} />
         <Input
           type="text"
-          placeholder="Filter Configs"
+          placeholder="Search configs..."
           value={filter}
           onChange={updateFilter}
+          className="placeholder:text-slate-600"
+          style={{
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '10px',
+            color: 'white',
+          }}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <Suspense fallback={<Fallback />}>
           {filteredConfigs.length === 0 ? (
             <div className="flex flex-col col-span-full text-center py-10 gap-2">
               <FontAwesomeIcon
                 icon={faXmarkCircle}
-                className="size-8 text-black left-0 right-0 mx-auto"
+                className="size-8 text-slate-500 left-0 right-0 mx-auto"
               />
-              <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
-                No scripts found
+              <h2 className="text-2xl font-semibold text-slate-400 font-sans tracking-tight">
+                No configs found
               </h2>
               <div className="flex justify-center">
-                <p className="text-gray-500 text-center max-w-4xl">
+                <p className="text-slate-500 text-center max-w-4xl">
                   Try adjusting your search or filters to find what you&apos;re
                   looking for.
                 </p>
@@ -70,7 +90,9 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
             </div>
           ) : (
             <>
-              <NewConfigCard />
+              <NextAuthProvider>
+                <NewConfigCard />
+              </NextAuthProvider>
               {filteredConfigs.map((config: any) => (
                 <ConfigCard key={config.id} config={config} />
               ))}

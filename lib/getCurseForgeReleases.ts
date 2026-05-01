@@ -56,21 +56,12 @@ async function fetchAllFiles(): Promise<CurseForgeFile[]> {
   return allFiles;
 }
 
-/**
- * Extract the mod version from a CurseForge file's displayName.
- * Patterns: "ClickCrystals-1.21.11-1.3.9.jar" -> "1.3.9"
- *           "v1.20-1.2.0" -> "1.2.0"
- */
 function extractModVersion(displayName: string): string {
   const cleaned = displayName.replace(/\.jar$/i, '');
   const parts = cleaned.split('-');
   return parts[parts.length - 1];
 }
 
-/**
- * Filter gameVersions to only include MC version strings (e.g. "1.21.11", "26.1"),
- * excluding "Client", "Fabric", and snapshot versions.
- */
 function extractMcVersions(gameVersions: string[]): string[] {
   return gameVersions.filter(
     (v) => v !== 'Client' && v !== 'Fabric' && !v.includes('Snapshot'),
@@ -85,11 +76,10 @@ export async function getCurseForgeParsedReleases(): Promise<{
 
   const versionFieldMap = new Map<string, string>();
 
-  // Group files by mod version
   const groups = new Map<
     string,
     {
-      assets: Map<string, string>; // field key -> download URL
+      assets: Map<string, string>;
       totalDownloads: number;
       firstFileId: number;
     }
@@ -119,7 +109,6 @@ export async function getCurseForgeParsedReleases(): Promise<{
     }
   }
 
-  // Fetch CC version mappings
   let mappings: Record<string, string | null> = {};
   try {
     const resp = await fetch(
@@ -128,18 +117,14 @@ export async function getCurseForgeParsedReleases(): Promise<{
     );
     const info = await resp.json();
     mappings = info['versionMappings'] ?? {};
-  } catch {
-    // Continue without mappings
-  }
+  } catch {}
 
-  // Register mapping versions in field map
   for (const vk of Object.keys(mappings)) {
     if (!versionFieldMap.has(vk)) {
       versionFieldMap.set(vk, vk.replaceAll('.', ''));
     }
   }
 
-  // Build releases
   const allFields = Array.from(versionFieldMap.values());
   const releases: Record<string, any>[] = [];
 
@@ -161,7 +146,6 @@ export async function getCurseForgeParsedReleases(): Promise<{
     releases.push(release);
   });
 
-  // Apply version mappings
   for (const [versionKey, mappedVersion] of Object.entries(mappings)) {
     const key = versionKey.replaceAll('.', '');
     const mappedKey =
@@ -178,7 +162,6 @@ export async function getCurseForgeParsedReleases(): Promise<{
     }
   }
 
-  // Build column defs from fields that have data
   const fieldsWithData = new Set<string>();
   for (const release of releases) {
     for (const [key, val] of Object.entries(release)) {

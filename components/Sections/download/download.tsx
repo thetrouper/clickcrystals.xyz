@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 import modrinth from '@/public/icons/modrinth.svg';
 import curseforge from '@/public/icons/curseforge.svg';
-import planetmc from '@/public/icons/planetmc.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { DownloadLink } from './DownloadLink';
@@ -19,71 +18,45 @@ interface DownloadProps {
 
 export default function Download({ initialData }: DownloadProps) {
   return (
-    <main className="my-12 mx-6 md:mx-24">
-      <div className="py-0 ">
-        <div className="place-self-center">
-          <h1 className="text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            Download <span className="text-blue-600">ClickCrystals</span>
+    <main
+      className="min-h-screen py-12 md:py-24"
+      style={{ background: 'rgb(7,10,20)' }}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 md:mb-4 tracking-tight">
+            Download <span className="text-blue-500">ClickCrystals</span>
           </h1>
-          <p className="text-gray-500 font-normal max-w-4xl my-3">
-            Our official downloads are available on CurseForge, PlanetMC,
-            Modrinth and GitHub. Please refrain from downloading ClickCrystals
-            from any other website other than listed here.
+          <p className="text-sm md:text-base text-slate-200 max-w-3xl mx-auto leading-relaxed">
+            Official downloads are available on CurseForge, Modrinth, and
+            GitHub. Only download from these trusted sources.
           </p>
-          <div className="flex flex-row gap-2">
-            <DownloadLink
-              link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
-              label="CurseForge"
-              className="ring-[#ff7547] border-[#ff7547] bg-[#f16436] hover:bg-[#df582c]"
-              icon={
-                <Image
-                  src={curseforge}
-                  width={24}
-                  height={24}
-                  alt="CurseForge"
-                  className="size-6 md:size-5"
-                />
-              }
-            />
-            <DownloadLink
-              link="https://planetminecraft.com/mod/clickcrystal"
-              label="PlanetMC"
-              className="ring-[#2697b3] border-[#2697b3] bg-[#1f86a0] hover:bg-[#126377]"
-              icon={
-                <Image
-                  src={planetmc}
-                  width={24}
-                  height={24}
-                  alt="PlanetMC"
-                  className="size-6 md:size-5"
-                />
-              }
-            />
-            <DownloadLink
-              link="https://modrinth.com/mod/clickcrystals"
-              label="Modrinth"
-              className="ring-[#3eb326] border-[#3eb326] bg-[#39a822] hover:bg-[#2d8a1a]"
-              icon={
-                <Image
-                  src={modrinth}
-                  width={24}
-                  height={24}
-                  alt="Modrinth"
-                  className="size-6 md:size-5"
-                />
-              }
-            />
-            <DownloadLink
-              link="https://github.com/clickcrystals-development/ClickCrystals/releases"
-              label="GitHub"
-              className="ring-[#3c444b] border-[#3c444b] bg-[#202529] hover:bg-[#181b1f]"
-              icon={
-                <FontAwesomeIcon icon={faGithub} className="size-6 md:size-5" />
-              }
-            />
-          </div>
-          <DownloadTable initialData={initialData} />
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 pt-4 md:pt-6">
+          <DownloadLink
+            link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
+            label="CurseForge"
+            primary={true}
+            icon={
+              <Image src={curseforge} width={24} height={24} alt="CurseForge" />
+            }
+          />
+          <DownloadLink
+            link="https://github.com/clickcrystals-development/ClickCrystals/releases"
+            label="GitHub"
+            icon={<FontAwesomeIcon icon={faGithub} className="w-6 h-6" />}
+          />
+          <DownloadLink
+            link="https://modrinth.com/mod/clickcrystals"
+            label="Modrinth"
+            icon={
+              <Image src={modrinth} width={24} height={24} alt="Modrinth" />
+            }
+          />
+        </div>
+
+        <DownloadTable initialData={initialData} />
       </div>
     </main>
   );

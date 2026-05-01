@@ -1,17 +1,5 @@
 'use client';
 
-const slides = [
-  'cc-home',
-  'cc-bulletin',
-  'cc-modules',
-  'cc-config',
-  'cc-search',
-  'cc-huds',
-  'cc-settings',
-  'cc-scripts',
-  'cc-ide',
-];
-
 import Autoplay from 'embla-carousel-autoplay';
 import {
   Carousel,
@@ -20,78 +8,80 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
 import { type CarouselApi } from '@/components/ui/carousel';
 import { useEffect, useState } from 'react';
-
 import Image from 'next/image';
 import {
   GetClickCrystalsButton,
   JoinDiscordButton,
 } from '@/components/ui/buttons/all';
 
+const slides = [
+  { file: 'cc-home', label: 'Home' },
+  { file: 'cc-bulletin', label: 'Bulletin' },
+  { file: 'cc-modules', label: 'Modules' },
+  { file: 'cc-config', label: 'Config' },
+  { file: 'cc-search', label: 'Search' },
+  { file: 'cc-huds', label: 'HUDs' },
+  { file: 'cc-settings', label: 'Settings' },
+  { file: 'cc-scripts', label: 'Scripts' },
+  { file: 'cc-ide', label: 'IDE' },
+];
+
 export default function Gallery() {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const [current, setCurrent] = useState(1);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
+    if (!api) return;
     setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on('select', () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
+    api.on('select', () => setCurrent(api.selectedScrollSnap() + 1));
   }, [api]);
 
   return (
-    <main className="mx-8 my-12 md:mx-24">
-      <div className="flex flex-row justify-center">
-        <Carousel
-          opts={{
-            align: 'start',
-          }}
-          setApi={setApi}
-          plugins={[
-            Autoplay({
-              delay: 4000,
-            }),
-          ]}
-          className="mx-auto max-w-[800px] md:max-w-[1000px]"
-        >
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] mb-4 font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            ClickCrystals <span className="text-blue-600">Gallery</span>
-          </h1>
-          <CarouselContent>
-            {slides.map((slide: string, i) => (
-              <CarouselItem key={i}>
-                <Image
-                  src={`/gallery/${slide}.png`}
-                  className="size-auto rounded-3xl"
-                  alt={`Slide ${slide}}`}
-                  width={900}
-                  height={300}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+    <>
+      <Carousel
+        opts={{ align: 'start', loop: true }}
+        setApi={setApi}
+        plugins={[Autoplay({ delay: 4000 })]}
+        className="max-w-5xl mx-auto mb-4"
+      >
+        <CarouselContent>
+          {slides.map((slide, i) => (
+            <CarouselItem key={i}>
+              <Image
+                src={`/gallery/${slide.file}.png`}
+                alt={slide.label}
+                width={900}
+                height={300}
+                className="w-full rounded-xl border border-slate-700/50 shadow-2xl"
+                style={{ imageRendering: 'pixelated' }}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      <div className="flex justify-center gap-1.5 mb-10">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => api?.scrollTo(i)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              current === i + 1
+                ? 'w-6 bg-blue-500'
+                : 'w-1.5 bg-slate-600 hover:bg-slate-500'
+            }`}
+          />
+        ))}
       </div>
-      <div className="flex flex-row justify-center mb-4">
-        <p className="text-sm text-slate-800 font-medium mt-4 text-center">
-          Swipe left or right to change slides.
-        </p>
-      </div>
-      <div className="flex flex-row gap-4 justify-center">
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <GetClickCrystalsButton />
         <JoinDiscordButton />
       </div>
-    </main>
+    </>
   );
 }

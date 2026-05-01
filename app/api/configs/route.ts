@@ -1,8 +1,8 @@
-import prisma from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   try {
+    const prisma = (await import('@/lib/db')).default;
     const configs = await prisma.config.findMany({
       select: {
         id: true,
@@ -10,36 +10,14 @@ export async function GET(request: NextRequest) {
         description: true,
         categories: true,
         config: true,
-        user: {
-          select: {
-            id: true,
-            name: true,
-            avatar: true,
-          },
-        },
+        user: true,
       },
       orderBy: {
         createdAt: 'desc',
       },
     });
-
-    const response = configs.map((config) => ({
-      id: config.id.toString(),
-      authorId: config.user.id.toString(),
-      author: config.user.name,
-      authorImage: config.user.avatar,
-      name: config.title,
-      description: config.description,
-      categories: config.categories,
-      contentsUrl: `${request.nextUrl.origin}/api/configs/${config.id}`,
-    }));
-
-    return NextResponse.json(response);
+    return NextResponse.json(configs);
   } catch (error) {
-    console.error('Error fetching configs:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 },
-    );
+    return NextResponse.json([]);
   }
 }

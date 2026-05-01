@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getLatestLink } from '@/lib/getLatest';
 
-export const revalidate = 7200; // 2 hours
+export const revalidate = 7200;
 
 export async function GET() {
   const link = await getLatestLink();

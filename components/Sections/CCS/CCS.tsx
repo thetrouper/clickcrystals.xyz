@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import {
   ExploreScriptsButton,
   GetClickCrystalsButton,
@@ -7,31 +8,60 @@ import {
 
 export default function CCS() {
   return (
-    <section className="my-10">
-      <div className="py-0 px-4 max-w-full grid gap-8">
-        <div className="place-self-center col-span-5 lg:col-span-7">
-          <h1 className="text-center text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl lg:max-w-2xl mb-6 m-0">
-            Meet <span className="text-blue-600">ClickScript</span>—Your
-            Personalized
-            <br />
-            Custom <span className="text-blue-600">Scripting Language</span>!
-          </h1>
-          <p className="text-gray-500 font-normal max-w-2xl m-0 text-center">
-            ClickScript (CCS) lets you create modules, macros, and more. Write
-            .ccs files, and use our in-game editor to build, debug, and run
-            scripts. Download and enable scripts from our online library or
-            manually add your own. Explore prebuilt scripts published by
-            community and staff on our discord!
+    <section
+      className="relative py-16 md:py-28 overflow-hidden"
+      style={{ background: 'rgb(7,10,20)' }}
+    >
+      <div
+        className="absolute top-0 inset-x-0 h-px"
+        style={{
+          background:
+            'linear-gradient(to right, transparent, rgba(59,130,246,0.5), transparent)',
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="max-w-3xl mx-auto text-center"
+        >
+          <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+            Scripting
           </p>
-          <div className="text-gray-500 text-xs my-4 text-center">
-            We have killauras, powerful macros & lot amazing scripts that have
-            been proven to bypass anticheats
-          </div>
-          <div className="flex flex-row gap-4 justify-center">
+          <h2
+            className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            Meet ClickScript
+          </h2>
+          <p className="text-base md:text-lg text-slate-400 mb-10 leading-relaxed">
+            A built-in scripting engine for creating custom modules and
+            automating gameplay — no Java required.
+          </p>
+
+          <ul className="space-y-3 mb-10 max-w-sm mx-auto text-left">
+            {[
+              'Built-in IDE with syntax highlighting',
+              'Hot reload — test scripts without restarting',
+              'Community script library included',
+            ].map((item, i) => (
+              <li
+                key={i}
+                className="flex items-center gap-3 text-slate-300 text-sm"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
             <GetClickCrystalsButton name="Script Editor" link="/editor" />
             <ExploreScriptsButton />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

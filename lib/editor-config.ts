@@ -122,9 +122,9 @@ export const languageDef = {
 export const configuration = {
   comments: {},
   brackets: [
-    ['{', '}'],
-    ['[', ']'],
-    ['(', ')'],
+    ['{', '}'] as [string, string],
+    ['[', ']'] as [string, string],
+    ['(', ')'] as [string, string],
   ],
 };
 
@@ -144,5 +144,20 @@ export const theme = {
     { token: 'number', foreground: 'B5CEA8' },
     { token: 'brackets', foreground: 'D4D4D4' },
   ],
-  colors: {},
+  colors: {
+    'editor.background': '#07090e',
+    'editor.lineHighlightBackground': '#ffffff08',
+    'editorLineNumber.foreground': '#ffffff20',
+    'editorLineNumber.activeForeground': '#ffffff50',
+    'editorCursor.foreground': '#6366f1',
+    'editor.selectionBackground': '#6366f130',
+    'editorIndentGuide.background1': '#ffffff08',
+    'editorGutter.background': '#07090e',
+    'editorWidget.background': '#07090e',
+    'editorSuggestWidget.background': '#07090e',
+    'editorSuggestWidget.border': '#ffffff10',
+    'scrollbarSlider.background': '#ffffff10',
+    'scrollbarSlider.hoverBackground': '#ffffff18',
+    'minimap.background': '#07090e',
+  },
 };

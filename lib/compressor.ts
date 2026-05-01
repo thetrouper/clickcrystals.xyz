@@ -1,5 +1,5 @@
 const info =
-  '\n\nThe error has also logged into the console.\n\nIf this issue happens often, reach out to the support team on our discord.\nhttps://discord.gg/zg3ge9VTgr';
+  '\n\nThe error has also logged into the console.\n\nIf this issue happens often, reach out to the support team on our discord.\nhttps://discord.gg/n9hfHNJVe6';
 
 export class Compressor {
   compress(scr: string): string {

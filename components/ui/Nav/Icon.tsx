@@ -5,14 +5,19 @@ import Link from 'next/link';
 type IconProps = {
   icon: IconDefinition;
   url: string;
+  hoverColor?: string;
 };
 
-export const Icon = ({ icon, url }: IconProps) => {
+export const Icon = ({
+  icon,
+  url,
+  hoverColor = 'hover:text-gray-700',
+}: IconProps) => {
   return (
     <Link
       href={url}
       target="_blank"
-      className="focus:text-gray-700 hover:text-gray-700 inline-flex items-center p-2.5 rounded-lg text-sm transition-custom"
+      className={`focus:text-gray-700 ${hoverColor} inline-flex items-center p-2.5 rounded-lg text-sm transition-custom`}
     >
       <FontAwesomeIcon icon={icon} className="size-5 text-gray-400" />
     </Link>

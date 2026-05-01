@@ -16,7 +16,7 @@ export const Container = ({
 }: ContainerProps) => {
   return (
     <motion.div
-      className={`transition scale-1 inline cursor-pointer ${className}`}
+      className={`transition scale-1 flex justify-center sm:inline cursor-pointer ${className}`}
       whileTap={{ scale: tapScale }}
       whileHover={{ scale: hoverScale }}
       transition={{ duration: 0.1 }}

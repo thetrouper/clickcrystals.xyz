@@ -2,78 +2,110 @@
 
 import { DropLink } from './DropLink';
 import { NavLink } from './NavLink';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import {
+  Download,
+  History,
+  CircleHelp,
+  Sliders,
+  MonitorPlay,
+  Code2,
+} from 'lucide-react';
 
 const downloadDropdown = [
   {
-    label: 'Official',
-    url: '/download',
-  },
-  {
-    label: 'Instant Download',
+    label: 'Latest',
     url: '/get',
+    primary: true,
+    iconType: 'lucide' as const,
+    icon: Download,
   },
   {
-    label: 'PlanetMinecraft',
-    url: 'https://www.planetminecraft.com/mod/clickcrystal/',
-    seperate: true,
+    label: 'Versions',
+    url: '/download',
+    iconType: 'lucide' as const,
+    icon: History,
   },
   {
     label: 'CurseForge',
     url: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
+    external: true,
+    separate: true,
+    iconType: 'img' as const,
+    iconSrc: '/icons/curseforge.svg',
   },
   {
-    label: 'GitHub Releases',
+    label: 'GitHub',
     url: 'https://github.com/clickcrystals-development/ClickCrystals/releases',
+    external: true,
+    iconType: 'fa' as const,
+    icon: faGithub,
   },
   {
     label: 'Modrinth',
     url: 'https://modrinth.com/mod/clickcrystals',
-    seperate: true,
+    external: true,
+    iconType: 'img' as const,
+    iconSrc: '/icons/modrinth.svg',
   },
 ];
 
 const moreDropdown = [
   {
-    label: 'Configs Library',
-    url: '/configs',
-  },
-  {
     label: 'Help',
     url: '/help',
+    iconType: 'lucide' as const,
+    icon: CircleHelp,
   },
   {
-    label: 'Gallery',
+    label: 'Configs',
+    url: '/configs',
+    iconType: 'lucide' as const,
+    icon: Sliders,
+  },
+  {
+    label: 'Preview',
     url: '/gallery',
+    iconType: 'lucide' as const,
+    icon: MonitorPlay,
   },
-  // {
-  //   "label": "Tools",
-  //   "url": "#"
-  // },
   {
-    label: 'Other Projects',
+    label: 'Projects',
     url: '/projects',
-    seperate: true,
+    iconType: 'lucide' as const,
+    icon: Code2,
   },
 ];
 
-export const links = [
-  <NavLink label="Home" url="/" key={0} />,
+export const getLinks = (onLinkClick?: () => void) => [
+  <NavLink label="Home" url="/" key={0} onLinkClick={onLinkClick} />,
   <DropLink
     label="Download"
     links={downloadDropdown}
     url="/download"
     key={1}
+    onLinkClick={onLinkClick}
   />,
-  <NavLink label="Scripts" url="/scripts" key={2} />,
-  <NavLink label="Editor" url="/editor" key={3} />,
+  <NavLink label="Scripts" url="/scripts" key={2} onLinkClick={onLinkClick} />,
+  <NavLink label="Editor" url="/editor" key={3} onLinkClick={onLinkClick} />,
   <NavLink
     label="Wiki"
     url="https://bit.ly/ccs-wiki"
     key={4}
     target="_blank"
+    onLinkClick={onLinkClick}
   />,
-  <DropLink label="More" links={moreDropdown} url="#" key={5} />,
+  <DropLink
+    label="More"
+    links={moreDropdown}
+    url="#"
+    key={5}
+    align="right"
+    onLinkClick={onLinkClick}
+  />,
 ];
+
+export const links = getLinks();
 
 export const Nav = () => {
   return (
