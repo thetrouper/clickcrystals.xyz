@@ -15,10 +15,11 @@ function useCountUp(end: number, duration = 2000) {
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
+          const startVal = Math.floor(end * 0.85);
           const start = performance.now();
           const tick = (now: number) => {
             const p = Math.min((now - start) / duration, 1);
-            setCount(Math.floor(p * end));
+            setCount(Math.floor(startVal + p * (end - startVal)));
             if (p < 1) requestAnimationFrame(tick);
             else setCount(end);
           };
