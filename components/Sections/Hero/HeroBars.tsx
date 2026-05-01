@@ -1,15 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
+
+function getInitialBars() {
+  if (typeof window === 'undefined') return 9;
+  const count = Math.floor(window.innerWidth / 120);
+  return Math.max(5, count % 2 === 0 ? count - 1 : count);
+}
 
 export default function HeroBars({
   containerRef,
 }: {
   containerRef: React.RefObject<HTMLDivElement>;
 }) {
-  const [visibleBars, setVisibleBars] = useState(0);
-  const [ready, setReady] = useState(false);
+  const [visibleBars, setVisibleBars] = useState(getInitialBars);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -27,13 +32,9 @@ export default function HeroBars({
 
   useEffect(() => {
     const update = () => {
-      const isMobile = window.innerWidth < 640;
-      const divisor = isMobile ? 80 : 120;
-      const count = Math.floor(window.innerWidth / divisor);
+      const count = Math.floor(window.innerWidth / 120);
       setVisibleBars(Math.max(5, count % 2 === 0 ? count - 1 : count));
     };
-    update();
-    setReady(true);
     let timer: ReturnType<typeof setTimeout>;
     const debounced = () => {
       clearTimeout(timer);
@@ -46,19 +47,25 @@ export default function HeroBars({
     };
   }, []);
 
+  const center = Math.floor(visibleBars / 2);
+  const entryDuration = 0.55;
+  const maxStagger = center * 0.05;
+  const pulseDelay = entryDuration + maxStagger + 0.1;
+
   return (
     <motion.div
       className="absolute inset-0 z-0 overflow-hidden flex"
+      suppressHydrationWarning
       style={{
         transformOrigin: 'bottom',
         scaleY: barsScaleY,
-        opacity: ready ? 1 : 0,
-        transition: 'opacity 0.3s',
         willChange: 'transform',
       }}
     >
       {Array.from({ length: visibleBars }).map((_, index) => {
         const height = calculateHeight(index, visibleBars);
+        const distFromCenter = Math.abs(index - center);
+        const stagger = distFromCenter * 0.05;
         return (
           <div
             key={index}
@@ -71,7 +78,7 @@ export default function HeroBars({
                 'linear-gradient(to top, rgb(37,99,235), rgb(7,10,20))',
               transformOrigin: 'bottom',
               willChange: 'transform',
-              animation: `barEntry 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.04}s both, pulseBar 3.5s ease-in-out 0s infinite alternate`,
+              animation: `barEntry ${entryDuration}s cubic-bezier(0.16, 1, 0.3, 1) ${stagger}s both, pulseBar 3.5s ease-in-out ${pulseDelay + stagger * 0.5}s infinite alternate`,
               // @ts-ignore
               '--initial-scale': Math.round((height / 100) * 10000) / 10000,
             }}

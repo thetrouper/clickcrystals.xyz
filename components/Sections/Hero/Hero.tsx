@@ -2,11 +2,27 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import HeroBars from './HeroBars';
+import dynamic from 'next/dynamic';
 import {
   GetClickCrystalsButton,
   JoinDiscordButton,
 } from '@/components/ui/buttons/all';
+
+const HeroBars = dynamic(() => import('./HeroBars'), { ssr: false });
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,21 +51,38 @@ export default function Hero() {
             willChange: 'opacity, transform',
           }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Crystal PvP Mod
-            <br />
-            <span className="text-slate-400">for Minecraft</span>
-          </h1>
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col items-center"
+          >
+            <motion.h1
+              variants={fadeUp}
+              className="font-bold text-white mb-6 leading-tight"
+              style={{ fontSize: 'clamp(2.25rem, 7vw + 1rem, 5rem)' }}
+            >
+              Crystal PvP Mod
+              <br />
+              <span className="text-slate-400">for Minecraft</span>
+            </motion.h1>
 
-          <p className="text-base md:text-lg text-slate-300 mb-10 max-w-xl mx-auto">
-            100+ modules, custom scripting engine, and precision hotkeys —
-            everything you need to dominate Crystal PvP.
-          </p>
+            <motion.p
+              variants={fadeUp}
+              className="text-base md:text-lg text-slate-300 mb-10 max-w-xl mx-auto"
+            >
+              100+ modules, custom scripting engine, and precision hotkeys —
+              everything you need to dominate Crystal PvP.
+            </motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <GetClickCrystalsButton />
-            <JoinDiscordButton />
-          </div>
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col sm:flex-row justify-center gap-4"
+            >
+              <GetClickCrystalsButton />
+              <JoinDiscordButton />
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </div>
