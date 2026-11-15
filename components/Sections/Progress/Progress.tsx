@@ -21,7 +21,7 @@ export default function Progress() {
     },
     {
       metric: 'Years',
-      value: 2,
+      value: new Date().getFullYear() - 2023,
       postfix: '+',
     },
   ];
@@ -37,15 +37,15 @@ export default function Progress() {
 
   return (
     <div className="py-12 bg-[#0c3768] my-0 bg-[radial-gradient(ellipse_200%_200%_at_bottom_left,#054874,#000000_100%)]">
-      <div className="rounded-md py-8 px-4 lg:px-32 flex gap-4 sm:flex-row flex-col justify-between">
+      <div className="rounded-md py-8 px-4 lg:px-32 flex gap-4 sm:flex-row flex-col items-center sm:items-stretch justify-between">
         {progress.map((progress, index) => {
           return (
             <div
               key={index}
-              className="flex flex-col items-center justify-center mx-4"
+              className="flex flex-col items-center justify-center mx-4 w-40"
             >
               <Container>
-                <h2 className="text-yellow-300 text-4xl font-bold flex flex-row">
+                <h2 className="text-yellow-300 text-4xl font-bold flex flex-row justify-center">
                   <CountUp
                     start={0}
                     end={progress.value}
