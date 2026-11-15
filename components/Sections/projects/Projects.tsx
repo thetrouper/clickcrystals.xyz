@@ -136,18 +136,18 @@ const projects = [
 export default function Projects() {
   return (
     <>
-      <Table className="border">
+      <Table className="border border-[#276CB0]/30 text-[#F4F8FF]">
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[200px]">Project</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead className="w-[200px]">Link</TableHead>
-            <TableHead className="w-[150px]">Author</TableHead>
+          <TableRow className="border-[#276CB0]/30 hover:bg-[#14213A]">
+            <TableHead className="w-[200px] text-[#F4F8FF]/60">Project</TableHead>
+            <TableHead className="text-[#F4F8FF]/60">Description</TableHead>
+            <TableHead className="w-[200px] text-[#F4F8FF]/60">Link</TableHead>
+            <TableHead className="w-[150px] text-[#F4F8FF]/60">Author</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {projects.map((project, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} className="border-[#276CB0]/30 hover:bg-[#14213A]">
               <TableCell className="font-medium">{project.name}</TableCell>
               <TableCell>{project.description}</TableCell>
               <TableCell>
@@ -161,7 +161,7 @@ export default function Projects() {
                           href={link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600"
+                          className="text-[#61ADEC]"
                         >
                           {label}{' '}
                         </Link>
@@ -175,7 +175,7 @@ export default function Projects() {
                   href={authors[project.author as keyof typeof authors]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-900"
+                  className="text-[#61ADEC]/70"
                 >
                   {project.author}
                 </Link>{' '}

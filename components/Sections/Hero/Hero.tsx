@@ -8,18 +8,18 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="py-4 lg:py-2 text-white bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#054874,#000000_100%)]">
+    <section className="py-4 lg:py-2 text-white bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#164B91,#0D1830_100%)]">
       <div className="py-6 px-8 xl:grid xl:gap-8 xl:grid-cols-12 xl:py-8 xl:min-h-screen">
         <div className="place-self-center col-span-5 xl:col-span-7 h-auto py-8 xl:py-0">
-          <h1 className="md:text-center xl:text-left text-gray-200 tracking-normal leading-[1] font-extrabold text-6xl md:text-7xl xl:text-8xl xl:max-w-2xl mb-6 m-0">
+          <h1 className="md:text-center xl:text-left text-[#F4F8FF] tracking-normal leading-[1] font-extrabold text-6xl md:text-7xl xl:text-8xl xl:max-w-2xl mb-6 m-0">
             Better Hotkeys,
             <br /> For{' '}
-            <span className="bg-[radial-gradient(ellipse_200%_100%_at_top_center,#2f8dbb_100%,#28429f_90%)] text-transparent bg-clip-text">
+            <span className="bg-[radial-gradient(ellipse_200%_100%_at_top_center,#61ADEC_100%,#276CB0_90%)] text-transparent bg-clip-text">
               Crystal PvP.
             </span>
           </h1>
           <div className="grid md:place-items-center">
-            <p className="text-gray-200/90 font-normal max-w-2xl md:text-center xl:text-left">
+            <p className="text-[#F4F8FF]/90 font-normal max-w-2xl md:text-center xl:text-left">
               Discover ClickCrystals—a powerful, free, and open-source Minecraft
               mod designed to enhance your Crystal PvP gameplay! Loaded with 80+
               built-in modules and the complete, easiest scripting language for

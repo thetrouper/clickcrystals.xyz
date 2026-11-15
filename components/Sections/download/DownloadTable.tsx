@@ -30,7 +30,7 @@ function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
       field: 'code',
       headerName: 'Release',
       cellRenderer: (params: any) => (
-        <Link href={params.value} className="text-blue-500">
+        <Link href={params.value} className="text-[#61ADEC]">
           Open
         </Link>
       ),
@@ -48,7 +48,7 @@ function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
         params.value === null ? (
           'Not available'
         ) : (
-          <Link href={params.value} className="text-blue-500">
+          <Link href={params.value} className="text-[#61ADEC]">
             Download
           </Link>
         ),
@@ -189,10 +189,10 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
 
   return (
     <div className="my-4">
-      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-700">
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-[#F4F8FF]">
         Download Statistics
       </h2>
-      <p className="text-gray-600 mb-4 max-w-4xl">
+      <p className="text-[#F4F8FF]/70 mb-4 max-w-4xl">
         Here you can see the exact total download count of ClickCrystals from
         its all official sources. You can download any release for the available
         minecraft versions from the table below as well.
@@ -200,7 +200,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
       <Downloads />
 
       <div className="my-4">
-        <p className="text-xs text-black max-w-2xl select-none mt-2">
+        <p className="text-xs text-[#F4F8FF]/50 max-w-2xl select-none mt-2">
           The table below shows several of the recent releases of ClickCrystals.
           If you want to see all our 90+ releases, please visit our GitHub
           releases page.
@@ -214,15 +214,15 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           <span className="font-semibold">Note:</span> you might have to scroll
           right in the grid to see downloads for other versions.
         </p>
-        <div className="border-l-4 border-yellow-500 bg-yellow-100 p-4 my-4">
-          <p className="md:max-w-3xl text-sm text-yellow-800 font-semibold mb-2">
+        <div className="border-l-4 border-yellow-600 bg-yellow-900/20 p-4 my-4">
+          <p className="md:max-w-3xl text-sm text-yellow-500 font-semibold mb-2">
             Important Safety Warning:
           </p>
           <p className="md:max-w-3xl text-xs">
             ClickCrystals is only available for the Fabric modloader and there
             are no current or future plans to port the mod to other modloaders.
           </p>
-          <p className="md:max-w-3xl text-xs text-yellow-900 mt-2">
+          <p className="md:max-w-3xl text-xs text-yellow-600/90 mt-2">
             If you see any downloads for ClickCrystals on other modloaders, they
             are not official and may contain malicious code. Please only
             download ClickCrystals from the official sources listed below.
@@ -239,15 +239,15 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2 mb-3">
-        <span className="text-xs text-gray-500 font-medium select-none w-full sm:w-auto">
+        <span className="text-xs text-[#F4F8FF]/50 font-medium select-none w-full sm:w-auto">
           Showing releases from:
         </span>
         <button
           onClick={() => handleSourceChange('all')}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'all'
-              ? 'bg-[#6366f1] text-white shadow-sm'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+              ? 'bg-[#276CB0] text-[#F4F8FF] shadow-sm'
+              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
           } cursor-pointer`}
         >
           <svg
@@ -271,7 +271,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'modrinth'
               ? 'bg-[#1bd96a] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
           } ${!availableSources.modrinth ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <Image
@@ -289,7 +289,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'curseforge'
               ? 'bg-[#f16436] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
           } ${!availableSources.curseforge ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <Image
@@ -307,7 +307,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'github'
               ? 'bg-[#24292f] text-white shadow-sm'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
           } ${!availableSources.github ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <FontAwesomeIcon icon={faGithub} className="size-3.5" />

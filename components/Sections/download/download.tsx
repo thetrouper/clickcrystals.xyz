@@ -19,13 +19,13 @@ interface DownloadProps {
 
 export default function Download({ initialData }: DownloadProps) {
   return (
-    <main className="my-12 mx-6 md:mx-24">
+    <main className="my-12 mx-6 md:mx-24 text-[#F4F8FF]">
       <div className="py-0 ">
         <div className="place-self-center">
-          <h1 className="text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            Download <span className="text-blue-600">ClickCrystals</span>
+          <h1 className="text-[#F4F8FF] tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
+            Download <span className="text-[#61ADEC]">ClickCrystals</span>
           </h1>
-          <p className="text-gray-500 font-normal max-w-4xl my-3">
+          <p className="text-[#F4F8FF]/70 font-normal max-w-4xl my-3">
             Our official downloads are available on CurseForge, PlanetMC,
             Modrinth and GitHub. Please refrain from downloading ClickCrystals
             from any other website other than listed here.

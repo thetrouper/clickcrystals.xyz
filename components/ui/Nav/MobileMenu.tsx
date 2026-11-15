@@ -20,6 +20,7 @@ const MenuOverlay = () => {
         backgroundRepeat: 'repeat',
         imageRendering: 'pixelated',
         backgroundSize: '32px',
+        backgroundColor: '#0D1227',
       }}
     >
       <div className="flex flex-row justify-between pl-2 pr-4">

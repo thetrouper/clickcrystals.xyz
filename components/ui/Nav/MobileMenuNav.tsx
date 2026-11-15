@@ -11,7 +11,7 @@ export default function MobileMenuNav({ handler, state }: any) {
   return (
     <div className="md:hidden">
       <button
-        className="inline items-center p-3 rounded-full border-gray-400 bg-transparent focus:bg-gray-700 hover:bg-gray-700 hover:text-white focus:ring focus:ring-[#737679] "
+        className="inline items-center p-3 rounded-full border-[#276CB0] bg-transparent focus:bg-[#154B94] hover:bg-[#154B94] hover:text-[#F4F8FF] focus:ring focus:ring-[#276CB0]"
         onClick={toggle}
       >
         <svg width="20" height="20" viewBox="0 0 24 24">

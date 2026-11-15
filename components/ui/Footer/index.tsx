@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-t from-blue-900 via-blue-800 to-blue-700 border-t border-blue-600 py-10 px-6 flex flex-col gap-8">
+    <footer className="w-full bg-[#111111] py-10 px-6 flex flex-col gap-8">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
           <Image
@@ -92,13 +92,13 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-1 md:gap-3 text-blue-200 text-xs text-center md:text-left">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-1 md:gap-3 text-[#F4F8FF]/50 text-xs text-center md:text-left">
         <span>
           Website made by{' '}
           <Link
             target="_blank"
             href="https://ashish.top"
-            className="text-white"
+            className="text-[#F4F8FF]"
           >
             Ashish Agarwal
           </Link>

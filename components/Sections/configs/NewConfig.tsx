@@ -300,7 +300,7 @@ export default function NewConfigCard() {
   return (
     <>
       <Card
-        className="cursor-pointer hover:bg-slate-100/60 transition-colors flex flex-col"
+        className="cursor-pointer hover:bg-[#1a2d4a] transition-colors flex flex-col bg-[#14213A] border-[#276CB0]/40"
         onClick={handleNewConfigClick}
       >
         <CardContent className="flex items-center justify-center h-full text-muted-foreground/20 p-3">

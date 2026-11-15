@@ -15,7 +15,7 @@ export function GetClickCrystalsButton({
       <Container tapScale={0.95}>
         <Link
           href={link}
-          className="ring-[#737679] btn border-gray-400 bg-transparent hover:bg-gray-700 hover:text-white font-semibold px-6 py-2.5 shadow-none text-sm group"
+          className="ring-[#388BD3] btn border-[#61ADEC] bg-[#61ADEC] hover:bg-[#388BD3] hover:text-[#F4F8FF] text-[#0D1227] font-semibold px-6 py-2.5 shadow-none text-sm group"
         >
           {name}
         </Link>
@@ -30,7 +30,7 @@ export function JoinDiscordButton() {
       <Container tapScale={0.95}>
         <Link
           href="https://discord.gg/zg3ge9VTgr"
-          className="ring-[#4287f5] btn border-[#7289da] bg-[#7289da] hover:bg-[#546abb] font-semibold px-6 py-2.5 shadow-none text-white text-sm"
+          className="ring-[#4287f5] btn border-[#7289da] bg-transparent hover:bg-[#7289da] font-semibold px-6 py-2.5 shadow-none text-white text-sm"
         >
           Join Discord
         </Link>
@@ -45,7 +45,7 @@ export function ExploreScriptsButton({}) {
       <Container tapScale={0.95}>
         <Link
           href={'/scripts'}
-          className="ring-[#21582d] btn border-[#72da89] bg-[#247a37] hover:bg-[#1b5828] text-white font-semibold px-6 py-2.5 text-sm group"
+          className="ring-[#154B94] btn border-[#276CB0] bg-[#276CB0] hover:bg-[#154B94] text-[#F4F8FF] font-semibold px-6 py-2.5 text-sm group"
         >
           Explore scripts
         </Link>
@@ -60,7 +60,7 @@ export function MoreScreenshotsButton({}) {
       <Container tapScale={0.95}>
         <Link
           href={'/gallery'}
-          className="ring-[#4f2158] btn border-[#7d3868] bg-[#7d368b] hover:bg-[#511c5c] text-white font-semibold px-6 py-2.5 text-sm group"
+          className="ring-[#154B94] btn border-[#276CB0] bg-[#276CB0] hover:bg-[#154B94] text-[#F4F8FF] font-semibold px-6 py-2.5 text-sm group"
         >
           More screenshots
         </Link>

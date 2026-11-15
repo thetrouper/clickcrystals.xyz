@@ -9,20 +9,20 @@ import Scripts from '@/components/Sections/scripts/Scripts';
 export default function ScriptsArchive() {
   return (
     <>
-      <main className="my-12 mx-6 md:mx-24">
+      <main className="my-12 mx-6 md:mx-24 text-[#F4F8FF]">
         <div className="py-0">
           <div className="text-left">
-            <h1 className="text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
+            <h1 className="text-[#F4F8FF] tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
               ClickCrystals{' '}
-              <span className="text-blue-600">Script Archive</span>
+              <span className="text-[#61ADEC]">Script Archive</span>
             </h1>
-            <p className="text-gray-500 font-normal max-w-4xl my-3">
+            <p className="text-[#F4F8FF]/70 font-normal max-w-4xl my-3">
               Here are several ClickCrystals&apos;s working scripts that you
               might like. If you want your script to be added here, please
               contact a moderator on our Discord Guild.
             </p>
-            <div className="border-l-4 border-green-500 bg-green-100 p-4 my-4">
-              <p className="md:max-w-3xl text-sm text-green-900 font-semibold mb-2">
+            <div className="border-l-4 border-[#276CB0] bg-[#14213A] p-4 my-4">
+              <p className="md:max-w-3xl text-sm text-[#61ADEC] font-semibold mb-2">
                 Did you know?
               </p>
               <p className="md:max-w-3xl text-xs my-4">

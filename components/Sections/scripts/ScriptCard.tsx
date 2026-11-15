@@ -33,7 +33,7 @@ export default function ScriptCard({
 
   return (
     <Container tapScale={1.02} hoverScale={1.03}>
-      <Card key={title} className="w-full h-full rounded border-blue-400">
+      <Card key={title} className="w-full h-full rounded border-[#276CB0]/40 bg-[#14213A] text-[#F4F8FF]">
         <CardHeader>
           <CardTitle className="text-xl">{title}</CardTitle>
           <span className="text-primary">by {author}</span>
