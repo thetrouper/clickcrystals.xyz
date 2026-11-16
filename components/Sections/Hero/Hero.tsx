@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="py-4 lg:py-2 text-white bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#054874,#000000_100%)]">
+    <section className="py-4 lg:py-2 text-white bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#054874,rgb(7,10,20)_100%)]">
       <div className="py-6 px-8 xl:grid xl:gap-8 xl:grid-cols-12 xl:py-8 xl:min-h-screen">
         <div className="place-self-center col-span-5 xl:col-span-7 h-auto py-8 xl:py-0">
           <h1 className="md:text-center xl:text-left text-gray-200 tracking-normal leading-[1] font-extrabold text-6xl md:text-7xl xl:text-8xl xl:max-w-2xl mb-6 m-0">

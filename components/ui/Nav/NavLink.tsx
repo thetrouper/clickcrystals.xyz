@@ -1,3 +1,5 @@
+'use client';
+
 import { Container } from '@/components/ui/Container';
 import Link from 'next/link';
 
@@ -13,7 +15,7 @@ export const NavLink = ({ label, url, target = '' }: NavLinkProps) => {
       <Link
         href={url}
         target={target}
-        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3 transiion-nav"
+        className="transition items-center hover:text-white duration-150 ease-in-out flex font-medium px-4 py-3"
       >
         {label}
       </Link>
