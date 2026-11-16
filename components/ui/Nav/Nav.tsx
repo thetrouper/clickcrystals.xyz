@@ -3,7 +3,10 @@
 import { DropLink } from './DropLink';
 import { NavLink } from './NavLink';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faDownload, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDownload,
+  faClockRotateLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { CircleHelp, Sliders, MonitorPlay, Code2 } from 'lucide-react';
 
 const downloadDropdown = [

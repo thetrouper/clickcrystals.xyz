@@ -5,8 +5,18 @@ import MobileMenuNav from './MobileMenuNav';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Download, History, CircleHelp, Sliders, MonitorPlay, Code2 } from 'lucide-react';
+import {
+  faChevronRight,
+  faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  Download,
+  History,
+  CircleHelp,
+  Sliders,
+  MonitorPlay,
+  Code2,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -35,11 +45,40 @@ const menuItems: MenuItem[] = [
   {
     label: 'Download',
     children: [
-      { label: 'Latest', url: '/get', primary: true, iconType: 'lucide', icon: Download },
-      { label: 'Versions', url: '/download', iconType: 'lucide', icon: History },
-      { label: 'CurseForge', url: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals', external: true, iconType: 'img', iconSrc: '/icons/curseforge.svg' },
-      { label: 'GitHub Releases', url: 'https://github.com/clickcrystals-development/ClickCrystals/releases', external: true, iconType: 'fa-brand', icon: faGithub },
-      { label: 'Modrinth', url: 'https://modrinth.com/mod/clickcrystals', external: true, iconType: 'img', iconSrc: '/icons/modrinth.svg' },
+      {
+        label: 'Latest',
+        url: '/get',
+        primary: true,
+        iconType: 'lucide',
+        icon: Download,
+      },
+      {
+        label: 'Versions',
+        url: '/download',
+        iconType: 'lucide',
+        icon: History,
+      },
+      {
+        label: 'CurseForge',
+        url: 'https://www.curseforge.com/minecraft/mc-mods/clickcrystals',
+        external: true,
+        iconType: 'img',
+        iconSrc: '/icons/curseforge.svg',
+      },
+      {
+        label: 'GitHub Releases',
+        url: 'https://github.com/clickcrystals-development/ClickCrystals/releases',
+        external: true,
+        iconType: 'fa-brand',
+        icon: faGithub,
+      },
+      {
+        label: 'Modrinth',
+        url: 'https://modrinth.com/mod/clickcrystals',
+        external: true,
+        iconType: 'img',
+        iconSrc: '/icons/modrinth.svg',
+      },
     ],
   },
   { label: 'Scripts', url: '/scripts' },
@@ -50,7 +89,12 @@ const menuItems: MenuItem[] = [
     children: [
       { label: 'Help', url: '/help', iconType: 'lucide', icon: CircleHelp },
       { label: 'Configs', url: '/configs', iconType: 'lucide', icon: Sliders },
-      { label: 'Preview', url: '/gallery', iconType: 'lucide', icon: MonitorPlay },
+      {
+        label: 'Preview',
+        url: '/gallery',
+        iconType: 'lucide',
+        icon: MonitorPlay,
+      },
       { label: 'Projects', url: '/projects', iconType: 'lucide', icon: Code2 },
     ],
   },
@@ -139,7 +183,10 @@ const MenuOverlay = () => {
                 key="main"
                 className="absolute inset-0 flex flex-col px-3 py-4 overflow-y-auto gap-0.5"
                 initial={false}
-                animate={{ x: subMenu ? '-100%' : '0%', opacity: subMenu ? 0 : 1 }}
+                animate={{
+                  x: subMenu ? '-100%' : '0%',
+                  opacity: subMenu ? 0 : 1,
+                }}
                 transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
               >
                 {menuItems.map((item, i) =>
@@ -150,7 +197,10 @@ const MenuOverlay = () => {
                       onClick={() => setSubMenu(item)}
                     >
                       {item.label}
-                      <FontAwesomeIcon icon={faChevronRight} className="size-3 text-slate-600" />
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        className="size-3 text-slate-600"
+                      />
                     </button>
                   ) : item.external ? (
                     <a
@@ -164,7 +214,12 @@ const MenuOverlay = () => {
                       {item.label}
                     </a>
                   ) : (
-                    <Link key={i} href={item.url!} onClick={close} className={itemCls}>
+                    <Link
+                      key={i}
+                      href={item.url!}
+                      onClick={close}
+                      className={itemCls}
+                    >
                       {item.label}
                     </Link>
                   ),
@@ -175,7 +230,10 @@ const MenuOverlay = () => {
                 key="sub"
                 className="absolute inset-0 flex flex-col px-4 py-3 overflow-y-auto"
                 initial={{ x: '100%', opacity: 0 }}
-                animate={{ x: subMenu ? '0%' : '100%', opacity: subMenu ? 1 : 0 }}
+                animate={{
+                  x: subMenu ? '0%' : '100%',
+                  opacity: subMenu ? 1 : 0,
+                }}
                 transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
               >
                 {subMenu && (
@@ -184,7 +242,10 @@ const MenuOverlay = () => {
                       className="flex items-center py-2.5 px-4 text-slate-500 hover:text-white transition-colors"
                       onClick={() => setSubMenu(null)}
                     >
-                      <FontAwesomeIcon icon={faChevronLeft} className="size-3" />
+                      <FontAwesomeIcon
+                        icon={faChevronLeft}
+                        className="size-3"
+                      />
                     </button>
                     {subMenu.children?.map((child, i) =>
                       child.external ? (
