@@ -15,7 +15,7 @@ export function GetClickCrystalsButton({
       <Container tapScale={0.95}>
         <Link
           href={link}
-          className="bg-[#61ADEC] hover:bg-[#388BD3] text-[#0D1227] font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors duration-150"
+          className="bg-brand-blue-light hover:bg-brand-blue-hover text-brand-dark font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors duration-150"
         >
           {name}
         </Link>
@@ -45,7 +45,7 @@ export function ExploreScriptsButton({}) {
       <Container tapScale={0.95}>
         <Link
           href={'/scripts'}
-          className="bg-[#276CB0]/20 hover:bg-[#276CB0]/40 text-[#F4F8FF] font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors duration-150"
+          className="bg-brand-blue/20 hover:bg-brand-blue/40 text-brand-text font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors duration-150"
         >
           Explore scripts
         </Link>
@@ -60,7 +60,7 @@ export function MoreScreenshotsButton({}) {
       <Container tapScale={0.95}>
         <Link
           href={'/gallery'}
-          className="bg-[#276CB0]/20 hover:bg-[#276CB0]/40 text-[#F4F8FF] font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors duration-150"
+          className="bg-brand-blue/20 hover:bg-brand-blue/40 text-brand-text font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors duration-150"
         >
           More screenshots
         </Link>

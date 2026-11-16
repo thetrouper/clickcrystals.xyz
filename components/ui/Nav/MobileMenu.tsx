@@ -175,7 +175,7 @@ const MenuOverlay = () => {
       <AnimatePresence>
         {active && (
           <div
-            className="fixed left-0 right-0 z-[99998] overflow-hidden border-t border-slate-800/30 bg-[#0d1117]"
+            className="fixed left-0 right-0 z-[99998] overflow-hidden border-t border-slate-800/30 bg-brand-dark-nav"
             style={{ top: '72px', height: 'calc(100vh - 72px)' }}
           >
             <div className="relative h-full overflow-hidden">

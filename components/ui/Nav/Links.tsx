@@ -26,7 +26,7 @@ export const Links = () => {
         <span className="ml-4">
           <Link
             href="/download"
-            className="bg-[#276CB0] hover:bg-[#276CB0]/80 rounded-lg transition-colors duration-150 text-[#F4F8FF] font-semibold md:px-6 ml-2 px-5 py-2.5 text-sm"
+            className="bg-brand-blue hover:bg-brand-blue/80 rounded-lg transition-colors duration-150 text-brand-text font-semibold md:px-6 ml-2 px-5 py-2.5 text-sm"
           >
             Get ClickCrystals!
           </Link>

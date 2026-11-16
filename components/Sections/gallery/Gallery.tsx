@@ -63,8 +63,9 @@ export default function Gallery() {
           ]}
           className="mx-auto max-w-[800px] md:max-w-[1000px]"
         >
-          <h1 className="text-center text-[#F4F8FF] tracking-tight leading-[1.3] mb-4 font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            ClickCrystals <span className="text-[#61ADEC]">Gallery</span>
+          <h1 className="text-center text-brand-text tracking-tight leading-[1.3] mb-4 font-extrabold text-2xl md:text-3xl lg:text-4xl">
+            ClickCrystals{' '}
+            <span className="text-brand-blue-light">Gallery</span>
           </h1>
           <CarouselContent>
             {slides.map((slide: string, i) => (
@@ -84,7 +85,7 @@ export default function Gallery() {
         </Carousel>
       </div>
       <div className="flex flex-row justify-center mb-4">
-        <p className="text-sm text-[#F4F8FF]/50 font-medium mt-4 text-center">
+        <p className="text-sm text-brand-text/50 font-medium mt-4 text-center">
           Swipe left or right to change slides.
         </p>
       </div>

@@ -73,16 +73,16 @@ const faqs = [
         <Link
           href="https://bit.ly/ccs-wiki"
           target="_blank"
-          className="text-[#61ADEC]"
+          className="text-brand-blue-light"
         >
           CCS Docs
         </Link>
         ,{' '}
-        <Link href="/editor" className="text-[#61ADEC]">
+        <Link href="/editor" className="text-brand-blue-light">
           CCS Editor
         </Link>
         ,{' '}
-        <Link href="/scripts" className="text-[#61ADEC]">
+        <Link href="/scripts" className="text-brand-blue-light">
           CCS Scripts Archive
         </Link>{' '}
       </>
@@ -154,17 +154,33 @@ export default function FAQ() {
       <div className="flex flex-col lg:flex-row lg:justify-between mx-0 lg:mx-4">
         <div className="w-full lg:w-1/2 lg:mx-4">
           {leftColumnFAQs.map((faq, i) => (
-            <AccordionItem value={`item-${i * 2}`} key={i * 2} className="border-[#276CB0]/30">
-              <AccordionTrigger className="text-[#F4F8FF]">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-[#F4F8FF]/70">{faq.answer}</AccordionContent>
+            <AccordionItem
+              value={`item-${i * 2}`}
+              key={i * 2}
+              className="border-brand-blue/30"
+            >
+              <AccordionTrigger className="text-brand-text">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-brand-text/70">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </div>
         <div className="w-full lg:w-1/2 lg:mx-4">
           {rightColumnFAQs.map((faq, i) => (
-            <AccordionItem value={`item-${i * 2 + 1}`} key={i * 2 + 1} className="border-[#276CB0]/30">
-              <AccordionTrigger className="text-[#F4F8FF]">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-[#F4F8FF]/70">{faq.answer}</AccordionContent>
+            <AccordionItem
+              value={`item-${i * 2 + 1}`}
+              key={i * 2 + 1}
+              className="border-brand-blue/30"
+            >
+              <AccordionTrigger className="text-brand-text">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-brand-text/70">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </div>

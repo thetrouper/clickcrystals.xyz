@@ -109,9 +109,9 @@ const TestimonalsCol = (props: {
               ({ picture, name, url, message, username }, index: any) => (
                 <div
                   key={index}
-                  className="p-10 border border-[#276CB0]/30 rounded-3xl bg-[#162331] w-full"
+                  className="p-10 border border-brand-blue/30 rounded-3xl bg-brand-surface-review w-full"
                 >
-                  <div className="text-[#F4F8FF]/90">{message}</div>
+                  <div className="text-brand-text/90">{message}</div>
                   <div className="flex items-center gap-2 mt-5">
                     <Image
                       src={picture}
@@ -121,13 +121,13 @@ const TestimonalsCol = (props: {
                       height={40}
                     />
                     <div className="flex justify-center flex-col">
-                      <div className="font-medium tracking-tight leading-5 text-[#F4F8FF]">
+                      <div className="font-medium tracking-tight leading-5 text-brand-text">
                         {name}
                       </div>
                       <Link
                         target="_blank"
                         href={url}
-                        className="leading-3 text-[#61ADEC] tracking-tight text-xs"
+                        className="leading-3 text-brand-blue-light tracking-tight text-xs"
                       >
                         {username}
                       </Link>

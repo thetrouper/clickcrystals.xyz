@@ -111,7 +111,7 @@ export const DropLink = ({ label, links, align = 'center' }: DropLinkProps) => {
                 const isExternal = link.url.startsWith('http') || link.external;
                 const cls = `flex items-center justify-center gap-1.5 min-w-[110px] px-3 py-1.5 text-sm rounded-full border transition-all duration-100 hover:scale-[1.02] ${
                   link.primary
-                    ? 'text-blue-300 font-medium border-blue-900 bg-[#1a2744] hover:bg-[#1e2f52] hover:border-blue-800'
+                    ? 'text-blue-300 font-medium border-blue-900 bg-brand-surface-dropdown hover:bg-brand-surface-dropdown-hover hover:border-blue-800'
                     : 'text-slate-300 border-slate-700/50 bg-slate-800 hover:text-white hover:bg-slate-700 hover:border-slate-600'
                 }`;
                 return (

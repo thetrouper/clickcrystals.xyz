@@ -71,7 +71,7 @@ export default function Downloads() {
   }, []);
 
   return (
-    <div className="text-[#F4F8FF]/80 text-sm mb-4">
+    <div className="text-brand-text/80 text-sm mb-4">
       <span className="font-semibold">
         ClickCrystals has been officially downloaded about{' '}
         <motion.span
@@ -91,7 +91,7 @@ export default function Downloads() {
         times!
       </span>
       <br />
-      <span className="text-xs text-[#F4F8FF]/50">
+      <span className="text-xs text-brand-text/50">
         Modrinth: {modrinth}
         <br />
         CurseForge: {curseforge}

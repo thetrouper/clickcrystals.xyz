@@ -92,13 +92,13 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-1 md:gap-3 text-[#F4F8FF]/50 text-xs text-center md:text-left">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-1 md:gap-3 text-brand-text/50 text-xs text-center md:text-left">
         <span>
           Website made by{' '}
           <Link
             target="_blank"
             href="https://ashish.top"
-            className="text-[#F4F8FF]"
+            className="text-brand-text"
           >
             Ashish Agarwal
           </Link>

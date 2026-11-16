@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Latest = ({ version = '1.3.8' }) => {
   return (
-    <div className="bg-[#14213A] py-4 my-8 px-4 rounded-[4px] flex flex-row items-center">
+    <div className="bg-brand-surface py-4 my-8 px-4 rounded-[4px] flex flex-row items-center">
       <Image
         alt="ClickCrystals"
         className="size-24"
@@ -12,16 +12,16 @@ const Latest = ({ version = '1.3.8' }) => {
         src={clickcrystalsLogo}
       />
       <div className="flex flex-col ml-4">
-        <h1 className="text-[#F4F8FF] text-3xl font-bold mb-2">
+        <h1 className="text-brand-text text-3xl font-bold mb-2">
           Instantly download the latest version of{' '}
-          <span className="text-[#61ADEC] cursor-pointer select-none">
+          <span className="text-brand-blue-light cursor-pointer select-none">
             ClickCrystals
           </span>
           !
         </h1>
-        <h1 className="text-[#F4F8FF] text-md">
-          Click <span className="text-[#61ADEC] font-bold">here</span> to start
-          your download, the latest version is {version}
+        <h1 className="text-brand-text text-md">
+          Click <span className="text-brand-blue-light font-bold">here</span>{' '}
+          to start your download, the latest version is {version}
         </h1>
       </div>
     </div>

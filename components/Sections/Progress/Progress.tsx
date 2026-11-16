@@ -36,7 +36,7 @@ export default function Progress() {
   }, []);
 
   return (
-    <div className="py-12 my-0 bg-[#14213A]">
+    <div className="py-12 my-0 bg-brand-surface">
       <div className="rounded-md py-8 px-4 lg:px-32 flex gap-4 sm:flex-row flex-col justify-between">
         {progress.map((progress, index) => {
           return (
@@ -45,13 +45,13 @@ export default function Progress() {
               className="flex flex-col items-center justify-center mx-4"
             >
               <Container>
-                <h2 className="text-[#F4F8FF] text-4xl font-bold flex flex-row">
+                <h2 className="text-brand-text text-4xl font-bold flex flex-row">
                   <CountUp
                     start={0}
                     end={progress.value}
                     duration={4}
                     separator=","
-                    className="text-[#61ADEC] text-4xl font-bold"
+                    className="text-brand-blue-light text-4xl font-bold"
                   />
                   {progress.postfix}
                 </h2>

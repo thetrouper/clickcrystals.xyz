@@ -43,7 +43,7 @@ const Save = ({ receiveCode, disabled }: SaveProps) => {
 
   return (
     <button
-      className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
+      className="text-brand-blue-light/80 hover:text-brand-blue-light text-xs font-medium px-3 py-1.5 rounded-md border border-brand-blue/30 hover:border-brand-blue/60 hover:bg-brand-blue/10 transition-all duration-150"
       disabled={saveDisabled || disabled}
       onClick={handleSave}
     >

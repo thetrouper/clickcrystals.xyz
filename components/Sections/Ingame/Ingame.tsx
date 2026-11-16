@@ -19,7 +19,7 @@ export default function Ingame() {
   const translateY = useTransform(scrollYProgress, [0, 1], [180, -180]);
 
   return (
-    <section className="py-4 bg-[#0D1830]" ref={sectionRef}>
+    <section className="py-4 bg-brand-dark-alt" ref={sectionRef}>
       <div className="py-6 px-4 flex flex-row justify-center">
         <div className="px-0 md:px-6">
           <div className="w-full flex flex-row justify-center">
@@ -32,15 +32,16 @@ export default function Ingame() {
               }}
             />
           </div>
-          <h1 className="text-center text-[#F4F8FF] tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
+          <h1 className="text-center text-brand-text tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl mt-6">
             <span className="text-xl md:text-2xl lg:text-3xl">
               Ultimate utilities are inside!
             </span>
             <br />
-            That <span className="text-[#61ADEC]">enhance</span> your experience!
+            That <span className="text-brand-blue-light">enhance</span> your
+            experience!
           </h1>
           <div className="w-full flex flex-row justify-center">
-            <p className="text-[#F4F8FF]/70 font-normal my-4 text-center max-w-4xl">
+            <p className="text-brand-text/70 font-normal my-4 text-center max-w-4xl">
               We have so many things which we haven't listed out here! Built-in
               modules, ClickScript IDE, Configs, Renders, Capes & much... much
               more. Just give us a try and then tell us how you lived without

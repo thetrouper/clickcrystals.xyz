@@ -143,7 +143,7 @@ function PublishForm({ className, code, closeState }: any) {
         type="submit"
         disabled={submitDisabled}
         onClick={handleButtonClick}
-        className="bg-[#276CB0] hover:bg-[#276CB0]/80 transition-colors duration-150 text-[#F4F8FF] w-full"
+        className="bg-brand-blue hover:bg-brand-blue/80 transition-colors duration-150 text-brand-text w-full"
       >
         {submitDisabled && (
           <svg
@@ -207,7 +207,7 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
         <DialogTrigger asChild>
           <button
             disabled={disabled}
-            className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
+            className="text-brand-blue-light/80 hover:text-brand-blue-light text-xs font-medium px-3 py-1.5 rounded-md border border-brand-blue/30 hover:border-brand-blue/60 hover:bg-brand-blue/10 transition-all duration-150"
           >
             Publish
           </button>
@@ -230,7 +230,7 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
       <DrawerTrigger asChild>
         <button
           disabled={disabled}
-          className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
+          className="text-brand-blue-light/80 hover:text-brand-blue-light text-xs font-medium px-3 py-1.5 rounded-md border border-brand-blue/30 hover:border-brand-blue/60 hover:bg-brand-blue/10 transition-all duration-150"
         >
           Publish
         </button>

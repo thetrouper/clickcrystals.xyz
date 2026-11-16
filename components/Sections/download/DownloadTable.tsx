@@ -30,7 +30,7 @@ function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
       field: 'code',
       headerName: 'Release',
       cellRenderer: (params: any) => (
-        <Link href={params.value} className="text-[#61ADEC]">
+        <Link href={params.value} className="text-brand-blue-light">
           Open
         </Link>
       ),
@@ -48,7 +48,7 @@ function buildColDefs(mcVersions: { field: string; headerName: string }[]) {
         params.value === null ? (
           'Not available'
         ) : (
-          <Link href={params.value} className="text-[#61ADEC]">
+          <Link href={params.value} className="text-brand-blue-light">
             Download
           </Link>
         ),
@@ -189,10 +189,10 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
 
   return (
     <div className="my-4">
-      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-[#F4F8FF]">
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-brand-text">
         Download Statistics
       </h2>
-      <p className="text-[#F4F8FF]/70 mb-4 max-w-4xl">
+      <p className="text-brand-text/70 mb-4 max-w-4xl">
         Here you can see the exact total download count of ClickCrystals from
         its all official sources. You can download any release for the available
         minecraft versions from the table below as well.
@@ -200,7 +200,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
       <Downloads />
 
       <div className="my-4">
-        <p className="text-xs text-[#F4F8FF]/50 max-w-2xl select-none mt-2">
+        <p className="text-xs text-brand-text/50 max-w-2xl select-none mt-2">
           The table below shows several of the recent releases of ClickCrystals.
           If you want to see all our 90+ releases, please visit our GitHub
           releases page.
@@ -214,7 +214,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           <span className="font-semibold">Note:</span> you might have to scroll
           right in the grid to see downloads for other versions.
         </p>
-        <div className="rounded-2xl bg-[#1a1a1a] px-5 py-4 my-4 max-w-4xl">
+        <div className="rounded-2xl bg-brand-dark-warning px-5 py-4 my-4 max-w-4xl">
           <div className="flex items-center gap-2 mb-1.5">
             <svg
               className="size-3.5 shrink-0 text-yellow-400"
@@ -252,15 +252,15 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2 mb-3">
-        <span className="text-xs text-[#F4F8FF]/50 font-medium select-none w-full sm:w-auto">
+        <span className="text-xs text-brand-text/50 font-medium select-none w-full sm:w-auto">
           Showing releases from:
         </span>
         <button
           onClick={() => handleSourceChange('all')}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'all'
-              ? 'bg-[#276CB0] text-[#F4F8FF] shadow-sm'
-              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
+              ? 'bg-brand-blue text-brand-text shadow-sm'
+              : 'bg-brand-surface text-brand-text/50 hover:bg-brand-surface-hover'
           } cursor-pointer`}
         >
           <svg
@@ -284,7 +284,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'modrinth'
               ? 'bg-[#1bd96a] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
-              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
+              : 'bg-brand-surface text-brand-text/50 hover:bg-brand-surface-hover'
           } ${!availableSources.modrinth ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <Image
@@ -302,7 +302,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'curseforge'
               ? 'bg-[#f16436] text-white shadow-sm [&>img]:brightness-0 [&>img]:invert'
-              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
+              : 'bg-brand-surface text-brand-text/50 hover:bg-brand-surface-hover'
           } ${!availableSources.curseforge ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <Image
@@ -320,7 +320,7 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-150 ${
             source === 'github'
               ? 'bg-[#24292f] text-white shadow-sm'
-              : 'bg-[#14213A] text-[#F4F8FF]/50 hover:bg-[#193247]'
+              : 'bg-brand-surface text-brand-text/50 hover:bg-brand-surface-hover'
           } ${!availableSources.github ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <FontAwesomeIcon icon={faGithub} className="size-3.5" />

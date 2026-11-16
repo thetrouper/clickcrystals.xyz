@@ -109,14 +109,14 @@ on module_disable {
           <button
             disabled={false}
             onClick={deCompressCode}
-            className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
+            className="text-white/60 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-150"
           >
             Format
           </button>
           <button
             disabled={false}
             onClick={compressCode}
-            className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
+            className="text-white/60 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-150"
           >
             Minify
           </button>
@@ -127,7 +127,7 @@ on module_disable {
         </div>
       </div>
       <div
-        className={`flex flex-col lg:flex-row h-screen bg-[#0D1227] text-black ${loading && 'opacity-0'}`}
+        className={`flex flex-col lg:flex-row h-screen bg-brand-dark text-black ${loading && 'opacity-0'}`}
       >
         <div className="flex-1 h-full">
           <Editor
