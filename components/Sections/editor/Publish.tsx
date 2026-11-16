@@ -24,7 +24,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useState, useEffect } from 'react';
 import { handleSubmit } from './handleSubmit';
-import { ReloadIcon } from '@radix-ui/react-icons';
 import { useToast } from '@/components/ui/use-toast';
 
 function PublishForm({ className, code, closeState }: any) {
@@ -144,9 +143,26 @@ function PublishForm({ className, code, closeState }: any) {
         type="submit"
         disabled={submitDisabled}
         onClick={handleButtonClick}
-        className="transition-all"
+        className="bg-[#276CB0] hover:bg-[#276CB0]/80 transition-colors duration-150 text-[#F4F8FF] w-full"
       >
-        {submitDisabled && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+        {submitDisabled && (
+          <svg
+            className="mr-2 size-4 animate-spin"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeDasharray="32"
+              strokeDashoffset="12"
+            />
+          </svg>
+        )}
         Publish
       </Button>
     </form>
@@ -191,7 +207,7 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
         <DialogTrigger asChild>
           <button
             disabled={disabled}
-            className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+            className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
           >
             Publish
           </button>
@@ -214,7 +230,7 @@ const Publish = ({ onOpen, code, disabled }: PublishProps) => {
       <DrawerTrigger asChild>
         <button
           disabled={disabled}
-          className="btn border-transparent focus:ring-[#29ac29] shadow-none bg-[#2dac29] hover:bg-[#207215] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+          className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
         >
           Publish
         </button>

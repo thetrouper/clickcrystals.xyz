@@ -34,7 +34,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
               label="CurseForge"
-              className="ring-[#ff7547] border-[#ff7547] bg-[#f16436] hover:bg-[#df582c]"
+              className="bg-[#f16436] hover:bg-[#df582c] rounded-lg transition-colors duration-150"
               icon={
                 <Image
                   src={curseforge}
@@ -48,7 +48,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://planetminecraft.com/mod/clickcrystal"
               label="PlanetMC"
-              className="ring-[#2697b3] border-[#2697b3] bg-[#1f86a0] hover:bg-[#126377]"
+              className="bg-[#1f86a0] hover:bg-[#126377] rounded-lg transition-colors duration-150"
               icon={
                 <Image
                   src={planetmc}
@@ -62,7 +62,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://modrinth.com/mod/clickcrystals"
               label="Modrinth"
-              className="ring-[#3eb326] border-[#3eb326] bg-[#39a822] hover:bg-[#2d8a1a]"
+              className="bg-[#39a822] hover:bg-[#2d8a1a] rounded-lg transition-colors duration-150"
               icon={
                 <Image
                   src={modrinth}
@@ -76,7 +76,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://github.com/clickcrystals-development/ClickCrystals/releases"
               label="GitHub"
-              className="ring-[#3c444b] border-[#3c444b] bg-[#202529] hover:bg-[#181b1f]"
+              className="bg-[#202529] hover:bg-[#181b1f] rounded-lg transition-colors duration-150"
               icon={
                 <FontAwesomeIcon icon={faGithub} className="size-6 md:size-5" />
               }

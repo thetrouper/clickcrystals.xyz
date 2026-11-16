@@ -214,21 +214,34 @@ export default function DownloadTable({ initialData }: DownloadTableProps) {
           <span className="font-semibold">Note:</span> you might have to scroll
           right in the grid to see downloads for other versions.
         </p>
-        <div className="border-l-4 border-yellow-600 bg-yellow-900/20 p-4 my-4">
-          <p className="md:max-w-3xl text-sm text-yellow-500 font-semibold mb-2">
-            Important Safety Warning:
-          </p>
-          <p className="md:max-w-3xl text-xs">
+        <div className="rounded-2xl bg-[#1a1a1a] px-5 py-4 my-4 max-w-4xl">
+          <div className="flex items-center gap-2 mb-1.5">
+            <svg
+              className="size-3.5 shrink-0 text-yellow-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <p className="text-xs font-semibold text-yellow-400 tracking-wide uppercase">
+              Important Safety Warning
+            </p>
+          </div>
+          <p className="text-xs text-white/70 leading-relaxed">
             ClickCrystals is only available for the Fabric modloader and there
             are no current or future plans to port the mod to other modloaders.
           </p>
-          <p className="md:max-w-3xl text-xs text-yellow-600/90 mt-2">
+          <p className="text-xs text-white/40 leading-relaxed mt-2">
             If you see any downloads for ClickCrystals on other modloaders, they
             are not official and may contain malicious code. Please only
-            download ClickCrystals from the official sources listed below.
-            <br />
-            <br />
-            <span className="font-semibold">
+            download ClickCrystals from the official sources listed below.{' '}
+            <span className="text-white/60 font-medium">
               This is not rare, we have seen several websites publishing
               unofficial malware versions of ClickCrystals.
             </span>{' '}

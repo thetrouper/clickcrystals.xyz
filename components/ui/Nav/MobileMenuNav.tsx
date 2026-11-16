@@ -1,31 +1,48 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function MobileMenuNav({ handler, state }: any) {
+export default function MobileMenuNav({
+  handler,
+  state,
+  onOpen,
+}: {
+  handler: (v: boolean) => void;
+  state: boolean;
+  onOpen: () => void;
+}) {
   const toggle = () => {
+    if (!state) {
+      onOpen();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     handler(!state);
   };
 
   return (
     <div className="md:hidden">
       <button
-        className="inline items-center p-3 rounded-full border-[#276CB0] bg-transparent focus:bg-[#154B94] hover:bg-[#154B94] hover:text-[#F4F8FF] focus:ring focus:ring-[#276CB0]"
+        className="text-slate-400 hover:text-white transition-colors p-1"
         onClick={toggle}
+        aria-label="Toggle menu"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          className="text-slate-300"
+        >
           <motion.path
             d="M3 6h18M3 12h18M3 18h18"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2"
             strokeLinecap="round"
             animate={
               state
-                ? { d: 'M3 3l18 18M3 21l18-18' }
+                ? { d: 'M6 6l12 12M6 18l12-12' }
                 : { d: 'M3 6h18M3 12h18M3 18h18' }
             }
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.1 }}
           />
         </svg>
       </button>

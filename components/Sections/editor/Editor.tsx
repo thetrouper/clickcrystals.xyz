@@ -104,30 +104,30 @@ on module_disable {
 
   return (
     <div>
-      <div className="flex flex-row bg-white dark:bg-[#1e1e1e] gap-2 md:gap-4 pt-4 mx-8 justify-between">
-        <div className="block md:flex md:flex-row md:gap-4 md:mx-4">
+      <div className="flex flex-row border-b border-white/5 gap-2 md:gap-4 px-4 py-2 justify-between">
+        <div className="flex flex-row gap-2">
           <button
             disabled={false}
             onClick={deCompressCode}
-            className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+            className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
           >
             Format
           </button>
           <button
             disabled={false}
             onClick={compressCode}
-            className="btn border-transparent focus:ring-[#ac8929] shadow-none bg-[#ac8929] hover:bg-[#725915] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+            className="text-white/40 hover:text-white text-xs font-medium px-3 py-1.5 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-150"
           >
             Minify
           </button>
         </div>
-        <div className="block md:flex md:flex-row md:gap-4 md:mx-4">
+        <div className="flex flex-row gap-2">
           <Publish onOpen={updateCodeState} code={code} disabled={false} />
           <Save receiveCode={updateCodeState} disabled={false} />
         </div>
       </div>
       <div
-        className={`flex flex-col lg:flex-row h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white ${loading && 'opacity-0'}`}
+        className={`flex flex-col lg:flex-row h-screen bg-[#0D1227] text-black ${loading && 'opacity-0'}`}
       >
         <div className="flex-1 h-full">
           <Editor
