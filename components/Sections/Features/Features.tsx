@@ -6,8 +6,7 @@ export default function Features() {
       <div className="py-8 text-center px-4 items-center">
         <h1 className="text-center text-brand-text tracking-tight leading-[1.3] font-extrabold text-3xl lg:text-4xl mb-2">
           We care about your needs. Participate in a{' '}
-          <span className="text-brand-blue-light">leveled</span>, playing
-          field
+          <span className="text-brand-blue-light">leveled</span>, playing field
         </h1>
         <div className="w-full flex flex-row justify-center">
           <p className="text-brand-text/70 font-normal m-0 text-center max-w-4xl">

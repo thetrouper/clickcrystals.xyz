@@ -20,8 +20,8 @@ const Latest = ({ version = '1.3.8' }) => {
           !
         </h1>
         <h1 className="text-brand-text text-md">
-          Click <span className="text-brand-blue-light font-bold">here</span>{' '}
-          to start your download, the latest version is {version}
+          Click <span className="text-brand-blue-light font-bold">here</span> to
+          start your download, the latest version is {version}
         </h1>
       </div>
     </div>

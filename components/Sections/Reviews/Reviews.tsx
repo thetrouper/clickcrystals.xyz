@@ -8,9 +8,7 @@ export default function Reviews() {
           <div className="col-span-3">
             <h2 className="text-center text-brand-text tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
               What our users think{' '}
-              <span className="text-brand-blue-light">
-                about ClickCrystals
-              </span>
+              <span className="text-brand-blue-light">about ClickCrystals</span>
             </h2>
           </div>
         </div>

@@ -64,8 +64,7 @@ export default function Gallery() {
           className="mx-auto max-w-[800px] md:max-w-[1000px]"
         >
           <h1 className="text-center text-brand-text tracking-tight leading-[1.3] mb-4 font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            ClickCrystals{' '}
-            <span className="text-brand-blue-light">Gallery</span>
+            ClickCrystals <span className="text-brand-blue-light">Gallery</span>
           </h1>
           <CarouselContent>
             {slides.map((slide: string, i) => (

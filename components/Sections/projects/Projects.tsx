@@ -143,9 +143,7 @@ export default function Projects() {
               Project
             </TableHead>
             <TableHead className="text-brand-text/60">Description</TableHead>
-            <TableHead className="w-[200px] text-brand-text/60">
-              Link
-            </TableHead>
+            <TableHead className="w-[200px] text-brand-text/60">Link</TableHead>
             <TableHead className="w-[150px] text-brand-text/60">
               Author
             </TableHead>

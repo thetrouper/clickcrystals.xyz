@@ -152,7 +152,7 @@ const MenuOverlay = () => {
       document.body.style.overflow = 'unset';
       document.documentElement.style.overflow = 'unset';
     };
-  }, [active]);
+  }, [active, scrollPosition]);
 
   const close = () => {
     setActive(false);
