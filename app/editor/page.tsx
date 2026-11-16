@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function EditorPage() {
   return (
     <div className="dark">
-      <div className="min-h-screen bg-[#ffffff] text-black dark:bg-[#1e1e1e] dark:text-white">
+      <div className="min-h-screen bg-brand-dark text-brand-text">
         <CCSEditor defaultCode={null} />
       </div>
     </div>

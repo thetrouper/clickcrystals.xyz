@@ -71,11 +71,11 @@ export default function Downloads() {
   }, []);
 
   return (
-    <div className="text-gray-700 text-sm mb-4">
+    <div className="text-brand-text/80 text-sm mb-4">
       <span className="font-semibold">
         ClickCrystals has been officially downloaded about{' '}
         <motion.span
-          className="font-medium bg-[linear-gradient(to_right,#711f73,#65551d,#6b891d,#174965,#1b6969,#511553)] [background-size:200%] bg-clip-text text-transparent"
+          className="font-medium bg-[linear-gradient(to_right,#164B91,#61ADEC,#276CB0,#71C2FA,#164B91)] [background-size:200%] bg-clip-text text-transparent"
           animate={{
             backgroundPositionX: '200%',
           }}
@@ -91,7 +91,7 @@ export default function Downloads() {
         times!
       </span>
       <br />
-      <span className="text-xs">
+      <span className="text-xs text-brand-text/50">
         Modrinth: {modrinth}
         <br />
         CurseForge: {curseforge}

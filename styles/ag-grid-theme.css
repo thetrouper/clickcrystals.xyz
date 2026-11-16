@@ -9,10 +9,10 @@
 .ag-root-wrapper,
 .ag-measurement-container,
 .ag-apply-theme-variables {
-  --ag-background-color: var(--ag-inherited-background-color, #eefbff);
-  --ag-foreground-color: var(--ag-inherited-foreground-color, #133847);
+  --ag-background-color: var(--ag-inherited-background-color, #0D1830);
+  --ag-foreground-color: var(--ag-inherited-foreground-color, #F4F8FF);
   --ag-text-color: var(--ag-inherited-text-color, var(--ag-foreground-color));
-  --ag-accent-color: var(--ag-inherited-accent-color, #a3d6ff);
+  --ag-accent-color: var(--ag-inherited-accent-color, #61ADEC);
   --ag-invalid-color: var(--ag-inherited-invalid-color, #e02525);
   --ag-border-color: var(
     --ag-inherited-border-color,
@@ -26,7 +26,7 @@
     --ag-inherited-row-border,
     solid 1px var(--ag-border-color)
   );
-  --ag-color-scheme: var(--ag-inherited-color-scheme, light);
+  --ag-color-scheme: var(--ag-inherited-color-scheme, dark);
   --ag-header-row-border: var(
     --ag-inherited-header-row-border,
     var(--ag-row-border)
@@ -63,7 +63,7 @@
   );
   --ag-header-background-color: var(
     --ag-inherited-header-background-color,
-    #f8fdff05
+    #14213A
   );
   --ag-header-font-family: var(--ag-inherited-header-font-family, inherit);
   --ag-header-font-weight: var(--ag-inherited-header-font-weight, 500);
@@ -80,7 +80,7 @@
     --ag-inherited-header-cell-hover-background-transition-duration,
     0.2s
   );
-  --ag-cell-text-color: var(--ag-inherited-cell-text-color, #012f41);
+  --ag-cell-text-color: var(--ag-inherited-cell-text-color, #F4F8FF);
   --ag-subtle-text-color: var(
     --ag-inherited-subtle-text-color,
     color-mix(in srgb, transparent, var(--ag-text-color) 50%)
@@ -127,7 +127,7 @@
   );
   --ag-odd-row-background-color: var(
     --ag-inherited-odd-row-background-color,
-    #ffffff
+    #111B32
   );
   --ag-border-radius: var(--ag-inherited-border-radius, 4px);
   --ag-wrapper-border-radius: var(--ag-inherited-wrapper-border-radius, 4px);

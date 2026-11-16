@@ -18,6 +18,27 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        brand: {
+          blue: '#276CB0',
+          'blue-light': '#61ADEC',
+          'blue-hover': '#388BD3',
+          text: '#F4F8FF',
+          surface: '#14213A',
+          'surface-hover': '#193247',
+          'surface-card': '#1a2d4a',
+          'surface-select': '#1e2535',
+          'surface-section': '#162D4A',
+          'surface-review': '#162331',
+          'surface-dropdown': '#1a2744',
+          'surface-dropdown-hover': '#1e2f52',
+          dark: '#0D1227',
+          'dark-alt': '#0D1830',
+          'dark-nav': '#0d1117',
+          'dark-scrolled': '#0C1525',
+          'dark-warning': '#1a1a1a',
+        },
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

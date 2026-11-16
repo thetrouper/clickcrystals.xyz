@@ -65,12 +65,14 @@ export default function Scripts() {
         <FilterSelectMenu
           value={selectedCategory}
           onChange={handleCategoryChange}
+          className="border-brand-blue/40 bg-brand-surface text-brand-text"
         />
         <Input
           type="text"
           placeholder="Search scripts..."
           value={searchQuery}
           onChange={handleSearchChange}
+          className="border-brand-blue/40 bg-brand-surface text-brand-text placeholder:text-brand-text/40"
         />
       </div>
 
@@ -85,17 +87,17 @@ export default function Scripts() {
               icon={faXmarkCircle}
               className="size-8 text-red-500 left-0 right-0 mx-auto"
             />
-            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+            <h2 className="text-2xl font-semibold text-brand-text/70 font-sans tracking-tight">
               Sorry, a error occured!
             </h2>
             <div className="flex justify-center">
-              <p className="text-gray-500 text-center max-w-4xl md:max-w-2xl">
+              <p className="text-brand-text/50 text-center max-w-4xl md:max-w-2xl">
                 Some error occured while we tried to load the scripts. Please
                 contact us through Discord if you need assistance.
                 <br />
                 <br />
                 Error message:{' '}
-                <span className="bg-black text-sm p-1 text-white font-mono">
+                <span className="bg-brand-surface text-sm p-1 text-brand-blue-light font-mono">
                   {error}
                 </span>
               </p>
@@ -117,13 +119,13 @@ export default function Scripts() {
           <div className="flex flex-col col-span-full text-center py-10 gap-2">
             <FontAwesomeIcon
               icon={faXmarkCircle}
-              className="size-8 text-black left-0 right-0 mx-auto"
+              className="size-8 text-red-500 left-0 right-0 mx-auto"
             />
-            <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+            <h2 className="text-2xl font-semibold text-brand-text/70 font-sans tracking-tight">
               No scripts found
             </h2>
             <div className="flex justify-center">
-              <p className="text-gray-500 text-center max-w-4xl">
+              <p className="text-brand-text/50 text-center max-w-4xl">
                 Try adjusting your search or filters to find what you&apos;re
                 looking for.
               </p>

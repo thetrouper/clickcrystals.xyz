@@ -136,18 +136,25 @@ const projects = [
 export default function Projects() {
   return (
     <>
-      <Table className="border">
+      <Table className="border border-brand-blue/30 text-brand-text">
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[200px]">Project</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead className="w-[200px]">Link</TableHead>
-            <TableHead className="w-[150px]">Author</TableHead>
+          <TableRow className="border-brand-blue/30 hover:bg-brand-surface">
+            <TableHead className="w-[200px] text-brand-text/60">
+              Project
+            </TableHead>
+            <TableHead className="text-brand-text/60">Description</TableHead>
+            <TableHead className="w-[200px] text-brand-text/60">Link</TableHead>
+            <TableHead className="w-[150px] text-brand-text/60">
+              Author
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {projects.map((project, index) => (
-            <TableRow key={index}>
+            <TableRow
+              key={index}
+              className="border-brand-blue/30 hover:bg-brand-surface"
+            >
               <TableCell className="font-medium">{project.name}</TableCell>
               <TableCell>{project.description}</TableCell>
               <TableCell>
@@ -161,7 +168,7 @@ export default function Projects() {
                           href={link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600"
+                          className="text-brand-blue-light"
                         >
                           {label}{' '}
                         </Link>
@@ -175,7 +182,7 @@ export default function Projects() {
                   href={authors[project.author as keyof typeof authors]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-900"
+                  className="text-brand-blue-light/70"
                 >
                   {project.author}
                 </Link>{' '}

@@ -32,13 +32,13 @@ const Feature = ({
           }}
         />
       )}
-      <h2 className="text-white font-bold text-2xl mb-4">{title}</h2>
-      <p className="text-gray-400 mb-4">{desc}</p>
+      <h2 className="text-brand-text font-bold text-2xl mb-4">{title}</h2>
+      <p className="text-brand-text/70 mb-4">{desc}</p>
       {linkTitle && (
         <Link
           href={linkUrl}
           target={linkUrl.startsWith('https://') ? '_blank' : ''}
-          className="text-blue-500 text-sm font-medium group"
+          className="text-brand-blue-light text-sm font-medium group"
         >
           {linkTitle}
           <FontAwesomeIcon

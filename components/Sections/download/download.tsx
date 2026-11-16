@@ -19,13 +19,14 @@ interface DownloadProps {
 
 export default function Download({ initialData }: DownloadProps) {
   return (
-    <main className="my-12 mx-6 md:mx-24">
+    <main className="my-12 mx-6 md:mx-24 text-brand-text">
       <div className="py-0 ">
         <div className="place-self-center">
-          <h1 className="text-gray-700 tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
-            Download <span className="text-blue-600">ClickCrystals</span>
+          <h1 className="text-brand-text tracking-tight leading-[1.3] font-extrabold text-2xl md:text-3xl lg:text-4xl">
+            Download{' '}
+            <span className="text-brand-blue-light">ClickCrystals</span>
           </h1>
-          <p className="text-gray-500 font-normal max-w-4xl my-3">
+          <p className="text-brand-text/70 font-normal max-w-4xl my-3">
             Our official downloads are available on CurseForge, PlanetMC,
             Modrinth and GitHub. Please refrain from downloading ClickCrystals
             from any other website other than listed here.
@@ -34,7 +35,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://www.curseforge.com/minecraft/mc-mods/clickcrystals"
               label="CurseForge"
-              className="ring-[#ff7547] border-[#ff7547] bg-[#f16436] hover:bg-[#df582c]"
+              className="bg-[#f16436] hover:bg-[#df582c] rounded-lg transition-colors duration-150"
               icon={
                 <Image
                   src={curseforge}
@@ -48,7 +49,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://planetminecraft.com/mod/clickcrystal"
               label="PlanetMC"
-              className="ring-[#2697b3] border-[#2697b3] bg-[#1f86a0] hover:bg-[#126377]"
+              className="bg-[#1f86a0] hover:bg-[#126377] rounded-lg transition-colors duration-150"
               icon={
                 <Image
                   src={planetmc}
@@ -62,7 +63,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://modrinth.com/mod/clickcrystals"
               label="Modrinth"
-              className="ring-[#3eb326] border-[#3eb326] bg-[#39a822] hover:bg-[#2d8a1a]"
+              className="bg-[#39a822] hover:bg-[#2d8a1a] rounded-lg transition-colors duration-150"
               icon={
                 <Image
                   src={modrinth}
@@ -76,7 +77,7 @@ export default function Download({ initialData }: DownloadProps) {
             <DownloadLink
               link="https://github.com/clickcrystals-development/ClickCrystals/releases"
               label="GitHub"
-              className="ring-[#3c444b] border-[#3c444b] bg-[#202529] hover:bg-[#181b1f]"
+              className="bg-[#202529] hover:bg-[#181b1f] rounded-lg transition-colors duration-150"
               icon={
                 <FontAwesomeIcon icon={faGithub} className="size-6 md:size-5" />
               }

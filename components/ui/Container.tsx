@@ -17,9 +17,9 @@ export const Container = ({
   return (
     <motion.div
       className={`transition scale-1 inline cursor-pointer ${className}`}
-      whileTap={{ scale: tapScale }}
-      whileHover={{ scale: hoverScale }}
-      transition={{ duration: 0.1 }}
+      whileTap={{ scale: tapScale, opacity: 0.85 }}
+      whileHover={{ scale: hoverScale, opacity: 0.92 }}
+      transition={{ duration: 0.08, ease: 'easeOut' }}
       {...props}
     >
       {children}

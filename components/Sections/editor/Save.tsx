@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { saveCode } from '@/lib/scripts';
 import { useRouter } from 'next/navigation';
 
@@ -45,17 +43,26 @@ const Save = ({ receiveCode, disabled }: SaveProps) => {
 
   return (
     <button
-      className="btn border-transparent disabled:bg-[#4f7575] focus:ring-[#34adad] shadow-none bg-[#34adad] hover:bg-[#1e7e7e] font-semibold px-6 py-2.5 text-white text-sm w-full mb-4 lg:w-auto"
+      className="text-brand-blue-light/80 hover:text-brand-blue-light text-xs font-medium px-3 py-1.5 rounded-md border border-brand-blue/30 hover:border-brand-blue/60 hover:bg-brand-blue/10 transition-all duration-150"
       disabled={saveDisabled || disabled}
       onClick={handleSave}
     >
-      {saveDisabled && (
-        <FontAwesomeIcon
-          icon={faSpinner}
-          className="mr-2 size-4 animate-spin"
-        />
+      {saveDisabled ? (
+        <svg className="size-4 animate-spin" viewBox="0 0 24 24" fill="none">
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeDasharray="32"
+            strokeDashoffset="12"
+          />
+        </svg>
+      ) : (
+        'Save'
       )}
-      <div className="flex flex-row justify-center inset-0">Save</div>
     </button>
   );
 };

@@ -42,12 +42,17 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
   return (
     <div>
       <div className="flex mb-4 gap-4">
-        <SearchCategoryMenu value={category} onChange={updateCategory} />
+        <SearchCategoryMenu
+          value={category}
+          onChange={updateCategory}
+          className="border-brand-blue/40 bg-brand-surface text-brand-text"
+        />
         <Input
           type="text"
           placeholder="Filter Configs"
           value={filter}
           onChange={updateFilter}
+          className="border-brand-blue/40 bg-brand-surface text-brand-text placeholder:text-brand-text/40"
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
@@ -56,13 +61,13 @@ export default function ConfigsGrid({ configs }: { configs: any }) {
             <div className="flex flex-col col-span-full text-center py-10 gap-2">
               <FontAwesomeIcon
                 icon={faXmarkCircle}
-                className="size-8 text-black left-0 right-0 mx-auto"
+                className="size-8 text-brand-blue-light left-0 right-0 mx-auto"
               />
-              <h2 className="text-2xl font-semibold text-gray-600 font-sans tracking-tight">
+              <h2 className="text-2xl font-semibold text-brand-text/70 font-sans tracking-tight">
                 No scripts found
               </h2>
               <div className="flex justify-center">
-                <p className="text-gray-500 text-center max-w-4xl">
+                <p className="text-brand-text/50 text-center max-w-4xl">
                   Try adjusting your search or filters to find what you&apos;re
                   looking for.
                 </p>
